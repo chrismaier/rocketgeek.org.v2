@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Page Not Found - Rocket Geek</title>
+
+    <title>Profile - Rocket Geek</title>
     <meta property="og:type" content="website">
     <meta name="description" content="Rocket Geek website">
     <link rel="icon" type="image/png" sizes="484x482" href="assets/img/GeekGuy_TransparentBG_Black_DarkGrayEyes.png">
@@ -16,14 +17,15 @@
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="assets/css/Black-Navbar.css">
-    <link rel="stylesheet" href="assets/css/Bootstrap-4-Calendar-No-Custom-Code.css">
+    <!-- <link rel="stylesheet" href="assets/css/Bootstrap-4-Calendar-No-Custom-Code.css"> -->
     <link rel="stylesheet" href="assets/css/Bootstrap-Calendar.css">
     <link rel="stylesheet" href="assets/css/Contact-form-simple.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/css/rocketgeek.css">
     <link rel="stylesheet" href="assets/css/textarea.css">
-    <link rel="stylesheet" href="assets/css/Ultimate-Event-Calendar.css">
+   <!--  <link rel="stylesheet" href="assets/css/Ultimate-Event-Calendar.css"> -->
+    <link rel="stylesheet" href="assets/css/Dynamic-Calendar.css">
 </head>
 
 <body id="page-top">
@@ -35,7 +37,7 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fab fa-blogger"></i>Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="calendar.html"><i class="far fa-calendar-alt"></i>Calendar</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="calendar.html"><i class="far fa-calendar-alt"></i>Calendar</a></li>
                     <li class="nav-item"><a class="nav-link" href="clubs.html"><i class="fas fa-users"></i>Clubs</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="donations.html"><i class="far fa-money-bill-alt"></i>Donations</a></li>
@@ -51,7 +53,7 @@
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav-bar">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav">
                     <div class="container-fluid" id="top-nav-bar"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
@@ -145,19 +147,146 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid">
-                    <div class="text-center mt-5">
-                        <div class="error mx-auto" data-text="404">
-                            <p class="m-0">404</p>
-                        </div>
-                        <p class="text-dark mb-5 lead">Page Not Found</p>
-                        <p class="text-black-50 mb-0">It looks like you found a glitch in the matrix...</p><a href="/index.html">← Home</a>
+                <!--
+                // OLD calendar static
+                <div class="calendar" style="margin: 20px;">
+                    <div class="bg-white d-flex align-items-center"><i class="far fa-calendar fa-3x me-3"></i>
+                        <h1 class="month fw-bold mb-0 text-uppercase">May 2024</h1>
                     </div>
+                    <p class="fst-italic text-muted mb-5">No events for this day.<br></p>
+                    <ol class="day-names list-unstyled">
+                        <li class="fw-bold text-uppercase">Sunday</li>
+                        <li class="fw-bold text-uppercase">Monday</li>
+                        <li class="fw-bold text-uppercase">Tuesday</li>
+                        <li class="fw-bold text-uppercase">Wednesday</li>
+                        <li class="fw-bold text-uppercase">thursday</li>
+                        <li class="fw-bold text-uppercase">Friday</li>
+                        <li class="fw-bold text-uppercase">Saturday</li>
+                    </ol>
+                    <ol class="days list-unstyled">
+                        <li class="outside">
+                            <div class="date"><span>27</span></div>
+                            <div class="event bg-success"><span>Event with Long Name</span></div>
+                        </li>
+                        <li class="outside">
+                            <div class="date"><span>28</span></div>
+                        </li>
+                        <li class="outside">
+                            <div class="date"><span>29</span></div>
+                        </li>
+                        <li class="outside">
+                            <div class="date"><span>30</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>1</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>2</span></div>
+                            <div class="event span-2 bg-warning"><span>span event</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>3</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>4</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>5</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>6</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>7</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>8</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>9</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>10</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>11</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>12</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>13</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>14</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>15</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>16</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>17</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>18</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>19</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>20</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>21</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>22</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>23</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>24</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>25</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>26</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>27</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>28</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>29</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>30</span></div>
+                        </li>
+                        <li>
+                            <div class="date"><span>31</span></div>
+                        </li>
+                    </ol>
                 </div>
+                -->
+    <!-- new calendar -->
+
+                <div id="calendar"></div>
+                <div id="currentMonthYear" class="calendar-header"></div>
+                <script type="application/javascript">
+                    document.addEventListener('DOMContentLoaded', function() {
+                        generateCalendar();
+                        });
+                </script>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Rocket Geek </span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Rocket Geek 2024</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
@@ -178,6 +307,7 @@
     <script src="assets/js/DataTable---Fully-BSS-Editable.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/Ultimate-Event-Calendar.js"></script>
+    <script src="assets/js/Dynamic-Calendar.js"></script>
 </body>
 
 </html>

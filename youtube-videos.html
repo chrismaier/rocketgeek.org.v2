@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Page Not Found - Rocket Geek</title>
+    <title>Table - Rocket Geek</title>
     <meta property="og:type" content="website">
     <meta name="description" content="Rocket Geek website">
     <link rel="icon" type="image/png" sizes="484x482" href="assets/img/GeekGuy_TransparentBG_Black_DarkGrayEyes.png">
@@ -43,7 +43,7 @@
                     <li class="nav-item"><a class="nav-link" href="photos.html"><i class="fas fa-camera"></i>Photos</a></li>
                     <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user-edit"></i>Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-plus"></i>Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="youtube-videos.html"><i class="fas fa-film"></i>Videos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="youtube-videos.html"><i class="fas fa-film"></i>Videos</a></li>
                     <li class="nav-item"><a class="nav-link" href="welcome.html"><i class="far fa-bookmark"></i>Welcome</a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
@@ -51,16 +51,18 @@
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav-bar">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav">
                     <div class="container-fluid" id="top-nav-bar"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                                     <form class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                        <div class="input-group">
+                                            <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
                                             <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
                                         </div>
                                     </form>
@@ -98,7 +100,8 @@
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-envelope fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                         <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
+                                            <div class="dropdown-list-image me-3">
+                                                <img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
                                             <div class="fw-bold">
@@ -146,18 +149,63 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <div class="text-center mt-5">
-                        <div class="error mx-auto" data-text="404">
-                            <p class="m-0">404</p>
+                    <h2 class="mb-4">Highlighted Videos</h2>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="m-0 fw-bold">YouTube Channel</p>
+                            <div class="d-flex flex-column justify-content-center align-items-stretch box">
+                                <div class="content-block"></div>
+                                <div class="text-secondary bg-light border-white shadow-none content-block link"><a href="https://www.youtube.com/channel/UCfFH8uWvCQsglD_9WOUN04Q">Go to the Rocket Geek YouTube channel</a></div>
+                            </div>
                         </div>
-                        <p class="text-dark mb-5 lead">Page Not Found</p>
-                        <p class="text-black-50 mb-0">It looks like you found a glitch in the matrix...</p><a href="/index.html">← Home</a>
+                        <div class="card-header py-3">
+                            <p class="m-0 fw-bold">Video List</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Video Name</th>
+                                            <th>Video Link</th>
+                                         
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Video Title 1</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Video Description</td>
+                                        <td><iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Video Title 1</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Video Description</td>
+                                        <td><iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Rocket Geek </span></div>
+                    <div class="text-center my-auto copyright"><span>Copyright © Rocket Geek 2024</span></div>
                 </div>
             </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
