@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/css/rocketgeek.css">
     <link rel="stylesheet" href="assets/css/textarea.css">
-    <!--
+
     <link rel="stylesheet" href="assets/css/Ultimate-Event-Calendar.css">
-    -->
+
     <link rel="stylesheet" href="assets/css/test-calendar.css">
 </head>
 
@@ -150,12 +150,20 @@
             </nav>
 
             <!-- Calendar goes here -->
+<!--
+            <div id="calendar" class="calendar"></div>
+            <div id="currentMonthYear" class="calendar-header"></div>
+-->
 
+<!--
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+-->
                         <div class="calendar">
-                            <div class="month-header">
+                            <div class="bg-white d-flex align-items-center"><i class="far fa-calendar fa-3x me-3"></i>
+                                <h1 class="month fw-bold mb-0 text-uppercase">May </h1>
+
                                 <h2 id="monthAndYear"></h2>
                                 <button class="btn btn-primary" id="prev" onclick="prev()">&lt;</button>
                                 <button class="btn btn-primary" id="next" onclick="next()">&gt;</button>
@@ -175,10 +183,14 @@
                                 <tbody id="calendar-body">
                                 </tbody>
                             </table>
-                        </div>
+
+
+                    </div>
+            <!--
                     </div>
                 </div>
             </div>
+-->
 
 
         </div>
@@ -204,10 +216,16 @@
 <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
 <script src="assets/js/DataTable---Fully-BSS-Editable.js"></script>
 <script src="assets/js/theme.js"></script>
-<!--
+
 <script src="assets/js/Ultimate-Event-Calendar.js"></script>
--->
+
+
 <script src="assets/js/test-calendar.js"></script>
+
+<!-- updated the JS significantly to try an match the current look and feel -->
+<!-- This didnt work -->
+<!-- <script src="assets/js/rg-calendar.js"></script> -->
+
 </body>
 
 </html>

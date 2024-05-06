@@ -33,21 +33,17 @@
 
 .mb-4.topbar.static-top {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 #top-nav-bar {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 .navbar {
-  background-color: #8b0000;
   background: #8b0000;
 }
 
 .sidebar {
-  background-color: #8b0000;
   background: #8b0000;
 }
 
@@ -57,7 +53,6 @@
 
 .sidebar.sidebar-dark.accordion {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 .d-flex {
@@ -66,47 +61,38 @@
 
 .navbar-brand {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 .topbar {
-  background-color: #8b0000;
   background: #8b0000;
 }
 
 .navbar-light {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 .navbar-expand {
-  background-color: #8b0000;
   background: #8b0000;
 }
 
 .static-top {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 .nav-item {
   background: #8b0000;
-  background-color: #8b0000;
 }
 
 .sidebar.sidebar-dark.accordion {
-  background: black;
-  background-color: #000000;
+  background: #000000;
 }
 
 #page-top {
-  background-color: #000000;
   color: #000000;
   background: #000000;
 }
 
 #wrapper {
-  background-color: #000000;
   color: #000000;
   background: #000000;
 }
@@ -180,14 +166,12 @@ a:hover {
 }
 
 #navcol-1 {
-  background-color: #000000;
   color: #000000;
   background: #000000;
 }
 
 #alt-top-navbar {
   background: #000000;
-  background-color: #000000;
 }
 
 #header-geek:hover {

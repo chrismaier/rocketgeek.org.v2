@@ -51,6 +51,7 @@ function showCalendar(month, year) {
     document.getElementById("monthAndYear").innerHTML = months[month] + " " + year;
 }
 
+/*
 // Previous month
 function prev() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
@@ -64,3 +65,5 @@ function next() {
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
 }
+
+ */
