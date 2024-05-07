@@ -1,110 +1,126 @@
 /* Custom CSS for the calendar */
-.calendar {
+.calendar
+{
     /* margin-top: 20px;
     border-color: #000000;
 
      */
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 5px;
-    padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 10px;
+    width: 100%;
 
 }
 
-.month {
+.month
+{
     font-size: 2rem;
 }
 
-@media (min-width: 992px) {
-    .month {
+@media (min-width: 992px)
+{
+    .month
+    {
         font-size: 3.5rem;
     }
 }
-.calendar-header {
+
+.calendar-header
+{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    text-align: center;
     font-weight: bold;
-}
-
-
-.month-header {
-    background-color: #8b0000;
-    color: #FFFFFF;
+    gap: 5px;
+    grid-template-columns: repeat(7, 1fr);
     text-align: center;
-    padding: 10px;
 }
 
 
+.month-header
+{
+    background-color: #8b0000;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
 
-#calendar {
+
+#calendar
+{
     width: 100%;
 }
 
-#calendar td {
+#calendar td
+{
+    color: #000000;
     text-align: center;
-    color: #000000;
 }
 
 
-
-#calendar th {
+#calendar th
+{
     background-color: #8b0000;
     color: #000000;
 }
 
-#calendar td:hover {
+#calendar td:hover
+{
     background-color: #8b0000;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
-.btn-primary {
+.btn-primary
+{
     background-color: #8b0000;
     border-color: #8b0000;
 }
 
-.btn-primary:hover {
+.btn-primary:hover
+{
     background-color: #000000;
     border-color: #8b0000;
 }
 
 
-.bg-info {
+.bg-info
+{
     background-color: #8b0000;
     color: #8b0000;
 }
 
-.bg-info:hover {
+.bg-info:hover
+{
     background-color: #8b0000;
 
 }
 
 
-.day {
+.day
+{
     /* height: 100px;
     border: 1px solid #000000;
      */
-    width: 80px; /* Adjust the width as needed */
+    background-color: #f7f7f7;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
     height: 80px; /* Adjust the height as needed */
     padding: 5px;
-    border: 1px solid #ccc;
     text-align: center;
-    background-color: #f7f7f7;
-    border-radius: 3px;
+    width: 80px; /* Adjust the width as needed */
 
 }
 
-.today {
+.today
+{
     background-color: #000000;
-    color: #fff;
     border: 1px solid #007bff;
+    color: #ffffff;
 }
 
-.other-month {
-    color: #bbb;
+.other-month
+{
+    color: #bbbbbb;
 }

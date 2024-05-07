@@ -1,104 +1,121 @@
-.navigation-clean-search .action-button, .navigation-clean-button .action-button:active {
-  background: #56c6c6;
-  border-radius: 20px;
-  font-size: inherit;
-  color: #fff !important;
-  box-shadow: none;
-  border: none;
-  text-shadow: none;
-  padding: 8px 20px;
-  transition: background-color 0.25s;
+.navigation-clean-search .action-button, .navigation-clean-button .action-button:active
+{
+    background: #56c6c6;
+    border: none;
+    border-radius: 20px;
+    box-shadow: none;
+    color: #ffffff !important;
+    font-size: inherit;
+    padding: 8px 20px;
+    text-shadow: none;
+    transition: background-color 0.25s;
 }
 
-.navigation-clean-button {
-  background: #222222;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #f2f5f8;
-  border-radius: 0;
-  box-shadow: none;
-  border: none;
-  margin-bottom: 0;
+.navigation-clean-button
+{
+    background: #222222;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    color: #f2f5f8;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
-@media (max-width:767px) {
-  .navigation-clean-button {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+@media (max-width: 767px)
+{
+    .navigation-clean-button
+    {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 }
 
-.navigation-clean-button .navbar-brand {
-  font-weight: bold;
-  color: inherit;
+.navigation-clean-button .navbar-brand
+{
+    color: inherit;
+    font-weight: bold;
 }
 
-.navigation-clean-button .navbar-brand:hover {
-  color: #1485ee;
+.navigation-clean-button .navbar-brand:hover
+{
+    color: #1485ee;
 }
 
-.navigation-clean-button .navbar-collapse, .navigation-clean-button .navbar-form {
-  border-top-color: #ddd;
+.navigation-clean-button .navbar-collapse, .navigation-clean-button .navbar-form
+{
+    border-top-color: #dddddd;
 }
 
-.navigation-clean-button.navbar .navbar-nav > li > a {
-  padding-left: 18px;
-  padding-right: 18px;
+.navigation-clean-button.navbar .navbar-nav > li > a
+{
+    padding-left: 18px;
+    padding-right: 18px;
 }
 
-.navigation-clean-button .navbar-nav > li > .dropdown-menu {
-  margin-top: -5px;
-  box-shadow: 0 4px 8px rgba(0,0,0,.1);
-  background-color: #222222;
-  border-radius: 2px;
+.navigation-clean-button .navbar-nav > li > .dropdown-menu
+{
+    background-color: #222222;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+    margin-top: -5px;
 }
 
-.navigation-clean-button .actions {
-  margin-top: 7px;
-  margin-bottom: 0;
+.navigation-clean-button .actions
+{
+    margin-bottom: 0;
+    margin-top: 7px;
 }
 
-.navigation-clean-button .actions .login {
-  margin-right: 7px;
-  text-decoration: none;
-  color: #ffffff;
+.navigation-clean-button .actions .login
+{
+    color: #ffffff;
+    margin-right: 7px;
+    text-decoration: none;
 }
 
-.navigation-clean-button .action-button, .navigation-clean-button .action-button:active {
-  background: transparent;
-  border-radius: 0;
-  color: #e04c40;
-  box-shadow: none;
-  border: 1px solid #e04c40;
-  text-shadow: none;
-  padding: 10px 22px;
-  transition: background-color 0.25s;
+.navigation-clean-button .action-button, .navigation-clean-button .action-button:active
+{
+    background: transparent;
+    border: 1px solid #e04c40;
+    border-radius: 0;
+    box-shadow: none;
+    color: #e04c40;
+    padding: 10px 22px;
+    text-shadow: none;
+    transition: background-color 0.25s;
 }
 
-.navigation-clean-button .action-button:hover {
-  background: #e04c40;
-  color: #fff;
-  font-weight: 400;
-  border: 1px solid #df4c40;
+.navigation-clean-button .action-button:hover
+{
+    background: #e04c40;
+    border: 1px solid #df4c40;
+    color: #ffffff;
+    font-weight: 400;
 }
 
-.navbar {
-  margin-bottom: 0;
+.navbar
+{
+    margin-bottom: 0;
 }
 
-.btn {
-  border-radius: 0;
+.btn
+{
+    border-radius: 0;
 }
 
-.btn.focus, .btn:focus, .btn:hover {
-  color: #ffffff;
-  text-decoration: none;
-  background-color: #1485ee;
-  border: none;
+.btn.focus, .btn:focus, .btn:hover
+{
+    background-color: #1485ee;
+    border: none;
+    color: #ffffff;
+    text-decoration: none;
 }
 
-.btn {
-  font-family: 'Roboto', serif;
-  font-weight: 400;
+.btn
+{
+    font-family: 'Roboto', serif;
+    font-weight: 400;
 }
 

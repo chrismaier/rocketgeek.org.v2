@@ -1,21 +1,24 @@
-.calendar {
+.calendar
+{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
     gap: 5px;
+    grid-template-columns: repeat(7, 1fr);
 }
 
-.calendar-header {
+.calendar-header
+{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    text-align: center;
     font-weight: bold;
+    gap: 5px;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
 }
 
-.day {
-    width: 40px; /* Adjust the width as needed */
+.day
+{
+    border: 1px solid #cccccc;
     height: 40px; /* Adjust the height as needed */
     padding: 5px;
-    border: 1px solid #ccc;
     text-align: center;
+    width: 40px; /* Adjust the width as needed */
 }

@@ -1,66 +1,80 @@
-.text-primary {
-  /*color: #ffffff;*/
-  /*background-color: #ffffff;*/
+.text-primary
+{
+    /*color: #ffffff;*/
+    /*background-color: #ffffff;*/
 }
 
-.mb-4 {
-  color: #8b0000;
-  font-style: italic;
-  font-weight: bolder;
+.mb-4
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
 }
 
-.mb-3 {
-  color: #8b0000;
-  font-style: italic;
-  font-weight: bolder;
+.mb-3
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
 }
 
-.mb-1 {
-  color: #8b0000;
-  font-style: italic;
-  font-weight: bolder;
+.mb-1
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
 }
 
-.m-0 {
-  color: #8b0000;
-  font-style: italic;
-  font-weight: bolder;
+.m-0
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
 }
 
---rocket-geek-red {
-  color: #8b0000;
+--rocket-geek-red
+{
+    color: #8b0000;
 }
 
-.mb-4.topbar.static-top {
-  background: #8b0000;
+.mb-4.topbar.static-top
+{
+    background: #8b0000;
 }
 
-#top-nav-bar {
-  background: #8b0000;
+#top-nav-bar
+{
+    background: #8b0000;
 }
 
-.navbar {
-  background: #8b0000;
+.navbar
+{
+    background: #8b0000;
 }
 
-.sidebar {
-  background: #8b0000;
+.sidebar
+{
+    background: #8b0000;
 }
 
-.sidebar-brand {
-  background-color: #8b0000;
+.sidebar-brand
+{
+    background-color: #8b0000;
 }
 
-.sidebar.sidebar-dark.accordion {
-  background: #8b0000;
+.sidebar.sidebar-dark.accordion
+{
+    background: #8b0000;
 }
 
-.d-flex {
-  background-color: #8b0000;
+.d-flex
+{
+    background-color: #8b0000;
 }
 
-.navbar-brand {
-  background: #8b0000;
+.navbar-brand
+{
+    background: #8b0000;
 }
 
 /* added trying to alter text color on a button in the logout html page
@@ -68,133 +82,159 @@
 The "span:hover" worked
 */
 
-span:hover {
-  color: #000000;
+span:hover
+{
+    color: #000000;
 }
 
-.navbar-brand:hover {
-  color: #000000;
+.navbar-brand:hover
+{
+    color: #000000;
 }
 
-a:hover {
-  color: #000000;
-}
 
 /* end add text hover color over-ride */
 
-.topbar {
-  background: #8b0000;
+.topbar
+{
+    background: #8b0000;
 }
 
-.navbar-light {
-  background: #8b0000;
+.navbar-light
+{
+    background: #8b0000;
 }
 
-.navbar-expand {
-  background: #8b0000;
+.navbar-expand
+{
+    background: #8b0000;
 }
 
-.static-top {
-  background: #8b0000;
+.static-top
+{
+    background: #8b0000;
 }
 
-.nav-item {
-  background: #8b0000;
+.nav-item
+{
+    background: #8b0000;
 }
 
-.sidebar.sidebar-dark.accordion {
-  background: #000000;
+.sidebar.sidebar-dark.accordion
+{
+    background: #000000;
 }
 
-#page-top {
-  color: #000000;
-  background: #000000;
+#page-top
+{
+    background: #000000;
+    color: #000000;
 }
 
-#wrapper {
-  color: #000000;
-  background: #000000;
+#wrapper
+{
+    background: #000000;
+    color: #000000;
 }
 
-.bg-gradient-primary {
-  background: #8b0000;
+.bg-gradient-primary
+{
+    background: #8b0000;
 }
 
-.btn-user {
-  background: #000000;
+.btn-user
+{
+    background: #000000;
 }
 
-.btn {
-  background: #000000;
-  border-color: #000000;
+.btn
+{
+    background: #000000;
+    border-color: #000000;
 }
 
-.btn-user:hover {
-  background: #8b0000;
+.btn-user:hover
+{
+    background: #8b0000;
 }
 
-.btn:hover {
-  background: #8b0000;
+.btn:hover
+{
+    background: #8b0000;
 }
 
-.form-control:focus {
-  box-shadow: 0 0 1px #8b0000;
-  border: 2px solid #8b0000;
+.form-control:focus
+{
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 1px #8b0000;
 }
 
-.sidebar-brand-text {
-  color: #000000;
+.sidebar-brand-text
+{
+    color: #000000;
 }
 
-.page-item:active {
-  color: #000000;
-  background-color: #000000;
+.page-item:active
+{
+    background-color: #000000;
+    color: #000000;
 }
 
-#forgot-password-text {
-  color: #8b0000;
+#forgot-password-text
+{
+    color: #8b0000;
 }
 
-a {
-  color: #8b0000;
+a
+{
+    color: #8b0000;
 }
 
-a:visited {
-  color: #b6b6b6;
+a:visited
+{
+    color: #b6b6b6;
 }
 
-a:link {
-  /*color: #000000;*/
+a:link
+{
+    /*color: #000000;*/
 }
 
-a:hover {
-  color: #000000;
+a:hover
+{
+    color: #000000;
 }
 
-.nav-link {
-  color: #000000;
-  /*background-color: #000000;*/
+.nav-link
+{
+    color: #000000;
+    /*background-color: #000000;*/
 }
 
-.navbar-fixed-top {
-  background-color: #000000;
+.navbar-fixed-top
+{
+    background-color: #000000;
 }
 
-.navbar-light {
-  /*background-color: #000000;*/
+.navbar-light
+{
+    /*background-color: #000000;*/
 }
 
-#navcol-1 {
-  color: #000000;
-  background: #000000;
+#navcol-1
+{
+    background: #000000;
+    color: #000000;
 }
 
-#alt-top-navbar {
-  background: #000000;
+#alt-top-navbar
+{
+    background: #000000;
 }
 
-#header-geek:hover {
-  text-decoration: #000000;
-  color: #000000;
+#header-geek:hover
+{
+    color: #000000;
+    text-decoration: #000000;
 }
 

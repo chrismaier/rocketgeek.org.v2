@@ -1,8 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function ()
+{
     $('.mydatatable').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            'copy',
+            'csv',
+            'excel',
+            'pdf',
+            'print'
         ],
         scrollY: 300,
         scrollX: true,
