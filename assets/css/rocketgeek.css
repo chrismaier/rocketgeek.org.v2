@@ -63,6 +63,25 @@
   background: #8b0000;
 }
 
+/* added trying to alter text color on a button in the logout html page
+
+The "span:hover" worked
+*/
+
+span:hover {
+  color: #000000;
+}
+
+.navbar-brand:hover {
+  color: #000000;
+}
+
+a:hover {
+  color: #000000;
+}
+
+/* end add text hover color over-ride */
+
 .topbar {
   background: #8b0000;
 }
