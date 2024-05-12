@@ -30,6 +30,8 @@
         <link href = "../css/rocketgeek.css" rel = "stylesheet">
         <link href = "../css/textarea.css" rel = "stylesheet">
         <link href = "../css/Ultimate-Event-Calendar.css" rel = "stylesheet">
+        <link href = "../css/bootstrap-over-rides.css" rel = "stylesheet">
+        
         <!-- end of style sheet includes -->
         
     </head>
@@ -57,18 +59,18 @@
                     
                     <!-- Left sidebar links and icons -->
                     <ul class = "navbar-nav text-light" id = "accordionSidebar">
-                        <li class = "nav-item"><a class = "nav-link" href = "blog.html"><i class = "fab fa-blogger"></i>Blog</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "calendar.html"><i class = "far fa-calendar-alt"></i>Calendar</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "clubs.html"><i class = "fas fa-users"></i>Clubs</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "dashboard.html"><i class = "fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../blog.html"><i class = "fab fa-blogger"></i>Blog</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../calendar.html"><i class = "far fa-calendar-alt"></i>Calendar</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../clubs.html"><i class = "fas fa-users"></i>Clubs</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../dashboard.html"><i class = "fas fa-tachometer-alt"></i><span>Dashboard</span></a>
                         </li>
-                        <li class = "nav-item"><a class = "nav-link" href = "donations.html"><i class = "far fa-money-bill-alt"></i>Donations</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "login.html"><i class = "far fa-user-circle"></i><span>Login</span></a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "photos.html"><i class = "fas fa-camera"></i>Photos</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "profile.html"><i class = "fas fa-user-edit"></i>Profile</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "register.html"><i class = "fas fa-user-plus"></i>Register</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "youtube-videos.html"><i class = "fas fa-film"></i>Videos</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "welcome.html"><i class = "far fa-bookmark"></i>Welcome</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../donations.html"><i class = "far fa-money-bill-alt"></i>Donations</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../login.html"><i class = "far fa-user-circle"></i><span>Login</span></a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../photos.html"><i class = "fas fa-camera"></i>Photos</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../profile.html"><i class = "fas fa-user-edit"></i>Profile</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../register.html"><i class = "fas fa-user-plus"></i>Register</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../youtube-videos.html"><i class = "fas fa-film"></i>Videos</a></li>
+                        <li class = "nav-item"><a class = "nav-link" href = "../../welcome.html"><i class = "far fa-bookmark"></i>Welcome</a></li>
                     </ul>
                     
                     <!-- the left navigation bar collapse/expand button -->
@@ -81,17 +83,39 @@
             
             <!-- main panel begins here -->
             <div class = "d-flex flex-column" id = "content-wrapper">
+                
+                <!-- right pane content including top-navigation bar -->
                 <div id = "content">
+                    
+                    <!-- right pane top navigation -->
                     <nav class = "navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id = "top-nav">
                         <div class = "container-fluid" id = "top-nav-bar">
                             <button class = "btn btn-link d-md-none rounded-circle me-3" id = "sidebarToggleTop" type = "button"><i class = "fas fa-bars"></i>
                             </button>
+                            
+                            <!-- Search form and search button icon -->
                             <form class = "d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class = "input-group"><input class = "bg-light form-control border-0 small" placeholder = "Search for ..." type = "text">
-                                    <button class = "btn btn-primary py-0" type = "button"><i class = "fas fa-search"></i></button>
+                                
+                                
+                                <div class = "input-group">
+                                    
+                                    
+                                        <input class = "bg-light form-control border-0 small" placeholder = "Search for ..." type = "text">
+                                   
+                                    <button class = "btn btn-primary py-0" type = "button">
+                                        <i class = "fas fa-search"></i>
+                                    </button>
                                 </div>
+                               
+                                
                             </form>
+                            <!-- End of the search form in the top navigation section -->
+                            
+                            <!-- supposed to be a drop-down...?? -->
+                            <!-- upper right nav bar items like email and bell icon etc. -->
                             <ul class = "navbar-nav flex-nowrap ms-auto">
+                                
+                                <!-- cant find this first object -->
                                 <li class = "nav-item dropdown d-sm-none no-arrow">
                                     <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#"><i class = "fas fa-search"></i></a>
                                     <div aria-labelledby = "searchDropdown" class = "dropdown-menu dropdown-menu-end p-3 animated--grow-in">
@@ -105,6 +129,8 @@
                                         </form>
                                     </div>
                                 </li>
+                                
+                                <!-- notification bell icon and related drop down items -->
                                 <li class = "nav-item dropdown no-arrow mx-1">
                                     <div class = "nav-item dropdown no-arrow">
                                         <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#"><i class = "fas fa-bell fa-fw"></i></a>
@@ -135,13 +161,15 @@
                                         </div>
                                     </div>
                                 </li>
+                                
+                                <!-- email icon and related drop down items -->
                                 <li class = "nav-item dropdown no-arrow mx-1">
                                     <div class = "nav-item dropdown no-arrow">
                                         <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#"><i class = "fas fa-envelope fa-fw"></i></a>
                                         <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                             <h6 class = "dropdown-header">alerts center</h6>
                                             <a class = "dropdown-item d-flex align-items-center" href = "#">
-                                                <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "assets/img/avatars/avatar4.jpeg">
+                                                <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "../img/avatars/avatar4.jpeg" alt="avatar 4">
                                                     <div class = "bg-success status-indicator"></div>
                                                 </div>
                                                 <div class = "fw-bold">
@@ -150,7 +178,7 @@
                                                     <p class = "small text-gray-500 mb-0">Emily Fowler - 58m</p>
                                                 </div>
                                             </a><a class = "dropdown-item d-flex align-items-center" href = "#">
-                                            <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "assets/img/avatars/avatar2.jpeg">
+                                            <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "../img/avatars/avatar2.jpeg" alt="avatar 2">
                                                 <div class = "status-indicator"></div>
                                             </div>
                                             <div class = "fw-bold">
@@ -158,7 +186,7 @@
                                                 <p class = "small text-gray-500 mb-0">Jae Chun - 1d</p>
                                             </div>
                                         </a><a class = "dropdown-item d-flex align-items-center" href = "#">
-                                            <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "assets/img/avatars/avatar3.jpeg">
+                                            <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "../img/avatars/avatar3.jpeg" alt="avatar 3">
                                                 <div class = "bg-warning status-indicator"></div>
                                             </div>
                                             <div class = "fw-bold">
@@ -167,7 +195,7 @@
                                                 <p class = "small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
                                             </div>
                                         </a><a class = "dropdown-item d-flex align-items-center" href = "#">
-                                            <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "assets/img/avatars/avatar5.jpeg">
+                                            <div class = "dropdown-list-image me-3"><img class = "rounded-circle" src = "../img/avatars/avatar5.jpeg" alt="avatar 5">
                                                 <div class = "bg-success status-indicator"></div>
                                             </div>
                                             <div class = "fw-bold">
@@ -180,12 +208,16 @@
                                     </div>
                                     <div aria-labelledby = "alertsDropdown" class = "shadow dropdown-list dropdown-menu dropdown-menu-end"></div>
                                 </li>
+                                
+                                <!-- divider bar in the top right navigation area -->
                                 <div class = "d-none d-sm-block topbar-divider"></div>
+                                
+                                <!-- the profile item and related drop down list -->
                                 <li class = "nav-item dropdown no-arrow">
                                     <div class = "nav-item dropdown no-arrow">
-                                        <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "profile.html"><span class = "d-none d-lg-inline me-2 text-white-600 small">Random Geek</span><img class = "border rounded-circle img-profile" src = "assets/img/avatars/geek-guy.png"></a>
+                                        <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "../../profile.html"><span class = "d-none d-lg-inline me-2 text-white-600 small">Random Geek</span><img class = "border rounded-circle img-profile" src = "../img/avatars/geek-guy.png" alt="Geek Guy image"></a>
                                         <div class = "dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                            <a class = "dropdown-item" href = "profile.html"><i class = "fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class = "dropdown-item" href = "#"><i class = "fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class = "dropdown-item" href = "#"><i class = "fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity
+                                            <a class = "dropdown-item" href = "../../profile.html"><i class = "fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class = "dropdown-item" href = "#"><i class = "fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class = "dropdown-item" href = "#"><i class = "fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity
                                                                                                                                                                                                                                                                                                                                                                                                 log</a>
                                             <div class = "dropdown-divider"></div>
                                             <a class = "dropdown-item" href = "#"><i class = "fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
@@ -195,7 +227,11 @@
                             </ul>
                         </div>
                     </nav>
+                    
+                    <!-- the main content section of the page -->
                     <section class = "py-5" id = "content-1">
+                        
+                        <!-- the title portion of the main content on the page -->
                         <div class = "container py-3">
                             <div class = "row text-center mb-5">
                                 <div class = "col-xl-9 mx-auto">
@@ -205,6 +241,8 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- the actual content of the page is in this area -->
                         <div class = "container py-3">
                             <div class = "row text-center mb-5">
                                 <div class = "col-xl-9 mx-auto">
@@ -246,6 +284,8 @@
                             </div>
                         </div>
                     </section>
+                    <!-- the end of the main content on the page -->
+                    
                 </div>
                 
                 <!-- Page footer -->
