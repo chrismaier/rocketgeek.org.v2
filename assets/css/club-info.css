@@ -1,0 +1,7 @@
+.plus-sign {
+    margin-left: 5px;
+}
+
+.plus-sign::before {
+    content: '+';
+}

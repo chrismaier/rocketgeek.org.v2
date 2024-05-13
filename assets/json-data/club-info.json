@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Example Tripoli Club",
+    "number": "T123",
+    "city": "Example City",
+    "website": "https://example.com",
+    "launch_site": "Example Launch Site",
+    "contact_email": "example@example.com",
+    "upcoming_events": "Example Event 1, Example Event 2"
+  },
+  {
+    "id": 3,
+    "name": "AARG",
+    "number": "Prefect 2",
+    "city": "Austin",
+    "website": "https://aarg.org",
+    "launch_site": "Example Launch Site",
+    "contact_email": "contact@example.com",
+    "upcoming_events": "Example Event 1, Example Event 2"
+  },
+  {
+    "id": 4,
+    "name": "TNT",
+    "number": "Tripoli North Texas",
+    "city": "Seymour",
+    "website": "https://tripolinorthtexas.org",
+    "launch_site": "Example Launch Site",
+    "contact_email": "contact@example.com",
+    "upcoming_events": "Texas Shootout, Example Event 2"
+  },
+  {
+    "id": 2,
+    "name": "Example NAR Club",
+    "number": "N456",
+    "city": "Another City",
+    "website": "https://example.org",
+    "launch_site": "Another Launch Site",
+    "contact_email": "info@example.org",
+    "upcoming_events": "Event A, Event B"
+  }
+]
