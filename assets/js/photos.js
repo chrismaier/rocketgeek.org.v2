@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Fetch images from a JSON file
-    $.getJSON('images.json', function(data) {
+    $.getJSON('./assets/json-data/photos.json', function(data) {
         let imageGallery = $('#image-gallery');
         
         data.images.forEach(function(image) {
