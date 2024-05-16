@@ -1,0 +1,10 @@
+/* styles.css */
+/* Your initial styles */
+
+body.loaded {
+    /* Dynamic styles to be applied after page load */
+    /*
+        Probably need to figure out what styles need to be applied to the side nav
+        arrow / button and place them in this section...
+    */
+}

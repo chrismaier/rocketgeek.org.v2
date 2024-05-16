@@ -3,24 +3,26 @@
     
     <head>
         <title>YouTube Videos - Rocket Geek</title>
-        
+        <link href = "assets/css/css-reload.css" rel = "stylesheet">
         <!--
             =TEMPORARILY= disable the content from displaying when the page loads
             The css loader script will re-enable the body display once it finishes loading
         -->
+        
         <style>
             body { display: none; }
         </style>
         
+        
         <!-- load META tags =FIRST= -->
         <script src="./assets/js/meta-loader.js"></script>
         
-        
+        <!-- load the CSS files second - this js re-enables the page -->
         <script src="./assets/js/css-loader.js"></script>
         
-        <!--
-        Testing the dynamic loading using the JS files
         
+        <!-- Testing the dynamic loading using the JS files -->
+        <!--
         <meta charset = "utf-8">
         <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
         
@@ -45,6 +47,7 @@
         <link href = "assets/css/textarea.css" rel = "stylesheet">
         <link href = "assets/css/Ultimate-Event-Calendar.css" rel = "stylesheet">
         -->
+        
     </head>
     
     <body id = "page-top">
@@ -56,6 +59,7 @@
                     </a>
                     <hr class = "sidebar-divider my-0">
                     <ul class = "navbar-nav text-light" id = "accordionSidebar">
+                        <!--
                         <li class = "nav-item"><a class = "nav-link" href = "blog.html"><i class = "fab fa-blogger"></i><span>Blog</span></a></li>
                         <li class = "nav-item"><a class = "nav-link" href = "calendar.html"><i class = "far fa-calendar-alt"></i><span>Calendar</span></a></li>
                         <li class = "nav-item"><a class = "nav-link" href = "clubs.html"><i class = "fas fa-users"></i><span>Clubs</span></a></li>
@@ -67,12 +71,15 @@
                         <li class = "nav-item"><a class = "nav-link" href = "register.html"><i class = "fas fa-user-plus"></i><span>Register</span></a></li>
                         <li class = "nav-item"><a class = "nav-link active" href = "youtube-videos.html"><i class = "fas fa-film"></i><span>Videos</span></a></li>
                         <li class = "nav-item"><a class = "nav-link" href = "welcome.html"><i class = "far fa-bookmark"></i><span>Welcome</span></a></li>
+                        -->
                     </ul>
-                    <div class = "text-center d-none d-md-inline">
+                    <div class = "text-center d-none d-md-inline" id="nav-slider-button">
                         <button class = "btn rounded-circle border-0" id = "sidebarToggle" type = "button"></button>
                     </div>
                 </div>
             </nav>
+            
+            
             <div class = "d-flex flex-column" id = "content-wrapper">
                 <div id = "content">
                     <nav class = "navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id = "top-nav">
@@ -248,6 +255,8 @@
         <script src = "assets/js/theme.js"></script>
         <script src = "assets/js/Ultimate-Event-Calendar.js"></script>
         <script src = "assets/js/youtube-videos.js"></script>
+        <script src = "assets/js/side-nav-script.js"></script>
+        <script src = "assets/js/css-reload.js"></script>
     </body>
 
 </html>
