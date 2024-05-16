@@ -16,25 +16,25 @@
       "video-id": "3",
       "title": "K Motor Test Burn",
       "url": "https://www.youtube.com/embed/ep5fUkdbimU?si=HKzprOoQp0qFHWcv",
-      "description": "Test firing a K class rocket motor"
+      "description": "Test firing a K class rocket motor."
     },
     {
       "video-id": "4",
-      "title": "Liftoff",
+      "title": "Small Tes Motor",
       "url": "https://www.youtube.com/embed/d2X8e3FV_wE?si=3_VymWnpQpFMxx0Q",
-      "description": "High power rockets lifting off at the West Texas launch site - old archive."
+      "description": "A small test motor - an I or J probably."
     },
     {
       "video-id": "5",
-      "title": "K Motor Test Burn",
+      "title": "Test Burn an N motor",
       "url": "https://www.youtube.com/embed/fTpPGL5NJpg?si=I5RITdQk_F2Q88n9",
-      "description": "Test firing a K class rocket motor"
+      "description": "Test firing an N class rocket motor - testing the self built motor hardware."
     },
     {
       "video-id": "6",
-      "title": "Liftoff",
+      "title": "Odd Test Fire",
       "url": "https://www.youtube.com/embed/8sgLLQFLrDM?si=B9v3yQoNGl2s5V5Q",
-      "description": "High power rockets lifting off at the West Texas launch site - old archive."
+      "description": "Can you spot the oddity with this test motor when it burns?"
     }
 
   ]
