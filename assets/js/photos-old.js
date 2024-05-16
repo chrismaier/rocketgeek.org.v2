@@ -12,10 +12,12 @@ $(document).ready(function() {
                 <div class="card">
                     <img src="${image.fullsize}" class="card-img-top" alt="${image.title}" data-fullsize="${image.fullsize}">
                     <div class="card-body">
-                        <h5 class="card-title custom-title">${image.title}</h5>
-                        <p class="card-text"><strong>Club:</strong> <span class="custom-text">${image.club}</span></p>
-                        <p class="card-text"><strong>Date:</strong> <span class="custom-text">${image.date}</span></p>
-                        <p class="card-text"><strong>Flyer:</strong> <span class="custom-text">${image.flyer}</span></p>
+                    
+                        <h5 class="card-title">${image.title}</h5>
+                        <p class="card-text"><strong>Club:</strong> ${image.club}</p>
+                        <p class="card-text"><strong>Date:</strong> ${image.date}</p>
+                        <p class="card-text"><strong>Flyer:</strong> ${image.flyer}</p>
+                        
                     </div>
                 </div>
             `);

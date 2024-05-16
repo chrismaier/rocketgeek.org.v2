@@ -22,6 +22,7 @@
         <link href = "https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" rel = "stylesheet">
         <link href = "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" rel = "stylesheet">
         <link href = "assets/css/rocketgeek.css" rel = "stylesheet">
+        <link href = "assets/css/youtube-videos.css" rel = "stylesheet">
         <link href = "assets/css/textarea.css" rel = "stylesheet">
         <link href = "assets/css/Ultimate-Event-Calendar.css" rel = "stylesheet">
     </head>
@@ -178,7 +179,7 @@
                         <h2 class = "mb-4">Highlighted Videos</h2>
                         <div class = "card shadow">
                             <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">YouTube Channel</p>
+                                <p class = "m-0 fw-bold">Rocket Geek YouTube Channel</p>
                                 <div class = "d-flex flex-column justify-content-center align-items-stretch box">
                                     <div class = "content-block"></div>
                                     <div class = "text-secondary bg-light border-white shadow-none content-block link">
@@ -188,41 +189,18 @@
                             <div class = "card-header py-3">
                                 <p class = "m-0 fw-bold">Video List</p>
                             </div>
-                            <div class = "card-body">
-                                <div aria-describedby = "dataTable_info" class = "table-responsive table mt-2" id = "dataTable-1" role = "grid">
-                                    <table class = "table my-0" id = "dataTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Video Name</th>
-                                                <th>Video Link</th>
-                                            
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Level 1 Cert (failure)</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>A Level 1 certification failure that was not the fault of the rocketeer...</td>
-                                                <td>
-                                                    <iframe allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen height = "315" referrerpolicy = "strict-origin-when-cross-origin" src = "https://www.youtube.com/embed/D3mPsUok5UY?si=aW-YnCMrYdgpkxnG" title = "YouTube video player" width = "560"></iframe>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Liftoff</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>High power rockets lifting off at the West Texas launch site - old archive.</td>
-                                                <td>
-                                                    <iframe allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen height = "315" referrerpolicy = "strict-origin-when-cross-origin" src = "https://www.youtube.com/embed/E1FsMn7vPgs?si=IZA0IHCbBMqyF-_0" title = "YouTube video player" width = "560"></iframe>
-                                                </td>
-                                            </tr>
-                                    
-                                    </table>
-                                </div>
+                            
+                            <!-- dynamic video list here -->
+                            
+                            <div class="video-gallery" id="videoGallery">
+                                <!-- Video cards will be dynamically loaded here -->
                             </div>
+                            
+                            
+                            <!-- end of dynamic video list -->
+                            
+                 
+                            
                         </div>
                     </div>
                 </div>
@@ -250,6 +228,7 @@
         <script src = "assets/js/DataTable---Fully-BSS-Editable.js"></script>
         <script src = "assets/js/theme.js"></script>
         <script src = "assets/js/Ultimate-Event-Calendar.js"></script>
+        <script src = "assets/js/youtube-videos.js"></script>
     </body>
 
 </html>

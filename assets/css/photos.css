@@ -1,0 +1,21 @@
+/* Style to create thumbnail from full-size image */
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card-title {
+    color: #8b0000; /* Default color for card titles */
+}
+
+.card-text {
+    color: #b6b6b6; /* Default color for card text */
+}
+
+.custom-title {
+    color: #8b0000; /* Change this to your desired color for the title */
+}
+
+.custom-text {
+    color: #000000; /* Change this to your desired color for the text */
+}
