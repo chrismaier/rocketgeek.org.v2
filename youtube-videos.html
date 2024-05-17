@@ -2,16 +2,15 @@
 <html lang = "en">
     
     <head>
+        <!-- page unique head information / meta tags etc go here -->
         <title>YouTube Videos - Rocket Geek</title>
         <link href = "assets/css/css-reload.css" rel = "stylesheet">
+        
         <!--
             =TEMPORARILY= disable the content from displaying when the page loads
             The css loader script will re-enable the body display once it finishes loading
         -->
-        
-        <style>
-            body { display: none; }
-        </style>
+        <style>body { display: none; }</style>
         
         
         <!-- load META tags =FIRST= -->
@@ -21,7 +20,7 @@
         <script src="./assets/js/css-loader.js"></script>
         
         
-        <!-- Testing the dynamic loading using the JS files -->
+        <!-- Testing the dynamic loading of meta/head tags and elements using the JS files -->
         <!--
         <meta charset = "utf-8">
         <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
@@ -60,6 +59,9 @@
                     <hr class = "sidebar-divider my-0">
                     <ul class = "navbar-nav text-light" id = "accordionSidebar">
                         <!--
+                        ** Side nave items have been moved to a dynamic config using JS and JSON **
+                        **** see side-nav-script.js below
+                        
                         <li class = "nav-item"><a class = "nav-link" href = "blog.html"><i class = "fab fa-blogger"></i><span>Blog</span></a></li>
                         <li class = "nav-item"><a class = "nav-link" href = "calendar.html"><i class = "far fa-calendar-alt"></i><span>Calendar</span></a></li>
                         <li class = "nav-item"><a class = "nav-link" href = "clubs.html"><i class = "fas fa-users"></i><span>Clubs</span></a></li>
@@ -215,14 +217,12 @@
                             <div class = "card-header py-3">
                                 <p class = "m-0 fw-bold">Video List</p>
                             </div>
+                           
                             
                             <!-- dynamic video list here -->
-                            
                             <div class="video-gallery" id="videoGallery">
                                 <!-- Video cards will be dynamically loaded here -->
                             </div>
-                            
-                            
                             <!-- end of dynamic video list -->
                             
                  
