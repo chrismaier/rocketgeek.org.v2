@@ -97,6 +97,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (error) {
             console.error('Error submitting form:', error);
             alert('Error submitting form: ' + error.message);
+            
+            if (error.response) {
+                console.error("Response status:", error.response.status);
+                console.error("Response body:", error.response.body);
+            }
+            else {
+                console.error('Error had no response object:');
+            }
         }
     }
 });
