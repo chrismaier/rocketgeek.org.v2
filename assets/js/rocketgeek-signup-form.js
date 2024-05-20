@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch('https://zpaufhsjvc.execute-api.us-east-1.amazonaws.com/register', {
                 method: 'POST',
+                //mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
