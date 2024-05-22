@@ -185,26 +185,6 @@ span:hover
     color: #8b0000;
 }
 
-a
-{
-    color: #8b0000;
-}
-
-a:visited
-{
-    color: #b6b6b6;
-}
-
-a:link
-{
-    /*color: #000000;*/
-}
-
-a:hover
-{
-    color: #000000;
-}
-
 .nav-link
 {
     color: #000000;
@@ -249,4 +229,46 @@ a:hover
     border: 0;
 }
 
+
+a:link {
+    color: #8b0000;
+}
+a:visited {
+    color: #4A4A4A;
+}
+a:hover {
+    color: #FFA500;
+}
+a:active {
+    color: #00FF00;
+}
+
+/* Grey palette styles for the special link with ID 'special-link' */
+#special-link:link {
+    color: #3A3A3A; /* Grey color for unvisited special link */
+}
+#special-link:visited {
+    /* color: #5F5F5F; /* Darker grey for visited special link */
+    /* color: #1A1A1A; */
+    color: #2A2A2A;
+}
+#special-link:hover {
+    color: #A9A9A9; /* Light grey when hovering over special link */
+}
+#special-link:active {
+    color: #696969; /* Dim grey when the special link is being clicked */
+}
+
+#another-link:link {
+    color: #008080;
+}
+#another-link:visited {
+    color: #4682B4;
+}
+#another-link:hover {
+    color: #00CED1;
+}
+#another-link:active {
+    color: #FFA500;
+}
 
