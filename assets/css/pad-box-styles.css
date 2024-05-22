@@ -1,54 +1,6 @@
-.pad-box-container {
-    margin-bottom: 20px;
-}
-
-.pad-box {
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 15px;
-}
-
-.pad-heading {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.pad-description {
-    font-style: italic;
-}
-
-.item-description {
-    font-weight: bold;
-    font-style: italic;
-    font-size: 1.1em;
-}
-
-.item-details {
-    list-style-type: none;
-    padding: 0;
-}
-
-.item-details li {
-    margin-bottom: 5px;
-}
-
-.present-false .item-description {
-    color: red;
-}
-
-.pad-box-header {
-    font-size: 24px; /* Adjust the size as needed */
-    font-weight: bold;
-}
-
-.pad-box-description {
-    font-size: 16px; /* Adjust the size as needed */
-}
-
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust column width as needed */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Adjust column width as needed */
     gap: 20px; /* Adjust gap between columns as needed */
 }
 

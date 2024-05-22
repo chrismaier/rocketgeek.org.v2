@@ -2,7 +2,7 @@
   "padBoxes": [
     {
       "id": "PA1",
-      "name": "Pad Box A 1",
+      "name": "Pad Box A 1 (PA)",
       "description": "Assigned to Solids bank A",
       "items": {
         "noodle": {
@@ -93,7 +93,7 @@
     },
     {
       "id": "PB1",
-      "name": "Pad Box B 1",
+      "name": "Pad Box B 1 (PB)",
       "description": "Assigned to Solids bank B.",
       "items": {
         "noodle": {
@@ -183,9 +183,9 @@
       }
     },
     {
-      "id": "PadC",
-      "name": "Pad Box C",
-      "description": "This is the description for Pad C.",
+      "id": "PC1",
+      "name": "Pad Box C 1 (PC1)",
+      "description": "Assigned to Solids bank C",
       "items": {
         "noodle": {
           "description": "Pool Noodle",
@@ -274,9 +274,9 @@
       }
     },
     {
-      "id": "PadD",
-      "name": "Pad Box D",
-      "description": "This is the description for Pad B.",
+      "id": "PD1",
+      "name": "Pad Box D 1 (PD1)",
+      "description": "Assigned to Solids bank D",
       "items": {
         "noodle": {
           "description": "Pool Noodle",
@@ -365,9 +365,100 @@
       }
     },
     {
-      "id": "PadE",
-      "name": "Pad E",
-      "description": "This is the description for Pad C.",
+      "id": "PE1",
+      "name": "Pad Box E 1 (PE1)",
+      "description": "Assigned to Hybrids",
+      "items": {
+        "noodle": {
+          "description": "Pool Noodle",
+          "present": true,
+          "quantity": 2,
+          "condition": "new"
+        },
+        "switch": {
+          "description": "POE 8 port switch",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "antenna": {
+          "description": "Range extender antenna",
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "powerStrip": {
+          "description": "Power strip with 6 plugs",
+          "present": true,
+          "quantity": 1,
+          "condition": "used"
+        },
+        "ethernetS": {
+          "description": "Short Ethernet Cable",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "poeInjector": {
+          "description": "POE 24v Injector for long range antenna",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "tray": {
+          "description": "Equipment Tray",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "twelveV": {
+          "description": "12v power supply for PTZ camera",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "fiftyThreeVoldPS": {
+          "description": "TP Link 53v power supply",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "powerSplitter": {
+          "description": "Power Splitter",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "extensionCord": {
+          "description": "Extension Cord",
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "ptzMic": {
+          "description": "PTZ Microphone",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "ethernetL": {
+          "description": "Long Ethernet Cable",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "twelveVC": {
+          "description": "12v Camera",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        }
+      }
+    },
+    {
+      "id": "PF1",
+      "name": "Pad Box F 1 (PF1)",
+      "description": "Assigned to Two Stage",
       "items": {
         "noodle": {
           "description": "Pool Noodle",
