@@ -84,7 +84,7 @@
           "condition": "good"
         },
         "twelveVC": {
-          "description": "12v Camera",
+          "description": "12v Extension cord (barrel connector)",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -175,7 +175,7 @@
           "condition": "n/a"
         },
         "twelveVC": {
-          "description": "12v Camera",
+          "description": "12v Extension cord (barrel connector)",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -266,7 +266,7 @@
           "condition": "good"
         },
         "twelveVC": {
-          "description": "12v Camera",
+          "description": "12v Extension cord (barrel connector)",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -357,7 +357,7 @@
           "condition": "n/a"
         },
         "twelveVC": {
-          "description": "12v Camera",
+          "description": "12v Extension cord (barrel connector)",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -448,7 +448,7 @@
           "condition": "good"
         },
         "twelveVC": {
-          "description": "12v Camera",
+          "description": "12v Extension cord (barrel connector)",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -462,8 +462,8 @@
       "items": {
         "noodle": {
           "description": "Pool Noodle",
-          "present": true,
-          "quantity": 2,
+          "present": false,
+          "quantity": 0,
           "condition": "new"
         },
         "switch": {
@@ -539,7 +539,7 @@
           "condition": "good"
         },
         "twelveVC": {
-          "description": "12v Camera",
+          "description": "12v Extension cord (barrel connector)",
           "present": true,
           "quantity": 1,
           "condition": "good"
