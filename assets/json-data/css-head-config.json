@@ -17,6 +17,7 @@
     { "rel": "stylesheet", "href": "assets/css/rocketgeek.css" },
     { "rel": "stylesheet", "href": "assets/css/youtube-videos.css" },
     { "rel": "stylesheet", "href": "assets/css/textarea.css" },
-    { "rel": "stylesheet", "href": "assets/css/Ultimate-Event-Calendar.css" }
+    { "rel": "stylesheet", "href": "assets/css/Ultimate-Event-Calendar.css" },
+    { "rel": "stylesheet", "href": "assets/css/pad-box-styles.css" }
   ]
 }

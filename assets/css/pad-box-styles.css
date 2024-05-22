@@ -1,0 +1,27 @@
+.pad-box {
+    margin-bottom: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    margin-bottom: 10px;
+    font-size: 1.25em;
+}
+
+.card-text {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.list-group-item {
+    padding: 10px 15px;
+}

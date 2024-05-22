@@ -1,0 +1,242 @@
+{
+  "padBoxes": [
+    {
+      "id": "PadA",
+      "name": "Pad A",
+      "description": "This is the description for Pad A.",
+      "items": {
+        "noodle": {
+          "description": "Pool Noodle",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "switch": {
+          "description": "POE 8 port switch",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "antenna": {
+          "description": "Range extender antenna",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "powerStrip": {
+          "description": "Power strip with 6 plugs",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "ethernetS": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "poeInjector": {
+          "description": "POE 24v Injector for long range antenna",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "tray": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "twelveV": {
+          "description": "12v power supply for PTZ camera",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "fiftyThreeVoldPS": {
+          "description": "TP Link 53v power supply",
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "powerSplitter": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "extensionCord": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "ptzMic": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "ethernetL": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "twelveVC": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        }
+      }
+    },
+    {
+      "id": "PadB",
+      "name": "Pad B",
+      "description": "This is the description for Pad B.",
+      "items": {
+        "noodle": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "switch": {
+          "present": true,
+          "quantity": 1,
+          "condition": "used"
+        },
+        "antenna": {
+          "present": true,
+          "quantity": 2,
+          "condition": "good"
+        },
+        "powerStrip": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "ethernetS": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "poe": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "tray": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "twelveV": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "fiftyThreePointFive": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "powerSplitter": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "extensionCord": {
+          "present": true,
+          "quantity": 2,
+          "condition": "good"
+        },
+        "ptzMic": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "ethernetL": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "twelveVC": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        }
+      }
+    },
+    {
+      "id": "PadC",
+      "name": "Pad C",
+      "description": "This is the description for Pad C.",
+      "items": {
+        "noodle": {
+          "present": true,
+          "quantity": 2,
+          "condition": "new"
+        },
+        "switch": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "antenna": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "powerStrip": {
+          "present": true,
+          "quantity": 1,
+          "condition": "used"
+        },
+        "ethernetS": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "poe": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "tray": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "twelveV": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "fiftyThreePointFive": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "powerSplitter": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "extensionCord": {
+          "present": false,
+          "quantity": 0,
+          "condition": "n/a"
+        },
+        "ptzMic": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "ethernetL": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        },
+        "twelveVC": {
+          "present": true,
+          "quantity": 1,
+          "condition": "good"
+        }
+      }
+    }
+  ]
+}
