@@ -1,0 +1,34 @@
+.pad-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.pad-description {
+    font-style: italic;
+    color: #007bff; /* Blue color for description */
+}
+
+.item-description {
+    color: #28a745; /* Green color for item description */
+}
+
+.item-details {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}

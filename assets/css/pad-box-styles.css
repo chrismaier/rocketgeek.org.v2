@@ -1,34 +1,78 @@
-.pad-box {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
+.pad-box-container {
     margin-bottom: 20px;
+}
+
+.pad-box {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.pad-heading {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .pad-description {
     font-style: italic;
-    color: #007bff; /* Blue color for description */
 }
 
 .item-description {
-    color: #28a745; /* Green color for item description */
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.1em;
 }
 
 .item-details {
     list-style-type: none;
-    padding-left: 0;
+    padding: 0;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+.item-details li {
+    margin-bottom: 5px;
 }
 
-.col-md-6 {
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+.present-false .item-description {
+    color: red;
+}
+
+.pad-box-header {
+    font-size: 24px; /* Adjust the size as needed */
+    font-weight: bold;
+}
+
+.pad-box-description {
+    font-size: 16px; /* Adjust the size as needed */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust column width as needed */
+    gap: 20px; /* Adjust gap between columns as needed */
+}
+
+.pad-box-container {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.pad-box-header {
+    font-size: 24px; /* Adjust the size as needed */
+    font-weight: bold;
+}
+
+.pad-box-description {
+    font-size: 16px; /* Adjust the size as needed */
+}
+
+.item-description {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.present-false .item-description {
+    color: red;
 }
