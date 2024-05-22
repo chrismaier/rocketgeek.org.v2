@@ -1,27 +1,34 @@
 .pad-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
-.card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
+.pad-description {
+    font-style: italic;
+    color: #007bff; /* Blue color for description */
 }
 
-.card-body {
-    padding: 15px;
+.item-description {
+    color: #28a745; /* Green color for item description */
 }
 
-.card-title {
-    margin-bottom: 10px;
-    font-size: 1.25em;
+.item-details {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.card-text {
-    margin-bottom: 10px;
-    font-size: 1em;
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
-.list-group-item {
-    padding: 10px 15px;
+.col-md-6 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }

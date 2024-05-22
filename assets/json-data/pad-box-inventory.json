@@ -30,6 +30,7 @@
           "condition": "good"
         },
         "ethernetS": {
+          "description": "Short Ethernet Cable",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -41,6 +42,7 @@
           "condition": "good"
         },
         "tray": {
+          "description": "Equipment Tray",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -58,26 +60,31 @@
           "condition": "good"
         },
         "powerSplitter": {
+          "description": "Power Splitter",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "extensionCord": {
+          "description": "Extension Cord",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "ptzMic": {
+          "description": "PTZ Microphone",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "ethernetL": {
+          "description": "Long Ethernet Cable",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "twelveVC": {
+          "description": "12v Camera",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -90,71 +97,85 @@
       "description": "This is the description for Pad B.",
       "items": {
         "noodle": {
+          "description": "Pool Noodle",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "switch": {
+          "description": "POE 8 port switch",
           "present": true,
           "quantity": 1,
           "condition": "used"
         },
         "antenna": {
+          "description": "Range extender antenna",
           "present": true,
           "quantity": 2,
           "condition": "good"
         },
         "powerStrip": {
+          "description": "Power strip with 6 plugs",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "ethernetS": {
+          "description": "Short Ethernet Cable",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
-        "poe": {
+        "poeInjector": {
+          "description": "POE 24v Injector for long range antenna",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "tray": {
+          "description": "Equipment Tray",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "twelveV": {
+          "description": "12v power supply for PTZ camera",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
-        "fiftyThreePointFive": {
+        "fiftyThreeVoldPS": {
+          "description": "TP Link 53v power supply",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "powerSplitter": {
+          "description": "Power Splitter",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "extensionCord": {
+          "description": "Extension Cord",
           "present": true,
           "quantity": 2,
           "condition": "good"
         },
         "ptzMic": {
+          "description": "PTZ Microphone",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "ethernetL": {
+          "description": "Long Ethernet Cable",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "twelveVC": {
+          "description": "12v Camera",
           "present": true,
           "quantity": 1,
           "condition": "good"
@@ -167,71 +188,85 @@
       "description": "This is the description for Pad C.",
       "items": {
         "noodle": {
+          "description": "Pool Noodle",
           "present": true,
           "quantity": 2,
           "condition": "new"
         },
         "switch": {
+          "description": "POE 8 port switch",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "antenna": {
+          "description": "Range extender antenna",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "powerStrip": {
+          "description": "Power strip with 6 plugs",
           "present": true,
           "quantity": 1,
           "condition": "used"
         },
         "ethernetS": {
+          "description": "Short Ethernet Cable",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
-        "poe": {
+        "poeInjector": {
+          "description": "POE 24v Injector for long range antenna",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "tray": {
+          "description": "Equipment Tray",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "twelveV": {
+          "description": "12v power supply for PTZ camera",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
-        "fiftyThreePointFive": {
+        "fiftyThreeVoldPS": {
+          "description": "TP Link 53v power supply",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "powerSplitter": {
+          "description": "Power Splitter",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "extensionCord": {
+          "description": "Extension Cord",
           "present": false,
           "quantity": 0,
           "condition": "n/a"
         },
         "ptzMic": {
+          "description": "PTZ Microphone",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "ethernetL": {
+          "description": "Long Ethernet Cable",
           "present": true,
           "quantity": 1,
           "condition": "good"
         },
         "twelveVC": {
+          "description": "12v Camera",
           "present": true,
           "quantity": 1,
           "condition": "good"

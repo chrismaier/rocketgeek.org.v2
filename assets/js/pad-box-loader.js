@@ -1,48 +1,49 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('pad-boxes.json')
+document.addEventListener("DOMContentLoaded", function () {
+    const row = document.querySelector('.row');
+    
+    fetch('./assets/json-data/pad-box-inventory.json')
         .then(response => response.json())
         .then(data => {
-            const padBoxes = data.padBoxes;
-            const container = document.getElementById('padsContainer');
+            console.log(data); // Add this line to check if data is retrieved successfully
             
-            let row;
-            padBoxes.forEach((pad, index) => {
-                if (index % 2 === 0) {
-                    row = document.createElement('div');
-                    row.className = 'row';
-                    container.appendChild(row);
-                }
-                
+            data.padBoxes.forEach(pad => {
                 const col = document.createElement('div');
-                col.className = 'col-md-6';
+                col.classList.add('col-md-6');
+                console.log(pad);  //Looking to see if the script finds any pad objects
                 
                 const padBox = document.createElement('div');
-                padBox.className = 'pad-box';
+                padBox.classList.add('pad-box');
+                console.log(padBox);
                 
                 let itemsList = '';
-                for (const [key, value] of Object.entries(pad.items)) {
+                console.log(itemsList);
+                
+                for (const [itemName, item] of Object.entries(pad.items)) {
                     itemsList += `
-                        <li class="list-group-item">
-                            <strong>${key}:</strong> ${value.present ? 'Yes' : 'No'} (${value.quantity}), ${value.condition}
-                        </li>
+                        <li class="item-description">${item.description}</li>
+                        <ul class="item-details">
+                            <li>Present: ${item.present ? 'Yes' : 'No'}</li>
+                            <li>Quantity: ${item.quantity}</li>
+                            <li>Condition: ${item.condition}</li>
+                        </ul>
                     `;
+                    console.log(itemsList);
                 }
                 
                 padBox.innerHTML = `
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">${pad.name}</h5>
-                            <p class="card-text">${pad.description}</p>
-                            <ul class="list-group list-group-flush">
-                                ${itemsList}
-                            </ul>
-                        </div>
-                    </div>
+                    <h3>${pad.name}</h3>
+                    <p class="pad-description">${pad.description}</p>
+                    <ul class="list-group">
+                        ${itemsList}
+                    </ul>
                 `;
                 
                 col.appendChild(padBox);
-                row.appendChild(col);
+                if(row) {
+                    row.appendChild(col); // Ensure row exists before appending
+                    console.log("appending a row", row);
+                }
             });
         })
-        .catch(error => console.error('Error fetching the pad boxes data:', error));
+        .catch(error => console.error('Error fetching pad boxes:', error));
 });

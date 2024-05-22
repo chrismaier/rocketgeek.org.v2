@@ -2,6 +2,7 @@
 <html lang = "en">
     
     <head>
+        <!-- Head section uses dynamic load modules to make the pages more maintainable -->
         <!-- page unique head information / meta tags etc go here -->
         <meta charset = "utf-8">
         <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
@@ -21,33 +22,6 @@
         <!-- load the CSS files second - this js re-enables the page -->
         <script src="./assets/js/css-loader.js"></script>
         
-        
-        <!-- Testing the dynamic loading of meta/head tags and elements using the JS files -->
-        <!--
-        <meta charset = "utf-8">
-        <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
-        
-        <meta content = "website" property = "og:type">
-        <meta content = "Rocket Geek website" name = "description">
-        <link href = "assets/img/GeekGuy_TransparentBG_Black_DarkGrayEyes.png" rel = "icon" sizes = "484x482" type = "image/png">
-        <link href = "assets/css/bootstrap.min.css" rel = "stylesheet">
-        <link href = "https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap" rel = "stylesheet">
-        <link href = "https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700" rel = "stylesheet">
-        <link href = "https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i" rel = "stylesheet">
-        <link href = "assets/fonts/fontawesome-all.min.css" rel = "stylesheet">
-        <link href = "assets/fonts/font-awesome.min.css" rel = "stylesheet">
-        <link href = "assets/fonts/fontawesome5-overrides.min.css" rel = "stylesheet">
-        <link href = "assets/css/Black-Navbar.css" rel = "stylesheet">
-        <link href = "assets/css/Bootstrap-4-Calendar-No-Custom-Code.css" rel = "stylesheet">
-        <link href = "assets/css/Bootstrap-Calendar.css" rel = "stylesheet">
-        <link href = "assets/css/Contact-form-simple.css" rel = "stylesheet">
-        <link href = "https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" rel = "stylesheet">
-        <link href = "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css" rel = "stylesheet">
-        <link href = "assets/css/rocketgeek.css" rel = "stylesheet">
-        <link href = "assets/css/youtube-videos.css" rel = "stylesheet">
-        <link href = "assets/css/textarea.css" rel = "stylesheet">
-        <link href = "assets/css/Ultimate-Event-Calendar.css" rel = "stylesheet">
-        -->
         
     </head>
     
@@ -206,11 +180,13 @@
                         </div>
                     </nav>
                     
+                    <!-- Pad box inventory render section -->
                     <div class="container-fluid">
                         <h3 class="text-dark mb-4">Pad Inventory</h3>
                         <div class="container" id="padsContainer"></div>
                     </div>
-                    
+                
+                
                 
                 </div>
                 <footer class = "bg-white sticky-footer">
@@ -236,7 +212,7 @@
         <script src = "https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
         <script src = "assets/js/DataTable---Fully-BSS-Editable.js"></script>
         <script src = "assets/js/theme.js"></script>
-        <script src = "assets/js/Ultimate-Event-Calendar.js"></script>
+        <!-- <script src = "assets/js/Ultimate-Event-Calendar.js"></script> -->
         <!-- <script src = "assets/js/youtube-videos.js"></script> -->
         <script src = "assets/js/side-nav-script.js"></script>
         <script src = "assets/js/css-reload.js"></script>
