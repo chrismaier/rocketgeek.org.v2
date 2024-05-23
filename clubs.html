@@ -4,7 +4,25 @@
     <head>
         <meta charset = "utf-8">
         <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
-        <title>Table - Rocket Geek</title>
+        <title>Other Rocket Clubs - Rocket Geek</title>
+        <!-- Head section uses dynamic load modules to make the pages more maintainable -->
+        <!-- page unique head information / meta tags etc go here -->
+        <link href = "assets/css/css-reload.css" rel = "stylesheet">
+        
+        <!--
+            =TEMPORARILY= disable the content from displaying when the page loads
+            The css loader script will re-enable the body display once it finishes loading
+        -->
+        <style>body { display: none; }</style>
+        
+        
+        <!-- load META tags =FIRST= -->
+        <script src="./assets/js/meta-loader.js"></script>
+        
+        <!-- load the CSS files second - this js re-enables the page -->
+        <script src="./assets/js/css-loader.js"></script>
+        
+        <!--
         <meta content = "website" property = "og:type">
         <meta content = "Rocket Geek website" name = "description">
         <link href = "assets/img/GeekGuy_TransparentBG_Black_DarkGrayEyes.png" rel = "icon" sizes = "484x482" type = "image/png">
@@ -24,6 +42,7 @@
         <link href = "assets/css/rocketgeek.css" rel = "stylesheet">
         <link href = "assets/css/textarea.css" rel = "stylesheet">
         <link href = "assets/css/Ultimate-Event-Calendar.css" rel = "stylesheet">
+        -->
     </head>
     
     <body id = "page-top">
@@ -35,35 +54,101 @@
                     </a>
                     <hr class = "sidebar-divider my-0">
                     <ul class = "navbar-nav text-light" id = "accordionSidebar">
-                        <li class = "nav-item"><a class = "nav-link" href = "blog.html"><i class = "fab fa-blogger"></i>Blog</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "calendar.html"><i class = "far fa-calendar-alt"></i>Calendar</a></li>
-                        <li class = "nav-item"><a class = "nav-link active" href = "clubs.html"><i class = "fas fa-users"></i>Clubs</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "dashboard.html"><i class = "fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-                        </li>
-                        <li class = "nav-item"><a class = "nav-link" href = "donations.html"><i class = "far fa-money-bill-alt"></i>Donations</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "login.html"><i class = "far fa-user-circle"></i><span>Login</span></a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "photos.html"><i class = "fas fa-camera"></i>Photos</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "profile.html"><i class = "fas fa-user-edit"></i>Profile</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "register.html"><i class = "fas fa-user-plus"></i>Register</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "youtube-videos.html"><i class = "fas fa-film"></i>Videos</a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "welcome.html"><i class = "far fa-bookmark"></i>Welcome</a></li>
+                        <!--
+                        ** Side nav items have been moved to a dynamic config using JS and JSON **
+                        **** see side-nav-script.js below
+                        -->
                     </ul>
-                    <div class = "text-center d-none d-md-inline">
+                    <div class = "text-center d-none d-md-inline" id="nav-slider-button">
                         <button class = "btn rounded-circle border-0" id = "sidebarToggle" type = "button"></button>
                     </div>
                 </div>
             </nav>
+            
+            
             <div class = "d-flex flex-column" id = "content-wrapper">
                 <div id = "content">
-                    <nav class = "navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id = "top-nav-bar">
-                        <div class = "container-fluid" id = "top-nav">
-                            <button class = "btn btn-link d-md-none rounded-circle me-3" id = "sidebarToggleTop" type = "button"><i class = "fas fa-bars"></i>
-                            </button>
-                            <form class = "d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class = "input-group"><input class = "bg-light form-control border-0 small" placeholder = "Search for ..." type = "text">
-                                    <button class = "btn btn-primary py-0" type = "button"><i class = "fas fa-search"></i></button>
+                    
+                    <!-- Begin top navbar elements -->
+                    <!-- Navbar functions properly and does not generate errors May 22, 2024 -->
+                    
+                    <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav-bar-container">
+                        <div class="container-fluid" id="top-nav-bar">
+                            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                            
+                            <!-- Search Form - START -->
+                            <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <label for="searchInput" class="visually-hidden">Search for...</label>
+                                    <input id="searchInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
+                                    
+                                    <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                                 </div>
                             </form>
+                            <!-- Search Form - END -->
+                            <!-- top nav bar drop down menu -->
+                            <ul class="navbar-nav flex-nowrap ms-auto">
+                                <li class="nav-item dropdown d-sm-none no-arrow">
+                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
+                                    <div aria-labelledby="searchDropdown" class="dropdown-menu dropdown-menu-end p-3 animated--grow-in">
+                                        <form class="me-auto navbar-search w-100">
+                                            <div class="input-group">
+                                                <label for="hideInput" class="visually-hidden">Search for...</label>
+                                                <input id="hideInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#"><i class="fas fa-bell fa-fw"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
+                                        <h6 class="dropdown-header">alerts center</h6>
+                                        <!-- Alert Items Here -->
+                                        <!-- Looks to be broken in other similar pages where there are items listed here -->
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#"><i class="fas fa-envelope fa-fw"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
+                                        <h6 class="dropdown-header">alerts center</h6>
+                                        <!-- Message Items Here -->
+                                    </div>
+                                    <div aria-labelledby="alertsDropdown" class="shadow dropdown-list dropdown-menu dropdown-menu-end"></div>
+                                </li>
+                            </ul>
+                            
+                            <!-- Topbar Divider - Moved Here -->
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            
+                            <!-- Profile Dropdown (top nav bar profile) - Moved Here -->
+                            <div class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow">
+                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="profile.html">
+                                        <span class="d-none d-lg-inline me-2 text-white-600 small">Random Geek</span>
+                                        <img class="border rounded-circle img-profile" src="assets/img/avatars/geek-guy.png" alt=""></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="profile.html">
+                                            <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    
+                    
+                    <!-- end top nav bar -->
+
+                            <!--
                             <ul class = "navbar-nav flex-nowrap ms-auto">
                                 <li class = "nav-item dropdown d-sm-none no-arrow">
                                     <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#"><i class = "fas fa-search"></i></a>
@@ -356,6 +441,8 @@
                             </div>
                         </div>
                     </div>
+                    
+                    -->
                 </div>
                 <footer class = "bg-white sticky-footer">
                     <div class = "container my-auto">
@@ -365,6 +452,35 @@
             </div>
             <a class = "border rounded d-inline scroll-to-top" href = "#page-top"><i class = "fas fa-angle-up"></i></a>
         </div>
+        
+        <!-- All of the java script -->
+        
+        <script src = "assets/js/jquery.min.js"></script>
+        <script src = "assets/js/bootstrap.min.js"></script>
+        <script src = "assets/js/bs-init.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <script src = "https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+        <script src = "https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src = "https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+        <script src = "https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+        <script src = "assets/js/DataTable---Fully-BSS-Editable.js"></script>
+        <script src = "assets/js/theme.js"></script>
+        <!-- <script src = "assets/js/Ultimate-Event-Calendar.js"></script> -->
+        <!-- <script src = "assets/js/youtube-videos.js"></script> -->
+        <script src = "assets/js/side-nav-script.js"></script>
+        <script src = "assets/js/css-reload.js"></script>
+        <!-- Include the new JavaScript file -->
+        <script src="assets/js/pad-box-loader.js"></script>
+        
+        <!-- End of the Java Script -->
+        
+        
+        <!-- OLD Java Script...
         <script src = "assets/js/jquery.min.js"></script>
         <script src = "assets/js/bootstrap.min.js"></script>
         <script src = "assets/js/bs-init.js"></script>
@@ -381,6 +497,7 @@
         <script src = "assets/js/DataTable---Fully-BSS-Editable.js"></script>
         <script src = "assets/js/theme.js"></script>
         <script src = "assets/js/Ultimate-Event-Calendar.js"></script>
+        -->
     </body>
 
 </html>
