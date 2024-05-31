@@ -115,6 +115,35 @@ span:hover
     background: #8b0000;
 }
 
+/* top nav menu items*/
+.dropdown-menu {
+    background-color: black;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: black; /* For individual items */
+    color: white; /* Change text color to white for better contrast */
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: darkgray; /* Optional: change the hover color if needed */
+}
+.dropdown .dropdown-list .dropdown-header {
+    background-color: #000000;
+    border: 1px solid #000000;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    color: #ffffff;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: darkgray;
+    text-decoration: underline;
+}
+
+
 .nav-item
 {
     background: #8b0000;
