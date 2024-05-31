@@ -12,7 +12,8 @@
     "./assets/css/rocketgeek.css",
     "./assets/css/textarea.css",
     "./assets/css/Ultimate-Event-Calendar.css",
-    "./assets/css/bootstrap-over-rides.css"
+    "./assets/css/bootstrap-over-rides.css",
+    "./assets/css/network-devices.css"
   ]
 }
 

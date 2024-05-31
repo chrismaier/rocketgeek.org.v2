@@ -21,8 +21,8 @@
         
         <!-- load the CSS files second - this js re-enables the page -->
         <script src="./assets/js/css-loader.js"></script>
-        
-        
+    
+    
     </head>
     
     <body id = "page-top">
@@ -64,7 +64,7 @@
                             <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="input-group">
                                     <label for="searchInput" class="visually-hidden">Search for...</label>
-                                        <input id="searchInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
+                                    <input id="searchInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
                                     
                                     <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                                 </div>
@@ -79,7 +79,7 @@
                                         <form class="me-auto navbar-search w-100">
                                             <div class="input-group">
                                                 <label for="hideInput" class="visually-hidden">Search for...</label>
-                                                    <input id="hideInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
+                                                <input id="hideInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                                                 </div>
@@ -134,7 +134,43 @@
                     <!-- end top nav bar -->
                     
                     <!-- Main body content goes here -->
-              
+                    <!-- Main body content -->
+                    <div class="container">
+                         <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th>Device Description</th>
+                                        <th>Device Type</th>
+                                        <th>Host Name</th>
+                                        <th>IP Address</th>
+                                        <th>MAC Address</th>
+                                        <th>Setup Location</th>
+                                        <th>Storage Location</th>
+                                        <th>Owned By</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="device-list" class="table-body">
+                                    <!-- Devices will be populated here by JavaScript -->
+                                    <!-- Example of a device entry -->
+                                    <!--
+                                    <tr>
+                                        <td>Device Description</td>
+                                        <td>Device Type</td>
+                                        <td>Host Name</td>
+                                        <td>IP Address</td>
+                                        <td>MAC Address</td>
+                                        <td>Setup Location</td>
+                                        <td>Storage Location</td>
+                                        <td>Owned By</td>
+                                    </tr>
+                                    -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                
+                
                 
                 
                 </div>
@@ -169,10 +205,10 @@
         <script src = "assets/js/side-nav-script.js"></script>
         <script src = "assets/js/css-reload.js"></script>
         <!-- Include the new JavaScript file -->
-        <script src="assets/js/pad-box-loader.js"></script>
+        <script src = "assets/js/network-devices.js"></script>
         
         <!-- End of the Java Script -->
-        
+    
     </body>
 
 </html>

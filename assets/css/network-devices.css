@@ -1,0 +1,44 @@
+/* network-devices.css */
+
+
+body {
+    background-color: #f8f9fa;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+.device-card {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #fff;
+}
+
+.device-card h5 {
+    margin-bottom: 0.5rem;
+}
+
+.device-card p {
+    margin-bottom: 0.3rem;
+}
+
+.table-head {
+    color: #1c1c21;
+}
+
+.table-body {
+    color: #1c1c21;
+}
+
+
+.td-device {
+    color: #1c1c21;
+}
+
+.black-text {
+    color: black;
+}
+
