@@ -38,8 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     // Call function to populate each dropdown menu
-    populateDropdownMenu("mixingBatter", "mixingBatterTrigger", "assets/json-data/mixing-batter.json", "Mixing Batter");
-    populateDropdownMenu("vendorList", "vendorListTrigger", "assets/json-data/vendor-list.json", "Vendors List");
+    populateDropdownMenu("rocketPerformance", "rocketPerformanceTrigger", "assets/json-data/rocket-performance.json", "Rocket Performance Analysis");
+    populateDropdownMenu("motorTesting", "motorTestingTrigger", "assets/json-data/mixing-motors.json", "Rocket Motor Testing");
+    populateDropdownMenu("motorFormulas", "motorFormulaTrigger", "assets/json-data/motor-formulas.json", "Rocket Motor Formulas");
+    populateDropdownMenu("mixingBatter", "mixingMotorsTrigger", "assets/json-data/mixing-motors.json", "Rocket Motor Mixing");
+    populateDropdownMenu("vendorList", "vendorListTrigger", "assets/json-data/vendor-list.json", "Vendor List");
     populateDropdownMenu("linksCenter", "linksCenterTrigger", "assets/json-data/links-center.json", "Links Center");
     populateDropdownMenu("alertsCenter", "alertsCenterTrigger", "assets/json-data/alerts-center.json", "Alerts Center");
     populateDropdownMenu("messageCenter", "messageCenterTrigger", "assets/json-data/message-center.json", "Message Center");
