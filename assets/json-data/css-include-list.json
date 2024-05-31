@@ -1,7 +1,7 @@
 {
   "cssIncludeFiles": [
-    "https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css",
-    "https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css",
+    "./assets/css/dataTables.min.css",
+    "./assets/css/bootstrap5.min.css",
     "./assets/fonts/fontawesome-all.min.css",
     "./assets/fonts/font-awesome.min.css",
     "./assets/fonts/fontawesome5-overrides.min.css",
