@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Head section uses dynamic load modules to make the pages more maintainable -->
-    <!-- page unique head information / meta tags etc go here -->
-    <head>
+    
+    <!-- Begin head section of the html file -->
+     <head>
+         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
+         <!-- page unique head information / meta tags etc go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
         <title>Testing all of the html optimizations - Rocket Geek</title>
         <link href="assets/css/css-reload.css" rel="stylesheet">
         
-    <!--
-     =TEMPORARILY= disable the content from displaying when the page loads
-     The css loader script will re-enable the body display once it finishes loading
-    -->
+        <!--
+        =TEMPORARILY= disable the content from displaying when the page loads
+        The css loader script will re-enable the body display once it finishes loading
+        -->
         <style>body { display: none; }</style>
     
-    <!-- load META tags =FIRST= -->
+        <!-- load META tags =FIRST= -->
         <script src="./assets/js/meta-loader.js"></script>
-    <!-- load the CSS files second - this js re-enables the page -->
+        
+         <!-- load the CSS files second - this js re-enables the page -->
         <script src="./assets/js/css-loader.js"></script>
     </head>
+    <!-- End of head section -->
+    
+    
+    <!-- Begin body section of html -->
     <body id="page-top">
+        
+        <!-- wrapper object for CSS -->
         <div id="wrapper">
+            
             <!-- side navbar stuff -->
             <nav class="navbar navbar-dark border-secondary border-2 shadow-sm align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
                 <div class="container-fluid d-flex flex-column p-0" id="side-nav">
@@ -38,8 +48,10 @@
             </nav>
             <!-- end of side navbar stuff -->
             
+            <!-- flex layout -->
             <div class="d-flex flex-column" id="content-wrapper">
                 <div id="content">
+                    
                     <!-- Begin top navbar elements -->
                     <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav-bar-container">
                         <div class="container-fluid" id="top-nav-bar">
@@ -77,49 +89,38 @@
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="rocketPerformanceTrigger"><i class="fas fa-rocket fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="rocketPerformance"></div>
                                 </li>
+                                
                                 <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="motorFormulaTrigger"><i class="fas fa-beaker fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="motorFormulas">
-                                        <h6 class="dropdown-header">Rocket Motor Tests</h6>
-                                    </div>
-                                </li><li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="rocketMotorTestTrigger"><i class="fas fa-fire fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="rocketMotorTest">
-                                        <h6 class="dropdown-header">Rocket Motor Tests</h6>
-                                    </div>
+                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="motorTestingTrigger"><i class="fas fa-fire fa-fw"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="motorTesting"></div>
                                 </li>
+                                
                                 <li class="nav-item dropdown no-arrow mx-1">
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="mixingMotorsTrigger"><i class="fas fa-blender fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="mixingMotors">
-                                        <h6 class="dropdown-header">Rocket Motor Mixing</h6>
-                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="mixingMotors"></div>
+                                </li>
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="motorFormulaTrigger"><i class="fas fa-flask fa-fw"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="motorFormulas"></div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="vendorListTrigger"><i class="fas fa-shopping-cart fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="vendorList">
-                                    
-                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="vendorList"></div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="linksCenterTrigger"><i class="fas fa-link fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="linksCenter">
-                                    
-                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="linksCenter"></div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="alertsCenterTrigger"><i class="fas fa-bell fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="alertsCenter">
-                                    
-                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="alertsCenter"></div>
                                 </li>
                                 <li class="nav-item dropdown no-arrow mx-1">
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="messageCenterTrigger"><i class="fas fa-envelope fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="messageCenter">
-                                    
-                                    </div>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="messageCenter"></div>
                                 </li>
                             </ul>
-                            <!-- end top nav -->
+                            <!-- end top nav dropdown menus -->
                             
                             
                             <!-- Profile Dropdown -->
@@ -140,41 +141,52 @@
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                 </div>
                             </div>
+                            <!-- end profile dropdown -->
                         </div>
                     </nav>
                     <!-- end top nav bar -->
                     
-                    <!-- Main body content goes here -->
+                    <!-- Main body (page unique) content goes here -->
+                    
+                    <!-- end of main body -->
+                    
                 </div>
+                
+                <!-- footer elements -->
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
                         <div class="text-center my-auto copyright"><span>Copyright © Rocket Geek 2024</span></div>
                     </div>
                 </footer>
+                <!-- end footer -->
+                
             </div>
+            <!-- end flex layout -->
+            
             <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
         </div>
+        <!-- end of wrapper object -->
         
+        <!-- Begin Java Script -->
         <!-- Bootstrap JS and Popper.js -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.5.1.3.min.js"></script>
         
-        <!-- Other JavaScript files -->
-        <script src="assets/js/bs-init.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script> -->
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
-        <!-- <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script> -->
-        <!-- <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-        <!-- <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script> -->
-        <!-- <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script> -->
-        <!-- <script src="assets/js/DataTable---Fully-BSS-Editable.js"></script> -->
+        <!-- Core JavaScript files (all pages need these files) -->
+        <script src="assets/js/drop-down-menu-loader.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="assets/js/side-nav-script.js"></script>
         <script src="assets/js/css-reload.js"></script>
+        <script src="assets/js/bs-init.js"></script>
+        
+        <!-- Remote JavaScript files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        
+        <!-- Page specific JavaScript files -->
         <!-- <script src="assets/js/pad-box-loader.js"></script> -->
-        <script src="assets/js/drop-down-menu-loader.js"></script>
+        <!-- end Javascript -->
+        
     </body>
 </html>
