@@ -1,0 +1,15 @@
+{
+  "events": [
+    {
+      "date": "2024-05-02",
+      "description": "span event",
+      "span": 2,
+      "class": "bg-warning"
+    },
+    {
+      "date": "2024-05-27",
+      "description": "Event with Long Name",
+      "class": "bg-success"
+    }
+  ]
+}
