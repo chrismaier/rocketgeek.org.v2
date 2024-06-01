@@ -1,15 +1,35 @@
-{
-  "events": [
-    {
-      "date": "2024-05-02",
-      "description": "span event",
-      "span": 2,
-      "class": "bg-warning"
-    },
-    {
-      "date": "2024-05-27",
-      "description": "Event with Long Name",
-      "class": "bg-success"
-    }
-  ]
-}
+[
+  {
+    "name": "Rocket Launch - Hondo",
+    "start_date": "2024-04-27",
+    "end_date": "2024-04-28",
+    "start_time": "09:00 AM",
+    "end_time": "05:00 PM",
+    "location_name": "Hondo",
+    "contact_name": "Some Dude",
+    "location_address": "Some address or gps coordinates",
+    "color": "#aaa"
+  },
+  {
+    "name": "Rocket Launch - AARG",
+    "start_date": "2024-05-11",
+    "end_date": "2024-05-12",
+    "start_time": "09:00 AM",
+    "end_time": "05:00 PM",
+    "location_name": "Austin",
+    "contact_name": "Jim Jarvis",
+    "location_address": "Some address or gps coordinates",
+    "color": "#000000"
+  },
+  {
+    "name": "Rocket Launch - Seymour",
+    "start_date": "2024-05-20",
+    "end_date": "2024-05-20",
+    "start_time": "09:00 AM",
+    "end_time": "05:00 PM",
+    "location_name": "Seymour",
+    "contact_name": "Ray Shepard",
+    "location_address": "Some address or gps coordinates",
+    "color": "#ffc107"
+  }
+]

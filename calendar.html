@@ -180,6 +180,32 @@
             <a class = "border rounded d-inline scroll-to-top" href = "#page-top"><i class = "fas fa-angle-up"></i></a>
         </div>
         
+        <!-- Calendar event modal html -->
+        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Name:</strong> <span id="eventName"></span></p>
+                        <p><strong>Start Date:</strong> <span id="eventStartDate"></span></p>
+                        <p><strong>End Date:</strong> <span id="eventEndDate"></span></p>
+                        <p><strong>Start Time:</strong> <span id="eventStartTime"></span></p>
+                        <p><strong>End Time:</strong> <span id="eventEndTime"></span></p>
+                        <p><strong>Location:</strong> <span id="eventLocationName"></span></p>
+                        <p><strong>Contact:</strong> <span id="eventContactName"></span></p>
+                        <p><strong>Address:</strong> <span id="eventLocationAddress"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         <!-- Begin Java Script -->
         <!-- Bootstrap JS and Popper.js -->
         <script src="assets/js/popper.min.js"></script>
@@ -199,9 +225,12 @@
         
         <!-- Page specific JavaScript files -->
         <!-- <script src="assets/js/pad-box-loader.js"></script> -->
-        <script src="assets/js/calendar-events.js"></script>
+        <!-- Jquery MUST be loaded before our custom script that relies upon that file -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/theme.js"></script>
+        <script src="assets/js/calendar-events.js"></script>
+       
+        
         
         
         <!-- end Javascript -->

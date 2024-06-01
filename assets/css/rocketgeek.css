@@ -363,3 +363,45 @@ a:active {
     color: #f8f9fa !important;
     text-decoration: underline !important;
 }
+
+/*
+.calendar-text-light {
+    color: #aaa; /* Lighter color for days not in the current month
+}
+*/
+
+
+.calendar-text-light {
+    color: #6c757d; /* Rocket Geek light grey for other days */
+}
+
+.calendar-text-red {
+    color: #8b0000; /* Rocket Geek red for current month's date */
+}
+
+.event {
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 3px;
+}
+
+.bg-success {
+    background-color: #28a745; /* Green color for success events */
+}
+
+.bg-warning {
+    background-color: #ffc107; /* Yellow color for warning events */
+}
+
+/* CSS for calendar numbers */
+.calendar .days li {
+    color: #000; /* Black color for current month numbers */
+    font-weight: bold; /* Bold font for current month numbers */
+}
+
+.calendar .days li.outside {
+    color: #999; /* Grey color for previous month numbers */
+    font-style: italic; /* Italic font for previous month numbers */
+}
+
+

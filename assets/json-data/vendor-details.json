@@ -1,20 +1,19 @@
 [
   {
-    "id": 1,
-    "name": "Example Tripoli Club",
-    "number": "T123",
-    "club_type": "Tripoli, NAR, Tripoli & NAR",
+    "vendor_id": 1,
+    "name": "Vendor Legal Name",
+    "address": "Street address",
     "city": "Example City",
     "state": "Example State",
+    "zipcode": "12345",
+    "phone": "(313) 555-1212",
     "website": "https://example.com",
-    "launch_site": "Example Launch Site",
-    "launch_site_location": "address or gps",
-    "club_poc": "poc name here",
+    "launch_site": "primary launch site / onsite",
     "contact_email": "example@example.com",
-    "upcoming_events": "Example Event 1, Example Event 2"
+    "upcoming_events": "Events that will attend: Example Event 1, Example Event 2"
   },
   {
-    "id": 3,
+    "vendor_id": 2,
     "name": "AARG",
     "number": "Prefect 2",
     "club_type": "Tripoli, NAR, Tripoli & NAR",
@@ -28,7 +27,7 @@
     "upcoming_events": "Example Event 1, Example Event 2"
   },
   {
-    "id": 4,
+    "vendor_id": 3,
     "name": "TNT",
     "number": "Tripoli North Texas",
     "club_type": "Tripoli, NAR, Tripoli & NAR",
@@ -42,7 +41,7 @@
     "upcoming_events": "Texas Shootout, Example Event 2"
   },
   {
-    "id": 2,
+    "vendor_id": 4,
     "name": "Example NAR Club",
     "number": "N456",
     "club_type": "Tripoli, NAR, Tripoli & NAR",
@@ -56,7 +55,7 @@
     "upcoming_events": "Event A, Event B"
   },
   {
-    "id": 5,
+    "vendor_id": 5,
     "name": "Kloudbusters",
     "number": "N456",
     "club_type": "Tripoli, NAR, Tripoli & NAR",

@@ -5,3 +5,82 @@
 .plus-sign::before {
     content: '+';
 }
+
+.minus-sign::before {
+    content: '-';
+}
+
+
+/* Style for the card container */
+.card {
+    border: 1px solid #ddd; /* Add border */
+    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 10px; /* Space between cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Style for the card header */
+.card-header {
+    background-color: #f7f7f7; /* Light background */
+    padding: 10px 15px; /* Padding */
+    cursor: pointer; /* Pointer cursor */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center align items */
+    justify-content: space-between; /* Space between items */
+}
+
+/* Style for the button inside the header */
+/*.card-header .btn {
+    font-size: 16px;
+    color: #8b0000;
+    text-decoration: none;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+*/
+.card-header .btn {
+    font-size: 18px; /* Slightly larger font size */
+    color: #8b0000; /* Text color */
+    text-decoration: none; /* Remove underline */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    padding: 0; /* Remove padding */
+    font-weight: bold; /* Bold text */
+    font-style: italic; /* Italic text */
+}
+
+
+/* Style for the collapsible content */
+.collapse {
+    padding: 15px; /* Padding */
+    background-color: #fff; /* White background */
+}
+
+/* Style for the card body */
+.card-body {
+    font-size: 14px; /* Font size */
+    color: #333; /* Text color */
+    line-height: 1.5; /* Line height */
+}
+
+/* Additional custom styles for elements within the card body */
+.card-body ul {
+    list-style-type: none; /* Remove list bullets */
+    padding: 0; /* Remove padding */
+}
+
+.card-body li {
+    margin-bottom: 5px; /* Space between list items */
+}
+
+.card-body a {
+    color: #8b0000; /* Link color */
+    text-decoration: underline; /* Underline links */
+}
+
+.card-body a:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
