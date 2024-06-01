@@ -36,7 +36,7 @@ textarea
 .form-control:focus
 {
     background-color: #ffffff;
-    border-color: #48ccff;
+    border-color: #8b0000;
     box-shadow: none;
     color: #495057;
     outline: 0;
@@ -57,8 +57,8 @@ textarea
 textarea:focus
 {
     border: 0 !important;
-    border-bottom: 1px solid #48ccff !important;
-    color: #48ccff;
+    border-bottom: 1px solid #8b0000 !important;
+    color: #8b0000;
     outline: none !important;
 }
 

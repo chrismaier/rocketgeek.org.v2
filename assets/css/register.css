@@ -2,8 +2,11 @@ form.user .form-control-user {
     font-size: .8rem;
     border-radius: 10rem;
     padding: 1rem;
+    border-color: #8b0000;
 }
 
+/*
+    go to textarea.css to adjust
 .form-control {
     background-clip: padding-box;
     background-color: #ffffff;
@@ -18,6 +21,8 @@ form.user .form-control-user {
     width: 100%;
 }
 
+*/
+
 /* Adjust line color when hovered */
 .form-control:hover {
     border-color: #8b0000; /* Replace "your-hover-color" with your desired color */
@@ -26,4 +31,5 @@ form.user .form-control-user {
 /* Adjust line color when focused */
 .form-control:focus {
     border-color: #8b0000; /* Replace "your-focus-color" with your desired color */
+    box-shadow: none;
 }
