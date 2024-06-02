@@ -404,4 +404,17 @@ a:active {
     font-style: italic; /* Italic font for previous month numbers */
 }
 
+.modal-xl {
+    max-width: 90%;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+#full-size-image {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 200px); /* Ensures the image does not exceed the viewport height minus some padding */
+}
 
