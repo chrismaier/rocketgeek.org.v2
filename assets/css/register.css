@@ -33,3 +33,21 @@ form.user .form-control-user {
     border-color: #8b0000; /* Replace "your-focus-color" with your desired color */
     box-shadow: none;
 }
+
+
+.custom-border {
+    border-radius: 50px; /* Adjust the value as needed */
+    border-width: 2px; /* Set your desired border width */
+    border-style: solid; /* Ensure the border style is solid */
+    border-color: #ced4da; /* Default Bootstrap border color */
+}
+
+.custom-border:hover {
+    border-color: #80bdff; /* Change to your desired hover border color */
+}
+
+.custom-border:focus {
+    border-color: #80bdff; /* Change to your desired focus border color */
+    box-shadow: none; /* Remove default Bootstrap focus box shadow */
+    outline: none; /* Remove default outline */
+}
