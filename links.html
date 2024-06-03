@@ -1,70 +1,73 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
     
-    <head>
-        <!-- Head section uses dynamic load modules to make the pages more maintainable -->
-        <!-- page unique head information / meta tags etc go here -->
-        <meta charset = "utf-8">
-        <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
-        <title>ESRA Livestream Pad Box Inventory - Rocket Geek</title>
-        <link href = "assets/css/css-reload.css" rel = "stylesheet">
+    <!-- Begin head section of the html file -->
+     <head>
+         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
+         <!-- page unique head information / meta tags etc go here -->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+        <title>Links to other pages - Rocket Geek</title>
+        <link href="assets/css/css-reload.css" rel="stylesheet">
         
         <!--
-            =TEMPORARILY= disable the content from displaying when the page loads
-            The css loader script will re-enable the body display once it finishes loading
+        =TEMPORARILY= disable the content from displaying when the page loads
+        The css loader script will re-enable the body display once it finishes loading
         -->
         <style>body { display: none; }</style>
-        
-        
+    
         <!-- load META tags =FIRST= -->
         <script src="./assets/js/meta-loader.js"></script>
         
-        <!-- load the CSS files second - this js re-enables the page -->
+         <!-- load the CSS files second - this js re-enables the page -->
         <script src="./assets/js/css-loader.js"></script>
-        
-        
     </head>
+    <!-- End of head section -->
     
-    <body id = "page-top">
-        <div id = "wrapper">
-            <nav class = "navbar navbar-dark border-secondary border-2 shadow-sm align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-                <div class = "container-fluid d-flex flex-column p-0" id = "side-nav">
-                    <a class = "navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href = "/index.html">
-                        <div class = "sidebar-brand-text mx-3"><span>Rocket Geek</span></div>
+    
+    <!-- Begin body section of html -->
+    <body id="page-top">
+        
+        <!-- wrapper object for CSS -->
+        <div id="wrapper">
+            
+            <!-- side navbar stuff -->
+            <nav class="navbar navbar-dark border-secondary border-2 shadow-sm align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+                <div class="container-fluid d-flex flex-column p-0" id="side-nav">
+                    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/index.html">
+                        <div class="sidebar-brand-text mx-3"><span>Rocket Geek</span></div>
                     </a>
-                    <hr class = "sidebar-divider my-0">
-                    <ul class = "navbar-nav text-light" id = "accordionSidebar">
-                        <!--
-                        ** Side nave items have been moved to a dynamic config using JS and JSON **
-                        **** see side-nav-script.js below
-                        -->
+                    <hr class="sidebar-divider my-0">
+                    <ul class="navbar-nav text-light" id="accordionSidebar">
+                        <!-- Side nav items dynamically loaded -->
                     </ul>
-                    <div class = "text-center d-none d-md-inline" id="nav-slider-button">
-                        <button class = "btn rounded-circle border-0" id = "sidebarToggle" type = "button"></button>
+                    <div class="text-center d-none d-md-inline" id="nav-slider-button">
+                        <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
                     </div>
                 </div>
             </nav>
+            <!-- end of side navbar stuff -->
             
-            
-            <div class = "d-flex flex-column" id = "content-wrapper">
-                <div id = "content">
+            <!-- flex layout -->
+            <div class="d-flex flex-column" id="content-wrapper">
+                <div id="content">
                     
                     <!-- Begin top navbar elements -->
                     <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav-bar-container">
                         <div class="container-fluid" id="top-nav-bar">
-                            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+                                <i class="fas fa-bars"></i>
+                            </button>
                             
-                            <!-- Search Form - START -->
+                            <!-- Search Form -->
                             <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
                                 <div class="input-group">
                                     <label for="searchInput" class="visually-hidden">Search for...</label>
                                     <input id="searchInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
-                                    
                                     <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
                                 </div>
                             </form>
                             <!-- Search Form - END -->
-                            
                             
                             <!-- Top nav bar with drop down menus -->
                             <ul class="navbar-nav flex-nowrap ms-auto">
@@ -143,15 +146,12 @@
                     </nav>
                     <!-- end top nav bar -->
                     
-                    <!-- Pad box inventory render section -->
-                    <div class="container-fluid">
-                        <h3 class="text-dark mb-4">Pad Inventory</h3>
-                        <div class="container" id="padsContainer"></div>
-                    </div>
-                
-                
-                
+                    <!-- Main body (page unique) content goes here -->
+                    <div id="link-container"></div>
+                    <!-- end of main body -->
+                    
                 </div>
+                
                 <!-- footer elements -->
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
@@ -159,7 +159,7 @@
                     </div>
                 </footer>
                 <!-- end footer -->
-            
+                
             </div>
             <!-- end flex layout -->
             
@@ -179,9 +179,10 @@
         <script src="assets/js/css-reload.js"></script>
         <script src="assets/js/bs-init.js"></script>
         
+        
         <!-- Page specific JavaScript files -->
-        <script src="assets/js/pad-box-loader.js"></script>
+        <script src="assets/js/links.js"></script>
         <!-- end Javascript -->
-    
+        
     </body>
 </html>

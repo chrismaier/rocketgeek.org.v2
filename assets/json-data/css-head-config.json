@@ -20,6 +20,7 @@
     { "rel": "stylesheet", "href": "assets/css/Ultimate-Event-Calendar.css" },
     { "rel": "stylesheet", "href": "assets/css/pad-box-styles.css" },
     { "rel": "stylesheet", "href": "assets/css/network-devices.css" },
-    { "rel": "stylesheet", "href": "assets/css/club-info.css" }
+    { "rel": "stylesheet", "href": "assets/css/club-info.css" },
+    { "rel": "stylesheet", "href": "assets/css/links.css" }
   ]
 }

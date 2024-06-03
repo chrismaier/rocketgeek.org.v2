@@ -1,0 +1,41 @@
+#link-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.link-card {
+    flex: 1 1 calc(50% - 40px); /* Adjusting to account for padding and gap */
+    box-sizing: border-box;
+    max-width: 600px; /* Optional: Set a max-width for larger screens */
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.link-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.link-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.link-url {
+    font-size: 14px;
+    color: #8b0000; /* Remembered change */
+    word-break: break-all;
+}
+
+.link-description {
+    font-size: 16px;
+    color: #333;
+}
