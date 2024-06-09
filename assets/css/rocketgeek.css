@@ -548,3 +548,15 @@ select:active {
     /* Adjust background color */
     background-color: #8b0000;
 }
+
+.bg-password-image {
+    background-image: url('assets/img/avatars/geek-guy.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; /* or use cover if desired */
+    padding: 20px; /* Adjust this value as needed */
+    background-clip: padding-box;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}

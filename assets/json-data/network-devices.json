@@ -1,8 +1,10 @@
 [
   {
+    "deviceId": "1",
     "deviceDescription": "Dome Camera",
     "deviceType": "Camera",
     "hostName": "DOME-CAM-1",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.1",
     "macAddress": "00:1A:2B:3C:4D:5E",
     "setupLocation": "Andy Cam",
@@ -10,9 +12,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "2",
     "deviceDescription": "Dome Camera",
     "deviceType": "Camera",
     "hostName": "DOME-CAM-2",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.2",
     "macAddress": "00:1A:2B:3C:4D:5F",
     "setupLocation": "Server Room",
@@ -20,9 +24,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "3",
     "deviceDescription": "Dome Camera",
     "deviceType": "Camera",
     "hostName": "DOME-CAM-3",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.3",
     "macAddress": "00:1A:2B:3C:4D:5B",
     "setupLocation": "Server Room",
@@ -30,9 +36,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "4",
     "deviceDescription": "Dome Camera",
     "deviceType": "Camera",
     "hostName": "DOME-CAM-4",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.4",
     "macAddress": "00:1A:2B:3C:4D:5F",
     "setupLocation": "Server Room",
@@ -40,9 +48,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "5",
     "deviceDescription": "PTZ-A",
     "deviceType": "Camera",
     "hostName": "PTZ-CAM-A",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.11",
     "macAddress": "00:1A:2B:3C:4A:5A",
     "setupLocation": "Server Room",
@@ -50,9 +60,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "6",
     "deviceDescription": "PTZ-B",
     "deviceType": "Camera",
     "hostName": "PTZ-CAM-B",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.12",
     "macAddress": "00:1A:2B:3C:4A:5A",
     "setupLocation": "Server Room",
@@ -60,9 +72,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "7",
     "deviceDescription": "PTZ-C",
     "deviceType": "Camera",
     "hostName": "PTZ-CAM-C",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.13",
     "macAddress": "00:1C:2B:3A:4A:5A",
     "setupLocation": "Server Room",
@@ -70,9 +84,11 @@
     "ownedBy": "IT Department"
   },
   {
+    "deviceId": "8",
     "deviceDescription": "PTZ-D",
     "deviceType": "Camera",
     "hostName": "PTZ-CAM-D",
+    "dnsDomain": "stream.rocketgeek.org",
     "ipAddress": "192.168.1.14",
     "macAddress": "00:1D:2B:3C:4A:5A",
     "setupLocation": "Server Room",
