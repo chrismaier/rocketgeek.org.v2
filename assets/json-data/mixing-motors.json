@@ -1,5 +1,9 @@
 [
-  {"label": "Mix Option 1", "url": "mix1.html"},
-  {"label": "Mix Option 2", "url": "mix2.html"},
-  {"label": "Mix Option 3", "url": "mix3.html"}
+  {"label": "Getting Started", "url": "/motormixing/index.html"},
+  {"label": "Mixing Safety", "url": "/motormixing/mixing-safety.html"},
+  {"label": "Mixing Equipment", "url": "/motormixing/mixing-equipment.html"},
+  {"label": "Mixing Basics", "url": "/motormixing/mixing-basics.html"},
+  {"label": "Mixing Batch Calculator - online", "url": "/motormixing/batch-calculator.html"},
+  {"label": "Mixing Batch Sheet - Excel", "url": "/motormixing/batch-sheet-calculator.html"},
+  {"label": "Mixing Resources", "url": "/motormixing/mixing-resources.html"}
 ]

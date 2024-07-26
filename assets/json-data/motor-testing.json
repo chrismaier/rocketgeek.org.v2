@@ -1,6 +1,8 @@
 
 [
-  {"label": "Item 1", "url": "temp.html"},
-  {"label": "Item 2", "url": "temp.html"},
-  {"label": "Item 3", "url": "error.html"}
+  {"label": "Motor Testing Basics", "url": "/motortesting/index.html"},
+  {"label": "Motor Testing Safety", "url": "/motortesting/motor-testing-safety.html"},
+  {"label": "Motor Testing Equipment", "url": "/motortesting/motor-testing-equipment.html"},
+  {"label": "Motor Characterization", "url": "/motortesting/motor-characterization.html"},
+  {"label": "Motor Test Examples", "url": "/motortesting/motor-test-examples.html"}
 ]
