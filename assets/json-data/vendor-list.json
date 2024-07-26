@@ -1,5 +1,5 @@
 [
-  {"label": "Vendor 1", "url": "vendor1.html"},
-  {"label": "Vendor 2", "url": "vendor2.html"},
-  {"label": "Vendor 3", "url": "vendor3.html"}
+  {"label": "Complete Vendor List", "url": "complete-vendor-list.html"},
+  {"label": "Flight Computers", "url": "flight-computers.html"},
+  {"label": "Other Suppliers", "url": "other-suppliers.html"}
 ]
