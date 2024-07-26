@@ -1,6 +1,5 @@
 
 [
-  {"label": "Item 1", "url": "temp.html"},
-  {"label": "Item 2", "url": "temp.html"},
-  {"label": "Item 3", "url": "error.html"}
+  {"label": "Launch Alert", "url": "/launch-alert.html"},
+  {"label": "Livestream Alert", "url": "livestream-alert.html"}
 ]

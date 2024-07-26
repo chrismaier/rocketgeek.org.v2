@@ -1,6 +1,8 @@
 
 [
-  {"label": "Item 1", "url": "temp.html"},
-  {"label": "Item 2", "url": "temp.html"},
-  {"label": "Item 3", "url": "error.html"}
+  {"label": "Formulas Introduction", "url": "/formulas/index.html"},
+  {"label": "Basic Formula", "url": "/formulas/basic-formula.html"},
+  {"label": "Batch Sheet Calculator", "url": "/motormixing/batch-calculator.html"},
+  {"label": "Formula X", "url": "/formulas/formula-x.html"},
+  {"label": "Formula Y", "url": "/formulas/formula-y.html"}
 ]
