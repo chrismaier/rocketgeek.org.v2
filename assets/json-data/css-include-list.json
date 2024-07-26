@@ -1,19 +1,19 @@
 {
   "cssIncludeFiles": [
-    "./assets/css/dataTables.min.css",
-    "./assets/css/bootstrap5.min.css",
-    "./assets/fonts/fontawesome-all.min.css",
-    "./assets/fonts/font-awesome.min.css",
-    "./assets/fonts/fontawesome5-overrides.min.css",
-    "./assets/css/Black-Navbar.css",
-    "./assets/css/Bootstrap-4-Calendar-No-Custom-Code.css",
-    "./assets/css/Bootstrap-Calendar.css",
-    "./assets/css/Contact-form-simple.css",
-    "./assets/css/rocketgeek.css",
-    "./assets/css/textarea.css",
-    "./assets/css/Ultimate-Event-Calendar.css",
-    "./assets/css/bootstrap-over-rides.css",
-    "./assets/css/network-devices.css"
+    "/assets/css/dataTables.min.css",
+    "/assets/css/bootstrap5.min.css",
+    "/assets/fonts/fontawesome-all.min.css",
+    "/assets/fonts/font-awesome.min.css",
+    "/assets/fonts/fontawesome5-overrides.min.css",
+    "/assets/css/Black-Navbar.css",
+    "/assets/css/Bootstrap-4-Calendar-No-Custom-Code.css",
+    "/assets/css/Bootstrap-Calendar.css",
+    "/assets/css/Contact-form-simple.css",
+    "/assets/css/rocketgeek.css",
+    "/assets/css/textarea.css",
+    "/assets/css/Ultimate-Event-Calendar.css",
+    "/assets/css/bootstrap-over-rides.css",
+    "/assets/css/network-devices.css"
   ]
 }
 
