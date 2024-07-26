@@ -1,4 +1,8 @@
 [
   {"label": "Rocket Geek Links", "url": "links.html"},
-  {"label": "Link 2", "url": "link2.html"}
+  {"label": "Other Club Information", "url": "club-info.html"},
+  {"label": "Rocket Organizations", "url": "rocket-organizations.html"},
+  {"label": "Launch Information", "url": "launch-info.html"},
+  {"label": "Network Devices", "url": "network-devices.html"},
+  {"label": "Pad Boxes", "url": "pad-boxes.html"}
 ]
