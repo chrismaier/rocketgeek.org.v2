@@ -9,6 +9,6 @@
   {"href": "photos.html", "icon": "fas fa-camera", "text": "Photos"},
   {"href": "profile.html", "icon": "fas fa-user-edit", "text": "Profile"},
   {"href": "register.html", "icon": "fas fa-user-plus", "text": "Register"},
-  {"href": "youtube-videos.html", "icon": "fas fa-film", "text": "Videos", "active": true},
+  {"href": "youtube-videos.html", "icon": "fas fa-film", "text": "Videos"},
   {"href": "welcome.html", "icon": "far fa-bookmark", "text": "Welcome"}
 ]
