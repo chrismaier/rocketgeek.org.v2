@@ -4,6 +4,7 @@
   {"href": "clubs.html", "icon": "fas fa-users", "text": "Clubs"},
   {"href": "dashboard.html", "icon": "fas fa-tachometer-alt", "text": "Dashboard"},
   {"href": "donations.html", "icon": "far fa-money-bill-alt", "text": "Donations"},
+  {"href": "support.html", "icon": "fas fa-hand-holding-usd", "text": "Support"},
   {"href": "login.html", "icon": "far fa-user-circle", "text": "Login"},
   {"href": "photos.html", "icon": "fas fa-camera", "text": "Photos"},
   {"href": "profile.html", "icon": "fas fa-user-edit", "text": "Profile"},

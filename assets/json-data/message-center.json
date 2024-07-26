@@ -2,5 +2,6 @@
 [
   {"label": "Contact Us", "url": "contact.html"},
   {"label": "Upcoming Events", "url": "upcoming-events.html"},
-  {"label": "Events I Will Attend", "url": "rocket-geek-attendance.html"}
+  {"label": "Events I Will Attend", "url": "rocket-geek-attendance.html"},
+  {"label": "Send Us Feedback", "url": "feedback-form.html"}
 ]
