@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('./assets/json-data/side-nav-data-active-example.json')
+    fetch('/assets/json-data/side-nav-data-active-example.json')
         .then(response => response.json())
         .then(data => {
             const navContainer = document.getElementById('accordionSidebar');

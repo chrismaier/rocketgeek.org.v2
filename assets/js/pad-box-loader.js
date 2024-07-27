@@ -1,5 +1,5 @@
 // Fetch the JSON data from the server
-fetch('./assets/json-data/pad-box-inventory.json')
+fetch('/assets/json-data/pad-box-inventory.json')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');

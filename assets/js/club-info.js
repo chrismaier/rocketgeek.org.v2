@@ -1,7 +1,7 @@
 $(document).ready(function() {
     console.log("Document is ready");
     
-    $.getJSON("./assets/json-data/club-info.json", function(data) {
+    $.getJSON("/assets/json-data/club-info.json", function(data) {
         console.log("JSON data loaded", data);
         
         data.forEach(function(club) {

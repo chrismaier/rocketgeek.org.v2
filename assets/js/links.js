@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('assets/json-data/other-links.json')
+    fetch('/assets/json-data/other-links.json')
         .then(response => response.json())
         .then(data => {
             const linkContainer = document.querySelector('#link-container');

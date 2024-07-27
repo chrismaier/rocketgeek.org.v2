@@ -1,4 +1,4 @@
-fetch('./assets/json-data/css-include-list.json')
+fetch('/assets/json-data/css-include-list.json')
     .then(response => response.json())
     .then(data => {
         // Function to add CSS files dynamically to the head section

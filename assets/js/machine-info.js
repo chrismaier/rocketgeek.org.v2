@@ -1,7 +1,7 @@
 // script.js
 async function loadConfiguration() {
     try {
-        const response = await fetch('../json-data/tsconfig.json');
+        const response = await fetch('/assets/json-data/tsconfig.json');
         if (!response.ok) {
             throw new Error('Failed to fetch configuration');
         }

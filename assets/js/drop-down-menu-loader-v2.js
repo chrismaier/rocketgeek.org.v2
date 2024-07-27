@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     // Call function to populate each dropdown menu
-    populateDropdownMenu("menu1", "menu1Trigger", "./assets/json-data/menu1.json");
-    populateDropdownMenu("alert-menu", "alertTrigger", "./assets/json-data/alerts-menu.json");
+    populateDropdownMenu("menu1", "menu1Trigger", "/assets/json-data/menu1.json");
+    populateDropdownMenu("alert-menu", "alertTrigger", "/assets/json-data/alerts-menu.json");
     // Add more dropdown menus as needed
 });

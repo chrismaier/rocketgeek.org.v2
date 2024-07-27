@@ -9,7 +9,7 @@
 
 document.addEventListener('DOMContentLoaded', function()
 {
-    fetch('./assets/json-data/css-head-config.json')
+    fetch('/assets/json-data/css-head-config.json')
         .then(response => response.json())
         .then(data => {
             const head = document.head;
