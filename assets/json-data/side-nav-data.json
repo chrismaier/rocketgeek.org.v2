@@ -1,13 +1,13 @@
 [
-  {"href": "blog.html", "icon": "fab fa-blogger", "text": "Blog"},
-  {"href": "calendar.html", "icon": "far fa-calendar-alt", "text": "Calendar"},
-  {"href": "clubs.html", "icon": "fas fa-users", "text": "Clubs"},
-  {"href": "dashboard.html", "icon": "fas fa-tachometer-alt", "text": "Dashboard"},
-  {"href": "donations.html", "icon": "far fa-money-bill-alt", "text": "Donations"},
-  {"href": "login.html", "icon": "far fa-user-circle", "text": "Login"},
-  {"href": "photos.html", "icon": "fas fa-camera", "text": "Photos"},
-  {"href": "profile.html", "icon": "fas fa-user-edit", "text": "Profile"},
-  {"href": "register.html", "icon": "fas fa-user-plus", "text": "Register"},
-  {"href": "youtube-videos.html", "icon": "fas fa-film", "text": "Videos"},
-  {"href": "welcome.html", "icon": "far fa-bookmark", "text": "Welcome"}
+  {"href": "/blog.html", "icon": "fab fa-blogger", "text": "Blog"},
+  {"href": "/calendar.html", "icon": "far fa-calendar-alt", "text": "Calendar"},
+  {"href": "/clubs.html", "icon": "fas fa-users", "text": "Clubs"},
+  {"href": "/dashboard.html", "icon": "fas fa-tachometer-alt", "text": "Dashboard"},
+  {"href": "/donations.html", "icon": "far fa-money-bill-alt", "text": "Donations"},
+  {"href": "/login.html", "icon": "far fa-user-circle", "text": "Login"},
+  {"href": "/photos.html", "icon": "fas fa-camera", "text": "Photos"},
+  {"href": "/profile.html", "icon": "fas fa-user-edit", "text": "Profile"},
+  {"href": "/register.html", "icon": "fas fa-user-plus", "text": "Register"},
+  {"href": "/youtube-videos.html", "icon": "fas fa-film", "text": "Videos"},
+  {"href": "/welcome.html", "icon": "far fa-bookmark", "text": "Welcome"}
 ]
