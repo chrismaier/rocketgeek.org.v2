@@ -12,7 +12,7 @@ $(document).ready(function() {
                 <div class="card-header" id="heading${motor.inventoryID}">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${motor.inventoryID}" aria-expanded="true" aria-controls="collapse${motor.inventoryID}" id="btn${motor.inventoryID}">
-                            <span class="plus-sign"></span> ${motor.manufacturer} ${motor.classification} (${motor.inventoryID})
+                            <span class="plus-sign"></span> ${motor.manufacturer} - ${motor.case_diameter} - ${motor.classification}
                         </button>
                     </h2>
                 </div>
