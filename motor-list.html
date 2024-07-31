@@ -7,8 +7,8 @@
         <!-- page unique head information / meta tags etc go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
-        <title>Launch Information - Rocket Geek</title>
-        <link href="assets/css/css-reload.css" rel="stylesheet">
+        <title>Motor List - Rocket Geek</title>
+        <link href="/assets/css/css-reload.css" rel="stylesheet">
         
         <!--
         =TEMPORARILY= disable the content from displaying when the page loads
@@ -17,10 +17,10 @@
         <style>body { display: none; }</style>
         
         <!-- load META tags =FIRST= -->
-        <script src="./assets/js/meta-loader.js"></script>
+        <script src="/assets/js/meta-loader.js"></script>
         
         <!-- load the CSS files second - this js re-enables the page -->
-        <script src="./assets/js/css-loader.js"></script>
+        <script src="/assets/js/css-loader.js"></script>
     </head>
     <!-- End of head section -->
     
@@ -125,12 +125,12 @@
                             
                             <!-- Profile Dropdown -->
                             <div class="nav-item dropdown no-arrow">
-                                <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="profile.html">
+                                <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="/profile.html">
                                     <span class="d-none d-lg-inline me-2 text-white-600 small">Random Geek</span>
-                                    <img class="border rounded-circle img-profile" src="assets/img/avatars/geek-guy.png" alt="">
+                                    <img class="border rounded-circle img-profile" src="/assets/img/avatars/geek-guy.png" alt="">
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                    <a class="dropdown-item" href="profile.html">
+                                    <a class="dropdown-item" href="/profile.html">
                                         <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
@@ -148,17 +148,19 @@
                     
                     <!-- Main body (page unique) content goes here -->
                     <div class = "container-fluid">
-                        <h2 class = "mb-4">Launch Information</h2>
+                        <h2 class = "mb-4">Rocket Geek Motor Inventory</h2>
                         <div class = "card shadow">
                             <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">Upcoming Launches</p>
+                                <p class = "m-0 fw-bold">Sub-heading section one</p>
                                 <div class = "d-flex flex-column justify-content-center align-items-stretch box">
                                     <div class = "content-block"></div>
                                 </div>
                             </div>
-                            <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">Launch List</p>
-                            </div>
+                            <section class="motor-list-section">
+                                <div class="container">
+                                    <div id="motor-list" class="accordion"></div>
+                                </div>
+                            </section>
                         
                         </div>
                     </div>
@@ -184,18 +186,19 @@
         
         <!-- Begin Java Script -->
         <!-- Bootstrap JS and Popper.js -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.5.1.3.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.5.1.3.min.js"></script>
         
         <!-- Core JavaScript files (all pages need these files) -->
-        <script src="assets/js/drop-down-menu-loader.js"></script>
-        <script src="assets/js/theme.js"></script>
-        <script src="assets/js/side-nav-script.js"></script>
-        <script src="assets/js/css-reload.js"></script>
-        <script src="assets/js/bs-init.js"></script>
+        <script src="/assets/js/drop-down-menu-loader.js"></script>
+        <script src="/assets/js/theme.js"></script>
+        <script src="/assets/js/side-nav-script.js"></script>
+        <script src="/assets/js/css-reload.js"></script>
+        <script src="/assets/js/bs-init.js"></script>
         
         <!-- Page specific JavaScript files -->
-        <!-- <script src="assets/js/pad-box-loader.js"></script> -->
+        <!-- <script src="/assets/js/pad-box-loader.js"></script> -->
+        <script src="/assets/js/motor-inventory.js"></script>
         <!-- end Javascript -->
     
     </body>
