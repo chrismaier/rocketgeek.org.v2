@@ -1,6 +1,6 @@
 
 [
-  {"label": "Item 1", "url": "/temp.html"},
-  {"label": "Item 2", "url": "/temp.html"},
-  {"label": "Item 3", "url": "/error.html"}
+  {"label": "Commercial Motor Inventory", "url": "/motor-list.html"},
+  {"label": "EX Motor Test Results", "url": "/motor-test-results.html"},
+  {"label": "Flight Computer Data", "url": "/flight-data.html"}
 ]
