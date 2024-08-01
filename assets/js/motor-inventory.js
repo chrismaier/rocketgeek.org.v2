@@ -43,7 +43,7 @@ $(document).ready(function() {
                             <li><strong>Classification:</strong> ${motor.classification}</li>
                             <li><strong>Color:</strong> ${motor.color}</li>
                             <li><strong>Burn Time:</strong> ${motor.burn_time}</li>
-                            <li><strong>Vendor Data Sheet:</strong> <a href="${motor.vendor_data_sheet}" target="_blank">${motor.vendor_data_sheet}</a></li>
+                            <li><strong>Vendor Data Sheet:</strong> <a href="${motor.vendor_data_sheet}" target="_blank">(Click here)</a></li>
                             <li><strong>Description:</strong> ${motor.description}</li>
                             <li><strong>Reloadable:</strong> ${motor.reloadable}</li>
                             <li><strong>Manufactured:</strong> ${motor.manufacture_date}</li>
