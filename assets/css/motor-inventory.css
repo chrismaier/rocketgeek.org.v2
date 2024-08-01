@@ -1,0 +1,14 @@
+.motor-status-used {
+    font-style: italic;
+    color: #ffcd39; /* Remembered change */
+}
+
+.motor-card-header {
+    font-style: italic;
+    color: #ffcd39; /* Remembered change */
+}
+
+.motor-details-used {
+    font-style: italic;
+    color: #ffcd39;
+}

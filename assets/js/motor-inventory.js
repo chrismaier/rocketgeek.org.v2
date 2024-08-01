@@ -5,19 +5,33 @@ $(document).ready(function() {
         console.log("JSON data loaded", data);
         
         data.forEach(function(motor) {
+            console.log("Processing motor ID:", motor.inventoryID);
             console.log("Processing motor:", motor);
+            
+            let motorHeadingStatus = "none";
+            let motorDetailStatus = "none";
+            
+            if (motor.date_flown != null && motor.date_flown != "") {
+                console.log("motor was used: ", motor.date_flown);
+                motorHeadingStatus = "motor-status-used";
+                motorDetailStatus = "motor-details-used";
+            }
+            else {
+                console.log("Motor still in inventory");
+            }
+           
             
             let motorItem = `
             <div class="card">
                 <div class="card-header" id="heading${motor.inventoryID}">
-                    <h2 class="mb-0">
+                    <h2 class="mb-0" style="${motorHeadingStatus}">
                         <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${motor.inventoryID}" aria-expanded="true" aria-controls="collapse${motor.inventoryID}" id="btn${motor.inventoryID}">
-                            <span class="plus-sign"></span> ${motor.manufacturer} - ${motor.case_diameter} - ${motor.classification}
+                            <span class="plus-sign"></span> ${motor.manufacturer} - ${motor.case_diameter}mm - ${motor.classification}
                         </button>
                     </h2>
                 </div>
                 <div id="collapse${motor.inventoryID}" class="collapse" aria-labelledby="heading${motor.inventoryID}" data-parent="#motor-list">
-                    <div class="card-body">
+                    <div class="card-body" style="${motorDetailStatus}">
                         <ul>
                             <li><strong>Manufacturer:</strong> ${motor.manufacturer}</li>
                             <li><strong>Quantity:</strong> ${motor.quantity}</li>
@@ -31,6 +45,8 @@ $(document).ready(function() {
                             <li><strong>Vendor Data Sheet:</strong> <a href="${motor.vendor_data_sheet}" target="_blank">${motor.vendor_data_sheet}</a></li>
                             <li><strong>Description:</strong> ${motor.description}</li>
                             <li><strong>Reloadable:</strong> ${motor.reloadable}</li>
+                            <li><strong>Manufactured:</strong> ${motor.manufacture_date}</li>
+                            <li><strong>Flown:</strong> ${motor.date_flown}</li>
                         </ul>
                     </div>
                 </div>
