@@ -34,6 +34,7 @@ $(document).ready(function() {
                     <div class="card-body" style="${motorDetailStatus}">
                         <ul>
                             <li><strong>Manufacturer:</strong> ${motor.manufacturer}</li>
+                            <li><strong>Manufacturer ID:</strong> ${motor.manufacturerID}</li>
                             <li><strong>Quantity:</strong> ${motor.quantity}</li>
                             <li><strong>Case Diameter:</strong> ${motor.case_diameter}</li>
                             <li><strong>Grains:</strong> ${motor.grains}</li>
