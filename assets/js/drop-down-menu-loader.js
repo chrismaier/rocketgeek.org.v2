@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     // Call function to populate each dropdown menu
+    populateDropdownMenu("questionAndAnswer", "questionAndAnswerTrigger", "/assets/json-data/question-and-answer.json", "Questions & Answers");
     populateDropdownMenu("rocketPerformance", "rocketPerformanceTrigger", "/assets/json-data/rocket-performance.json", "Rocket Performance Analysis");
     populateDropdownMenu("motorTesting", "motorTestingTrigger", "/assets/json-data/motor-testing.json", "Rocket Motor Testing");
     populateDropdownMenu("motorFormulas", "motorFormulaTrigger", "/assets/json-data/motor-formulas.json", "Rocket Motor Formulas");
