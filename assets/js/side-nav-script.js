@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     a.classList.add('active');
                 }
                 a.href = item.href;
+                a.target = item.target;
+                
                 const icon = document.createElement('i');
                 icon.className = item.icon;
                 const span = document.createElement('span');
