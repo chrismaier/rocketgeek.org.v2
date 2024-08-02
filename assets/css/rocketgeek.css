@@ -276,7 +276,7 @@ a:hover {
     color: #FFA500;
 }
 a:active {
-    color: #00FF00;
+    color: #FF0000;
 }
 
 /* Grey palette styles for the special link with ID 'special-link' */
@@ -559,4 +559,33 @@ select:active {
 }
 .flex-grow-1 {
     flex-grow: 1;
+}
+
+.youtube-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.index-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #8b0000;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+}
+
+.index-link:active {
+    color: #8b0000;
+}
+
+.index-link:hover {
+    color: #8b0000;
 }
