@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const jsonFilePath = "/assets/json-data/flickr-rotating-photos.json"; // Adjust path to your JSON file
+    const jsonFilePath = "/assets/json-data/flicker-rotating-photos.json"; // Adjust path to your JSON file
     const imageElement = document.querySelector("#flickr-photo");
     const titleElement = document.querySelector("#photo-title");
     const clubElement = document.querySelector("#photo-club");
