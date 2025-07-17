@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  ApiGatewayDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneName: rocketgeek.org.
+      Name: api.rocketgeek.org
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt CustomDomain.RegionalDomainName
+        HostedZoneId: Z2FDTNDATAQYW2  # Standard Hosted Zone ID for API Gateway Regional endpoints
+      Comment: "API Gateway Custom Domain for api.rocketgeek.org"
+
+  Certificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: api.rocketgeek.org
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: api.rocketgeek.org
+          HostedZoneId: Z06404632JRVK1UWCONYE
+
+Outputs:
+  ApiGatewayDNS:
+    Value: !Ref ApiGatewayDNSRecord
+    Description: "DNS record for the API Gateway at api.rocketgeek.org"

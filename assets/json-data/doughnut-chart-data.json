@@ -1,0 +1,6 @@
+{
+  "title": "Motor Formula Composition",
+  "labels": ["AP/Oxidiser", "Metals", "Liquids"],
+  "data": [77, 4, 19],
+  "backgroundColor": ["red", "blue", "purple"]
+}

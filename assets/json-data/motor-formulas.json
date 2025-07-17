@@ -1,6 +1,7 @@
 
 [
   {"label": "Formulas Introduction", "url": "/formulas/index.html"},
+  {"label": "Chemical Master List", "url":  "/formulas/master-chemical-list.html"},
   {"label": "Basic Formula", "url": "/formulas/basic-formula.html"},
   {"label": "Batch Sheet Calculator", "url": "/motormixing/batch-calculator.html"},
   {"label": "Formula X", "url": "/formulas/formula-x.html"},

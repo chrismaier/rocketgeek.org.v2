@@ -1,0 +1,154 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+
+  GuidProcessorLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: guid-processor
+      Handler: index.lambda_handler
+      Runtime: python3.11
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Hello from GUID Processor!')
+              }
+      Role: !GetAtt LambdaExecutionRole.Arn
+
+  SignupLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: signup
+      Handler: index.lambda_handler
+      Runtime: python3.11
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Hello from Signup!')
+              }
+      Role: !GetAtt LambdaExecutionRole.Arn
+
+  GetProfileLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: get-profile
+      Handler: index.lambda_handler
+      Runtime: python3.11
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Hello from Get Profile!')
+              }
+      Role: !GetAtt LambdaExecutionRole.Arn
+
+  UpdateProfileLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: update-profile
+      Handler: index.lambda_handler
+      Runtime: python3.11
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Hello from Update Profile!')
+              }
+      Role: !GetAtt LambdaExecutionRole.Arn
+
+  MotorListLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: motor-list
+      Handler: index.lambda_handler
+      Runtime: python3.11
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Hello from Motor List!')
+              }
+      Role: !GetAtt LambdaExecutionRole.Arn
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: LambdaBasicExecutionPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: '*'
+
+  ApiGateway:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: api-rocketgeek-org
+      ProtocolType: HTTP
+
+  CustomDomain:
+    Type: AWS::ApiGatewayV2::DomainName
+    Properties:
+      DomainName: api.rocketgeek.org
+      DomainNameConfigurations:
+        - CertificateArn: arn:aws:acm:REGION:ACCOUNT_ID:certificate/CERTIFICATE_ID
+          EndpointType: REGIONAL
+
+  ApiMapping:
+    Type: AWS::ApiGatewayV2::ApiMapping
+    Properties:
+      ApiId: !Ref ApiGateway
+      DomainName: !Ref CustomDomain
+      Stage: "$default"
+
+  GuidProcessorIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref ApiGateway
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !GetAtt GuidProcessorLambda.Arn
+
+  GuidProcessorRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref ApiGateway
+      RouteKey: GET /guid-processor
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref GuidProcessorIntegration
+
+  ApiDeployment:
+    Type: AWS::ApiGatewayV2::Deployment
+    Properties:
+      ApiId: !Ref ApiGateway
+    DependsOn:
+      - GuidProcessorRoute
+
+Outputs:
+  ApiEndpoint:
+    Value: !Sub "https://${CustomDomain.DomainName}"
+    Description: "API Gateway endpoint URL for Prod environment"
