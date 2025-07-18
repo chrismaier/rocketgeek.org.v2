@@ -147,22 +147,21 @@
                     <!-- end top nav bar -->
                     
                     <!-- Main body (page unique) content goes here -->
-                    <div class = "container-fluid">
-                        <h2 class = "mb-4">Master Chemical List</h2>
-                        <div class = "card shadow">
-                            <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">Commonly Used Chemicals</p>
-                                <div class = "d-flex flex-column justify-content-center align-items-stretch box">
-                                    <div class = "content-block"></div>
+                    <div>
+                        <div>
+                            <header class="banner-section">
+                                <div class="container">
+                                    <h1>Rocket Motor Chemicals</h1>
                                 </div>
-                            </div>
-                            <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">Sub-heading section two (remove as required)</p>
-                            </div>
-                        
+                            </header>
+                            
+                            <section class="chemical-list-section">
+                                <div class="container">
+                                    <div id="chemical-list" class="accordion"></div>
+                                </div>
+                            </section>
                         </div>
                     </div>
-                    
                     <!-- end of main body -->
                 
                 </div>
@@ -196,6 +195,8 @@
         
         <!-- Page specific JavaScript files -->
         <!-- <script src="assets/js/pad-box-loader.js"></script> -->
+        <script src="/assets/js/jquery-3.6.0.min.js"></script>
+        <script src="/assets/js/master-chemical-list.js"></script>
         <!-- end Javascript -->
     
     </body>

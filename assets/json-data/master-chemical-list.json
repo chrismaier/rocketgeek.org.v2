@@ -1,0 +1,184 @@
+[
+  {
+    "reference_id": "ap-400",
+    "name": "Ammonium Perchlorate",
+    "short_description": "Ammonium Perchlorate 400 µm",
+    "url": "motor-data/chemicals/solids/oxidizers/ap-400.json",
+    "link_label": "View AP 400 µm Details"
+  },
+  {
+    "reference_id": "ap-200",
+    "name": "Ammonium Perchlorate",
+    "short_description": "Ammonium Perchlorate 200 µm",
+    "url": "motor-data/chemicals/solids/oxidizers/ap-200.json",
+    "link_label": "View AP 200 µm Details"
+  },
+  {
+    "reference_id": "ap-90",
+    "name": "Ammonium Perchlorate",
+    "short_description": "Ammonium Perchlorate 90 µm",
+    "url": "motor-data/chemicals/solids/oxidizers/ap-90.json",
+    "link_label": "View AP 90 µm Details"
+  },
+  {
+    "reference_id": "ap-mf",
+    "name": "Ammonium Perchlorate",
+    "short_description": "Ammonium Perchlorate microfine (<30 µm)",
+    "url": "motor-data/chemicals/solids/oxidizers/ap-mf.json",
+    "link_label": "View AP Microfine Details"
+  },
+  {
+    "reference_id": "an",
+    "name": "Ammonium Nitrate",
+    "short_description": "Ammonium Nitrate",
+    "url": "motor-data/chemicals/solids/oxidizers/an.json",
+    "link_label": "View Ammonium Nitrate Details"
+  },
+  {
+    "reference_id": "kp",
+    "name": "Potassium Perchlorate",
+    "short_description": "Potassium Perchlorate",
+    "url": "motor-data/chemicals/solids/oxidizers/kp.json",
+    "link_label": "View Potassium Perchlorate Details"
+  },
+  {
+    "reference_id": "al-fine",
+    "name": "Aluminum",
+    "short_description": "Aluminum Powder (fine)",
+    "url": "motor-data/chemicals/solids/fuels/al-fine.json",
+    "link_label": "View Aluminum Powder Details"
+  },
+  {
+    "reference_id": "mg",
+    "name": "Magnesium",
+    "short_description": "Magnesium Powder",
+    "url": "motor-data/chemicals/solids/fuels/mg.json",
+    "link_label": "View Magnesium Powder Details"
+  },
+  {
+    "reference_id": "ferrocene",
+    "name": "Ferrocene",
+    "short_description": "Ferrocene (burn rate catalyst)",
+    "url": "motor-data/chemicals/solids/additives/ferrocene.json",
+    "link_label": "View Ferrocene Details"
+  },
+  {
+    "reference_id": "feo",
+    "name": "Red Iron Oxide",
+    "short_description": "Red Iron Oxide",
+    "url": "motor-data/chemicals/solids/additives/feo.json",
+    "link_label": "View Red Iron Oxide Details"
+  },
+  {
+    "reference_id": "sn",
+    "name": "Strontium Nitrate",
+    "short_description": "Strontium Nitrate (red colorant)",
+    "url": "motor-data/chemicals/solids/colorants/sn.json",
+    "link_label": "View Strontium Nitrate Details"
+  },
+  {
+    "reference_id": "bn",
+    "name": "Barium Nitrate",
+    "short_description": "Barium Nitrate (green colorant)",
+    "url": "motor-data/chemicals/solids/colorants/bn.json",
+    "link_label": "View Barium Nitrate Details"
+  },
+  {
+    "reference_id": "cuo",
+    "name": "Copper Oxide",
+    "short_description": "Copper Oxide (blue colorant)",
+    "url": "motor-data/chemicals/solids/colorants/cuo.json",
+    "link_label": "View Copper Oxide Details"
+  },
+  {
+    "reference_id": "sox",
+    "name": "Sodium Oxalate",
+    "short_description": "Sodium Oxalate (yellow colorant)",
+    "url": "motor-data/chemicals/solids/colorants/sox.json",
+    "link_label": "View Sodium Oxalate Details"
+  },
+  {
+    "reference_id": "htpb",
+    "name": "HTPB",
+    "short_description": "Hydroxyl-Terminated Polybutadiene",
+    "url": "motor-data/chemicals/liquids/binders/htpb.json",
+    "link_label": "View HTPB Binder Details"
+  },
+  {
+    "reference_id": "r45m",
+    "name": "R45M",
+    "short_description": "R45M Binder",
+    "url": "motor-data/chemicals/liquids/binders/r45m.json",
+    "link_label": "View R45M Binder Details"
+  },
+  {
+    "reference_id": "hx878",
+    "name": "HX878",
+    "short_description": "HTPB with epoxy functionality (HX878)",
+    "url": "motor-data/chemicals/liquids/binders/hx878.json",
+    "link_label": "View HX878 Binder Details"
+  },
+  {
+    "reference_id": "doa",
+    "name": "DOA",
+    "short_description": "Dioctyl Adipate (plasticizer)",
+    "url": "motor-data/chemicals/liquids/plasticizers/doa.json",
+    "link_label": "View DOA Plasticizer Details"
+  },
+  {
+    "reference_id": "idp",
+    "name": "IDP",
+    "short_description": "Isodecyl Pelargonate (plasticizer)",
+    "url": "motor-data/chemicals/liquids/plasticizers/idp.json",
+    "link_label": "View IDP Plasticizer Details"
+  },
+  {
+    "reference_id": "lecithin",
+    "name": "Lecithin",
+    "short_description": "Lecithin (surfactant)",
+    "url": "motor-data/chemicals/liquids/surfactants/lecithin.json",
+    "link_label": "View Lecithin Surfactant Details"
+  },
+  {
+    "reference_id": "mdi",
+    "name": "MDI",
+    "short_description": "Diphenylmethane Diisocyanate",
+    "url": "motor-data/chemicals/curatives/mdi.json",
+    "link_label": "View MDI Curative Details"
+  },
+  {
+    "reference_id": "mmdi",
+    "name": "M-MDI",
+    "short_description": "Modified MDI",
+    "url": "motor-data/chemicals/curatives/mmdi.json",
+    "link_label": "View M-MDI Curative Details"
+  },
+  {
+    "reference_id": "papi",
+    "name": "PAPI",
+    "short_description": "Polymeric MDI",
+    "url": "motor-data/chemicals/curatives/papi.json",
+    "link_label": "View PAPI Curative Details"
+  },
+  {
+    "reference_id": "desmodur-n100",
+    "name": "Desmodur N100",
+    "short_description": "Aliphatic Polyisocyanate (HDI trimer)",
+    "url": "motor-data/chemicals/curatives/desmodur-n100.json",
+    "link_label": "View Desmodur N100 Details"
+  },
+  {
+    "reference_id": "desmodur-n3200",
+    "name": "Desmodur N3200",
+    "short_description": "Desmodur N3200",
+    "url": "motor-data/chemicals/curatives/desmodur-n3200.json",
+    "link_label": "View Desmodur N3200 Details"
+  },
+  {
+    "reference_id": "e744",
+    "name": "E744",
+    "short_description": "Epoxy-based Curative (E744)",
+    "url": "motor-data/chemicals/curatives/e744.json",
+    "link_label": "View E744 Curative Details"
+  }
+]
