@@ -62,22 +62,31 @@
                                 </div>
                                 
                                 <!-- Confirmation form -->
-                                <form id="confirmForm">
-                                    <label for="email">Email:</label>
-                                    <input type="email" id="email" required>
+                                <form class="user" id="confirmForm">
+                                    <div class="row mb-3">
+                                        <div class="mb-3 mb-sm-0">
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <label for="email">Email:</label>
+                                            <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
+                                        </div>
+                                        <div class="col-sm-6 mb-3">
+                                            <label for="code">Confirmation Code:</label>
+                                            <input class="form-control form-control-user" type="text" id="code" placeholder="123456789" required>
+                                        </div>
                                     
-                                    <label for="code">Confirmation Code:</label>
-                                    <input type="text" id="code" required>
+                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Confirm Account Registration</button>
                                     
-                                    <button type="submit">Confirm Account Registration</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                    <button class="btn btn-primary d-block btn-user w-100" type="submit">
+                                        Login
+                                    </button>
+                                    </div>
                                 </form>
                                 <!-- End of confirmation form -->
-                                
-                                <div class = "text-center" id = "forgot-password-text"><a class = "border-0 shadow-none small" href = "forgot-password.html">Forgot
-                                                                                                                                                             Password?</a>
-                                </div>
-                                <div class = "text-center"><a class = "small" href = "login.html">Already have an account? Login!</a></div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -110,7 +119,7 @@
         <script src="assets/js/rocketgeeksignup.js"></script>
         <!-- <script src = "https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@6.3.3/dist/amazon-cognito-identity.min.js"></script> -->
         <script src = "assets/js/amazon-cognito-identity.min.js"></script>
-        <script src = "assets/js/register.js"></script>
+        <script src = "assets/js/confirm.js"></script>
         <!-- end Javascript -->
     
     </body>
