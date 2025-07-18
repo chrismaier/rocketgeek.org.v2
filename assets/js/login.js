@@ -8,27 +8,32 @@ const poolData = {
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.getElementById("loginForm");
-    const forgotLink = document.getElementById("forgotPasswordLink");
+    const form = document.querySelector("form.user");
+    const emailField = document.getElementById("email");
+    const passwordField = document.getElementById("password");
     
-    if (loginForm) {
-        loginForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            handleLogin();
-        });
+    if (!form || !emailField || !passwordField) {
+        console.error("❌ Login form elements not found.");
+        return;
     }
     
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        handleLogin(emailField, passwordField);
+    });
+    
+    const forgotLink = document.getElementById("forgotPasswordLink");
     if (forgotLink) {
-        forgotLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            handleForgotPassword();
+        forgotLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            handleForgotPassword(emailField);
         });
     }
 });
 
-function handleLogin() {
-    const email = document.getElementById("email")?.value?.trim();
-    const password = document.getElementById("password")?.value;
+function handleLogin(emailField, passwordField) {
+    const email = emailField.value.trim();
+    const password = passwordField.value;
     
     console.log("🔐 Login attempt for:", email);
     
@@ -39,7 +44,7 @@ function handleLogin() {
     }
     
     if (!email.includes("@")) {
-        alert("Please enter a valid email address to log in.");
+        alert("Please use your email address to log in.");
         console.warn("❌ Rejected non-email login attempt");
         return;
     }
@@ -49,19 +54,49 @@ function handleLogin() {
         Password: password
     });
     
-    const userData = {
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
         Username: email,
         Pool: userPool
-    };
-    
-    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    });
     
     cognitoUser.authenticateUser(authDetails, {
-        onSuccess: function (result) {
+        onSuccess: async function (result) {
             const idToken = result.getIdToken().getJwtToken();
+            const username = result.getIdToken().payload["cognito:username"];
             localStorage.setItem("id_token", idToken);
-            console.log("✅ Login successful, token stored.");
-            window.location.href = "/secure/index.html";
+            
+            console.log("✅ Login successful for:", username);
+            alert("Login successful! Setting up your profile...");
+            
+            try {
+                const response = await fetch("https://api.rocketgeek.org/get-profile", {
+                    method: "POST",
+                    headers: {
+                        Authorization: idToken,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ username: username }) // Can be omitted if handled in backend
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.created) {
+                    console.log("📁 Profile was newly created.");
+                    alert("Welcome! We've created your user profile.");
+                } else {
+                    console.log("📁 Existing profile loaded.");
+                }
+                
+                window.location.href = "/home.html";
+                
+            } catch (err) {
+                console.error("🚨 Profile setup failed:", err);
+                alert("Login succeeded, but profile setup failed. Please contact support.");
+            }
         },
         
         onFailure: function (err) {
@@ -77,25 +112,24 @@ function handleLogin() {
     });
 }
 
-function handleForgotPassword() {
-    const email = prompt("Enter your email address:");
+function handleForgotPassword(emailField) {
+    const email = emailField.value.trim();
+    
     if (!email || !email.includes("@")) {
-        alert("Please enter a valid email address.");
+        alert("Please enter a valid email address to reset your password.");
         return;
     }
     
-    console.log("🔁 Forgot password initiated for:", email);
+    console.log("🔁 Forgot password requested for:", email);
     
-    const userData = {
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
         Username: email,
         Pool: userPool
-    };
-    
-    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    });
     
     cognitoUser.forgotPassword({
         onSuccess: function () {
-            alert("A verification code has been sent to your email/phone.");
+            alert("A verification code has been sent to your email or phone.");
         },
         onFailure: function (err) {
             console.error("❌ Forgot password error:", err);
