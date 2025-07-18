@@ -8,23 +8,56 @@ const poolData = {
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 function rocketGeekSignupForm() {
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone_number").value;
-    const password = document.getElementById("password").value;
+    console.log("🚀 rocketGeekSignupForm triggered");
     
-    const attributeList = [
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phone })
-    ];
+    const firstName = document.getElementById("firstName")?.value?.trim();
+    const lastName = document.getElementById("lastName")?.value?.trim();
+    const email = document.getElementById("email")?.value?.trim();
+    const phone = document.getElementById("phoneNumber")?.value?.trim();
+    const zipCode = document.getElementById("zipCode")?.value?.trim();
+    const password = document.getElementById("passwordInput")?.value;
+    const repeatPassword = document.getElementById("repeatPasswordInput")?.value;
+    
+    console.log("📥 Collected form data:", {
+        firstName, lastName, email, phone, zipCode
+    });
+    
+    if (!email || !phone || !password) {
+        alert("Missing required fields.");
+        console.warn("❌ Missing one or more required fields.");
+        return false;
+    }
+    
+    if (password !== repeatPassword) {
+        alert("Passwords do not match.");
+        console.warn("❌ Password mismatch.");
+        return false;
+    }
+    
+    const attributeList = [];
+    
+    try {
+        attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "given_name", Value: firstName }));
+        attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "family_name", Value: lastName }));
+        attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email }));
+        attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phone }));
+        attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:zip_code", Value: zipCode }));
+    } catch (e) {
+        console.error("🚨 Error building attribute list:", e);
+        alert("Error preparing registration attributes.");
+        return false;
+    }
     
     userPool.signUp(email, password, attributeList, null, function (err, result) {
         if (err) {
-            alert(err.message || JSON.stringify(err));
+            console.error("❌ Sign-up error:", err);
+            alert("Registration failed: " + (err.message || JSON.stringify(err)));
             return false;
         }
+        
+        console.log("✅ Sign-up successful:", result);
         alert("Sign-up successful! Please check your email and phone for verification codes.");
-        return true; // Allow form to complete if necessary
     });
     
-    return false; // Prevent default form submission
+    return false; // Always prevent form default submit
 }
