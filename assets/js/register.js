@@ -40,12 +40,20 @@ function rocketGeekSignupForm() {
     
     userPool.signUp(email, password, attributeList, null, function (err, result) {
         if (err) {
-            console.error("Signup error:", err);
-            alert(err.message || JSON.stringify(err));
+            console.error("❌ Sign-up error:", err);
+            alert("Registration failed: " + (err.message || JSON.stringify(err)));
             return;
         }
         
-        console.log("Signup success:", result);
-        alert("Signup successful! Please verify your phone and email.");
+        console.log("✅ Sign-up successful:", result);
+        alert(
+            "Sign-up successful!\n\n" +
+            "Please check your email and phone for verification codes.\n" +
+            "The verification email will come from a domain like 'amazonaws.com' or 'verificationemail.com'. " +
+            "Be sure to check your spam folder if you don’t see it."
+        );
+        
+        // Redirect to confirmation page with email pre-filled
+        window.location.href = `/confirm.html?email=${encodeURIComponent(email)}`;
     });
 }
