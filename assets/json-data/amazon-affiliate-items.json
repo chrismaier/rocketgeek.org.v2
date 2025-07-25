@@ -1,0 +1,90 @@
+[
+  {
+    "id": "gopro-hero-camera",
+    "title": "GoPro HERO Action Camera",
+    "image": "/assets/img/affiliate/gopro-camera-image.jpg",
+    "description": "Capture stunning 4K footage with the latest GoPro HERO camera, perfect for adventure or documentation.",
+    "tags": ["camera", "action", "outdoors"],
+    "url": "https://www.amazon.com/dp/B09XYZ123"
+  },
+  {
+    "id": "gopro-macro-a",
+    "title": "GoPro Macro Camera View (Front)",
+    "image": "/assets/img/affiliate/gopro-camera-macro-a.jpg",
+    "description": "Detailed front view of GoPro showing lens and form factor.",
+    "tags": ["camera", "gopro"],
+    "url": "https://www.amazon.com/dp/B09XYZ124"
+  },
+  {
+    "id": "gopro-macro-b",
+    "title": "GoPro Rear View Display",
+    "image": "/assets/img/affiliate/gopro-camera-macro-b.jpg",
+    "description": "Back LCD screen view of the GoPro HERO.",
+    "tags": ["camera", "display"],
+    "url": "https://www.amazon.com/dp/B09XYZ125"
+  },
+  {
+    "id": "gopro-lens-macro",
+    "title": "GoPro Macro Lens Attachment",
+    "image": "/assets/img/affiliate/gopro-macro-lense.jpg",
+    "description": "Add macro focus to your GoPro footage with this precision lens.",
+    "tags": ["lens", "macro", "gopro"],
+    "url": "https://www.amazon.com/dp/B09XYZ126"
+  },
+  {
+    "id": "gopro-lens-wide",
+    "title": "GoPro Ultra Wide Angle Lens",
+    "image": "/assets/img/affiliate/gopro-wide-angle-lense.jpg",
+    "description": "Enhance your field of view with this wide-angle GoPro lens.",
+    "tags": ["lens", "wide", "gopro"],
+    "url": "https://www.amazon.com/dp/B09XYZ127"
+  },
+  {
+    "id": "nuwave-dual",
+    "title": "NuWave Dual Induction Cooktop",
+    "image": "/assets/img/affiliate/nuwave-dual-burner.jpg",
+    "description": "Portable, fast-heating dual burner ideal for small spaces or outdoor cooking.",
+    "tags": ["cooking", "induction", "kitchen"],
+    "url": "https://www.amazon.com/dp/B09XYZ128"
+  },
+  {
+    "id": "nuwave-single",
+    "title": "NuWave Single Burner Induction Cooktop",
+    "image": "/assets/img/affiliate/nuwave-single-burner.jpg",
+    "description": "Compact single-burner with temperature control and safety features.",
+    "tags": ["cooking", "induction"],
+    "url": "https://www.amazon.com/dp/B09XYZ129"
+  },
+  {
+    "id": "lubrimatic-grease",
+    "title": "Lubrimatic Marine Grease Gun Kit",
+    "image": "/assets/img/affiliate/small-grease-gun-a.jpg",
+    "description": "Corrosion-control grease gun kit ideal for trailers and marine hardware.",
+    "tags": ["tools", "marine", "maintenance"],
+    "url": "https://www.amazon.com/dp/B09XYZ130"
+  },
+  {
+    "id": "fifine-mic",
+    "title": "FIFINE Studio Microphone",
+    "image": "/assets/img/affiliate/fifine-microphone.jpg",
+    "description": "High-quality condenser mic for podcasting, streaming, or voiceover.",
+    "tags": ["audio", "microphone", "studio"],
+    "url": "https://www.amazon.com/dp/B09XYZ131"
+  },
+  {
+    "id": "dewalt-earbuds",
+    "title": "DeWalt Bluetooth Earbuds",
+    "image": "/assets/img/affiliate/dewalt-ear-buds-a.jpg",
+    "description": "Noise-canceling earbuds with rugged design and charging case.",
+    "tags": ["audio", "dewalt", "earbuds"],
+    "url": "https://www.amazon.com/dp/B09XYZ132"
+  },
+  {
+    "id": "dewalt-glasses",
+    "title": "DeWalt Safety Glasses (Tinted)",
+    "image": "/assets/img/affiliate/dewalt-safety-glasses-a.jpg",
+    "description": "Lightweight, durable safety glasses for shop or range use.",
+    "tags": ["safety", "eyewear", "dewalt"],
+    "url": "https://www.amazon.com/dp/B09XYZ133"
+  }
+]
