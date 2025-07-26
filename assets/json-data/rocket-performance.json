@@ -1,6 +1,6 @@
 
 [
-  {"label": "Commercial Motor Inventory", "url": "/motor-list.html"},
+  {"label": "Commercial Motor Inventory", "url": "/motor-inventory.html"},
   {"label": "EX Motor Test Results", "url": "/motor-test-results.html"},
   {"label": "Flight Computer Data", "url": "/flight-data.html"}
 ]

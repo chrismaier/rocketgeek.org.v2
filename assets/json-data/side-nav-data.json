@@ -4,10 +4,12 @@
   {"href": "/clubs.html", "icon": "fas fa-users", "text": "Clubs", "target": "_self"},
   {"href": "/dashboard.html", "icon": "fas fa-tachometer-alt", "text": "Dashboard", "target": "_self"},
   {"href": "/donations.html", "icon": "far fa-money-bill-alt", "text": "Donations", "target": "_self"},
+  {"href": "/events.html", "icon": "far fa-money-bill-alt", "text": "Events", "target": "_self"},
   {"href": "/login.html", "icon": "far fa-user-circle", "text": "Login", "target": "_self"},
   {"href": "/photos.html", "icon": "fas fa-camera", "text": "Photos", "target": "_self"},
   {"href": "/profile.html", "icon": "fas fa-user-edit", "text": "Profile", "target": "_self"},
   {"href": "/register.html", "icon": "fas fa-user-plus", "text": "Register", "target": "_self"},
+  { "href": "/support.html", "icon": "fas fa-dumbbell", "text": "Support", "target": "_self" },
   {"href": "/youtube-videos.html", "icon": "fas fa-film", "text": "Videos", "target": "_self"},
   {"href": "/welcome.html", "icon": "far fa-bookmark", "text": "Welcome", "target": "_self"}
 ]

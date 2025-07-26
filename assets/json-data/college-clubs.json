@@ -1,0 +1,139 @@
+[
+  {
+    "id": 101,
+    "name": "UT Austin Rocketry",
+    "number": "UT-R1",
+    "team_number": {
+      "value": "TX-001",
+      "link": "https://spaceportamericacup.com/team/tx-001"
+    },
+    "club_type": "University Team",
+    "city": "Austin",
+    "state": "TX",
+    "website": "https://utrocketry.org",
+    "president": "Sarah Alvarez",
+    "faculty_advisor": "Dr. Jane Doe",
+    "mentor": "Chris Maier",
+    "flyer_of_record": "David Lin",
+    "associated_launch_clubs": [
+      {
+        "name": "AARG",
+        "club_id": 3,
+        "website": "https://aarg.org"
+      },
+      {
+        "name": "TNT",
+        "club_id": 4,
+        "website": "https://tripolinorthtexas.org"
+      }
+    ],
+    "contact_email": "sarah.alvarez@utexas.edu",
+    "upcoming_events": [
+      {
+        "name": "Spaceport America Cup",
+        "link": "https://www.spaceportamericacup.com"
+      },
+      {
+        "name": "Local Static Fire Test"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Texas A&M High Power Club",
+    "number": "TAMU-HPC",
+    "team_number": {
+      "value": "TX-007"
+    },
+    "club_type": "University Club - Tripoli/NAR",
+    "city": "College Station",
+    "state": "TX",
+    "website": "https://tamu-hpc.org",
+    "president": "Jake Mendez",
+    "faculty_advisor": "Prof. Mark Spencer",
+    "mentor": "Chris Maier",
+    "flyer_of_record": "Tyler Brooks",
+    "associated_launch_clubs": [
+      {
+        "name": "Kloudbusters",
+        "club_id": 5,
+        "website": "https://kloudbusters.org"
+      }
+    ],
+    "contact_email": "jake.mendez@tamu.edu",
+    "upcoming_events": [
+      {
+        "name": "L1 Certification Weekend"
+      },
+      {
+        "name": "Aggieland Regional Launch"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Westwood HS Rocket Team",
+    "number": "WWHS-RT",
+    "club_type": "High School TARC Team",
+    "city": "Austin",
+    "state": "TX",
+    "website": "https://westwoodrockets.org",
+    "president": "Emily Wong",
+    "faculty_advisor": "Mr. Joel Patel",
+    "mentor": "Chris Maier",
+    "flyer_of_record": "N/A",
+    "associated_launch_clubs": [
+      {
+        "name": "AARG",
+        "club_id": 3,
+        "website": "https://aarg.org"
+      }
+    ],
+    "contact_email": "emily.wong@rrisd.org",
+    "upcoming_events": [
+      {
+        "name": "TARC Qualifier"
+      },
+      {
+        "name": "Engineering Fair"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "name": "ARC",
+    "number": "UTSA-R2",
+    "team_number": {
+      "value": "TX-011"
+    },
+    "club_type": "University Team",
+    "city": "San Antonio",
+    "state": "TX",
+    "website": "https://utsa.edu/rocketry",
+    "president": "Carlos Medina",
+    "faculty_advisor": "Dr. Sylvia Gomez",
+    "mentor": "Chris Maier",
+    "flyer_of_record": "Victor Reyes",
+    "associated_launch_clubs": [
+      {
+        "name": "Kloudbusters",
+        "club_id": 5,
+        "website": "https://kloudbusters.org"
+      }
+    ],
+    "contact_email": "carlos.medina@utsa.edu",
+    "upcoming_events": [
+      {
+        "name": "Spaceport America Cup",
+        "link": "https://www.spaceportamericacup.com"
+      },
+      {
+        "name": "Local Static Fire Test"
+      },
+      {
+        "name": "AirFest",
+        "link": "https://www.kloudbusters.org/content.aspx?page_id=22&club_id=325948&module_id=566855"
+      }
+    ]
+  }
+]
