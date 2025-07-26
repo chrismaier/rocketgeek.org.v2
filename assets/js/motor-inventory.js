@@ -48,6 +48,8 @@ $(document).ready(function() {
                             <li><strong>Reloadable:</strong> ${motor.reloadable}</li>
                             <li><strong>Manufactured:</strong> ${motor.manufacture_date}</li>
                             <li><strong>Flown:</strong> ${motor.date_flown}</li>
+                            <li><strong>Requested By:</strong> ${motor.requested_by}</li>
+                            <li><strong>Reserved By:</strong> ${motor.reserved_for}</li>
                         </ul>
                     </div>
                 </div>
