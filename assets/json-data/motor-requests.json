@@ -1,0 +1,42 @@
+{
+  "1": {
+    "requested_by": [
+      {
+        "user_id": "b75e4a1f-1234-4c1a-abc3-89abc12345de",
+        "email": "chris@example.com",
+        "display_name": "Chris",
+        "club_id": "nar-123",
+        "club_name": "NAR Houston"
+      },
+      {
+        "user_id": "90ec23f3-5678-4dcb-b9d8-f1cdef678901",
+        "email": "taylor@example.com",
+        "display_name": "Taylor",
+        "club_id": "tripoli-456",
+        "club_name": "Tripoli Central Texas"
+      }
+    ]
+  },
+  "2": {
+    "requested_by": [
+      {
+        "user_id": "84bb2345-a12d-4c0d-bd0a-ef99abcd1234",
+        "email": "alex@example.com",
+        "display_name": "Alex",
+        "club_id": "nar-123",
+        "club_name": "NAR Houston"
+      }
+    ]
+  },
+  "3": {
+    "requested_by": [
+      {
+        "user_id": "777c1e12-aaaa-4dff-cccc-ddee98765432",
+        "email": "jamie@example.com",
+        "display_name": "Jamie",
+        "club_id": "school-team-007",
+        "club_name": "Texas State University Team 7"
+      }
+    ]
+  }
+}

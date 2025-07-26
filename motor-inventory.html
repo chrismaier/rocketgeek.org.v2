@@ -155,17 +155,67 @@
                     <div>
                         <div>
                    
+                            <!-- Motor Banner -->
                     <header class="banner-section">
                         <div class="container">
                             <h1>Rocket Geek: Motor Inventory List</h1>
                         </div>
                     </header>
-                    
+                            <!-- end motor banner -->
+                            
+                            <!-- === Start: Motor Filter Section === -->
+                            <section class="motor-filter-section">
+                                <div class="container mb-3">
+                                    <!-- === Start: Styled Filter Box === -->
+                                    <div class="p-3 rounded shadow-sm" style="background-color: #f8f9fa;">
+                                        <div class="d-flex flex-wrap align-items-center gap-3" style="background-color: transparent;">
+                                            <!-- === Start: Filter Label === -->
+                                            <label class="form-label fw-bold mb-0">Filter by:</label>
+                                            <!-- === End: Filter Label === -->
+                                            
+                                            <!-- === Start: Motor Type Dropdown === -->
+                                            <select id="motorFilter" class="form-select w-auto">
+                                                <option value="all">All Motor Types</option>
+                                                <option value="cti">CTI / Cesaroni</option>
+                                                <option value="aerotech_rms">AeroTech RMS</option>
+                                                <option value="aerotech_dms">AeroTech DMS</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                            <!-- === End: Motor Type Dropdown === -->
+                                            
+                                            <!-- === Start: Claimed Status Dropdown === -->
+                                            <select id="claimedFilter" class="form-select w-auto">
+                                                <option value="all">Claimed and Unclaimed</option>
+                                                <option value="claimed">Claimed Only</option>
+                                                <option value="unclaimed">Unclaimed Only</option>
+                                            </select>
+                                            <!-- === End: Claimed Status Dropdown === -->
+                                        </div>
+                                    </div>
+                                    <!-- === End: Styled Filter Box === -->
+                                </div>
+                            </section>
+                            <!-- === End: Motor Filter Section === -->
+                            
+                            <!-- === Start: No Motors Message Box === -->
+                            <div id="noMotorsAlert" class="container d-none">
+                                <div class="p-3 mb-3 rounded shadow-sm" style="background-color: #f8f9fa;">
+                                    <p class="mb-0 fw-bold text-danger">
+                                        🚫 There are no motors that meet your selected criteria.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- === End: No Motors Message Box === -->
+                            
+                            
+                            
+                            <!-- Motor listing -->
                     <section class="motor-list-section">
                         <div class="container">
                             <div id="motor-list" class="accordion"></div>
                         </div>
                     </section>
+                            <!-- end motor listing -->
                         
                         </div>
                     </div>
