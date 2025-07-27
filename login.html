@@ -121,6 +121,38 @@
                                             <hr>
                                         </form>
                                         <!-- end login form -->
+                                        <!-- === DEBUG TOKEN BUTTON === -->
+                                        <button onclick="debugGetToken()">Get ID Token</button>
+                                        <script>
+                                            function debugGetToken() {
+                                                const poolData = {
+                                                    UserPoolId: 'us-east-1_5j4lDdV1A',
+                                                    ClientId: '2mnmesf3f1olrit42g2oepmiak'
+                                                };
+                                                
+                                                const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+                                                const cognitoUser = userPool.getCurrentUser();
+                                                
+                                                if (cognitoUser) {
+                                                    cognitoUser.getSession(function(err, session) {
+                                                        if (err) {
+                                                            alert("Session error: " + err.message);
+                                                            return;
+                                                        }
+                                                        
+                                                        if (session.isValid()) {
+                                                            const idToken = session.getIdToken().getJwtToken();
+                                                            console.log("✅ Your ID Token:", idToken);
+                                                            alert("Token logged to console. Copy it from Dev Tools.");
+                                                        } else {
+                                                            alert("Session is not valid.");
+                                                        }
+                                                    });
+                                                } else {
+                                                    alert("No user is currently logged in.");
+                                                }
+                                            }
+                                        </script>
                                         
                                         <!--
                                         <div class = "text-center"><a class = "small" href = "forgot-password.html">Forgot Password?</a></div>
