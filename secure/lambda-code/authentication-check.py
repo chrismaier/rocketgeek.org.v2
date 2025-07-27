@@ -28,9 +28,6 @@ ALLOWED_ORIGINS = [
     "https://test.rocketgeek.org"
 ]
 
-# -------------------------------
-# JWKS Cache (persisted across invocations)
-# -------------------------------
 cached_keys = None
 
 # -------------------------------
@@ -42,10 +39,11 @@ def lambda_handler(event, context):
         cors_origin = origin if origin in ALLOWED_ORIGINS else "https://rocketgeek.org"
 
         # -------------------------------
-        # Enforce POST Method
+        # Hybrid Method Detection
         # -------------------------------
-        if event.get("httpMethod") != "POST":
-            logger.warning("Invalid HTTP method: %s", event.get("httpMethod"))
+        method = event.get("httpMethod") or event.get("requestContext", {}).get("http", {}).get("method")
+        if method != "POST":
+            logger.warning(f"Unexpected method: {method}")
             return cors_response(cors_origin, 405, { "authenticated": False, "error": "Method Not Allowed" })
 
         # -------------------------------
@@ -59,7 +57,7 @@ def lambda_handler(event, context):
             return cors_response(cors_origin, 401, { "authenticated": False, "error": "Missing or invalid token" })
 
         # -------------------------------
-        # Validate JWT Signature + Claims
+        # Validate JWT
         # -------------------------------
         if validate_jwt(token):
             logger.info("Authentication successful")
@@ -73,7 +71,7 @@ def lambda_handler(event, context):
         return cors_response("https://rocketgeek.org", 500, { "authenticated": False, "error": "Internal Server Error" })
 
 # -------------------------------
-# Return a CORS-compatible response
+# CORS-Compatible Response
 # -------------------------------
 def cors_response(origin, status_code, body_dict):
     return {
