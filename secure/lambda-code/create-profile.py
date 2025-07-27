@@ -13,27 +13,26 @@ logger.setLevel(logging.INFO)
 # START: Constants
 BUCKET_NAME = "rocket-geek-user-data--use1-az6--x-s3"
 PROFILE_FILE_NAME = "profile.json"
+
+# List of trusted CORS origins
+ALLOWED_ORIGINS = [
+    "https://rocketgeek.org",
+    "https://www.rocketgeek.org",
+    "https://test.rocketgeek.org",
+    "https://blog.rocketgeek.org",
+    "https://jenkins.rocketgeek.org",
+    "https://jenkins.drunkenidiot.org"
+]
 # END: Constants
 
 # START: Utility function to build HTTP response
 def build_response(status_code, body, origin=None):
-    allowed_origins = [
-        "https://rocketgeek.org",
-        "https://www.rocketgeek.org",
-        "https://test.rocketgeek.org",
-        "https://blog.rocketgeek.org",
-        "https://jenkins.rocketgeek.org",
-        "https://jenkins.drunkenidiot.org"
-    ]
-
-    # Default to "null" if no match (blocks CORS)
-    cors_origin = origin if origin in allowed_origins else "null"
-
+    cors_origin = origin if origin in ALLOWED_ORIGINS else "null"
     return {
         "statusCode": status_code,
         "headers": {
             "Access-Control-Allow-Origin": cors_origin,
-            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Allow-Headers": "authorization,content-type",
             "Access-Control-Allow-Methods": "OPTIONS,POST",
             "Content-Type": "application/json"
         },
@@ -48,6 +47,7 @@ def lambda_handler(event, context):
     # START: Flatten headers to address CaSe SeNsItIvItY issues
     headers = {k.lower(): v for k, v in event.get('headers', {}).items()}
     logger.info("Normalized headers: %s", headers)
+    origin = headers.get("origin", "")
     # END: Flatten headers
 
     # START: Extract HTTP method (for HTTP API v2.0)
@@ -57,12 +57,12 @@ def lambda_handler(event, context):
 
     # START: Handle CORS preflight
     if http_method == "OPTIONS":
-        return build_response(200, {"message": "CORS preflight OK"})
+        return build_response(200, {"message": "CORS preflight OK"}, origin)
     # END: Handle CORS preflight
 
     # START: Verify HTTP method
     if http_method != "POST":
-        return build_response(405, {"message": f"Method {http_method} not allowed"})
+        return build_response(405, {"message": f"Method {http_method} not allowed"}, origin)
     # END: Verify HTTP method
 
     # START: Get user ID from Cognito JWT claims
@@ -74,7 +74,7 @@ def lambda_handler(event, context):
 
     if not user_id:
         logger.warning("Missing user ID (sub claim) from JWT")
-        return build_response(401, {"message": "Unauthorized"})
+        return build_response(401, {"message": "Unauthorized"}, origin)
     # END: Get user ID
 
     logger.info("Authenticated user ID (sub): %s", user_id)
@@ -108,7 +108,7 @@ def lambda_handler(event, context):
         return build_response(409, {
             "message": "Profile already exists",
             "detail": "You already have a profile. Please use the Update Profile option instead of Create Profile."
-        })
+        }, origin)
     except ClientError as e:
         error_code = e.response['Error']['Code']
         if error_code != '404':
@@ -116,7 +116,7 @@ def lambda_handler(event, context):
             return build_response(500, {
                 "message": "Error checking for existing profile",
                 "error": str(e)
-            })
+            }, origin)
 
     # If not found, proceed to create it
     try:
@@ -127,12 +127,12 @@ def lambda_handler(event, context):
             Body=json.dumps(profile_data),
             ContentType="application/json"
         )
-        return build_response(200, {"message": "Profile created", "profile": profile_data})
+        return build_response(200, {"message": "Profile created", "profile": profile_data}, origin)
     except ClientError as e:
         logger.error("S3 error while writing profile: %s", e)
         return build_response(500, {
             "message": "Error creating profile",
             "error": str(e)
-        })
+        }, origin)
     # END: S3 upload
 # END: Lambda handler
