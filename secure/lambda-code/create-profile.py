@@ -2,7 +2,6 @@
 import boto3
 import json
 import logging
-import os
 from botocore.exceptions import ClientError
 # END: Import libraries
 
@@ -39,28 +38,28 @@ def lambda_handler(event, context):
     logger.info("Normalized headers: %s", headers)
     # END: Flatten headers
 
-    # START: Log and handle CORS preflight
-    http_method = event.get("httpMethod", "")
+    # START: Extract HTTP method (for HTTP API v2.0)
+    http_method = event.get("requestContext", {}).get("http", {}).get("method", "")
     logger.info("HTTP Method received: %s", http_method)
+
     if http_method == "OPTIONS":
         return build_response(200, {"message": "CORS preflight OK"})
-    # END: Log and handle CORS preflight
-
-    # START: Verify HTTP method
     if http_method != "POST":
         return build_response(405, {"message": f"Method {http_method} not allowed"})
-    # END: Verify HTTP method
+    # END: Method verification and CORS
 
-    # START: Get Cognito Identity ID
-    identity = event.get("requestContext", {}).get("identity", {})
-    user_id = identity.get("cognitoIdentityId")
+    # START: Get user ID from Cognito JWT claims
+    claims = event.get("requestContext", {}).get("authorizer", {}).get("jwt", {}).get("claims", {})
+    user_id = claims.get("sub")
+    email = claims.get("email", "unknown")
+    name = f"{claims.get('given_name', '')} {claims.get('family_name', '')}".strip()
 
     if not user_id:
-        logger.warning("Missing Cognito identity ID")
+        logger.warning("Missing user ID (sub claim) from JWT")
         return build_response(401, {"message": "Unauthorized"})
-    # END: Get Cognito Identity ID
+    # END: Get user ID
 
-    logger.info("Authenticated user ID: %s", user_id)
+    logger.info("Authenticated user ID (sub): %s", user_id)
 
     # START: Build default profile
     profile_data = {
@@ -69,15 +68,14 @@ def lambda_handler(event, context):
         "profile_version": 1,
         "status": "initial",
         "fields": {
-            "email": identity.get("userArn", "unknown"),
-            "name": "New User"
+            "email": email,
+            "name": name or "New User"
         }
     }
     # END: Build default profile
 
     # START: S3 upload
     s3 = boto3.client("s3")
-
     s3_key = f"{user_id}/{PROFILE_FILE_NAME}"
 
     try:
