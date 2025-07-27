@@ -39,9 +39,16 @@ def lambda_handler(event, context):
     logger.info("Normalized headers: %s", headers)
     # END: Flatten headers
 
+    # START: Log and handle CORS preflight
+    http_method = event.get("httpMethod", "")
+    logger.info("HTTP Method received: %s", http_method)
+    if http_method == "OPTIONS":
+        return build_response(200, {"message": "CORS preflight OK"})
+    # END: Log and handle CORS preflight
+
     # START: Verify HTTP method
-    if event.get("httpMethod", "") != "POST":
-        return build_response(405, {"message": "Method Not Allowed"})
+    if http_method != "POST":
+        return build_response(405, {"message": f"Method {http_method} not allowed"})
     # END: Verify HTTP method
 
     # START: Get Cognito Identity ID
