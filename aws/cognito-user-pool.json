@@ -1,0 +1,54 @@
+{
+  "PoolName": "RocketGeekUserPool",
+  "UsernameConfiguration": {
+    "CaseSensitive": false
+  },
+  "AliasAttributes": [
+    "phone_number"
+  ],
+  "AutoVerifiedAttributes": [
+    "email"
+  ],
+  "Policies": {
+    "PasswordPolicy": {
+      "MinimumLength": 10,
+      "RequireUppercase": true,
+      "RequireLowercase": true,
+      "RequireNumbers": true,
+      "RequireSymbols": true
+    }
+  },
+  "Schema": [
+    {
+      "Name": "email",
+      "AttributeDataType": "String",
+      "Required": true,
+      "Mutable": true
+    },
+    {
+      "Name": "phone_number",
+      "AttributeDataType": "String",
+      "Required": true,
+      "Mutable": true
+    },
+    {
+      "Name": "given_name",
+      "AttributeDataType": "String",
+      "Required": true,
+      "Mutable": true
+    },
+    {
+      "Name": "family_name",
+      "AttributeDataType": "String",
+      "Required": true,
+      "Mutable": true
+    },
+    {
+      "Name": "custom:zip_code",
+      "AttributeDataType": "String",
+      "Required": false,
+      "Mutable": true
+    }
+  ]
+}
+

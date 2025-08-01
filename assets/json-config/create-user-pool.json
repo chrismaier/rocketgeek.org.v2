@@ -1,0 +1,36 @@
+{
+  "PoolName": "RocketGeekUserPool",
+  "Policies": {
+    "PasswordPolicy": {
+      "MinimumLength": 8,
+      "RequireUppercase": true,
+      "RequireLowercase": true,
+      "RequireNumbers": true,
+      "RequireSymbols": false
+    }
+  },
+  "AliasAttributes": ["email", "phone_number"],
+  "AutoVerifiedAttributes": ["email", "phone_number"],
+  "Schema": [
+    {
+      "Name": "email",
+      "AttributeDataType": "String",
+      "Required": true,
+      "Mutable": true
+    },
+    {
+      "Name": "phone_number",
+      "AttributeDataType": "String",
+      "Required": true,
+      "Mutable": true
+    }
+  ],
+  "UsernameAttributes": ["email"],
+  "VerificationMessageTemplate": {
+    "DefaultEmailOption": "CONFIRM_WITH_CODE"
+  },
+  "MfaConfiguration": "OFF",
+  "AdminCreateUserConfig": {
+    "AllowAdminCreateUserOnly": false
+  }
+}

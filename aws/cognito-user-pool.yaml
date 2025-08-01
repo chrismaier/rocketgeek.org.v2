@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: RocketGeek Cognito User Pool with alias enforcement and custom attributes
+
+Resources:
+
+  RocketGeekUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: RocketGeekUserPool
+      UsernameConfiguration:
+        CaseSensitive: false
+      AliasAttributes:
+        - email
+        - phone_number
+      AutoVerifiedAttributes:
+        - email
+        - phone_number
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireUppercase: true
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+      Schema:
+        - Name: email
+          Required: true
+          Mutable: true
+        - Name: phone_number
+          Required: true
+          Mutable: true
+        - Name: given_name
+          Required: true
+          Mutable: true
+        - Name: family_name
+          Required: true
+          Mutable: true
+        - Name: custom:zip_code
+          AttributeDataType: String
+          Required: true
+          Mutable: true
+
+  RocketGeekUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: RocketGeekSignupAndLogin
+      UserPoolId: !Ref RocketGeekUserPool
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+        - ALLOW_USER_SIGN_UP
+      PreventUserExistenceErrors: ENABLED
+
+Outputs:
+
+  UserPoolId:
+    Description: Cognito User Pool ID
+    Value: !Ref RocketGeekUserPool
+
+  AppClientId:
+    Description: Cognito App Client ID
+    Value: !Ref RocketGeekUserPoolClient
+

@@ -1,8 +1,10 @@
 // confirm.js
 
 const poolData = {
-    UserPoolId: 'us-east-1_5j4lDdV1A',
-    ClientId: '2mnmesf3f1olrit42g2oepmiak'
+    //UserPoolId: 'us-east-1_5j4lDdV1A',
+    //ClientId: '2mnmesf3f1olrit42g2oepmiak'
+    UserPoolId: 'us-east-1_ekUgNnIbP',
+    ClientId: '1ggi15ih1teqki6i76nqdr38le'
 };
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
