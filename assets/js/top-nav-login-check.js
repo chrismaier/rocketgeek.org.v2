@@ -23,17 +23,43 @@ document.addEventListener("DOMContentLoaded", async function () {
     
     if (!token) {
         console.log("[top-nav-login-check] No token detected, setting login prompt");
+        setLoggedOutUI();
+        return;
+    }
+    
+    // ------------------------------
+    // START: API Validation of Token
+    // ------------------------------
+    try {
+        const response = await fetch("https://api.rocketgeek.org/authenticated", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        });
         
-        profileNameEl.textContent = "Login to Profile";
-        profileLinkEl.href = "login.html";
-        dropdownMenuEl.style.display = "none";
+        if (!response.ok) {
+            throw new Error("Token validation request failed with status: " + response.status);
+        }
         
+        const result = await response.json();
+        console.log("[top-nav-login-check] /authenticated response:", result);
+        
+        if (!result.authenticated) {
+            console.warn("[top-nav-login-check] Token was rejected by backend");
+            setLoggedOutUI();
+            return;
+        }
+        
+    } catch (err) {
+        console.error("[top-nav-login-check] Error calling /authenticated:", err);
+        setLoggedOutUI();
         return;
     }
     // ------------------------------
-    // END: Token Detection Logic
+    // END: API Validation of Token
     // ------------------------------
-    
     
     // ------------------------------
     // START: Token Decoding + UI Update
@@ -47,24 +73,21 @@ document.addEventListener("DOMContentLoaded", async function () {
         const payload = JSON.parse(atob(parts[1]));
         console.log("[top-nav-login-check] Decoded token payload:", payload);
         
-        const displayName = payload.name || payload.email || "Geek";
+        const displayName = payload.given_name || payload.name || payload.email || "Geek";
         console.log("[top-nav-login-check] Display name set to:", displayName);
         
         profileNameEl.textContent = displayName;
         profileLinkEl.href = "#";
+        profileLinkEl.setAttribute("data-bs-toggle", "dropdown");
         dropdownMenuEl.style.display = "block";
     } catch (err) {
         console.error("[top-nav-login-check] Token decode failed:", err);
-        
-        profileNameEl.textContent = "Login to Profile";
-        profileLinkEl.href = "login.html";
-        dropdownMenuEl.style.display = "none";
+        setLoggedOutUI();
         return;
     }
     // ------------------------------
     // END: Token Decoding + UI Update
     // ------------------------------
-    
     
     // ------------------------------
     // START: Logout Link Logic
@@ -81,6 +104,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     // ------------------------------
     // END: Logout Link Logic
+    // ------------------------------
+    
+    // ------------------------------
+    // START: Shared Logged-Out Handler
+    // ------------------------------
+    function setLoggedOutUI() {
+        console.log("[top-nav-login-check] Executing setLoggedOutUI()");
+        profileNameEl.textContent = "Login to Profile";
+        profileLinkEl.href = "login.html";
+        profileLinkEl.removeAttribute("data-bs-toggle");  // Disable dropdown
+        dropdownMenuEl.style.display = "none";
+        localStorage.removeItem("idToken");
+    }
+    // ------------------------------
+    // END: Shared Logged-Out Handler
     // ------------------------------
 });
 
