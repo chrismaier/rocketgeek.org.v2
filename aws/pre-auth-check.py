@@ -39,28 +39,57 @@ def raise_error(email, email_verified, phone_verified, failure_key):
 def lambda_handler(event, context):
     logger.info("PreAuthentication event received.")
 
+    # Log current feature toggle state
+    logger.info("EMAIL_VERIFICATION_CHECK_ENABLED: %s", EMAIL_VERIFICATION_CHECK_ENABLED)
+    logger.info("PHONE_VERIFICATION_CHECK_ENABLED: %s", PHONE_VERIFICATION_CHECK_ENABLED)
+
+    # Extract user attributes
     user_attrs = event.get("request", {}).get("userAttributes", {})
     email = user_attrs.get("email", "unknown")
     email_verified = user_attrs.get("email_verified", "").lower() == "true"
     phone_verified = user_attrs.get("phone_number_verified", "").lower() == "true"
     timestamp = datetime.utcnow().isoformat() + "Z"
 
+    logger.info(
+        "Parsed userAttributes for [%s] - email_verified=%s, phone_verified=%s",
+        email, email_verified, phone_verified
+    )
+
     # Handle missing userAttributes
     if not user_attrs:
+        logger.warning("User attributes are missing from event.")
         raise_error(email, email_verified, phone_verified, "missing")
 
     # START: Conditional verification enforcement
     if EMAIL_VERIFICATION_CHECK_ENABLED and PHONE_VERIFICATION_CHECK_ENABLED:
+        logger.info("Both email and phone verification checks are enabled.")
         if not email_verified and not phone_verified:
+            logger.info("Triggering block: BOTH email and phone not verified.")
             raise_error(email, email_verified, phone_verified, "email and phone")
         elif not email_verified:
+            logger.info("Triggering block: Email not verified.")
             raise_error(email, email_verified, phone_verified, "email")
         elif not phone_verified:
+            logger.info("Triggering block: Phone not verified.")
             raise_error(email, email_verified, phone_verified, "phone")
-    elif EMAIL_VERIFICATION_CHECK_ENABLED and not email_verified:
-        raise_error(email, email_verified, phone_verified, "email")
-    elif PHONE_VERIFICATION_CHECK_ENABLED and not phone_verified:
-        raise_error(email, email_verified, phone_verified, "phone")
+        else:
+            logger.info("Both email and phone verified. No block triggered.")
+    elif EMAIL_VERIFICATION_CHECK_ENABLED:
+        logger.info("Only email verification check is enabled.")
+        if not email_verified:
+            logger.info("Triggering block: Email not verified.")
+            raise_error(email, email_verified, phone_verified, "email")
+        else:
+            logger.info("Email verified. No block triggered.")
+    elif PHONE_VERIFICATION_CHECK_ENABLED:
+        logger.info("Only phone verification check is enabled.")
+        if not phone_verified:
+            logger.info("Triggering block: Phone not verified.")
+            raise_error(email, email_verified, phone_verified, "phone")
+        else:
+            logger.info("Phone verified. No block triggered.")
+    else:
+        logger.info("No verification checks are enabled. Skipping all checks.")
     # END: Conditional verification enforcement
 
     # Log success
