@@ -29,33 +29,73 @@
     <body class = "bg-gradient-primary">
        <!-- <nav class = "navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style = "background: #000000;border-radius: 20;border-style: none;padding-top: 0;padding-bottom: 10px;"> -->
         <!-- <nav class="navbar navbar-dark border-secondary border-2 shadow-sm align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"> -->
-        <div class = "container">
-                <button class = "navbar-toggler" data-bs-target = "#navcol-1" data-bs-toggle = "collapse">
-                    <span class = "visually-hidden">Toggle navigation</span><span class = "navbar-toggler-icon"></span></button>
-                <div><a class = "navbar-brand border rounded" href = "/index.html"><span>&nbsp;Rocket Geek&nbsp;</span> </a></div>
-                <div class = "collapse navbar-collapse" id = "navcol-1" style = "color: rgb(255,255,255);">
-                    <ul class = "navbar-nav nav-right">
-                        <li class = "nav-item"><a class = "nav-link active" href = "/index.html" style = "color: rgba(224,217,217,0.9);">Home </a></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "about.html" style = "color: rgba(224,217,217,0.9);">About </a></li>
-                        <li class = "nav-item"></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "contact.html" style = "color: rgba(224,217,217,0.9);">Contact </a></li>
+       
+       
+       <!-- alternate / abbreviated navbar -->
+        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" id="alt-top-navbar" style="padding-top: 0;">
+            <div class="container">
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-1" aria-controls="navcol-1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Brand -->
+                <a class="navbar-brand border rounded" href="/index.html">
+                    <span id="header-geek">&nbsp;Rocket Geek&nbsp;</span>
+                </a>
+                
+                <!-- Nav links -->
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/index.html" style="color: rgba(224,217,217,0.9);">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html" style="color: rgba(224,217,217,0.9);">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html" style="color: rgba(224,217,217,0.9);">Contact</a>
+                        </li>
                     </ul>
-                    <p class = "ms-auto navbar-text actions"><a class = "login" href = "login.html" style = "color: rgba(224,217,217,0.9);">Log In</a>
-                        <a class = "btn btn-light action-button" href = "register.html" role = "button" style = "color: #8b0000;background: #000000;border-radius: 10px;border-style: solid;border-color: rgba(0,0,0,0);font-size: 16px;padding: 5px 8px;">Sign
-                                                                                                                                                                                                                                                           Up</a>
+                    
+                    <!-- Login/Signup Actions -->
+                    <p class="navbar-text actions mb-0">
+                        <a class="login" href="login.html" style="color: #b6b6b6;">Log In</a>
+                        <a class="btn btn-primary action-button ms-2" href="/register.html" role="button"
+                           style="color: #8b0000; background: #000000; border: none; border-radius: 10px; font-size: 16px; padding: 5px 8px;">
+                            Sign Up
+                        </a>
                     </p>
                 </div>
             </div>
         </nav>
-        <div class = "container border rounded">
+       <!-- end alternate nav -->
+       
+       <!--         <div class = "container border rounded"> -->
+        <div class = "container">
             <div class = "row justify-content-center">
                 <div class = "col-md-9 col-lg-12 col-xl-10">
                     <div class = "card shadow-lg o-hidden border-0 my-5">
                         <div class = "card-body p-0">
                             <div class = "row">
+                                
+                                <!-- Rocket geek image -->
+                                <!--
                                 <div class = "col-lg-6 d-none d-lg-flex">
                                     <div class = "flex-grow-1 bg-login-image" style = "background-image: url(assets/img/avatars/geek-guy.png);"></div>
                                 </div>
+                                -->
+                                <div class = "col-lg-6 d-none d-lg-flex align-items-center justify-content-center">
+                                    <img
+                                            src = "assets/img/avatars/geek-guy.png"
+                                            alt = "Rocket Geek Logo"
+                                            class = "img-fluid"
+                                            style = "max-width: 95%; height: auto;"
+                                    >
+                                </div>
+                                
+                                <!-- End login image -->
+                                
                                 <div class = "col-lg-6">
                                     <div class = "p-5">
                                         <div class = "text-center">
@@ -101,8 +141,10 @@
                                             </button>
                                             <br>
                                             <hr>
+                                            
+                                            <!-- old button configuration
                                             <a class="btn btn-primary d-block btn-user w-100 mb-2" role="button">
-                                                <!-- <i class="fas fa-sign-in-alt"></i>&nbsp; Login -->
+                                                 <i class="fas fa-sign-in-alt"></i>&nbsp; Login
                                                 <i class="fas fa-question"></i>&nbsp; Forgot Password?
                                             </a>
                                             
@@ -117,12 +159,45 @@
                                             <a class="btn btn-primary d-block btn-user w-100 mb-2" role="button">
                                                 <i class="fas fa-address-book"></i>&nbsp; Create Account
                                             </a>
+                                            -->
+                                        </form>
+                                            
+                                            <!-- START: Additional login actions -->
+                                        <form id="addedFeaturesForm" class="user">
+                                            <div class = "mb-3">
+                                            <a class="btn btn-primary d-block btn-user w-100 mb-2" href="index.html">
+                                                <i class="fas fa-home"></i>&nbsp; Home
+                                            </a>
+                                            
+                                            <a class="btn btn-primary d-block btn-user w-100 mb-2" href="forgot-password.html">
+                                                <i class="fas fa-question"></i>&nbsp; Forgot Password
+                                            </a>
+                                            
+                                            <a class="btn btn-primary d-block btn-user w-100 mb-2" href="confirm.html">
+                                                <i class="fas fa-check"></i>&nbsp; Confirm Registration
+                                            </a>
+                                            
+                                            <a class="btn btn-primary d-block btn-user w-100 mb-2" href="change-password.html">
+                                                <i class="fas fa-arrow-circle-right"></i>&nbsp; Change Password
+                                            </a>
+                                            
+                                            <a class="btn btn-primary d-block btn-user w-100 mb-2" href="register.html">
+                                                <i class="fas fa-address-book"></i>&nbsp; Create Account
+                                            </a>
+                                            </div>
+                                            <!-- END: Additional login actions -->
                                             
                                             <hr>
                                         </form>
                                         <!-- end login form -->
+                                        
                                         <!-- === DEBUG TOKEN BUTTON === -->
-                                        <button onclick="debugGetToken()">Get ID Token</button>
+                                        <form id="debugUserJWT" class="user">
+                                        <div class="user">
+                                        <a class="btn btn-primary d-block btn-user w-100 mb-2" role="button">
+                                            <i class="fas fa-address-book"></i>&nbsp; Get JWT Token
+                                        
+                                        <!-- <button onclick="debugGetToken()">Get ID Token</button> -->
                                         <script>
                                             function debugGetToken() {
                                                 const poolData = {
@@ -153,7 +228,9 @@
                                                 }
                                             }
                                         </script>
-                                        
+                                        </a>
+                                        </div>
+                                        </form>
                                         <!--
                                         <div class = "text-center"><a class = "small" href = "forgot-password.html">Forgot Password?</a></div>
                                         <div class = "text-center"><a class = "small" href = "register.html">Create an Account!</a></div>

@@ -44,7 +44,7 @@
       "Mutable": true
     },
     {
-      "Name": "custom:zip_code",
+      "Name": "zip_code",
       "AttributeDataType": "String",
       "Required": false,
       "Mutable": true

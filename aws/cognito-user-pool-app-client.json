@@ -1,6 +1,6 @@
 {
   "ClientName": "RocketGeekSignupAndLoginApp",
-  "UserPoolId": "us-east-1_ekUgNnIbP",
+  "UserPoolId": "us-east-1_BNDeuEdIC",
   "GenerateSecret": false,
   "ExplicitAuthFlows": [
     "ALLOW_USER_PASSWORD_AUTH",
