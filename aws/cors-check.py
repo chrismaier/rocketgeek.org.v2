@@ -2,16 +2,23 @@ import json
 from rg_config import corsheaders
 
 def lambda_handler(event, context):
-    # Normalize headers to lowercase for consistent processing
-    headers = {k.lower(): v for k, v in (event.get("headers") or {}).items()}
     method = event.get("requestContext", {}).get("http", {}).get("method", "GET")
-
-    # Log the request method for traceability
     print(f"[INFO] Received {method} request for CORS check.")
 
+    # Base response payload always includes hello
+    base_response = { "hello": "from cors-check" }
+
     if method == "OPTIONS":
-        return corsheaders.build_response(204, None)
+        return corsheaders.build_cors_response(event, 204, base_response)
+
     elif method == "POST":
-        return corsheaders.build_response(200, { "message": "CORS check successful." })
+        return corsheaders.build_cors_response(event, 200, {
+            **base_response,
+            "message": "CORS check successful."
+        })
+
     else:
-        return corsheaders.build_response(405, { "error": "Method not allowed." })
+        return corsheaders.build_cors_response(event, 405, {
+            **base_response,
+            "error": "Method not allowed."
+        })

@@ -1,18 +1,21 @@
-# cors-headers.py
+# corsheaders.py
 
+import json
 from rg_config import settings
 from rg_config.headers import normalize_headers
-import json
-
 
 def build_cors_response(event, status_code, body_dict=None):
     """
     Build a CORS-compliant JSON response based on the incoming Origin header.
     """
     body_dict = body_dict or {}
+
     headers_in = normalize_headers(event.get("headers", {}))
     origin = headers_in.get("origin", "https://rocketgeek.org")
     cors_origin = origin if origin in settings.ALLOWED_ORIGINS else "https://rocketgeek.org"
+
+    print(f"[DEBUG] Origin received: {origin}")
+    print(f"[DEBUG] CORS origin selected: {cors_origin}")
 
     return {
         "statusCode": status_code,
@@ -20,7 +23,8 @@ def build_cors_response(event, status_code, body_dict=None):
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": cors_origin,
             "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            "Access-Control-Allow-Methods": "POST, OPTIONS"
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Credentials": "true"
         },
         "body": json.dumps(body_dict)
     }
