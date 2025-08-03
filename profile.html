@@ -129,25 +129,35 @@
                             <!-- end top nav dropdown menus -->
                             
                             
-                            <!-- Profile Dropdown -->
-                            <div class="nav-item dropdown no-arrow">
-                                <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="profile.html">
-                                    <span class="d-none d-lg-inline me-2 text-white-600 small">Random Geek</span>
-                                    <img class="border rounded-circle img-profile" src="assets/img/avatars/geek-guy.png" alt="">
+                            <!-- START: Profile Dropdown -->
+                            <div class = "nav-item dropdown no-arrow" id = "profileDropdownContainer">
+                                <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "profileLink">
+                                    <span class = "d-none d-lg-inline me-2 small"
+                                          id = "profileName"
+                                          style = "color: white; transition: color 0.3s;">
+                                             Random Geek
+                                    </span>
+                                    <img alt = "" class = "border rounded-circle img-profile" src = "assets/img/avatars/geek-guy.png">
                                 </a>
-                                <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                    <a class="dropdown-item" href="profile.html">
-                                        <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                <div class = "dropdown-menu shadow dropdown-menu-end animated--grow-in" id = "profileDropdown">
+                                    <a class = "dropdown-item" href = "profile.html">
+                                        <i class = "fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile
+                                    </a>
+                                    <a class = "dropdown-item" href = "#">
+                                        <i class = "fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings
+                                    </a>
+                                    <a class = "dropdown-item" href = "#">
+                                        <i class = "fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log
+                                    </a>
+                                    <div class = "dropdown-divider"></div>
+                                    <a class = "dropdown-item" href = "#" id = "logoutLink">
+                                        <i class = "fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout
+                                    </a>
                                 </div>
                             </div>
-                            <!-- end profile dropdown -->
+                            <!-- END: Profile Dropdown -->
+
+
                         </div>
                     </nav>
                     <!-- end top nav bar -->
@@ -182,7 +192,8 @@
         
         <!-- RIGHT COLUMN -->
         <div class="col-lg-8">
-            <!-- START: Rocketeer Profile Settings -->
+            
+            <!-- START: Rocketeer Profile Form Settings -->
             <div class="card shadow mb-3">
                 <div class="card-header py-3">
                     <p class="m-0 fw-bold">Rocketeer Profile Settings</p>
@@ -233,6 +244,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--  end of the rocketeer profile form -->
        
                         <!-- session timeout section -->
  <div class="row align-items-center mb-3">
@@ -316,6 +328,8 @@
         <script src="assets/js/side-nav-script.js"></script>
         <script src="assets/js/css-reload.js"></script>
         <script src="assets/js/bs-init.js"></script>
+        <script src="assets/js/top-nav-login-check.js"></script>
+        
         
         <!-- Remote JavaScript files -->
         <!-- do not appear to be needed
@@ -326,6 +340,8 @@
         
         <!-- Page specific JavaScript files -->
         <!-- <script src="assets/js/pad-box-loader.js"></script> -->
+        <script src="assets/js/load-profile.js"></script>
+        
         <!-- end Javascript -->
     
     </body>

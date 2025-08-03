@@ -31,11 +31,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     // START: API Validation of Token
     // ------------------------------
     try {
+        const authHeader = `Bearer ${token}`;
+        console.log("[top-nav-login-check] Sending Authorization:", authHeader);
+        
         const response = await fetch("https://api.rocketgeek.org/authenticated", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token
+                "Authorization": authHeader
             }
         });
         
@@ -80,6 +83,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         profileLinkEl.href = "#";
         profileLinkEl.setAttribute("data-bs-toggle", "dropdown");
         dropdownMenuEl.style.display = "block";
+        
     } catch (err) {
         console.error("[top-nav-login-check] Token decode failed:", err);
         setLoggedOutUI();
@@ -113,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("[top-nav-login-check] Executing setLoggedOutUI()");
         profileNameEl.textContent = "Login to Profile";
         profileLinkEl.href = "login.html";
-        profileLinkEl.removeAttribute("data-bs-toggle");  // Disable dropdown
+        profileLinkEl.removeAttribute("data-bs-toggle");
         dropdownMenuEl.style.display = "none";
         localStorage.removeItem("idToken");
     }
