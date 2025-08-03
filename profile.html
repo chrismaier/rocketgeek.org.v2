@@ -4,7 +4,7 @@
     <!-- Begin head section of the html file -->
     <head>
         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
-        <!-- page unique head information / meta tags etc go here -->
+        <!-- page unique head information / meta tags etc. go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
         <title>User profile information - Individual user data - Rocket Geek</title>
@@ -153,156 +153,143 @@
                     <!-- end top nav bar -->
                     
                     <!-- Main body (page unique) content goes here -->
-                    <div class = "container-fluid">
-                        <h2 class = "mb-4">Profile</h2>
-                        <div class = "row mb-3">
-                            <div class = "col-lg-4">
-                                <div class = "card mb-3">
-                                    <div class = "card-body text-center shadow">
-                                        <img class = "rounded-circle mb-3 mt-4" height = "160" src = "assets/img/avatars/geek-guy.png" width = "160" alt="Geek Guy Image">
-                                        <div class = "mb-3">
-                                            <button class = "btn btn-primary btn-sm" type = "button">Change Photo</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class = "card shadow mb-4">
-                                    <div class = "card-header py-3">
-                                        <h6 class = "fw-bold m-0">Projects</h6>
-                                    </div>
-                                    <div class = "card-body">
-                                        <h4 class = "small fw-bold">Server migration<span class = "float-end">20%</span></h4>
-                                        <div class = "progress progress-sm mb-3">
-                                            <div aria-valuemax = "100" aria-valuemin = "0" aria-valuenow = "20" class = "progress-bar bg-danger" style = "width: 20%;">
-                                                <span class = "visually-hidden">20%</span></div>
-                                        </div>
-                                        <h4 class = "small fw-bold">Sales tracking<span class = "float-end">40%</span></h4>
-                                        <div class = "progress progress-sm mb-3">
-                                            <div aria-valuemax = "100" aria-valuemin = "0" aria-valuenow = "40" class = "progress-bar bg-warning" style = "width: 40%;">
-                                                <span class = "visually-hidden">40%</span></div>
-                                        </div>
-                                        <h4 class = "small fw-bold">Customer Database<span class = "float-end">60%</span></h4>
-                                        <div class = "progress progress-sm mb-3">
-                                            <div aria-valuemax = "100" aria-valuemin = "0" aria-valuenow = "60" class = "progress-bar bg-primary" style = "width: 60%;">
-                                                <span class = "visually-hidden">60%</span></div>
-                                        </div>
-                                        <h4 class = "small fw-bold">Payout Details<span class = "float-end">80%</span></h4>
-                                        <div class = "progress progress-sm mb-3">
-                                            <div aria-valuemax = "100" aria-valuemin = "0" aria-valuenow = "80" class = "progress-bar bg-info" style = "width: 80%;">
-                                                <span class = "visually-hidden">80%</span></div>
-                                        </div>
-                                        <h4 class = "small fw-bold">Account setup<span class = "float-end">Complete!</span></h4>
-                                        <div class = "progress progress-sm mb-3">
-                                            <div aria-valuemax = "100" aria-valuemin = "0" aria-valuenow = "100" class = "progress-bar bg-success" style = "width: 100%;">
-                                                <span class = "visually-hidden">100%</span></div>
-                                        </div>
-                                    </div>
+<div class="container-fluid">
+    <h2 class="mb-4">Profile</h2>
+    <div class="row mb-3">
+        <!-- LEFT COLUMN -->
+        <div class="col-lg-4">
+            <!-- START: Profile Image -->
+            <div class="card mb-3">
+                <div class="card-body text-center shadow pb-4">
+                    <img id="profile-image" class="rounded-circle mb-3 mt-4" height="200" width="200"
+                         src="assets/img/avatars/geek-guy.png" alt="Profile Image">
+                </div>
+            </div>
+            <!-- END: Profile Image -->
+            
+            <!-- START: Image Manipulation Buttons (separate from canvas) -->
+            <form>
+                <div class="d-grid gap-2 mb-3">
+                    <input type="file" id="upload-profile-image" accept="image/*"
+                           class="form-control rounded-pill">
+                    <button class="btn btn-primary btn-sm rounded-pill" type="submit" id="upload-image-btn">
+                        Upload Photo
+                    </button>
+                </div>
+            </form>
+            <!-- END: Image Manipulation Buttons -->
+        </div>
+        
+        <!-- RIGHT COLUMN -->
+        <div class="col-lg-8">
+            <!-- START: Rocketeer Profile Settings -->
+            <div class="card shadow mb-3">
+                <div class="card-header py-3">
+                    <p class="m-0 fw-bold">Rocketeer Profile Settings</p>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username"><strong>Username</strong></label>
+                                    <input class="form-control rounded-pill" id="username" name="username" type="text" placeholder="user.name">
                                 </div>
                             </div>
-                            <div class = "col-lg-8">
-                                <div class = "row mb-3 d-none">
-                                    <div class = "col">
-                                        <div class = "card textwhite bg-primary text-white shadow">
-                                            <div class = "card-body">
-                                                <div class = "row mb-2">
-                                                    <div class = "col">
-                                                        <p class = "m-0">Peformance</p>
-                                                        <p class = "m-0"><strong>65.2%</strong></p>
-                                                    </div>
-                                                    <div class = "col-auto"><i class = "fas fa-rocket fa-2x"></i></div>
-                                                </div>
-                                                <p class = "text-white-50 small m-0"><i class = "fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class = "col">
-                                        <div class = "card textwhite bg-success text-white shadow">
-                                            <div class = "card-body">
-                                                <div class = "row mb-2">
-                                                    <div class = "col">
-                                                        <p class = "m-0">Peformance</p>
-                                                        <p class = "m-0"><strong>65.2%</strong></p>
-                                                    </div>
-                                                    <div class = "col-auto"><i class = "fas fa-rocket fa-2x"></i></div>
-                                                </div>
-                                                <p class = "text-white-50 small m-0"><i class = "fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class = "row">
-                                    <div class = "col">
-                                        <div class = "card shadow mb-3">
-                                            <div class = "card-header py-3">
-                                                <p class = "m-0 fw-bold">Rocketeer Profile Settings</p>
-                                            </div>
-                                            <div class = "card-body">
-                                                <form>
-                                                    <div class = "row">
-                                                        <div class = "col">
-                                                            <div class = "mb-3">
-                                                                <label class = "form-label" for = "username"><strong>Username</strong></label><input class = "form-control rounded-pill" id = "username" name = "username" placeholder = "user.name" type = "text">
-                                                            </div>
-                                                        </div>
-                                                        <div class = "col">
-                                                            <div class = "mb-3">
-                                                                <label class = "form-label" for = "email">
-                                                                    <strong>Email Address</strong></label>
-                                                                <input class = "form-control rounded-pill" id = "email" name = "email" placeholder = "user@example.com" type = "email">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class = "row">
-                                                        <div class = "col">
-                                                            <div class = "mb-3"><label class = "form-label" for = "first_name"><strong>First
-                                                                                                                                       Name</strong></label><input class = "form-control rounded-pill" id = "first_name" name = "first_name" placeholder = "John" type = "text">
-                                                            </div>
-                                                        </div>
-                                                        <div class = "col">
-                                                            <div class = "mb-3"><label class = "form-label" for = "last_name"><strong>Last Name</strong></label><input class = "form-control rounded-pill" id = "last_name" name = "last_name" placeholder = "Doe" type = "text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class = "mb-3">
-                                                        <button class = "btn btn-primary btn-sm" type = "submit">Save Settings</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class = "card shadow">
-                                            <div class = "card-header py-3">
-                                                <p class = "m-0 fw-bold">Contact Settings</p>
-                                            </div>
-                                            <div class = "card-body">
-                                                <form>
-                                                    <div class = "mb-3">
-                                                        <label class = "form-label" for = "address"><strong>Address</strong></label><input class = "form-control rounded-pill" id = "address" name = "address" placeholder = "Sunset Blvd, 38" type = "text">
-                                                    </div>
-                                                    <div class = "row">
-                                                        <div class = "col">
-                                                            <div class = "mb-3">
-                                                                <label class = "form-label" for = "city"><strong>City</strong></label><input class = "form-control rounded-pill" id = "city" name = "city" placeholder = "Los Angeles" type = "text">
-                                                            </div>
-                                                        </div>
-                                                        <div class = "col">
-                                                            <div class = "mb-3">
-                                                                <label class = "form-label" for = "country"><strong>Country</strong></label><input class = "form-control rounded-pill" id = "country" name = "country" placeholder = "USA" type = "text">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class = "mb-3">
-                                                        <button class = "btn btn-primary btn-sm" type = "submit">Save&nbsp;Settings</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="email"><strong>Email Address</strong></label>
+                                    <input class="form-control rounded-pill" id="email" name="email" type="email" placeholder="user@example.com">
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="first_name"><strong>First Name</strong></label>
+                                    <input class="form-control rounded-pill" id="first_name" name="first_name" type="text" placeholder="John">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="last_name"><strong>Last Name</strong></label>
+                                    <input class="form-control rounded-pill" id="last_name" name="last_name" type="text" placeholder="Doe">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="phone"><strong>Phone Number</strong></label>
+                                    <input class="form-control rounded-pill" id="phone" name="phone" type="tel" placeholder="+1-555-123-4567">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="zip_code"><strong>ZIP Code</strong></label>
+                                    <input class="form-control rounded-pill" id="zip_code" name="zip_code" type="text" placeholder="12345">
+                                </div>
+                            </div>
+                        </div>
+       
+                        <!-- session timeout section -->
+ <div class="row align-items-center mb-3">
+    <div class="col-auto">
+        <button class="btn btn-primary btn-sm rounded-pill" type="submit">Save Settings</button>
+    </div>
+    <div class="col align-items-center">
+        <div id="session-expiry" class="text-muted small">
+            Login session expires at: --:--
+        </div>
+    </div>
+</div>
+<!-- end session timeout -->
+                        
+                    
+                    </form>
                 </div>
-                <!-- end main body -->
-                
+            </div>
+            <!-- END: Rocketeer Profile Settings -->
+        </div>
+    </div>
+    
+    <!-- START: Static Tab Section -->
+    <div class="card shadow mb-5">
+        <div class="card-header py-3 bg-light">
+            <ul class="nav nav-tabs card-header-tabs bg-white" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active text-dark" id="tab-clubs" data-bs-toggle="tab" href="#tabpane-clubs" role="tab">Clubs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="tab-launch-sites" data-bs-toggle="tab" href="#tabpane-launch-sites" role="tab">Launch Sites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="tab-apparel" data-bs-toggle="tab" href="#tabpane-apparel" role="tab">Apparel</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body tab-content">
+            <div class="tab-pane fade show active" id="tabpane-clubs" role="tabpanel">
+                <h5 class="fw-bold">Your Clubs</h5>
+                <p>List of clubs you belong to will go here.</p>
+            </div>
+            <div class="tab-pane fade" id="tabpane-launch-sites" role="tabpanel">
+                <h5 class="fw-bold">Your Launch Sites</h5>
+                <p>Details about affiliated launch sites.</p>
+            </div>
+            <div class="tab-pane fade" id="tabpane-apparel" role="tabpanel">
+                <h5 class="fw-bold">Your Rocket Geek Apparel</h5>
+                <p>Show off your merch and swag.</p>
+            </div>
+        </div>
+    </div>
+    <!-- END: Static Tab Section -->
+</div>
+                    <!-- end main body -->
+               
+                </div>
                 <!-- footer elements -->
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
