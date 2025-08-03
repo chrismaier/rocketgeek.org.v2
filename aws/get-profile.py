@@ -94,17 +94,34 @@ def validate_and_extract_sub(token):
         logger.error("Token validation error: %s", str(e))
         return None
 
+#def build_response(event, status_code, body_dict):
+#    return {
+#        "statusCode": status_code,
+#        "headers": {
+#            "Content-Type": "application/json"
+#        },
+#        "body": json.dumps(body_dict)
+#    }
+
+# START: Utility function to build HTTP response
 def build_response(event, status_code, body_dict):
     headers_in = {k.lower(): v for k, v in event.get("headers", {}).items()}
-    origin = headers_in.get("origin", "https://rocketgeek.org")
-    cors_origin = origin if origin in ALLOWED_ORIGINS else "https://rocketgeek.org"
+    origin = headers_in.get("origin")
+    cors_origin = origin if origin in ALLOWED_ORIGINS else None
+
+    response_headers = {
+        "Content-Type": "application/json"
+    }
+
+    if cors_origin:
+        response_headers["Access-Control-Allow-Origin"] = cors_origin
+        response_headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        response_headers["Access-Control-Allow-Headers"] = "content-type, authorization"
+        response_headers["Access-Control-Allow-Credentials"] = "true"
+
     return {
         "statusCode": status_code,
-        "headers": {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": cors_origin,
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            "Access-Control-Allow-Methods": "POST, OPTIONS"
-        },
+        "headers": response_headers,
         "body": json.dumps(body_dict)
     }
+# END

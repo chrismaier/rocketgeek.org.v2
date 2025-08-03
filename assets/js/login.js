@@ -74,7 +74,8 @@ function handleLogin(emailField, passwordField) {
                 const response = await fetch("https://api.rocketgeek.org/get-profile", {
                     method: "POST",
                     headers: {
-                        Authorization: idToken,
+                        Authorization: `Bearer ${idToken}`,
+                        
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({ username: username }) // Can be omitted if handled in backend
