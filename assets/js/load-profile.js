@@ -1,115 +1,129 @@
 // ==============================
-// START: Load Profile Form Logic
+// START: Load Profile Script
 // ==============================
 
 document.addEventListener("DOMContentLoaded", async function () {
-    console.log("[load-profile] DOMContentLoaded triggered");
+    console.log("[load-profile] Starting profile load sequence");
     
     const token = localStorage.getItem("idToken");
     if (!token) {
-        console.warn("[load-profile] No token found. Redirecting to login.");
-        window.location.href = "login.html";
+        console.error("[load-profile] No token found in localStorage");
         return;
     }
     
-    const jwtPayload = decodeJwtPayload(token);
-    if (!jwtPayload) {
-        console.error("[load-profile] Invalid JWT token.");
-        console.log("[load-profile] Email:", jwtPayload.email);
-        console.log("[load-profile] Cognito User ID (sub):", jwtPayload.sub);
+    const jwtClaims = decodeJWT(token);
+    if (!jwtClaims) {
+        console.error("[load-profile] Failed to decode JWT token");
         return;
     }
     
-    let profileData = null;
-    let isNewProfile = false;
+    showSessionExpiration(jwtClaims);
     
     try {
         const response = await fetch("https://api.rocketgeek.org/get-profile", {
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             }
         });
         
-        if (response.status === 404) {
-            console.info("[load-profile] No profile found, creating default from token.");
-            isNewProfile = true;
-            profileData = {}; // will fill from token only
-        } else if (!response.ok) {
-            throw new Error("Failed to load profile: " + response.status);
+        if (response.ok) {
+            const profileData = await response.json();
+            console.log("[load-profile] Profile loaded successfully from S3:", profileData);
+            populateFormWithProfile(profileData, jwtClaims);
+        } else if (response.status === 404) {
+            console.warn("[load-profile] No profile found, creating default from token.");
+            populateFormWithProfile(null, jwtClaims);
         } else {
-            profileData = await response.json();
+            console.error("[load-profile] Error loading profile:", response.status);
         }
     } catch (err) {
-        console.error("[load-profile] Error fetching profile:", err);
-        return;
-    }
-    
-    // Merge and render fields
-    let showSavePrompt = false;
-    const mappings = [
-        { id: "username", profileKey: "username", jwtKey: "nickname" },
-        { id: "email", profileKey: "email", jwtKey: "email" },
-        { id: "first_name", profileKey: "first_name", jwtKey: "given_name" },
-        { id: "last_name", profileKey: "last_name", jwtKey: "family_name" },
-        { id: "phone", profileKey: "phone_number", jwtKey: "phone_number" },
-        { id: "zip_code", profileKey: "custom:zip_code", jwtKey: "custom:zip_code" }
-    ];
-    
-    for (const map of mappings) {
-        const el = document.getElementById(map.id);
-        if (!el) continue;
-        
-        const fromProfile = profileData?.[map.profileKey];
-        const fromJwt = jwtPayload?.[map.jwtKey];
-        
-        // Priority: profile > JWT
-        if (fromProfile !== undefined) {
-            el.value = fromProfile;
-        } else if (fromJwt !== undefined) {
-            el.value = fromJwt;
-        }
-        
-        // Check for difference
-        if (fromProfile !== undefined && fromJwt !== undefined && fromProfile !== fromJwt) {
-            el.classList.add("border", "border-warning", "bg-light");
-            showSavePrompt = true;
-        }
-        
-        // If new profile and JWT has value
-        if (isNewProfile && fromJwt !== undefined) {
-            el.value = fromJwt;
-        }
-    }
-    
-    if (isNewProfile) {
-        showBanner("Welcome! Let’s save your new profile to get started.", "info");
-    } else if (showSavePrompt) {
-        showBanner("Some fields differ from your current login. Please save to update.", "warning");
-    }
-    
-    function decodeJwtPayload(token) {
-        try {
-            const base64 = token.split(".")[1];
-            return JSON.parse(atob(base64));
-        } catch (e) {
-            console.error("[load-profile] Failed to decode JWT:", e);
-            return null;
-        }
-    }
-    
-    function showBanner(message, type = "info") {
-        const banner = document.createElement("div");
-        banner.className = `alert alert-${type} mt-3`;
-        banner.role = "alert";
-        banner.textContent = message;
-        const formCard = document.querySelector(".card-body form");
-        if (formCard) {
-            formCard.parentElement.insertBefore(banner, formCard);
-        }
+        console.error("[load-profile] Exception loading profile:", err);
     }
 });
 
 // ==============================
-// END: Load Profile Form Logic
+// Helper: Decode JWT Token
+// ==============================
+function decodeJWT(token) {
+    try {
+        const parts = token.split(".");
+        if (parts.length !== 3) throw new Error("Invalid JWT token");
+        return JSON.parse(atob(parts[1]));
+    } catch (err) {
+        console.error("[load-profile] Failed to decode JWT:", err);
+        return null;
+    }
+}
+
+// ==============================
+// Helper: Display Session Expiry
+// ==============================
+function showSessionExpiration(claims) {
+    const exp = claims?.exp;
+    const el = document.getElementById("sessionExpiry");
+    if (!exp || !el) return;
+    
+    const expiryDate = new Date(exp * 1000);
+    const localTime = expiryDate.toLocaleString();
+    el.textContent = `Session expires at: ${localTime}`;
+}
+
+// ==============================
+// Helper: Populate Form Fields
+// ==============================
+function populateFormWithProfile(profile, jwtClaims) {
+    const fields = {
+        username: jwtClaims["cognito:username"] || "",
+        email: jwtClaims.email || "",
+        first_name: jwtClaims.given_name || "",
+        last_name: jwtClaims.family_name || "",
+        phone: jwtClaims.phone_number || "",
+        zip_code: ""
+    };
+    
+    if (profile) {
+        let diffCount = 0;
+        
+        for (const [field, tokenValue] of Object.entries(fields)) {
+            const input = document.getElementById(field);
+            if (!input) continue;
+            
+            const profileValue = profile[field] || "";
+            
+            input.value = profileValue;
+            
+            if (profileValue && tokenValue && profileValue !== tokenValue) {
+                input.style.backgroundColor = "#ffe6e6";
+                input.style.border = "1px solid #cc0000";
+                input.title = `Differs from token value: ${tokenValue}`;
+                diffCount++;
+            } else {
+                input.style.backgroundColor = "";
+                input.style.border = "";
+                input.title = "";
+            }
+        }
+        
+        if (diffCount > 0) {
+            const notice = document.createElement("div");
+            notice.textContent = "Some of your information has changed — please review and click Save.";
+            notice.className = "alert alert-warning mt-3";
+            const form = document.querySelector("form");
+            if (form) {
+                form.prepend(notice);
+            }
+        }
+        
+    } else {
+        for (const [field, value] of Object.entries(fields)) {
+            const input = document.getElementById(field);
+            if (input) input.value = value;
+        }
+    }
+}
+
+// ==============================
+// END: Load Profile Script
 // ==============================

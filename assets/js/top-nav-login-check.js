@@ -84,6 +84,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         profileLinkEl.setAttribute("data-bs-toggle", "dropdown");
         dropdownMenuEl.style.display = "block";
         
+        const expTimestamp = payload.exp;
+        if (expTimestamp) {
+            const expDate = new Date(expTimestamp * 1000);
+            const formattedExp = expDate.toLocaleString();
+            const sessionInfo = document.getElementById("sessionExpiration");
+            
+            if (sessionInfo) {
+                sessionInfo.textContent = `Session expires: ${formattedExp}`;
+            } else {
+                console.warn("[top-nav-login-check] No sessionExpiration element found");
+            }
+        }
+        
+        
     } catch (err) {
         console.error("[top-nav-login-check] Token decode failed:", err);
         setLoggedOutUI();
