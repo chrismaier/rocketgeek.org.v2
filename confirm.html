@@ -27,25 +27,56 @@
     <!-- End of head section -->
     
     <body class = "bg-gradient-primary">
-        <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top navigation-clean-button" style="background: #000000; border-radius: 20px; border-style: none; padding-top: 0; padding-bottom: 10px;">         <div class = "container">
-                <button class = "navbar-toggler" data-bs-target = "#navcol-1" data-bs-toggle = "collapse">
-                    <span class = "visually-hidden">Toggle navigation</span><span class = "navbar-toggler-icon"></span></button>
-                <div><a class = "navbar-brand border rounded" href = "/index.html"><span>&nbsp;Rocket Geek&nbsp;</span> </a></div>
-                <div class = "collapse navbar-collapse" id = "navcol-1" style = "color: rgb(255,255,255);">
-                    <ul class = "navbar-nav nav-right">
-                        <li class = "nav-item"><a class = "nav-link active" href = "index.html" style = "color: rgba(224,217,217,0.9);">Home </a></li>
-                        <li class = "nav-item">
-                            <a class = "nav-link" href = "about.html" style = "color: rgba(224,217,217,0.9);">About </a></li>
-                        <li class = "nav-item"></li>
-                        <li class = "nav-item"><a class = "nav-link" href = "contact.html" style = "color: rgba(224,217,217,0.9);">Contact </a></li>
-                    </ul>
-                    <p class = "ms-auto navbar-text actions"><a class = "login" href = "login.html" style = "color: rgba(224,217,217,0.9);">Log In</a>
-                        <a class = "btn btn-light action-button" href = "register.html" role = "button" style = "color: #8b0000;background: #000000;border-radius: 10px;border-style: solid;border-color: rgba(0,0,0,0);font-size: 16px;padding: 5px 8px;">Sign
-                                                                                                                                                                                                                                                           Up</a>
-                    </p>
-                </div>
-            </div>
-        </nav>
+        
+<!-- Top alt navbar - signup/confirm -->
+<nav class="navbar navbar-light navbar-expand-md navbar-fixed-top" style="background:#000000;border-radius:0;border-style:none;padding-top:0;padding-bottom:10px;">
+    <div class="container">
+        <button class="navbar-toggler" data-bs-target="#navcol-1" data-bs-toggle="collapse">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div>
+            <a class="navbar-brand border rounded" href="/index.html">
+                <span>&nbsp;Rocket Geek&nbsp;</span>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navcol-1" style="color:rgb(255,255,255);">
+            <!-- START: force the left menu to be transparent -->
+            <ul class="navbar-nav nav-right" style="background:transparent !important;">
+                <li class="nav-item" style="background:transparent !important;">
+                    <a class="nav-link" href="index.html"
+                       style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item" style="background:transparent !important;">
+                    <a class="nav-link" href="about.html"
+                       style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
+                        About
+                    </a>
+                </li>
+                <li class="nav-item" style="background:transparent !important;">
+                    <a class="nav-link" href="contact.html"
+                       style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+            <!-- END: force the left menu to be transparent -->
+
+            <p class="ms-auto navbar-text actions">
+                <a class="login" href="login.html" style="color:rgba(224,217,217,0.9);">Log In</a>
+                <a class="btn btn-light action-button" href="register.html" role="button"
+                   style="color:#8b0000;background:#000000;border-radius:10px;border-style:solid;border-color:rgba(0,0,0,0);font-size:16px;padding:5px 8px;">
+                    Sign Up
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+<!-- end alt top nav -->
         
         
         <div class = "container">
@@ -60,31 +91,94 @@
                                 <div class = "text-center">
                                     <h2 class = "mb-4">Confirm Rocket Geek Registration</h2>
                                 </div>
+                                <!-- ========================= -->
+                                <!-- START: Confirmation forms -->
+                                <!-- ========================= -->
                                 
-                                <!-- Confirmation form -->
-                                <form class="user" id="confirmForm">
-                                    <div class="row mb-3">
-                                        <div class="mb-3 mb-sm-0">
-                                        </div>
-                                        <div class="col-sm-6 mb-3">
-                                            <label for="email">Email:</label>
-                                            <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-3">
-                                            <label for="code">Confirmation Code:</label>
-                                            <input class="form-control form-control-user" type="text" id="code" placeholder="123456789" required>
-                                        </div>
-                                    
-                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Confirm Account Registration</button>
-                                    
-                                    </div>
-                                    <div class="col-sm-6">
-                                    <button class="btn btn-primary d-block btn-user w-100" type="submit">
-                                        Login
-                                    </button>
-                                    </div>
-                                </form>
-                                <!-- End of confirmation form -->
+                                <!-- START: Verified status banners (hidden by default; shown by JS) -->
+<div id="verificationStatus" class="mb-3" style="display:none;">
+  <div id="emailVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
+    Email address <strong id="verifiedEmailValue"></strong> verified.
+  </div>
+  <div id="phoneVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
+    Phone number <strong id="verifiedPhoneValue"></strong> verified.
+  </div>
+</div>
+                                <!-- END: Verified status banners -->
+                                
+                                <!-- ===== 1) EMAIL LOOKUP (no JWT -> only this is visible) ===== -->
+<form class="user" id="emailLookupForm">
+  <div class="row mb-3">
+    <div class="col-sm-8 mb-3">
+      <label for="email">Email:</label>
+      <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
+    </div>
+    <div class="col-sm-4 mb-3">
+      <label class="d-none d-sm-block">&nbsp;</label>
+        <!-- Keep your standard rounded button; inside a form -->
+      <button id="btnCheckEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
+        Confirm Account
+      </button>
+    </div>
+  </div>
+</form>
+                                
+                                <!-- ===== 2) EMAIL CONFIRM (hidden until lookup says NOT confirmed) ===== -->
+<form class="user" id="emailConfirmForm" style="display:none;">
+  <div class="row mb-3">
+    <div class="col-sm-6 mb-3">
+      <label for="emailConfirm">Email:</label>
+      <input class="form-control form-control-user" type="email" id="emailConfirm" disabled>
+    </div>
+    <div class="col-sm-6 mb-3">
+      <label for="emailCode">Confirmation Code:</label>
+      <input class="form-control form-control-user" type="text" id="emailCode" placeholder="123456">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6 mb-3">
+      <button id="btnConfirmEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
+        Confirm Email
+      </button>
+    </div>
+    <div class="col-sm-6 mb-3">
+      <button id="btnResendEmail" class="btn btn-primary d-block btn-user w-100" type="button">
+        Resend Email Code
+      </button>
+    </div>
+  </div>
+</form>
+                                
+                                <!-- ===== 3) PHONE CONFIRM (hidden with no JWT; shown only if JWT present & phone NOT verified) ===== -->
+<form class="user" id="phoneConfirmForm" style="display:none;">
+  <div class="row mb-3">
+    <div class="col-sm-6 mb-3">
+      <label for="phone">Phone Number:</label>
+      <input class="form-control form-control-user" type="tel" id="phone" placeholder="+1 555 123 4567">
+    </div>
+    <div class="col-sm-6 mb-3">
+      <label for="phoneCode">SMS Code:</label>
+      <input class="form-control form-control-user" type="text" id="phoneCode" placeholder="123456">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6 mb-3">
+      <button id="btnConfirmPhone" class="btn btn-primary d-block btn-user w-100" type="submit">
+        Confirm Phone
+      </button>
+    </div>
+    <div class="col-sm-6 mb-3">
+      <button id="btnResendPhone" class="btn btn-primary d-block btn-user w-100" type="button">
+        Resend SMS Code
+      </button>
+    </div>
+  </div>
+</form>
+                                
+                                <!-- ======================= -->
+                                <!-- END: Confirmation forms -->
+                                <!-- ======================= -->
+                                
                             </div>
                             
                         </div>
