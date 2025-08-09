@@ -2,40 +2,25 @@
 
 import json
 import logging
-import re
+import base64
 import boto3
 from botocore.exceptions import ClientError
 
-# START: shared config & CORS helper
-from rg_config.constants import (
-    USER_POOL_ID,
-    REGION,
-    ALLOWED_ORIGINS,  # imported for completeness; build_cors_response uses it
-)
+from rg_config import settings
 from rg_config.corsheaders import build_cors_response
-# END
+from rg_config.inputfilters import sanitize_email, looks_like_email
+from rg_config.privacy import obfuscate_email
 
-# START: logger
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-# END
 
-
-# START: utilities
-def flatten_headers_lower(headers: dict | None) -> dict:
-    if not headers:
-        return {}
-    return {str(k).lower(): v for k, v in headers.items()}
-
-def ok(status_code: int, body: dict, origin: str):
-    return build_cors_response(status_code=status_code, body=body, origin=origin)
 
 def parse_json_body(event: dict) -> dict:
+    """Parse JSON body from API Gateway event, handling base64 if needed."""
     body = event.get("body")
     if body is None:
         return {}
     if event.get("isBase64Encoded"):
-        import base64
         try:
             body = base64.b64decode(body).decode("utf-8", errors="replace")
         except Exception:
@@ -45,35 +30,11 @@ def parse_json_body(event: dict) -> dict:
     except Exception:
         return {}
 
-def sanitize_email(value: str) -> str:
-    if not isinstance(value, str):
-        return ""
-    v = value.strip().lower()
-    v = re.sub(r"[\'\"`\s<>]", "", v)
-    return v
 
-def looks_like_email(value: str) -> bool:
-    if not value:
-        return False
-    return bool(re.match(r"^[^@]+@[^@]+\.[^@]+$", value))
-
-def obfuscate_email(email: str) -> str:
-    try:
-        local, domain = email.split("@", 1)
-    except ValueError:
-        return ""
-    local_mask = (local[:1] + "***") if local else "***"
-    dm, sep, tld = domain.rpartition(".")
-    domain_mask = (dm[:1] + "***") if dm else "***"
-    return f"{local_mask}@{domain_mask}{sep}{tld}" if sep else f"{local_mask}@{domain_mask}"
-# END: utilities
-
-
-# START: core lookup
 def lookup_email_status(cognito, user_pool_id: str, email: str) -> tuple[bool, bool]:
     """
-    Returns (exists, email_verified) for the provided email in the given User Pool.
-    Uses ListUsers with a filter on email. Any error returns (False, False) to avoid leakage.
+    Returns (exists, email_verified) for the email in the given Cognito User Pool.
+    Uses ListUsers with a filter on email. Any error returns (False, False).
     """
     try:
         resp = cognito.list_users(
@@ -93,38 +54,28 @@ def lookup_email_status(cognito, user_pool_id: str, email: str) -> tuple[bool, b
         logger.error("Cognito ListUsers client error: %s", e, exc_info=True)
         return False, False
     except Exception as e:
-        logger.error("Unexpected error during lookup: %s", e, exc_info=True)
+        logger.error("Unexpected lookup error: %s", e, exc_info=True)
         return False, False
-# END: core lookup
 
 
-# START: Lambda handler
 def handler(event, context):
     """
     POST /verify
     Body: { "email": "user@domain.com" }
-
-    Response (always 200):
-    {
-      "exists": true|false,
-      "email_verified": true|false,
-      "email": "<obfuscated or empty>"
-    }
+    Always returns 200 with minimal, enumeration-aware payload:
+    { "exists": bool, "email_verified": bool, "email": obfuscated-or-empty }
     """
-    headers = flatten_headers_lower(event.get("headers") or {})
-    origin = headers.get("origin") or headers.get("referer") or ""
-
-    http_method = (
+    method = (
             event.get("requestContext", {}).get("http", {}).get("method")
             or event.get("httpMethod")
             or ""
     ).upper()
 
-    if http_method == "OPTIONS":
-        return ok(204, {}, origin)
+    if method == "OPTIONS":
+        return build_cors_response(event, 204, {})
 
-    if http_method != "POST":
-        return ok(405, {"error": "method not allowed"}, origin)
+    if method != "POST":
+        return build_cors_response(event, 405, {"error": "method not allowed"})
 
     body = parse_json_body(event)
     raw_email = body.get("email", "")
@@ -132,18 +83,18 @@ def handler(event, context):
 
     logger.info("Verify request received. raw_email=%s sanitized=%s", raw_email, email)
 
-    # Do not disclose format errors via status codes; keep response uniform
+    # For invalid email shapes, return a generic non-enumerating response
     if not looks_like_email(email):
-        return ok(
-            200,
-            {"exists": False, "email_verified": False, "email": ""},
-            origin,
-        )
+        return build_cors_response(event, 200, {
+            "exists": False,
+            "email_verified": False,
+            "email": ""
+        })
 
-    cognito = boto3.client("cognito-idp", region_name=REGION)
-    exists, is_verified = lookup_email_status(cognito, USER_POOL_ID, email)
+    cognito = boto3.client("cognito-idp", region_name=settings.REGION)
+    exists, is_verified = lookup_email_status(cognito, settings.USER_POOL_ID, email)
 
-    response = {
+    resp = {
         "exists": bool(exists),
         "email_verified": bool(is_verified),
         "email": obfuscate_email(email) if exists else "",
@@ -151,10 +102,7 @@ def handler(event, context):
 
     logger.info(
         "Verify outcome: exists=%s email_verified=%s email=%s",
-        response["exists"],
-        response["email_verified"],
-        response["email"],
+        resp["exists"], resp["email_verified"], resp["email"]
     )
 
-    return ok(200, response, origin)
-# END: Lambda handler
+    return build_cors_response(event, 200, resp)
