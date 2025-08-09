@@ -23,28 +23,31 @@
    ------------------------------------------------- */
 
 /* Config */
+// At the top of confirm.js
+const API_BASE = window.RG_API_BASE || 'https://api.rocketgeek.org';
+
 const RGConfirmConfig = {
-  // API endpoints
-  verifyApiUrl: '/verify',                 // Must support preflight/status (no send)
-  getProfileUrl: '/get-profile',           // POST; returns profile JSON or 404/not found shape
-  createProfileUrl: '/create-profile',     // POST; creates minimal profile when missing (route preserved even if merged behind the scenes)
-  signupUrl: '/signup.html',               // Redirect target if account doesn't exist
-
+  // API endpoints (absolute; API is separate origin)
+  verifyApiUrl:     `${API_BASE}/verify`,
+  getProfileUrl:    `${API_BASE}/get-profile`,
+  createProfileUrl: `${API_BASE}/create-profile`,
+  
+  // Static site path stays relative to whatever host we're on
+  signupUrl: '/register.html',
+  
   requestTimeoutMs: 12000,
-
-  // DOM selectors (adjust to your actual IDs)
+  
   selectors: {
     emailSectionWrapper: '#emailSection',
     emailInput: '#email',
     emailSubmitButton: '#emailCheckButton',
-
     emailVerificationForm: '#emailVerificationFormSection',
     emailVerifiedBanner: '#emailVerifiedBanner',
-
     phoneVerificationForm: '#phoneVerificationFormSection',
     phoneVerifiedBanner: '#phoneVerifiedBanner'
   }
 };
+
 
 /* Logging helpers */
 function rgLogInfo(msg, data){ try{ data!==undefined?console.log('[confirm.js] INFO:', msg, data):console.log('[confirm.js] INFO:', msg);}catch(_){} }
@@ -112,6 +115,7 @@ async function fetchAccountStatus(email){
   const payload={ action:'preflight', channel:'email', identifier:email };
   rgLogInfo('Calling /verify preflight', {identifier:'<redacted>'});
   try{
+    console.log("Current RGConfirmation.verifyApiUrl: " + RGConfirmConfig.verifyApiUrl);
     const resp=await postJson(RGConfirmConfig.verifyApiUrl, payload, RGConfirmConfig.requestTimeoutMs);
     rgLogInfo('Preflight response', {status:resp.status, ok:resp.ok, body:resp.json||resp.text});
     return parseStatusResponse(resp);
