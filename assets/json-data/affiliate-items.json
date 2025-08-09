@@ -1,0 +1,198 @@
+[
+  {
+    "title": "DeWalt Wireless Bluetooth Earbuds",
+    "image": "assets/img/affiliate/dewalt-ear-buds-a.jpg",
+    "description": "Durable, noise-isolating wireless earbuds designed for the jobsite",
+    "affiliate_url": "#",
+    "display_order": 1
+  },
+  {
+    "title": "DeWalt Safety Glasses with Anti-Fog Lens",
+    "image": "assets/img/affiliate/dewalt-safety-glasses-a.jpg",
+    "description": "Impact-resistant safety glasses with clear lenses and fog protection",
+    "affiliate_url": "#",
+    "display_order": 2
+  },
+  {
+    "title": "FIFINE USB Condenser Microphone",
+    "image": "assets/img/affiliate/fifine-microphone.jpg",
+    "description": "Affordable USB mic ideal for gaming, podcasting, or voiceovers",
+    "affiliate_url": "#",
+    "display_order": 3
+  },
+  {
+    "title": "GoPro HERO Action Camera",
+    "image": "assets/img/affiliate/gopro-camera-image.jpg",
+    "description": "High-performance action cam with waterproof build and stabilization",
+    "affiliate_url": "#",
+    "display_order": 4
+  },
+  {
+    "title": "GoPro HERO Macro Lens Kit",
+    "image": "assets/img/affiliate/gopro-camera-macro-a.jpg",
+    "description": "Close-up macro lenses for your GoPro — includes multiple lens styles",
+    "affiliate_url": "#",
+    "display_order": 5
+  },
+  {
+    "title": "GoPro Wide Angle Lens Adapter",
+    "image": "assets/img/affiliate/gopro-wide-angle-lense.jpg",
+    "description": "Expand your GoPro field of view with this wide-angle lens mod",
+    "affiliate_url": "#",
+    "display_order": 6
+  },
+  {
+    "title": "Nuwave Double Burner Induction Cooktop",
+    "image": "assets/img/affiliate/nuwave-dual-burner.jpg",
+    "description": "Dual-zone induction burner for portable or emergency cooking",
+    "affiliate_url": "#",
+    "display_order": 7
+  },
+  {
+    "title": "Nuwave Single Burner Cooktop",
+    "image": "assets/img/affiliate/nuwave-single-burner.jpg",
+    "description": "Compact induction cooktop perfect for RVs, dorms, or power outages",
+    "affiliate_url": "#",
+    "display_order": 8
+  },
+  {
+    "title": "Mini Grease Gun for Machinery",
+    "image": "assets/img/affiliate/small-grease-gun-a.jpg",
+    "description": "Handheld grease gun ideal for precision lubrication tasks",
+    "affiliate_url": "#",
+    "display_order": 9
+  },
+  {
+    "title": "Insta360 GPS Action Remote",
+    "image": "assets/img/affiliate/insta360-gps-remote.jpg",
+    "description": "Remote control and GPS logger for Insta360 cameras, ideal for biking and outdoor filming",
+    "affiliate_url": "https://amzn.to/45DRpeU",
+    "display_order": 10
+  },
+  {
+    "title": "Insta360 X4 8K 360 Camera",
+    "image": "assets/img/affiliate/insta360-x4.jpg",
+    "description": "Flagship Insta360 8K camera with robust stabilization and AI editing tools",
+    "affiliate_url": "https://amzn.to/4467rgx",
+    "display_order": 11
+  },
+  {
+    "title": "Rode PodMic Dynamic Podcasting Microphone",
+    "image": "assets/img/affiliate/rode-podmic.jpg",
+    "description": "Broadcast-quality dynamic microphone for podcasting, streaming, and voice",
+    "affiliate_url": "https://amzn.to/4lknsVQ",
+    "display_order": 12
+  },
+  {
+    "title": "Canon EOS R6 Mark II Full-Frame Mirrorless Camera",
+    "image": "assets/img/affiliate/canon-eos-r6ii.jpg",
+    "description": "Advanced mirrorless camera with 24.2MP sensor, 4K 60p video, and fast autofocus",
+    "affiliate_url": "https://amzn.to/3ZMJnwE",
+    "display_order": 13
+  },
+  {
+    "title": "Insta360 X5 8K 360 Camera",
+    "image": "assets/img/affiliate/insta360-x5.jpg",
+    "description": "Next-gen 8K 360-degree action camera with FlowState stabilization and invisible selfie stick",
+    "affiliate_url": "https://amzn.to/4nr8yiw",
+    "display_order": 14
+  },
+  {
+    "title": "Sony ZV-E10 Mirrorless Camera",
+    "image": "assets/img/affiliate/sony-zve10.jpg",
+    "description": "Vlogger-friendly APS-C camera with interchangeable lenses and mic input",
+    "affiliate_url": "https://www.adorama.com/isozve10b.html",
+    "display_order": 15
+  },
+  {
+    "title": "Elgato Stream Deck MK.2",
+    "image": "assets/img/affiliate/stream-deck.jpg",
+    "description": "Customizable 15-key LCD pad for streaming, macros, and automation",
+    "affiliate_url": "https://www.bhphotovideo.com/c/product/1661870-REG/elgato_10gax9901_stream_deck_mk_2.html",
+    "display_order": 16
+  },
+  {
+    "title": "Blue Yeti X USB Microphone",
+    "image": "assets/img/affiliate/yeti-x.jpg",
+    "description": "Flagship USB condenser mic with LED metering and broadcast sound",
+    "affiliate_url": "https://www.amazon.com/dp/B07ZPBFVKK?tag=yourtag-20",
+    "display_order": 17
+  },
+  {
+    "title": "RODE Wireless GO II Dual Channel Mic",
+    "image": "assets/img/affiliate/rode-go-ii.jpg",
+    "description": "Dual channel wireless lavalier mic system with onboard recording",
+    "affiliate_url": "https://www.bhphotovideo.com/c/product/1610771-REG/rode_wireless_go_ii_dual.html",
+    "display_order": 18
+  },
+  {
+    "title": "Raspberry Pi 4 8GB Starter Kit",
+    "image": "assets/img/affiliate/pi4-kit.jpg",
+    "description": "Complete Raspberry Pi 4 kit with power supply, heatsink, case, and SD card",
+    "affiliate_url": "https://www.adafruit.com/product/4296",
+    "display_order": 19
+  },
+  {
+    "title": "Anker PowerCore 20,000mAh PD",
+    "image": "assets/img/affiliate/anker-powercore.jpg",
+    "description": "Portable USB-C power bank with fast charging and high capacity",
+    "affiliate_url": "https://www.amazon.com/dp/B08GZ7ZQWC?tag=yourtag-20",
+    "display_order": 20
+  },
+  {
+    "title": "Samsung 980 PRO 1TB NVMe SSD",
+    "image": "assets/img/affiliate/samsung-ssd.jpg",
+    "description": "PCIe Gen4 speed for high-end gaming and productivity workloads",
+    "affiliate_url": "https://www.amazon.com/dp/B08GLX7TNT?tag=yourtag-20",
+    "display_order": 21
+  },
+  {
+    "title": "TP-Link AX1800 WiFi 6 Router",
+    "image": "assets/img/affiliate/tplink-ax1800.jpg",
+    "description": "Next-gen Wi-Fi 6 router with OFDMA, 4-streams, and high capacity",
+    "affiliate_url": "https://www.bhphotovideo.com/c/product/1592080-REG/tp_link_archer_ax21_archer_ax21_dual_band_wifi.html",
+    "display_order": 22
+  },
+  {
+    "title": "Ubiquiti UniFi Dream Machine",
+    "image": "assets/img/affiliate/unifi-udm.jpg",
+    "description": "All-in-one router and network controller for home and small business",
+    "affiliate_url": "https://store.ui.com/products/unifi-dream-machine",
+    "display_order": 23
+  },
+  {
+    "title": "Brother HL-L2350DW Laser Printer",
+    "image": "assets/img/affiliate/brother-printer.jpg",
+    "description": "Compact monochrome laser printer with wireless printing and duplex",
+    "affiliate_url": "https://www.amazon.com/dp/B0764NWFP8?tag=yourtag-20",
+    "display_order": 24
+  },
+  {
+    "title": "Corsair K95 RGB Platinum XT",
+    "image": "assets/img/affiliate/corsair-k95.jpg",
+    "description": "Mechanical gaming keyboard with macros, PBT keycaps, and Elgato integration",
+    "affiliate_url": "https://www.newegg.com/p/N82E16823816151",
+    "display_order": 25
+  },
+  {
+    "title": "Noctua NH-D15 CPU Cooler",
+    "image": "assets/img/affiliate/noctua-cooler.jpg",
+    "description": "Award-winning silent air cooler with dual fans for high-performance CPUs",
+    "affiliate_url": "https://www.newegg.com/p/N82E16835608041",
+    "display_order": 26
+  },
+  {
+    "title": "Insta360 X5 8K 360 Camera",
+    "image": "assets/img/affiliate/insta360-x5.jpg",
+    "description": "Next-gen 8K 360-degree action camera with FlowState stabilization and invisible selfie stick",
+    "affiliate_url": "https://amzn.to/4nr8yiw",
+    "display_order": 27
+  },
+  {
+    "title": "Insta360 GPS Action Remote",
+    "image": "assets/img/affiliate/insta360-gps-remote.jpg",
+    "description": "Remote control and GPS logger for Insta360 cameras, ideal for biking and outdoor filming",
+    "affiliate_url": "https://amzn.to/45DRpeU",
+    "display_order": 28
+  }
+]
