@@ -1,5 +1,3 @@
-# verify.py
-
 import json
 import logging
 import base64
@@ -14,9 +12,7 @@ from rg_config.privacy import obfuscate_email
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-
 def parse_json_body(event: dict) -> dict:
-    """Parse JSON body from API Gateway event, handling base64 if needed."""
     body = event.get("body")
     if body is None:
         return {}
@@ -30,41 +26,27 @@ def parse_json_body(event: dict) -> dict:
     except Exception:
         return {}
 
-
-def lookup_email_status(cognito, user_pool_id: str, email: str) -> tuple[bool, bool]:
-    """
-    Returns (exists, email_verified) for the email in the given Cognito User Pool.
-    Uses ListUsers with a filter on email. Any error returns (False, False).
-    """
+def lookup_email_status(cognito_client, user_pool_id: str, email: str):
     try:
-        resp = cognito.list_users(
+        response = cognito_client.list_users(
             UserPoolId=user_pool_id,
             Filter=f'email = "{email}"',
             Limit=1,
         )
-        users = resp.get("Users") or []
+        users = response.get("Users") or []
         if not users:
             return False, False
-
-        attrs = {a.get("Name"): a.get("Value") for a in users[0].get("Attributes", [])}
-        email_verified = (attrs.get("email_verified", "false").lower() == "true")
+        attributes = {a.get("Name"): a.get("Value") for a in users[0].get("Attributes", [])}
+        email_verified = (attributes.get("email_verified", "false").lower() == "true")
         return True, email_verified
-
-    except ClientError as e:
-        logger.error("Cognito ListUsers client error: %s", e, exc_info=True)
+    except ClientError as error:
+        logger.error("Cognito ListUsers error: %s", error, exc_info=True)
         return False, False
-    except Exception as e:
-        logger.error("Unexpected lookup error: %s", e, exc_info=True)
+    except Exception as error:
+        logger.error("Unexpected lookup error: %s", error, exc_info=True)
         return False, False
 
-
-def handler(event, context):
-    """
-    POST /verify
-    Body: { "email": "user@domain.com" }
-    Always returns 200 with minimal, enumeration-aware payload:
-    { "exists": bool, "email_verified": bool, "email": obfuscated-or-empty }
-    """
+def lambda_handler(event, context):
     method = (
             event.get("requestContext", {}).get("http", {}).get("method")
             or event.get("httpMethod")
@@ -81,28 +63,28 @@ def handler(event, context):
     raw_email = body.get("email", "")
     email = sanitize_email(raw_email)
 
-    logger.info("Verify request received. raw_email=%s sanitized=%s", raw_email, email)
+    logger.info("[verify] request email raw=%s sanitized=%s", raw_email, email)
 
-    # For invalid email shapes, return a generic non-enumerating response
     if not looks_like_email(email):
         return build_cors_response(event, 200, {
             "exists": False,
             "email_verified": False,
+            "phone_verified": False,
             "email": ""
         })
 
-    cognito = boto3.client("cognito-idp", region_name=settings.REGION)
-    exists, is_verified = lookup_email_status(cognito, settings.USER_POOL_ID, email)
+    cognito_client = boto3.client("cognito-idp", region_name=settings.REGION)
+    exists, email_is_verified = lookup_email_status(cognito_client, settings.USER_POOL_ID, email)
 
-    resp = {
+    response_body = {
         "exists": bool(exists),
-        "email_verified": bool(is_verified),
-        "email": obfuscate_email(email) if exists else "",
+        "email_verified": bool(email_is_verified),
+        "phone_verified": False,  # phone handled only in authenticated flow
+        "email": obfuscate_email(email) if exists else ""
     }
 
     logger.info(
-        "Verify outcome: exists=%s email_verified=%s email=%s",
-        resp["exists"], resp["email_verified"], resp["email"]
+        "[verify] outcome exists=%s email_verified=%s email=%s",
+        response_body["exists"], response_body["email_verified"], response_body["email"]
     )
-
-    return build_cors_response(event, 200, resp)
+    return build_cors_response(event, 200, response_body)

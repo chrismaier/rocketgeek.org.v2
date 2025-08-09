@@ -1,282 +1,302 @@
-// confirm.js — Rocket Geek confirmation flow (no single-letter vars)
+/* confirm.js — Activities 1–3: JWT detection, lookup via /verify, and email/phone verification UI.
+   - No single-letter variable names
+   - Honors your existing form IDs and Bootstrap classes
+   - Uses unauthenticated POST https://api.rocketgeek.org/verify
+   - Shows phone section only when a JWT is present
+*/
 
-const TOKEN_STORAGE_KEYS = [
-    'id_token', 'idToken', 'cognitoIdToken', 'RG_ID_TOKEN',
-    'access_token', 'accessToken', 'cognitoAccessToken'
-];
-
-// Reuse site-wide userPool if present; otherwise fall back to settings in the page
-const FALLBACK_POOL_DATA =
-    (typeof window.userPool !== 'undefined' && window.userPool.clientId) ? null : {
-        UserPoolId: 'us-east-1_clrYuNqI3',
-        ClientId: '3u51gurg8r0ri4riq2isa8aq7h'
-    };
-
-function byId(id) { return document.getElementById(id); }
-function logInfo(...args) { console.log('[confirm.js]', ...args); }
-
-const domRefs = {
-    statusWrapper: byId('verificationStatus'),
-    emailVerifiedBanner: byId('emailVerifiedBanner'),
-    phoneVerifiedBanner: byId('phoneVerifiedBanner'),
-    verifiedEmailText: byId('verifiedEmailValue'),
-    verifiedPhoneText: byId('verifiedPhoneValue'),
+(function () {
+    // ---------- Utilities ----------
+    const TOKEN_STORAGE_KEYS = [
+        "id_token", "idToken", "cognitoIdToken", "RG_ID_TOKEN",
+        "access_token", "accessToken", "cognitoAccessToken"
+    ];
     
-    emailLookupForm: byId('emailLookupForm'),
-    emailLookupInput: byId('email'),
-    emailLookupButton: byId('btnCheckEmail'),
+    function byId(id) { return document.getElementById(id); }
+    function show(element) { if (element) element.style.display = "block"; }
+    function hide(element) { if (element) element.style.display = "none"; }
+    function setText(element, text) { if (element) element.textContent = text; }
+    function logInfo(...args) { console.log("[confirm.js]", ...args); }
     
-    emailConfirmForm: byId('emailConfirmForm'),
-    emailConfirmInput: byId('emailConfirm'),
-    emailCodeInput: byId('emailCode'),
-    emailConfirmButton: byId('btnConfirmEmail'),
-    emailResendButton: byId('btnResendEmail'),
-    
-    phoneConfirmForm: byId('phoneConfirmForm'),
-    phoneInput: byId('phone'),
-    phoneCodeInput: byId('phoneCode'),
-    phoneConfirmButton: byId('btnConfirmPhone'),
-    phoneResendButton: byId('btnResendPhone')
-};
-
-function showElement(el) { if (el) el.style.display = 'block'; }
-function hideElement(el) { if (el) el.style.display = 'none'; }
-function setText(el, text) { if (el) el.textContent = text; }
-
-function getStoredJwtToken() {
-    for (const storageKey of TOKEN_STORAGE_KEYS) {
-        const value = localStorage.getItem(storageKey) || sessionStorage.getItem(storageKey);
-        if (value) return value;
-    }
-    try {
-        const cookies = document.cookie.split(';').reduce((acc, cookiePart) => {
-            const [key, value] = cookiePart.trim().split('=');
-            if (key && value) acc[key] = decodeURIComponent(value);
-            return acc;
-        }, {});
-        for (const storageKey of TOKEN_STORAGE_KEYS) {
-            if (cookies[storageKey]) return cookies[storageKey];
+    function getStoredJwt() {
+        for (const key of TOKEN_STORAGE_KEYS) {
+            const value = localStorage.getItem(key) || sessionStorage.getItem(key);
+            if (value) return value;
         }
-    } catch {}
-    return null;
-}
-
-function base64UrlDecodeToString(input) {
-    const normalized = input.replace(/-/g, '+').replace(/_/g, '/');
-    const padLen = normalized.length % 4;
-    const padded = padLen ? normalized + '='.repeat(4 - padLen) : normalized;
-    return atob(padded);
-}
-
-function parseJwtClaims(jwtToken) {
-    try {
-        const payloadPart = jwtToken.split('.')[1];
-        return JSON.parse(base64UrlDecodeToString(payloadPart));
-    } catch {
+        try {
+            const cookieMap = document.cookie.split(";").reduce((acc, part) => {
+                const [key, val] = part.trim().split("=");
+                if (key && val) acc[key] = decodeURIComponent(val);
+                return acc;
+            }, {});
+            for (const key of TOKEN_STORAGE_KEYS) {
+                if (cookieMap[key]) return cookieMap[key];
+            }
+        } catch {}
         return null;
     }
-}
-
-function getUserPool() {
-    if (typeof window.userPool !== 'undefined') return window.userPool;
-    if (!FALLBACK_POOL_DATA) return null;
-    return new AmazonCognitoIdentity.CognitoUserPool(FALLBACK_POOL_DATA);
-}
-
-function cognitoUserForEmail(emailAddress) {
-    const userPool = getUserPool();
-    if (!userPool || !emailAddress) return null;
-    return new AmazonCognitoIdentity.CognitoUser({ Username: emailAddress, Pool: userPool });
-}
-
-function showEmailLookupOnly() {
-    showElement(domRefs.emailLookupForm);
-    hideElement(domRefs.emailConfirmForm);
-    hideElement(domRefs.phoneConfirmForm);
-}
-
-function showEmailVerified(emailAddress) {
-    setText(domRefs.verifiedEmailText, emailAddress || '');
-    showElement(domRefs.emailVerifiedBanner);
-    showElement(domRefs.statusWrapper);
-    hideElement(domRefs.emailLookupForm);
-    hideElement(domRefs.emailConfirmForm);
-}
-
-function showPhoneVerified(phoneNumber) {
-    setText(domRefs.verifiedPhoneText, phoneNumber || '');
-    showElement(domRefs.phoneVerifiedBanner);
-    showElement(domRefs.statusWrapper);
-}
-
-function showEmailConfirmForm(prefilledEmail) {
-    if (domRefs.emailConfirmInput) domRefs.emailConfirmInput.value = prefilledEmail || '';
-    hideElement(domRefs.emailLookupForm);
-    showElement(domRefs.emailConfirmForm);
-}
-
-function showPhoneFormOnlyWhenJwtPresent() {
-    const token = getStoredJwtToken();
-    if (token) {
-        showElement(domRefs.phoneConfirmForm);
-    } else {
-        hideElement(domRefs.phoneConfirmForm);
+    
+    function base64UrlToString(input) {
+        const normalized = input.replace(/-/g, "+").replace(/_/g, "/");
+        const padding = normalized.length % 4 ? "=".repeat(4 - (normalized.length % 4)) : "";
+        return atob(normalized + padding);
     }
-}
-
-function mapVerifyLambdaResponse(rawResponse, fallbackEmail) {
-    // Do not force exists=false if field is missing. Infer conservatively.
-    const existsField = (rawResponse && 'exists' in rawResponse) ? !!rawResponse.exists : undefined;
-    const emailVerified = !!rawResponse?.email_verified;
-    const phoneVerified = !!rawResponse?.phone_verified || !!rawResponse?.phone_number_verified;
-    const obfuscatedEmail = rawResponse?.email || '';
     
-    // If backend reports verified, treat user as existing regardless of exists flag.
-    const inferredExists = (existsField !== undefined)
-        ? existsField
-        : (emailVerified || phoneVerified || !!obfuscatedEmail);
+    function parseJwtClaims(jwtToken) {
+        try {
+            const payload = jwtToken.split(".")[1];
+            return JSON.parse(base64UrlToString(payload));
+        } catch {
+            return null;
+        }
+    }
     
-    return {
-        inferredExists,
-        emailVerified,
-        phoneVerified,
-        obfuscatedEmail,
-        inputEmail: fallbackEmail || ''
+    function getUserPool() {
+        if (typeof window.userPool !== "undefined") return window.userPool;
+        // Fallback if you rely on local config:
+        return new AmazonCognitoIdentity.CognitoUserPool({
+            UserPoolId: "us-east-1_clrYuNqI3",
+            ClientId: "3u51gurg8r0ri4riq2isa8aq7h"
+        });
+    }
+    
+    function getCognitoUser(emailAddress) {
+        const pool = getUserPool();
+        return new AmazonCognitoIdentity.CognitoUser({ Username: emailAddress, Pool: pool });
+    }
+    
+    async function postVerify(emailAddress) {
+        const response = await fetch("https://api.rocketgeek.org/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: emailAddress })
+        });
+        if (!response.ok) throw new Error("verify endpoint error");
+        return response.json();
+    }
+    
+    // ---------- DOM references ----------
+    const dom = {
+        // banners
+        statusWrapper: byId("verificationStatus"),
+        emailVerifiedBanner: byId("emailVerifiedBanner"),
+        phoneVerifiedBanner: byId("phoneVerifiedBanner"),
+        verifiedEmailValue: byId("verifiedEmailValue"),
+        verifiedPhoneValue: byId("verifiedPhoneValue"),
+        
+        // lookup form
+        emailLookupForm: byId("emailLookupForm"),
+        emailLookupInput: byId("email"),
+        emailLookupButton: byId("btnCheckEmail"),
+        
+        // email confirm form
+        emailConfirmForm: byId("emailConfirmForm"),
+        emailConfirmInput: byId("emailConfirm"),
+        emailCodeInput: byId("emailCode"),
+        emailConfirmButton: byId("btnConfirmEmail"),
+        emailResendButton: byId("btnResendEmail"),
+        
+        // phone confirm form
+        phoneConfirmForm: byId("phoneConfirmForm"),
+        phoneInput: byId("phone"),
+        phoneCodeInput: byId("phoneCode"),
+        phoneConfirmButton: byId("btnConfirmPhone"),
+        phoneResendButton: byId("btnResendPhone")
     };
-}
-
-// Email lookup (unauthenticated): calls your /verify via window.verifyStatusFn(email)
-domRefs.emailLookupForm && domRefs.emailLookupForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const inputEmail = (domRefs.emailLookupInput?.value || '').trim().toLowerCase();
-    if (!inputEmail) {
-        alert('Enter your email address first.');
-        return;
-    }
-    if (typeof window.verifyStatusFn !== 'function') {
-        alert('Verification endpoint is not configured.');
-        return;
+    
+    // ---------- UI helpers ----------
+    function resetToLookupOnly() {
+        show(dom.emailLookupForm);
+        hide(dom.emailConfirmForm);
+        hide(dom.phoneConfirmForm);
+        hide(dom.emailVerifiedBanner);
+        hide(dom.phoneVerifiedBanner);
+        hide(dom.statusWrapper);
     }
     
-    try {
-        logInfo('Lookup via Lambda', 'https://api.rocketgeek.org/verify', inputEmail);
-        const apiResponse = await window.verifyStatusFn(inputEmail);
-        logInfo('Verify result:', apiResponse);
-        
-        const mapped = mapVerifyLambdaResponse(apiResponse, inputEmail);
-        
-        if (mapped.emailVerified) {
-            showEmailVerified(mapped.obfuscatedEmail || mapped.inputEmail);
-            showPhoneFormOnlyWhenJwtPresent();
-            return;
-        }
-        
-        if (!mapped.inferredExists) {
-            alert('No account found for that email. Please check the address or sign up.');
-            showEmailLookupOnly();
-            return;
-        }
-        
-        showEmailConfirmForm(mapped.inputEmail);
-        showPhoneFormOnlyWhenJwtPresent();
-    } catch (error) {
-        console.error('[confirm.js] Lookup error:', error);
-        alert('Account lookup failed: ' + (error?.message || error));
-        showEmailLookupOnly();
-    }
-});
-
-// Email confirmation with code (ConfirmSignUp)
-domRefs.emailConfirmForm && domRefs.emailConfirmForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const emailForConfirm = (domRefs.emailConfirmInput?.value || '').trim().toLowerCase();
-    const emailCode = (domRefs.emailCodeInput?.value || '').trim();
-    if (!emailForConfirm || !emailCode) {
-        alert('Enter your confirmation code.');
-        return;
+    function showEmailVerifiedBanner(displayEmail) {
+        setText(dom.verifiedEmailValue, displayEmail || "");
+        show(dom.emailVerifiedBanner);
+        show(dom.statusWrapper);
+        hide(dom.emailConfirmForm);
     }
     
-    const cognitoUser = cognitoUserForEmail(emailForConfirm);
-    if (!cognitoUser) {
-        alert('Unable to initialize user pool. Check configuration.');
-        return;
+    function showPhoneVerifiedBanner(displayPhone) {
+        setText(dom.verifiedPhoneValue, displayPhone || "");
+        show(dom.phoneVerifiedBanner);
+        show(dom.statusWrapper);
     }
     
-    cognitoUser.confirmRegistration(emailCode, true, (err, result) => {
-        if (err) {
-            console.error('[confirm.js] confirmRegistration error:', err);
-            alert(`Email confirmation failed: ${err.message || err}`);
-            return;
-        }
-        logInfo('Email confirmed:', result);
-        showEmailVerified(emailForConfirm);
-        hideElement(domRefs.phoneConfirmForm); // no JWT in this path
-    });
-});
-
-// Resend email confirmation code (explicit action)
-domRefs.emailResendButton && domRefs.emailResendButton.addEventListener('click', () => {
-    const emailFromForm = (domRefs.emailConfirmInput?.value || domRefs.emailLookupInput?.value || '').trim().toLowerCase();
-    if (!emailFromForm) {
-        alert('Enter your email address first.');
-        return;
+    function showEmailConfirmSection(prefilledEmail) {
+        if (dom.emailConfirmInput) dom.emailConfirmInput.value = prefilledEmail || "";
+        hide(dom.emailLookupForm);
+        show(dom.emailConfirmForm);
     }
-    const cognitoUser = cognitoUserForEmail(emailFromForm);
-    if (!cognitoUser) {
-        alert('Unable to initialize user pool. Check configuration.');
-        return;
+    
+    function setPhoneSectionVisibilityForJwt(jwtPresent) {
+        if (jwtPresent) show(dom.phoneConfirmForm);
+        else hide(dom.phoneConfirmForm);
     }
-    cognitoUser.resendConfirmationCode((err, result) => {
-        if (err) {
-            console.error('[confirm.js] resend error:', err);
-            alert(`Resend failed: ${err.message || err}`);
-            return;
-        }
-        logInfo('Resend email result:', result);
-        alert('A new confirmation code has been sent to your email.');
-    });
-});
-
-// Phone flows remain JWT-gated; keep them hidden when no token
-domRefs.phoneConfirmForm && domRefs.phoneConfirmForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    alert('Login is required to confirm your phone number.');
-});
-
-domRefs.phoneResendButton && domRefs.phoneResendButton.addEventListener('click', () => {
-    alert('Login is required to resend the SMS code.');
-});
-
-// Initialization: unauthenticated defaults, show phone only if JWT exists
-document.addEventListener('DOMContentLoaded', () => {
-    try {
-        const jwtToken = getStoredJwtToken();
-        if (!jwtToken) {
-            logInfo('No JWT detected: showing email lookup only.');
-            showEmailLookupOnly();
-            return;
-        }
+    
+    // ---------- Activity 2: JWT present path ----------
+    async function runJwtPresentPath(jwtToken) {
+        hide(dom.emailLookupForm);
         
         const claims = parseJwtClaims(jwtToken) || {};
-        logInfo('JWT claims detected:', claims);
+        const emailFromToken = (claims.email || "").trim().toLowerCase();
+        const phoneFromToken = claims.phone_number || "";
+        const emailVerifiedInToken = !!claims.email_verified;
+        const phoneVerifiedInToken = !!claims.phone_number_verified;
         
-        if (claims.email_verified && claims.email) {
-            showEmailVerified(claims.email);
-        } else {
-            if (domRefs.emailConfirmInput) domRefs.emailConfirmInput.value = claims.email || '';
-            hideElement(domRefs.emailLookupForm);
-            showElement(domRefs.emailConfirmForm);
+        let verifiedFromApi = { email_verified: false, phone_verified: false, email: "" };
+        if (emailFromToken) {
+            try {
+                logInfo("JWT path: calling /verify for", emailFromToken);
+                verifiedFromApi = await postVerify(emailFromToken);
+                logInfo("JWT path: /verify result", verifiedFromApi);
+            } catch (error) {
+                console.error("[confirm.js] /verify failed (JWT path):", error);
+                // Fall back to claims if API temporarily unreachable
+            }
         }
         
-        if (claims.phone_number_verified && claims.phone_number) {
-            showPhoneVerified(claims.phone_number);
-            hideElement(domRefs.phoneConfirmForm);
+        const finalEmailVerified = verifiedFromApi.email_verified || emailVerifiedInToken;
+        const finalPhoneVerified = verifiedFromApi.phone_verified || phoneVerifiedInToken;
+        
+        // Email
+        if (finalEmailVerified) {
+            showEmailVerifiedBanner(verifiedFromApi.email || emailFromToken);
         } else {
-            if (domRefs.phoneInput) domRefs.phoneInput.value = claims.phone_number || '';
-            showElement(domRefs.phoneConfirmForm);
+            // Not verified → show email confirm section (prefill and allow user to confirm)
+            showEmailConfirmSection(emailFromToken);
         }
-    } catch (error) {
-        console.error('[confirm.js] Initialization error:', error);
-        showEmailLookupOnly();
+        
+        // Phone (JWT path only)
+        if (finalPhoneVerified) {
+            showPhoneVerifiedBanner(phoneFromToken);
+            hide(dom.phoneConfirmForm);
+        } else {
+            // Only actionable with JWT/session
+            show(dom.phoneConfirmForm);
+            if (dom.phoneInput && phoneFromToken) dom.phoneInput.value = phoneFromToken;
+        }
     }
-});
+    
+    // ---------- Activity 3: No-JWT path ----------
+    function attachLookupSubmitHandler() {
+        if (!dom.emailLookupForm) return;
+        
+        dom.emailLookupForm.addEventListener("submit", async function onLookupSubmit(event) {
+            event.preventDefault();
+            const enteredEmail = (dom.emailLookupInput?.value || "").trim().toLowerCase();
+            if (!enteredEmail) { alert("Please enter an email address."); return; }
+            
+            try {
+                logInfo("No-JWT path: calling /verify for", enteredEmail);
+                const verifyResult = await postVerify(enteredEmail);
+                logInfo("No-JWT path: /verify result", verifyResult);
+                
+                // Email
+                if (verifyResult.email_verified) {
+                    showEmailVerifiedBanner(verifyResult.email || enteredEmail);
+                    hide(dom.phoneConfirmForm); // phone hidden without JWT
+                } else {
+                    showEmailConfirmSection(enteredEmail);
+                    hide(dom.phoneConfirmForm); // phone hidden without JWT
+                }
+            } catch (error) {
+                console.error("[confirm.js] /verify failed (no-JWT path):", error);
+                alert("Account lookup failed.");
+                resetToLookupOnly();
+            }
+        });
+    }
+    
+    // ---------- Email confirm + resend (both paths) ----------
+    function attachEmailConfirmHandlers() {
+        if (dom.emailConfirmForm) {
+            dom.emailConfirmForm.addEventListener("submit", function onEmailConfirm(event) {
+                event.preventDefault();
+                const emailAddress = (dom.emailConfirmInput?.value || "").trim().toLowerCase();
+                const confirmationCode = (dom.emailCodeInput?.value || "").trim();
+                if (!emailAddress || !confirmationCode) { alert("Enter your confirmation code."); return; }
+                
+                const userPool = getUserPool();
+                if (!userPool) { alert("UserPool not configured."); return; }
+                
+                const cognitoUser = getCognitoUser(emailAddress);
+                cognitoUser.confirmRegistration(confirmationCode, true, function onConfirm(err, result) {
+                    if (err) {
+                        console.error("[confirm.js] confirmRegistration error:", err);
+                        alert(`Email confirmation failed: ${err.message || err}`);
+                        return;
+                    }
+                    logInfo("Email confirmed:", result);
+                    showEmailVerifiedBanner(emailAddress);
+                    // Keep phone form hidden without JWT
+                });
+            });
+        }
+        
+        if (dom.emailResendButton) {
+            dom.emailResendButton.addEventListener("click", function onResendClick() {
+                const emailAddress =
+                    (dom.emailConfirmInput?.value || dom.emailLookupInput?.value || "").trim().toLowerCase();
+                if (!emailAddress) { alert("Enter your email address first."); return; }
+                
+                const userPool = getUserPool();
+                if (!userPool) { alert("UserPool not configured."); return; }
+                
+                const cognitoUser = getCognitoUser(emailAddress);
+                cognitoUser.resendConfirmationCode(function onResend(err, result) {
+                    if (err) {
+                        console.error("[confirm.js] resendConfirmationCode error:", err);
+                        alert(`Resend failed: ${err.message || err}`);
+                        return;
+                    }
+                    logInfo("Resend result:", result);
+                    alert("A new confirmation code has been sent to your email.");
+                });
+            });
+        }
+    }
+    
+    // ---------- Phone confirm + resend (JWT path only) ----------
+    function attachPhoneHandlers() {
+        if (dom.phoneConfirmForm) {
+            dom.phoneConfirmForm.addEventListener("submit", function onPhoneConfirm(event) {
+                event.preventDefault();
+                alert("Login is required to confirm your phone number.");
+            });
+        }
+        if (dom.phoneResendButton) {
+            dom.phoneResendButton.addEventListener("click", function onPhoneResend() {
+                alert("Login is required to resend the SMS code.");
+            });
+        }
+    }
+    
+    // ---------- Activity 1: Entry point ----------
+    document.addEventListener("DOMContentLoaded", function onReady() {
+        resetToLookupOnly();
+        attachLookupSubmitHandler();
+        attachEmailConfirmHandlers();
+        attachPhoneHandlers();
+        
+        const jwtToken = getStoredJwt();
+        const jwtPresent = !!jwtToken;
+        
+        // Always start with only the lookup row visible
+        setPhoneSectionVisibilityForJwt(jwtPresent);
+        
+        if (jwtPresent) {
+            // JWT path
+            runJwtPresentPath(jwtToken).catch(function (error) {
+                console.error("[confirm.js] JWT path error:", error);
+                // Fallback to no-JWT UI if something goes wrong
+                resetToLookupOnly();
+                setPhoneSectionVisibilityForJwt(false);
+            });
+        }
+    });
+})();
