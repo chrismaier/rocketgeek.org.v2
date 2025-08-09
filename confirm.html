@@ -91,94 +91,92 @@
                                 <div class = "text-center">
                                     <h2 class = "mb-4">Confirm Rocket Geek Registration</h2>
                                 </div>
-                                <!-- ========================= -->
-                                <!-- START: Confirmation forms -->
-                                <!-- ========================= -->
-                                
-                                <!-- START: Verified status banners (hidden by default; shown by JS) -->
-<div id="verificationStatus" class="mb-3" style="display:none;">
-  <div id="emailVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
-    Email address <strong id="verifiedEmailValue"></strong> verified.
-  </div>
-  <div id="phoneVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
-    Phone number <strong id="verifiedPhoneValue"></strong> verified.
-  </div>
-</div>
-                                <!-- END: Verified status banners -->
-                                
-                                <!-- ===== 1) EMAIL LOOKUP (no JWT -> only this is visible) ===== -->
-<form class="user" id="emailLookupForm">
-  <div class="row mb-3">
-    <div class="col-sm-8 mb-3">
-      <label for="email">Email:</label>
-      <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
+    
+                                    <!-- START: Confirmation forms -->
+                                    
+                                    <!-- START: Verified status banners (hidden by default; shown by JS) -->
+    <div id="verificationStatus" class="mb-3" style="display:none;">
+      <div id="emailVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
+        Email address <strong id="verifiedEmailValue"></strong> verified.
+      </div>
+      <div id="phoneVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
+        Phone number <strong id="verifiedPhoneValue"></strong> verified.
+      </div>
     </div>
-    <div class="col-sm-4 mb-3">
-      <label class="d-none d-sm-block">&nbsp;</label>
-        <!-- Keep your standard rounded button; inside a form -->
-      <button id="btnCheckEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
-        Confirm Account
-      </button>
-    </div>
-  </div>
-</form>
-                                
-                                <!-- ===== 2) EMAIL CONFIRM (hidden until lookup says NOT confirmed) ===== -->
-<form class="user" id="emailConfirmForm" style="display:none;">
-  <div class="row mb-3">
-    <div class="col-sm-6 mb-3">
-      <label for="emailConfirm">Email:</label>
-      <input class="form-control form-control-user" type="email" id="emailConfirm" disabled>
-    </div>
-    <div class="col-sm-6 mb-3">
-      <label for="emailCode">Confirmation Code:</label>
-      <input class="form-control form-control-user" type="text" id="emailCode" placeholder="123456">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-6 mb-3">
-      <button id="btnConfirmEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
-        Confirm Email
-      </button>
-    </div>
-    <div class="col-sm-6 mb-3">
-      <button id="btnResendEmail" class="btn btn-primary d-block btn-user w-100" type="button">
-        Resend Email Code
-      </button>
-    </div>
-  </div>
-</form>
-                                
-                                <!-- ===== 3) PHONE CONFIRM (hidden with no JWT; shown only if JWT present & phone NOT verified) ===== -->
-<form class="user" id="phoneConfirmForm" style="display:none;">
-  <div class="row mb-3">
-    <div class="col-sm-6 mb-3">
-      <label for="phone">Phone Number:</label>
-      <input class="form-control form-control-user" type="tel" id="phone" placeholder="+1 555 123 4567">
-    </div>
-    <div class="col-sm-6 mb-3">
-      <label for="phoneCode">SMS Code:</label>
-      <input class="form-control form-control-user" type="text" id="phoneCode" placeholder="123456">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-sm-6 mb-3">
-      <button id="btnConfirmPhone" class="btn btn-primary d-block btn-user w-100" type="submit">
-        Confirm Phone
-      </button>
-    </div>
-    <div class="col-sm-6 mb-3">
-      <button id="btnResendPhone" class="btn btn-primary d-block btn-user w-100" type="button">
-        Resend SMS Code
-      </button>
-    </div>
-  </div>
-</form>
-                                
-                                <!-- ======================= -->
-                                <!-- END: Confirmation forms -->
-                                <!-- ======================= -->
-                                
+                                    <!-- END: Verified status banners -->
+                                    
+                                    <!-- ===== 1) EMAIL LOOKUP (no JWT -> only this is visible) ===== -->
+    <form class="user" id="emailLookupForm">
+      <div class="row mb-3">
+        <div class="col-sm-8 mb-3">
+          <label for="email">Email:</label>
+          <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
+        </div>
+        <div class="col-sm-4 mb-3">
+          <label class="d-none d-sm-block">&nbsp;</label>
+            <!-- Keep your standard rounded button; inside a form -->
+          <button id="btnCheckEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
+            Confirm Account
+          </button>
+        </div>
+      </div>
+    </form>
+                                    
+                                    <!-- ===== 2) EMAIL CONFIRM (hidden until lookup says NOT confirmed) ===== -->
+    <form class="user" id="emailConfirmForm" style="display:none;">
+      <div class="row mb-3">
+        <div class="col-sm-6 mb-3">
+          <label for="emailConfirm">Email:</label>
+          <input class="form-control form-control-user" type="email" id="emailConfirm" disabled>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="emailCode">Confirmation Code:</label>
+          <input class="form-control form-control-user" type="text" id="emailCode" placeholder="123456">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-6 mb-3">
+          <button id="btnConfirmEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
+            Confirm Email
+          </button>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <button id="btnResendEmail" class="btn btn-primary d-block btn-user w-100" type="button">
+            Resend Email Code
+          </button>
+        </div>
+      </div>
+    </form>
+                                    
+                                    <!-- ===== 3) PHONE CONFIRM (hidden with no JWT; shown only if JWT present & phone NOT verified) ===== -->
+    <form class="user" id="phoneConfirmForm" style="display:none;">
+      <div class="row mb-3">
+        <div class="col-sm-6 mb-3">
+          <label for="phone">Phone Number:</label>
+          <input class="form-control form-control-user" type="tel" id="phone" placeholder="+1 555 123 4567">
+        </div>
+        <div class="col-sm-6 mb-3">
+          <label for="phoneCode">SMS Code:</label>
+          <input class="form-control form-control-user" type="text" id="phoneCode" placeholder="123456">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-6 mb-3">
+          <button id="btnConfirmPhone" class="btn btn-primary d-block btn-user w-100" type="submit">
+            Confirm Phone
+          </button>
+        </div>
+        <div class="col-sm-6 mb-3">
+          <button id="btnResendPhone" class="btn btn-primary d-block btn-user w-100" type="button">
+            Resend SMS Code
+          </button>
+        </div>
+      </div>
+    </form>
+                                    
+                                    <!-- END: Confirmation forms -->
+                                    
+   
                             </div>
                             
                         </div>

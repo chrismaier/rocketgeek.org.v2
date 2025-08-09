@@ -27,26 +27,26 @@
 const API_BASE = window.RG_API_BASE || 'https://api.rocketgeek.org';
 
 const RGConfirmConfig = {
-  // API endpoints (absolute; API is separate origin)
   verifyApiUrl:     `${API_BASE}/verify`,
   getProfileUrl:    `${API_BASE}/get-profile`,
   createProfileUrl: `${API_BASE}/create-profile`,
-  
-  // Static site path stays relative to whatever host we're on
-  signupUrl: '/register.html',
-  
+  signupUrl:        '/register.html',
   requestTimeoutMs: 12000,
   
   selectors: {
-    emailSectionWrapper: '#emailSection',
-    emailInput: '#email',
-    emailSubmitButton: '#emailCheckButton',
-    emailVerificationForm: '#emailVerificationFormSection',
-    emailVerifiedBanner: '#emailVerifiedBanner',
-    phoneVerificationForm: '#phoneVerificationFormSection',
-    phoneVerifiedBanner: '#phoneVerifiedBanner'
+    // email lookup (no-JWT path)
+    emailSectionWrapper: '#emailLookupForm',
+    emailInput:          '#email',
+    emailSubmitButton:   '#btnCheckEmail',
+    
+    // verification UI sections
+    emailVerificationForm: '#emailConfirmForm',
+    emailVerifiedBanner:   '#emailVerifiedBanner',
+    phoneVerificationForm: '#phoneConfirmForm',
+    phoneVerifiedBanner:   '#phoneVerifiedBanner'
   }
 };
+
 
 
 /* Logging helpers */
@@ -112,7 +112,17 @@ async function postJson(url, body, timeoutMs, authToken){
 
 /* Verify API: preflight/status */
 async function fetchAccountStatus(email){
-  const payload={ action:'preflight', channel:'email', identifier:email };
+  // old / incomplete list:  const payload={ action:'preflight', channel:'email', identifier:email };
+  const payload = {
+    action: 'preflight',
+    channel: 'email',
+    
+    // send a superset to satisfy any backend shape
+    identifier: email,          // what I used originally
+    email: email,               // common expectation
+    username: email,            // some backends use "username"
+    user: email                 // belt & suspenders
+  };
   rgLogInfo('Calling /verify preflight', {identifier:'<redacted>'});
   try{
     console.log("Current RGConfirmation.verifyApiUrl: " + RGConfirmConfig.verifyApiUrl);
@@ -214,7 +224,8 @@ async function handleHasJwtPath(){
   const status=await fetchAccountStatus(email);
   if(!status.exists){
     rgLogInfo('Account does not exist; redirecting to signup');
-    window.location.href=RGConfirmConfig.signupUrl;
+    //  We have commented this out temporarily so we can see the console log
+    //window.location.href=RGConfirmConfig.signupUrl;
     return true;
   }
 
@@ -236,18 +247,24 @@ function wireNoJwtEmailHandler(){
   const sel=RGConfirmConfig.selectors;
   const emailInput=qs(sel.emailInput);
   const emailBtn=qs(sel.emailSubmitButton);
+  
+  console.log(sel.ok);
+  console.log("Email input: " + emailInput);
+  
   if(!emailInput||!emailBtn){ rgLogWarn('No-JWT controls missing'); return; }
 
   const onSubmit=async (evt)=>{
     try{
       if(evt && typeof evt.preventDefault==='function') evt.preventDefault();
       const email=(emailInput.value||'').trim();
+      console.log("Email input value:" + email);
       if(!isLikelyEmail(email)){ rgLogWarn('Invalid email entered'); emailInput.focus(); return; }
 
       const status=await fetchAccountStatus(email);
       if(!status.exists){
         rgLogInfo('Account does not exist (no-JWT path); redirecting to signup');
-        window.location.href=RGConfirmConfig.signupUrl;
+        // We have commented this out AGAIN / for a second time temporarily
+        //window.location.href=RGConfirmConfig.signupUrl;
         return;
       }
       applyVerificationUi(status);
