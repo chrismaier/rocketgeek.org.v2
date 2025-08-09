@@ -40,6 +40,7 @@ const RGConfirmConfig = {
     emailSubmitButton:   '#btnCheckEmail',
     
     // verification UI sections
+    verificationStatus: '#verificationStatus',   // <— add this line
     emailVerificationForm: '#emailConfirmForm',
     emailVerifiedBanner:   '#emailVerifiedBanner',
     phoneVerificationForm: '#phoneConfirmForm',
@@ -204,6 +205,7 @@ async function createDefaultProfile(authToken){
 }
 
 /* UI application */
+/*
 function applyVerificationUi(status){
   const sel=RGConfirmConfig.selectors;
   if(status.emailVerified){ setVisible(sel.emailVerifiedBanner,true); setVisible(sel.emailVerificationForm,false); }
@@ -212,6 +214,53 @@ function applyVerificationUi(status){
   if(status.phoneVerified){ setVisible(sel.phoneVerifiedBanner,true); setVisible(sel.phoneVerificationForm,false); }
   else { setVisible(sel.phoneVerifiedBanner,false); setVisible(sel.phoneVerificationForm,true); }
 }
+*/
+
+function applyVerificationUi(status, currentEmail) {
+  const sel = RGConfirmConfig.selectors;
+  
+  // If any banner will be visible, unhide the container
+  const willShowAnyBanner = !!status.emailVerified || !!status.phoneVerified;
+  if (willShowAnyBanner) {
+    setVisible(sel.verificationStatus, true);
+  } else {
+    setVisible(sel.verificationStatus, false);
+  }
+  
+  // EMAIL
+  if (status.emailVerified) {
+    setVisible(sel.emailVerifiedBanner, true);
+    setVisible(sel.emailVerificationForm, false);
+    const emailValueEl = document.getElementById('verifiedEmailValue');
+    if (emailValueEl && currentEmail) emailValueEl.textContent = currentEmail;
+  } else {
+    setVisible(sel.emailVerifiedBanner, false);
+    setVisible(sel.emailVerificationForm, true);
+    // If you want the email to carry into the confirm form’s read-only field:
+    const emailConfirmInput = document.getElementById('emailConfirm');
+    if (emailConfirmInput && currentEmail) emailConfirmInput.value = currentEmail;
+  }
+  
+  // PHONE
+  if (status.phoneVerified) {
+    setVisible(sel.phoneVerifiedBanner, true);
+    setVisible(sel.phoneVerificationForm, false);
+    // If your API ever returns a phone string you want to show:
+    const phoneValueEl = document.getElementById('verifiedPhoneValue');
+    if (phoneValueEl && window.rgConfirmState?.status?.phone_number) {
+      phoneValueEl.textContent = window.rgConfirmState.status.phone_number;
+    }
+  } else {
+    setVisible(sel.phoneVerifiedBanner, false);
+    setVisible(sel.phoneVerificationForm, true);
+  }
+  
+  // Hide the email lookup form when we already know the account exists
+  if (sel.emailSectionWrapper) {
+    setVisible(sel.emailSectionWrapper, false);
+  }
+}
+
 
 /* Entry branches */
 async function handleHasJwtPath(){
