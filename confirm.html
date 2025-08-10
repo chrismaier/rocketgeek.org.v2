@@ -122,6 +122,26 @@
       </div>
     </form>
                                     
+                                    <!-- ===== LOGIN (shown only when no JWT) ===== -->
+<form class="user" id="loginForm" style="display:none;">
+  <div class="row mb-3">
+    <div class="col-sm-6 mb-3">
+      <label for="loginEmail">Email:</label>
+      <input class="form-control form-control-user" type="email" id="loginEmail" placeholder="user@mydomain.com" autocomplete="username">
+    </div>
+    <div class="col-sm-6 mb-3">
+      <label for="loginPassword">Password:</label>
+      <input class="form-control form-control-user" type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-6 mb-3">
+      <button id="btnLogin" class="btn btn-primary d-block btn-user w-100" type="submit">Sign In</button>
+    </div>
+  </div>
+</form>
+                                    
+                                    
                                     <!-- ===== 2) EMAIL CONFIRM (hidden until lookup says NOT confirmed) ===== -->
     <form class="user" id="emailConfirmForm" style="display:none;">
       <div class="row mb-3">

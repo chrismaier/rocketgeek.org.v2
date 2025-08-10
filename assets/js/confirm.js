@@ -42,7 +42,14 @@ const RGConfirmConfig = {
     emailVerificationForm: '#emailConfirmForm',
     emailVerifiedBanner:   '#emailVerifiedBanner',
     phoneVerificationForm: '#phoneConfirmForm',
-    phoneVerifiedBanner:   '#phoneVerifiedBanner'
+    phoneVerifiedBanner:   '#phoneVerifiedBanner',
+    
+    // login UI selectors
+    loginForm: '#loginForm',
+    loginEmail: '#loginEmail',
+    loginPassword: '#loginPassword',
+    loginButton: '#btnLogin'
+    
   }
 };
 
@@ -131,9 +138,11 @@ async function postJson(url, body, timeoutMs, authToken){
 // --- BEGIN PATCH: verify API helpers (place right below postJson) ---
 
 function getAuthTokenAtCallTime(){
-  // use a fresh read in case the user logs in mid-session
+  // Prefer a token we stored after a successful login; fallback to localStorage Cognito token
+  if (window.rgAuth && isNonEmptyString(window.rgAuth.idToken)) return window.rgAuth.idToken;
   return getIdTokenFromLocalStorage();
 }
+
 
 async function postVerify(payload, includeAuth=false){
   const auth = includeAuth ? getAuthTokenAtCallTime() : undefined;
@@ -163,6 +172,8 @@ async function postVerify(payload, includeAuth=false){
   
   return resp;
 }
+
+
 
 // Resend email code
 async function sendEmailCode(email){
@@ -403,6 +414,94 @@ function wireNoJwtEmailHandler(){
     }catch(e){ rgLogError('Error in no-JWT submit handler', e); }
   };
   
+  
+  // Attempt resource-owner style login via your backend.
+// Expect the backend to verify credentials with Cognito and return id_token/access_token/refresh_token.
+// If you use Cognito Hosted UI instead, replace this with a redirect to the Hosted UI.
+  async function loginWithEmailPassword(email, password){
+    const url = `${API_BASE}/auth/login`; // <-- adjust if your login endpoint differs
+    const payload = { email, password };
+    rgLogInfo('Login attempt (masked)', { email: '<present>', hasPassword: !!password });
+    
+    const resp = await postJson(url, payload, RGConfirmConfig.requestTimeoutMs);
+    rgLogInfo('Login response', { status: resp.status, ok: resp.ok, body: resp.json || resp.text });
+    
+    if (!resp.ok || !resp.json) return null;
+    
+    // Accept common token shapes; adapt if your backend uses different keys
+    const idToken = resp.json.id_token || resp.json.idToken || resp.json.token || '';
+    const accessToken = resp.json.access_token || resp.json.accessToken || '';
+    const refreshToken = resp.json.refresh_token || resp.json.refreshToken || '';
+    
+    if (!isNonEmptyString(idToken)) return null;
+    
+    // Keep tokens in memory; rest of code can pick it up via getAuthTokenAtCallTime()
+    window.rgAuth = { idToken, accessToken, refreshToken, email };
+    
+    // Optional: also stash in localStorage if you want subsequent page loads to see it
+    // localStorage.setItem('RG_idToken', idToken);
+    
+    return window.rgAuth;
+  }
+  
+  function wireLoginForm(){
+    const sel = RGConfirmConfig.selectors;
+    const form = document.querySelector(sel.loginForm);
+    if (!form) return;
+    
+    form.addEventListener('submit', async function(evt){
+      evt.preventDefault();
+      try{
+        const emailEl = document.querySelector(sel.loginEmail);
+        const passEl = document.querySelector(sel.loginPassword);
+        const email = (emailEl && emailEl.value || '').trim();
+        const password = passEl ? String(passEl.value || '') : '';
+        
+        if (!isLikelyEmail(email)) {
+          rgLogWarn('Login submit: invalid email.');
+          emailEl && emailEl.focus();
+          return;
+        }
+        if (!password) {
+          rgLogWarn('Login submit: empty password.');
+          passEl && passEl.focus();
+          return;
+        }
+        
+        const auth = await loginWithEmailPassword(email, password);
+        if (!auth) {
+          rgLogWarn('Login failed.');
+          return;
+        }
+        
+        // After login, proceed exactly like the JWT path:
+        const status = await fetchAccountStatus(email);
+        if (!status.exists) {
+          rgLogInfo('Post-login preflight: account does not exist; redirecting to signup');
+          // window.location.href = RGConfirmConfig.signupUrl;
+          return;
+        }
+        
+        // Hide login + lookup; apply UI; set canonical state
+        setVisible(sel.loginForm, false);
+        setVisible(sel.emailSectionWrapper, false);
+        
+        window.rgConfirmState = { email, status };
+        applyVerificationUi(status, email);
+        
+        // If both verified, ensure profile
+        if (status.emailVerified && status.phoneVerified) {
+          const ensured = await ensureProfileExists(getAuthTokenAtCallTime());
+          rgLogInfo('Profile ensure after login', { ok: ensured });
+        }
+      }catch(e){
+        rgLogError('Login submit handler error', e);
+      }
+    });
+  }
+  
+  
+  
   const form=emailBtn.closest('form');
   if(form){ form.addEventListener('submit', onSubmit); }
   else { emailBtn.addEventListener('click', onSubmit); }
@@ -556,9 +655,11 @@ async function initConfirm(){
   const handled = await handleHasJwtPath();
   if(handled){ return; }
   
-  // No usable JWT; show email section and wire handler
-  setVisible(RGConfirmConfig.selectors.emailSectionWrapper, true);
-  wireNoJwtEmailHandler();
+  
+// No usable JWT; show LOGIN instead of email lookup
+  setVisible(RGConfirmConfig.selectors.emailSectionWrapper, false);
+  setVisible(RGConfirmConfig.selectors.loginForm, true);
+  wireLoginForm();
 }
 
 /* DOM ready */
