@@ -146,6 +146,21 @@ async function postVerify(payload, includeAuth=false){
   });
   const resp = await postJson(RGConfirmConfig.verifyApiUrl, payload, RGConfirmConfig.requestTimeoutMs, auth);
   rgLogInfo('Verify API response', { status: resp.status, ok: resp.ok, body: resp.json || resp.text });
+  if (resp && resp.json) {
+    const dbg = {
+      status: resp.status,
+      ok: resp.ok,
+      confirmed: resp.json.confirmed,
+      sent: resp.json.sent,
+      throttled: resp.json.throttled,
+      retry_after_s: resp.json.retry_after_s,
+      email_verified: resp.json.email_verified,
+      phone_verified: resp.json.phone_verified,
+      error: resp.json.error
+    };
+    rgLogInfo('Verify API parsed outcome', dbg);
+  }
+  
   return resp;
 }
 
