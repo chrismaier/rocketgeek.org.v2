@@ -1,4 +1,3 @@
-
 /* -------------------------------------------------
    File: confirm.js
    Page: confirm.html
@@ -23,7 +22,6 @@
    ------------------------------------------------- */
 
 /* Config */
-// At the top of confirm.js
 const API_BASE = window.RG_API_BASE || 'https://api.rocketgeek.org';
 
 const RGConfirmConfig = {
@@ -40,15 +38,13 @@ const RGConfirmConfig = {
     emailSubmitButton:   '#btnCheckEmail',
     
     // verification UI sections
-    verificationStatus: '#verificationStatus',   // <— add this line
+    verificationStatus:    '#verificationStatus',
     emailVerificationForm: '#emailConfirmForm',
     emailVerifiedBanner:   '#emailVerifiedBanner',
     phoneVerificationForm: '#phoneConfirmForm',
     phoneVerifiedBanner:   '#phoneVerifiedBanner'
   }
 };
-
-
 
 /* Logging helpers */
 function rgLogInfo(msg, data){ try{ data!==undefined?console.log('[confirm.js] INFO:', msg, data):console.log('[confirm.js] INFO:', msg);}catch(_){} }
@@ -63,17 +59,35 @@ function isLikelyEmail(v){ if(!isNonEmptyString(v)) return false; return /^[^\s@
 /* DOM helpers */
 function qs(sel){ const el=document.querySelector(sel); if(!el) rgLogWarn('Selector not found:', sel); return el; }
 
+/* Only toggle Bootstrap's d-none to avoid layout break */
 function setVisible(selOrEl, visible){
   const el = typeof selOrEl === 'string' ? qs(selOrEl) : selOrEl;
   if (!el) return;
-  // Only toggle Bootstrap's d-none; never force display values
-  if (visible) {
-    el.classList.remove('d-none');
-  } else {
-    el.classList.add('d-none');
-  }
+  if (visible) el.classList.remove('d-none'); else el.classList.add('d-none');
 }
 
+/* One-time cleanup of inline display:none so classes control visibility */
+function unhideBaseSectionsOnce(){
+  const ids = [
+    'verificationStatus',
+    'emailVerifiedBanner',
+    'phoneVerifiedBanner',
+    'emailConfirmForm',
+    'phoneConfirmForm',
+    'emailLookupForm'
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.style && typeof el.style.removeProperty === 'function') {
+      el.style.removeProperty('display');   // remove inline display:none
+    } else {
+      el.style.display = '';
+    }
+    el.classList.add('d-none');             // baseline hidden via class
+  });
+  rgLogInfo('Ran unhideBaseSectionsOnce to clear inline display:none');
+}
 
 /* JWT helpers */
 function getIdTokenFromLocalStorage(){
@@ -114,22 +128,92 @@ async function postJson(url, body, timeoutMs, authToken){
   }finally{ clearTimeout(t); }
 }
 
+// --- BEGIN PATCH: verify API helpers (place right below postJson) ---
+
+function getAuthTokenAtCallTime(){
+  // use a fresh read in case the user logs in mid-session
+  return getIdTokenFromLocalStorage();
+}
+
+async function postVerify(payload, includeAuth=false){
+  const auth = includeAuth ? getAuthTokenAtCallTime() : undefined;
+  rgLogInfo('POST /verify payload (masked)', {
+    action: payload.action,
+    channel: payload.channel,
+    hasCode: !!payload.code,
+    email: payload.email ? '<present>' : undefined,
+    phone: payload.phone ? '<present>' : undefined
+  });
+  const resp = await postJson(RGConfirmConfig.verifyApiUrl, payload, RGConfirmConfig.requestTimeoutMs, auth);
+  rgLogInfo('Verify API response', { status: resp.status, ok: resp.ok, body: resp.json || resp.text });
+  return resp;
+}
+
+// Resend email code
+async function sendEmailCode(email){
+  const payload = {
+    action: 'send',
+    channel: 'email',
+    email: email,
+    identifier: email,
+    username: email,
+    user: email
+  };
+  return postVerify(payload, /*includeAuth*/ false);
+}
+
+// Confirm email code
+async function confirmEmailCode(email, code){
+  const payload = {
+    action: 'confirm',
+    channel: 'email',
+    email: email,
+    identifier: email,
+    code: code
+  };
+  return postVerify(payload, /*includeAuth*/ false);
+}
+
+// Resend phone (SMS) code
+async function sendPhoneCode(phone){
+  const payload = {
+    action: 'send',
+    channel: 'sms',
+    phone: phone,
+    identifier: phone
+  };
+  return postVerify(payload, /*includeAuth*/ true); // SMS send often requires auth
+}
+
+// Confirm phone (SMS) code
+async function confirmPhoneCode(phone, code){
+  const payload = {
+    action: 'confirm',
+    channel: 'sms',
+    phone: phone,
+    identifier: phone,
+    code: code
+  };
+  return postVerify(payload, /*includeAuth*/ true); // most confirm endpoints prefer auth
+}
+
+// --- END PATCH ---
+
+
 /* Verify API: preflight/status */
 async function fetchAccountStatus(email){
-  // old / incomplete list:  const payload={ action:'preflight', channel:'email', identifier:email };
   const payload = {
     action: 'preflight',
     channel: 'email',
-    
     // send a superset to satisfy any backend shape
-    identifier: email,          // what I used originally
-    email: email,               // common expectation
-    username: email,            // some backends use "username"
-    user: email                 // belt & suspenders
+    identifier: email,
+    email: email,
+    username: email,
+    user: email
   };
   rgLogInfo('Calling /verify preflight', {identifier:'<redacted>'});
   try{
-    console.log("Current RGConfirmation.verifyApiUrl: " + RGConfirmConfig.verifyApiUrl);
+    rgLogInfo('Preflight request payload', { emailMasked: String(email).replace(/^(.).+(@.+)$/, (_, a, b) => `${a}***${b}`) });
     const resp=await postJson(RGConfirmConfig.verifyApiUrl, payload, RGConfirmConfig.requestTimeoutMs);
     rgLogInfo('Preflight response', {status:resp.status, ok:resp.ok, body:resp.json||resp.text});
     return parseStatusResponse(resp);
@@ -141,12 +225,12 @@ function parseStatusResponse(resp){
   const out={ exists:false, emailVerified:false, phoneVerified:false, phoneOnFile:false };
   if(!resp||!resp.json) return out;
   const j=resp.json;
-
+  
   if(typeof j.exists==='boolean') out.exists=j.exists;
   if(typeof j.email_verified==='boolean') out.emailVerified=j.email_verified;
   if(typeof j.phone_verified==='boolean') out.phoneVerified=j.phone_verified;
   if(typeof j.phone_on_file==='boolean') out.phoneOnFile=j.phone_on_file;
-
+  
   if(j.user&&typeof j.user==='object'){
     const u=j.user;
     if(typeof u.exists==='boolean') out.exists=u.exists;
@@ -155,7 +239,7 @@ function parseStatusResponse(resp){
     if(typeof u.phone_on_file==='boolean') out.phoneOnFile=u.phone_on_file;
     if(isNonEmptyString(u.phone_number)) out.phoneOnFile=true;
   }
-
+  
   if(j.attributes&&typeof j.attributes==='object'){
     const a=j.attributes;
     if(typeof a.email_verified==='boolean') out.emailVerified=a.email_verified;
@@ -167,7 +251,6 @@ function parseStatusResponse(resp){
 
 /* Profile directory orchestration */
 async function ensureProfileExists(authToken){
-  // Use /get-profile to check; on 404-like or explicit "not found" signal, call /create-profile
   try{
     rgLogInfo('Checking for existing profile via /get-profile');
     const resp=await postJson(RGConfirmConfig.getProfileUrl, {}, RGConfirmConfig.requestTimeoutMs, authToken);
@@ -175,12 +258,10 @@ async function ensureProfileExists(authToken){
       rgLogInfo('Profile exists or was returned successfully');
       return true;
     }
-    // If backend uses a JSON "not found" pattern
     if(resp.json && (resp.json.not_found===true || resp.json.error==='profile_not_found')){
       rgLogInfo('Profile not found per JSON signal; creating default profile');
       return await createDefaultProfile(authToken);
     }
-    // Fallback on HTTP status
     if(resp.status===404){
       rgLogInfo('Profile not found (404); creating default profile');
       return await createDefaultProfile(authToken);
@@ -194,7 +275,6 @@ async function ensureProfileExists(authToken){
 }
 
 async function createDefaultProfile(authToken){
-  // Minimal default profile payload; backend will fill from JWT as needed
   const payload={ initialize:true };
   try{
     rgLogInfo('Creating default profile via /create-profile');
@@ -208,54 +288,34 @@ async function createDefaultProfile(authToken){
 }
 
 /* UI application */
-/*
-function applyVerificationUi(status){
-  const sel=RGConfirmConfig.selectors;
-  if(status.emailVerified){ setVisible(sel.emailVerifiedBanner,true); setVisible(sel.emailVerificationForm,false); }
-  else { setVisible(sel.emailVerifiedBanner,false); setVisible(sel.emailVerificationForm,true); }
-
-  if(status.phoneVerified){ setVisible(sel.phoneVerifiedBanner,true); setVisible(sel.phoneVerificationForm,false); }
-  else { setVisible(sel.phoneVerifiedBanner,false); setVisible(sel.phoneVerificationForm,true); }
-}
-*/
-
 function applyVerificationUi(status, currentEmail) {
   const sel = RGConfirmConfig.selectors;
   
-  // If any banner will be visible, unhide the container
-  const willShowAnyBanner = !!status.emailVerified || !!status.phoneVerified;
-  rgLogInfo('UI decision flags', {
-    emailVerified: !!status.emailVerified,
-    phoneVerified: !!status.phoneVerified,
-    showStatusContainer: !!willShowAnyBanner
-  });
+  const emailToShow =
+      currentEmail ||
+      (window.rgConfirmState && window.rgConfirmState.email) ||
+      '';
   
-  if (willShowAnyBanner) {
-    setVisible(sel.verificationStatus, true);
-  } else {
-    setVisible(sel.verificationStatus, false);
-  }
+  const willShowAnyBanner = !!status.emailVerified || !!status.phoneVerified;
+  setVisible(sel.verificationStatus, willShowAnyBanner);
   
   // EMAIL
   if (status.emailVerified) {
     setVisible(sel.emailVerifiedBanner, true);
     setVisible(sel.emailVerificationForm, false);
     const emailValueEl = document.getElementById('verifiedEmailValue');
-    if (emailValueEl && currentEmail) emailValueEl.textContent = currentEmail;
+    if (emailValueEl && emailToShow) emailValueEl.textContent = emailToShow;
   } else {
     setVisible(sel.emailVerifiedBanner, false);
     setVisible(sel.emailVerificationForm, true);
-    // If you want the email to carry into the confirm form’s read-only field:
     const emailConfirmInput = document.getElementById('emailConfirm');
-    if (emailConfirmInput && currentEmail) emailConfirmInput.value = currentEmail;
+    if (emailConfirmInput && emailToShow) emailConfirmInput.value = emailToShow;
   }
-  
   
   // PHONE
   if (status.phoneVerified) {
     setVisible(sel.phoneVerifiedBanner, true);
     setVisible(sel.phoneVerificationForm, false);
-    // If your API ever returns a phone string you want to show:
     const phoneValueEl = document.getElementById('verifiedPhoneValue');
     if (phoneValueEl && window.rgConfirmState?.status?.phone_number) {
       phoneValueEl.textContent = window.rgConfirmState.status.phone_number;
@@ -265,12 +325,11 @@ function applyVerificationUi(status, currentEmail) {
     setVisible(sel.phoneVerificationForm, true);
   }
   
-  // Hide the email lookup form when we already know the account exists
+  // once the account exists, hide the lookup form
   if (sel.emailSectionWrapper) {
     setVisible(sel.emailSectionWrapper, false);
   }
 }
-
 
 /* Entry branches */
 async function handleHasJwtPath(){
@@ -279,26 +338,22 @@ async function handleHasJwtPath(){
   const email=extractEmailFromJwt(token);
   rgLogInfo('JWT present; extracted email', {email: isNonEmptyString(email)? '<present>':'<missing>'});
   if(!isLikelyEmail(email)){ return false; }
-
+  
   const status=await fetchAccountStatus(email);
   if(!status.exists){
     rgLogInfo('Account does not exist; redirecting to signup');
-    //  We have commented this out temporarily so we can see the console log
-    //window.location.href=RGConfirmConfig.signupUrl;
+    // window.location.href=RGConfirmConfig.signupUrl;
     return true;
   }
-
-  // Hide manual email section if present
+  
   setVisible(RGConfirmConfig.selectors.emailSectionWrapper, false);
   applyVerificationUi(status, email);
   
-  
-  // If both verified, ensure profile exists
   if(status.emailVerified && status.phoneVerified){
     const ok = await ensureProfileExists(token);
     rgLogInfo('Profile ensure result', {ok});
   }
-
+  
   window.rgConfirmState={ email, status };
   return true;
 }
@@ -308,97 +363,184 @@ function wireNoJwtEmailHandler(){
   const emailInput=qs(sel.emailInput);
   const emailBtn=qs(sel.emailSubmitButton);
   
-  console.log(sel.ok);
-  console.log("Email input: " + emailInput);
-  
   if(!emailInput||!emailBtn){ rgLogWarn('No-JWT controls missing'); return; }
-
+  
   const onSubmit=async (evt)=>{
     try{
       if(evt && typeof evt.preventDefault==='function') evt.preventDefault();
       const email=(emailInput.value||'').trim();
-      console.log("Email input value:" + email);
       if(!isLikelyEmail(email)){ rgLogWarn('Invalid email entered'); emailInput.focus(); return; }
-
+      
       const status=await fetchAccountStatus(email);
       if(!status.exists){
         rgLogInfo('Account does not exist (no-JWT path); redirecting to signup');
-        // We have commented this out AGAIN / for a second time temporarily
-        //window.location.href=RGConfirmConfig.signupUrl;
+        // window.location.href=RGConfirmConfig.signupUrl;
         return;
       }
+      
       applyVerificationUi(status, email);
       
-      
-      // No JWT means we likely cannot call profile endpoints that require auth;
-      // so we only attempt ensureProfileExists when user actually has a JWT.
-      // If you want to allow unauthenticated creation, your backend must permit it (not recommended).
       if(status.emailVerified && status.phoneVerified){
         rgLogInfo('Both verified but no JWT token available; skipping profile ensure.');
       }
-
+      
       window.rgConfirmState={ email, status };
     }catch(e){ rgLogError('Error in no-JWT submit handler', e); }
   };
+  
   const form=emailBtn.closest('form');
   if(form){ form.addEventListener('submit', onSubmit); }
   else { emailBtn.addEventListener('click', onSubmit); }
 }
 
+// --- BEGIN PATCH: working handlers for confirm/resend buttons ---
 function wireVerificationForms(){
-  // Stop default page reloads until confirm flows are implemented
+  // EMAIL CONFIRM FORM
   const emailConfirmForm = document.getElementById('emailConfirmForm');
   if (emailConfirmForm) {
-    emailConfirmForm.addEventListener('submit', function(evt){
+    emailConfirmForm.addEventListener('submit', async function(evt){
       evt.preventDefault();
-      rgLogInfo('Blocked default submit on #emailConfirmForm (no page reload).');
-      // TODO: call your /verify?action=confirm for email here when ready
+      try {
+        // Prefer explicitly typed email; fall back to state
+        const emailInputConfirm = document.getElementById('emailConfirm');
+        const emailFromField = emailInputConfirm && emailInputConfirm.value ? emailInputConfirm.value.trim() : '';
+        const email = isLikelyEmail(emailFromField) ? emailFromField
+            : (window.rgConfirmState && window.rgConfirmState.email) || '';
+        
+        const codeInput = document.getElementById('emailCode');
+        const code = codeInput ? String(codeInput.value || '').trim() : '';
+        
+        if (!isLikelyEmail(email)) {
+          rgLogWarn('Confirm email clicked with invalid or missing email.');
+          return;
+        }
+        if (!code) {
+          rgLogWarn('Confirm email clicked with empty code.');
+          return;
+        }
+        
+        const resp = await confirmEmailCode(email, code);
+        const ok = resp.ok && resp.json && resp.json.confirmed === true || (resp.json && resp.json.email_verified === true);
+        if (ok) {
+          rgLogInfo('Email confirmation succeeded.');
+          // Update local status & UI
+          if (!window.rgConfirmState) window.rgConfirmState = {};
+          window.rgConfirmState.email = email;
+          window.rgConfirmState.status = Object.assign({}, window.rgConfirmState.status || {}, { emailVerified: true });
+          applyVerificationUi(window.rgConfirmState.status, email);
+          
+          // If phone is also verified now, ensure profile
+          const token = getAuthTokenAtCallTime();
+          const bothVerified = !!window.rgConfirmState.status.emailVerified && !!window.rgConfirmState.status.phoneVerified;
+          if (bothVerified && token) {
+            const ensured = await ensureProfileExists(token);
+            rgLogInfo('Profile ensure after email confirm', { ok: ensured });
+          }
+        } else {
+          rgLogWarn('Email confirmation failed.', resp.json || resp.text);
+        }
+      } catch (err) {
+        rgLogError('Email confirm handler error', err);
+      }
     });
   }
   
+  // EMAIL RESEND
+  const btnResendEmail = document.getElementById('btnResendEmail');
+  if (btnResendEmail) {
+    btnResendEmail.addEventListener('click', async function(){
+      try {
+        const emailInputConfirm = document.getElementById('emailConfirm');
+        const emailFromField = emailInputConfirm && emailInputConfirm.value ? emailInputConfirm.value.trim() : '';
+        const email = isLikelyEmail(emailFromField) ? emailFromField
+            : (window.rgConfirmState && window.rgConfirmState.email) || '';
+        
+        if (!isLikelyEmail(email)) {
+          rgLogWarn('Resend email clicked with invalid or missing email.');
+          return;
+        }
+        const resp = await sendEmailCode(email);
+        if (resp.ok) {
+          rgLogInfo('Resent email verification code successfully.');
+        } else {
+          rgLogWarn('Failed to resend email code.', resp.json || resp.text);
+        }
+      } catch (err) {
+        rgLogError('Resend email handler error', err);
+      }
+    });
+  }
+  
+  // PHONE CONFIRM FORM
   const phoneConfirmForm = document.getElementById('phoneConfirmForm');
   if (phoneConfirmForm) {
-    phoneConfirmForm.addEventListener('submit', function(evt){
+    phoneConfirmForm.addEventListener('submit', async function(evt){
       evt.preventDefault();
-      rgLogInfo('Blocked default submit on #phoneConfirmForm (no page reload).');
-      // TODO: call your /verify?action=confirm for phone here when ready
+      try {
+        const phoneInput = document.getElementById('phone');
+        const phone = phoneInput ? String(phoneInput.value || '').trim() : '';
+        const codeInput = document.getElementById('phoneCode');
+        const code = codeInput ? String(codeInput.value || '').trim() : '';
+        
+        if (!phone) { rgLogWarn('Confirm phone clicked with empty phone.'); return; }
+        if (!code)  { rgLogWarn('Confirm phone clicked with empty code.');  return; }
+        
+        const resp = await confirmPhoneCode(phone, code);
+        const ok = resp.ok && resp.json && (resp.json.confirmed === true || resp.json.phone_verified === true);
+        if (ok) {
+          rgLogInfo('Phone confirmation succeeded.');
+          if (!window.rgConfirmState) window.rgConfirmState = {};
+          window.rgConfirmState.status = Object.assign({}, window.rgConfirmState.status || {}, { phoneVerified: true });
+          applyVerificationUi(window.rgConfirmState.status, window.rgConfirmState.email);
+          
+          // If email also verified now, ensure profile
+          const token = getAuthTokenAtCallTime();
+          const bothVerified = !!window.rgConfirmState.status.emailVerified && !!window.rgConfirmState.status.phoneVerified;
+          if (bothVerified && token) {
+            const ensured = await ensureProfileExists(token);
+            rgLogInfo('Profile ensure after phone confirm', { ok: ensured });
+          }
+        } else {
+          rgLogWarn('Phone confirmation failed.', resp.json || resp.text);
+        }
+      } catch (err) {
+        rgLogError('Phone confirm handler error', err);
+      }
+    });
+  }
+  
+  // PHONE RESEND
+  const btnResendPhone = document.getElementById('btnResendPhone');
+  if (btnResendPhone) {
+    btnResendPhone.addEventListener('click', async function(){
+      try {
+        const phoneInput = document.getElementById('phone');
+        const phone = phoneInput ? String(phoneInput.value || '').trim() : '';
+        if (!phone) { rgLogWarn('Resend phone clicked with empty phone.'); return; }
+        
+        const resp = await sendPhoneCode(phone);
+        if (resp.ok) {
+          rgLogInfo('Resent SMS verification code successfully.');
+        } else {
+          rgLogWarn('Failed to resend SMS code.', resp.json || resp.text);
+        }
+      } catch (err) {
+        rgLogError('Resend phone handler error', err);
+      }
     });
   }
 }
-
-
-function unhideBaseSectionsOnce(){
-  // Remove inline display:none from containers that start hidden in HTML.
-  const ids = [
-    'verificationStatus',
-    'emailVerifiedBanner',
-    'phoneVerifiedBanner',
-    'emailConfirmForm',
-    'phoneConfirmForm',
-    'emailLookupForm'
-  ];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (el.style && typeof el.style.removeProperty === 'function') {
-      el.style.removeProperty('display'); // clears inline display:none
-    } else {
-      el.style.display = ''; // fallback
-    }
-    // Start hidden via class so JS has consistent control
-    el.classList.add('d-none');
-  });
-}
+// --- END PATCH ---
 
 
 /* Init */
 async function initConfirm(){
   rgLogInfo('Initializing workflow on confirm.html');
-
+  
   // Try JWT path first
   const handled = await handleHasJwtPath();
   if(handled){ return; }
-
+  
   // No usable JWT; show email section and wire handler
   setVisible(RGConfirmConfig.selectors.emailSectionWrapper, true);
   wireNoJwtEmailHandler();
@@ -407,17 +549,13 @@ async function initConfirm(){
 /* DOM ready */
 document.addEventListener('DOMContentLoaded', function(){
   try{
-    // keep your one-time unhide if you added it earlier; otherwise ignore this comment
-    // unhideBaseSectionsOnce();
-    
-    wireVerificationForms();   // ← prevent confirm forms from reloading the page
+    unhideBaseSectionsOnce();   // clear inline display:none first
+    wireVerificationForms();    // prevent confirm forms from reloading the page
     initConfirm();
   }catch(e){
     rgLogError('Initialization failed', e);
   }
 });
-
-
 
 /* Export minimal debug surface */
 window.RGConfirm={
