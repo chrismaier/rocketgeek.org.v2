@@ -62,15 +62,18 @@ function isLikelyEmail(v){ if(!isNonEmptyString(v)) return false; return /^[^\s@
 
 /* DOM helpers */
 function qs(sel){ const el=document.querySelector(sel); if(!el) rgLogWarn('Selector not found:', sel); return el; }
+
 function setVisible(selOrEl, visible){
-  const el = typeof selOrEl==='string'? qs(selOrEl) : selOrEl;
-  if(!el) return;
-  const wrapper = el.closest('.mb-3, .form-group, .row, .col, .card, section') || el;
-  try{
-    if(visible){ wrapper.classList.remove('d-none'); wrapper.style.display=''; }
-    else { wrapper.classList.add('d-none'); wrapper.style.display='none'; }
-  }catch(e){ rgLogWarn('Visibility toggle failed', {e, el}); }
+  const el = typeof selOrEl === 'string' ? qs(selOrEl) : selOrEl;
+  if (!el) return;
+  // Only toggle Bootstrap's d-none; never force display values
+  if (visible) {
+    el.classList.remove('d-none');
+  } else {
+    el.classList.add('d-none');
+  }
 }
+
 
 /* JWT helpers */
 function getIdTokenFromLocalStorage(){
@@ -221,6 +224,12 @@ function applyVerificationUi(status, currentEmail) {
   
   // If any banner will be visible, unhide the container
   const willShowAnyBanner = !!status.emailVerified || !!status.phoneVerified;
+  rgLogInfo('UI decision flags', {
+    emailVerified: !!status.emailVerified,
+    phoneVerified: !!status.phoneVerified,
+    showStatusContainer: !!willShowAnyBanner
+  });
+  
   if (willShowAnyBanner) {
     setVisible(sel.verificationStatus, true);
   } else {
@@ -240,6 +249,7 @@ function applyVerificationUi(status, currentEmail) {
     const emailConfirmInput = document.getElementById('emailConfirm');
     if (emailConfirmInput && currentEmail) emailConfirmInput.value = currentEmail;
   }
+  
   
   // PHONE
   if (status.phoneVerified) {
@@ -280,8 +290,9 @@ async function handleHasJwtPath(){
 
   // Hide manual email section if present
   setVisible(RGConfirmConfig.selectors.emailSectionWrapper, false);
-  applyVerificationUi(status);
-
+  applyVerificationUi(status, email);
+  
+  
   // If both verified, ensure profile exists
   if(status.emailVerified && status.phoneVerified){
     const ok = await ensureProfileExists(token);
@@ -316,8 +327,9 @@ function wireNoJwtEmailHandler(){
         //window.location.href=RGConfirmConfig.signupUrl;
         return;
       }
-      applyVerificationUi(status);
-
+      applyVerificationUi(status, email);
+      
+      
       // No JWT means we likely cannot call profile endpoints that require auth;
       // so we only attempt ensureProfileExists when user actually has a JWT.
       // If you want to allow unauthenticated creation, your backend must permit it (not recommended).
@@ -328,11 +340,56 @@ function wireNoJwtEmailHandler(){
       window.rgConfirmState={ email, status };
     }catch(e){ rgLogError('Error in no-JWT submit handler', e); }
   };
-
   const form=emailBtn.closest('form');
   if(form){ form.addEventListener('submit', onSubmit); }
   else { emailBtn.addEventListener('click', onSubmit); }
 }
+
+function wireVerificationForms(){
+  // Stop default page reloads until confirm flows are implemented
+  const emailConfirmForm = document.getElementById('emailConfirmForm');
+  if (emailConfirmForm) {
+    emailConfirmForm.addEventListener('submit', function(evt){
+      evt.preventDefault();
+      rgLogInfo('Blocked default submit on #emailConfirmForm (no page reload).');
+      // TODO: call your /verify?action=confirm for email here when ready
+    });
+  }
+  
+  const phoneConfirmForm = document.getElementById('phoneConfirmForm');
+  if (phoneConfirmForm) {
+    phoneConfirmForm.addEventListener('submit', function(evt){
+      evt.preventDefault();
+      rgLogInfo('Blocked default submit on #phoneConfirmForm (no page reload).');
+      // TODO: call your /verify?action=confirm for phone here when ready
+    });
+  }
+}
+
+
+function unhideBaseSectionsOnce(){
+  // Remove inline display:none from containers that start hidden in HTML.
+  const ids = [
+    'verificationStatus',
+    'emailVerifiedBanner',
+    'phoneVerifiedBanner',
+    'emailConfirmForm',
+    'phoneConfirmForm',
+    'emailLookupForm'
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.style && typeof el.style.removeProperty === 'function') {
+      el.style.removeProperty('display'); // clears inline display:none
+    } else {
+      el.style.display = ''; // fallback
+    }
+    // Start hidden via class so JS has consistent control
+    el.classList.add('d-none');
+  });
+}
+
 
 /* Init */
 async function initConfirm(){
@@ -349,8 +406,18 @@ async function initConfirm(){
 
 /* DOM ready */
 document.addEventListener('DOMContentLoaded', function(){
-  try{ initConfirm(); }catch(e){ rgLogError('Initialization failed', e); }
+  try{
+    // keep your one-time unhide if you added it earlier; otherwise ignore this comment
+    // unhideBaseSectionsOnce();
+    
+    wireVerificationForms();   // ← prevent confirm forms from reloading the page
+    initConfirm();
+  }catch(e){
+    rgLogError('Initialization failed', e);
+  }
 });
+
+
 
 /* Export minimal debug surface */
 window.RGConfirm={
