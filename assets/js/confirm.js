@@ -68,10 +68,16 @@ function qs(sel){ const el=document.querySelector(sel); if(!el) rgLogWarn('Selec
 
 /* Only toggle Bootstrap's d-none to avoid layout break */
 function setVisible(selOrEl, visible){
-  const el = typeof selOrEl === 'string' ? qs(selOrEl) : selOrEl;
+  const el = typeof selOrEl === 'string' ? document.querySelector(selOrEl) : selOrEl;
   if (!el) return;
-  if (visible) el.classList.remove('d-none'); else el.classList.add('d-none');
+  if (visible) {
+    el.classList.remove('d-none');
+    if (el.style && el.style.display === 'none') el.style.removeProperty('display'); // ensure it's showable
+  } else {
+    el.classList.add('d-none');
+  }
 }
+
 
 /* One-time cleanup of inline display:none so classes control visibility */
 function unhideBaseSectionsOnce(){
@@ -136,31 +142,16 @@ async function postJson(url, body, timeoutMs, authToken){
 }
 
 // --- BEGIN PATCH: verify API helpers (place right below postJson) ---
-// Prefer the access token (needed for Cognito attribute verify APIs)
-function getAccessTokenAtCallTime(){
-  // after login on this page
-  if (window.rgAuth && isNonEmptyString(window.rgAuth.accessToken)) return window.rgAuth.accessToken;
-  
-  // from Cognito SDK localStorage if present
-  try{
-    const key = Object.keys(localStorage).find(k =>
-        k.includes('CognitoIdentityServiceProvider') && k.endsWith('.accessToken')
-    );
-    return key ? (localStorage.getItem(key) || '') : '';
-  }catch(_){ return ''; }
-}
 
-// (optional) keep if you want to read ID token elsewhere
-function getIdTokenAtCallTime(){
+function getAuthTokenAtCallTime(){
+  // Prefer a token we stored after a successful login; fallback to localStorage Cognito token
   if (window.rgAuth && isNonEmptyString(window.rgAuth.idToken)) return window.rgAuth.idToken;
   return getIdTokenFromLocalStorage();
 }
 
 
 async function postVerify(payload, includeAuth=false){
-  // const auth = includeAuth ? getAuthTokenAtCallTime() : undefined;
-  const auth = includeAuth ? getAccessTokenAtCallTime() : undefined;
-  
+  const auth = includeAuth ? getAuthTokenAtCallTime() : undefined;
   rgLogInfo('POST /verify payload (masked)', {
     action: payload.action,
     channel: payload.channel,
@@ -200,7 +191,7 @@ async function sendEmailCode(email){
     username: email,
     user: email
   };
-  return postVerify(payload, /*includeAuth*/ true);
+  return postVerify(payload, /*includeAuth*/ false);
 }
 
 // Confirm email code
@@ -212,14 +203,14 @@ async function confirmEmailCode(email, code){
     identifier: email,
     code: code
   };
-  return postVerify(payload, /*includeAuth*/ true);
+  return postVerify(payload, /*includeAuth*/ false);
 }
 
 // Resend phone (SMS) code
 async function sendPhoneCode(phone){
   const payload = {
     action: 'send',
-    channel: 'phone',
+    channel: 'sms',
     phone: phone,
     identifier: phone
   };
@@ -230,7 +221,7 @@ async function sendPhoneCode(phone){
 async function confirmPhoneCode(phone, code){
   const payload = {
     action: 'confirm',
-    channel: 'phone',
+    channel: 'sms',
     phone: phone,
     identifier: phone,
     code: code
@@ -239,38 +230,6 @@ async function confirmPhoneCode(phone, code){
 }
 
 // --- END PATCH ---
-
-// ---- lifted to top-level to avoid ReferenceError ----
-
-  async function loginWithEmailPassword(email, password){
-    const url = `${API_BASE}/auth/login`; // <-- adjust if your login endpoint differs
-    const payload = { email, password };
-    rgLogInfo('Login attempt (masked)', { email: '<present>', hasPassword: !!password });
-    
-    const resp = await postJson(url, payload, RGConfirmConfig.requestTimeoutMs);
-    rgLogInfo('Login response', { status: resp.status, ok: resp.ok, body: resp.json || resp.text });
-    
-    if (!resp.ok || !resp.json) return null;
-    
-    // Accept common token shapes; adapt if your backend uses different keys
-    const idToken = resp.json.id_token || resp.json.idToken || resp.json.token || '';
-    const accessToken = resp.json.access_token || resp.json.accessToken || '';
-    const refreshToken = resp.json.refresh_token || resp.json.refreshToken || '';
-    
-    if (!isNonEmptyString(idToken)) return null;
-    
-    // Keep tokens in memory; rest of code can pick it up via getAuthTokenAtCallTime()
-    window.rgAuth = { idToken, accessToken, refreshToken, email };
-    
-    // Optional: also stash in localStorage if you want subsequent page loads to see it
-    // localStorage.setItem('RG_idToken', idToken);
-    
-    return window.rgAuth;
-  }
-  
-  
-// ---- end lifted ----
-
 
 
 /* Verify API: preflight/status */
@@ -465,7 +424,33 @@ function wireNoJwtEmailHandler(){
   // Attempt resource-owner style login via your backend.
 // Expect the backend to verify credentials with Cognito and return id_token/access_token/refresh_token.
 // If you use Cognito Hosted UI instead, replace this with a redirect to the Hosted UI.
-function wireLoginForm(){
+  async function loginWithEmailPassword(email, password){
+    const url = `${API_BASE}/auth/login`; // <-- adjust if your login endpoint differs
+    const payload = { email, password };
+    rgLogInfo('Login attempt (masked)', { email: '<present>', hasPassword: !!password });
+    
+    const resp = await postJson(url, payload, RGConfirmConfig.requestTimeoutMs);
+    rgLogInfo('Login response', { status: resp.status, ok: resp.ok, body: resp.json || resp.text });
+    
+    if (!resp.ok || !resp.json) return null;
+    
+    // Accept common token shapes; adapt if your backend uses different keys
+    const idToken = resp.json.id_token || resp.json.idToken || resp.json.token || '';
+    const accessToken = resp.json.access_token || resp.json.accessToken || '';
+    const refreshToken = resp.json.refresh_token || resp.json.refreshToken || '';
+    
+    if (!isNonEmptyString(idToken)) return null;
+    
+    // Keep tokens in memory; rest of code can pick it up via getAuthTokenAtCallTime()
+    window.rgAuth = { idToken, accessToken, refreshToken, email };
+    
+    // Optional: also stash in localStorage if you want subsequent page loads to see it
+    // localStorage.setItem('RG_idToken', idToken);
+    
+    return window.rgAuth;
+  }
+  
+  function wireLoginForm(){
     const sel = RGConfirmConfig.selectors;
     const form = document.querySelector(sel.loginForm);
     if (!form) return;
@@ -677,19 +662,27 @@ async function initConfirm(){
   if(handled){ return; }
   
   
-// No usable JWT; show LOGIN instead of email lookup
-  setVisible(RGConfirmConfig.selectors.emailSectionWrapper, false);
-  setVisible(RGConfirmConfig.selectors.loginForm, true);
-  wireLoginForm();
+// No usable JWT; prefer LOGIN if present, else fall back to email lookup
+  const loginFormEl = document.querySelector(RGConfirmConfig.selectors.loginForm || '');
+  if (loginFormEl) {
+    setVisible(RGConfirmConfig.selectors.emailSectionWrapper, false);
+    setVisible(RGConfirmConfig.selectors.loginForm, true);
+    if (typeof wireLoginForm === 'function') { wireLoginForm(); }
+    else { rgLogWarn('wireLoginForm is not defined; showing login form without handlers'); }
+  } else {
+    setVisible(RGConfirmConfig.selectors.emailSectionWrapper, true);
+    wireNoJwtEmailHandler();
+  }
 }
 
 /* DOM ready */
 document.addEventListener('DOMContentLoaded', function(){
   try{
-    unhideBaseSectionsOnce();   // clear inline display:none first
+unhideBaseSectionsOnce();   // clear inline display:none first
     wireVerificationForms();    // prevent confirm forms from reloading the page
+    if (typeof wireLoginForm === 'function') { try { wireLoginForm(); } catch(e) { rgLogWarn('wireLoginForm setup error', e); } }
     initConfirm();
-  }catch(e){
+}catch(e){
     rgLogError('Initialization failed', e);
   }
 });
