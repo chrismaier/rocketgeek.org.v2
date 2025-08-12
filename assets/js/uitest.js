@@ -3,21 +3,14 @@
 /* Begin constants */
 const DEFAULTS_JSON_PATH = "assets/json-data/uitest.json";
 
-/* Section and control element IDs kept descriptive and explicit */
-const SECTION_IDS = {
-    accountAccess: "sectionAccountAccess",
-    emailVerification: "sectionEmailVerification",
-    phoneVerification: "sectionPhoneVerification",
-    profile: "sectionProfile",
-    cookies: "sectionCookies",
-    tos: "sectionToS"
-};
-
 const FORM_IDS = {
     emailLookupForm: "emailLookupForm",
     loginForm: "loginForm",
     emailConfirmForm: "emailConfirmForm",
     phoneConfirmForm: "phoneConfirmForm",
+    profileForm: "profileForm",
+    cookieForm: "cookieForm",
+    tosForm: "tosForm",
     controllerForm: "uiControllerForm"
 };
 
@@ -28,6 +21,15 @@ const BANNER_IDS = {
     profileStatusBanner: "profileStatusBanner",
     cookieBanner: "cookieBanner",
     tosBanner: "tosBanner"
+};
+
+const BUTTON_IDS = {
+    createProfile: "btnCreateProfile",
+    removeProfile: "btnRemoveProfile",
+    acceptCookies: "btnAcceptCookies",
+    rejectCookies: "btnRejectCookies",
+    acceptTos: "btnAcceptTos",
+    declineTos: "btnDeclineTos"
 };
 
 const FIELD_IDS = {
@@ -42,7 +44,6 @@ const FIELD_IDS = {
     verifiedPhoneValue: "verifiedPhoneValue"
 };
 
-/* Radios in the controller form */
 const TOGGLE_NAMES = [
     "emailVerified",
     "phoneVerified",
@@ -54,7 +55,6 @@ const TOGGLE_NAMES = [
     "tosAccepted"
 ];
 
-/* Defaults if no JSON present */
 const BUILT_IN_DEFAULTS = {
     emailVerified: false,
     phoneVerified: false,
@@ -71,73 +71,25 @@ let loadedDefaults = null;
 
 
 /* Begin DOM helpers */
-function byId(id) {
-    const element = document.getElementById(id);
-    if (!element) {
-        console.warn(`[uitest.js] Missing element with id: ${id}`);
-    }
-    return element;
-}
+function byId(id) { const el = document.getElementById(id); if (!el) console.warn(`[uitest.js] Missing #${id}`); return el; }
+function show(id) { const el = byId(id); if (el) el.style.display = ""; }
+function hide(id) { const el = byId(id); if (el) el.style.display = "none"; }
+function setText(id, text) { const el = byId(id); if (el) el.textContent = text ?? ""; }
+function getQueryParam(name) { const p = new URLSearchParams(window.location.search); return p.get(name); }
 
-function show(id) {
-    const element = byId(id);
-    if (!element) return;
-    element.style.display = "";
-    console.log(`[uitest.js] Show #${id}`);
+function setBannerClass(el, alertTypeClass) {
+    if (!el) return;
+    [...el.classList].forEach(c => { if (c.startsWith("alert-")) el.classList.remove(c); });
+    if (!el.classList.contains("alert")) el.classList.add("alert");
+    if (alertTypeClass) el.classList.add(alertTypeClass);
 }
-
-function hide(id) {
-    const element = byId(id);
-    if (!element) return;
-    element.style.display = "none";
-    console.log(`[uitest.js] Hide #${id}`);
-}
-
-function setText(id, text) {
-    const element = byId(id);
-    if (!element) return;
-    element.textContent = text ?? "";
-}
-
-function setInputValue(id, value) {
-    const element = byId(id);
-    if (!element) return;
-    element.value = value ?? "";
-}
-
-function getQueryParam(name) {
-    const params = new URLSearchParams(window.location.search);
-    return params.get(name);
-}
-
-/* Remove any prior Bootstrap alert-* classes and apply the requested one */
-function setBannerClass(element, alertTypeClass) {
-    if (!element) return;
-    element.classList.forEach((cls) => {
-        if (cls.startsWith("alert-")) {
-            element.classList.remove(cls);
-        }
-    });
-    if (!element.classList.contains("alert")) {
-        element.classList.add("alert");
-    }
-    if (alertTypeClass) {
-        element.classList.add(alertTypeClass);
-    }
-}
-
-/* Convenience to update a banner */
 function renderBanner({ id, visible, alertTypeClass, text, htmlSetter }) {
-    const bannerElement = byId(id);
-    if (!bannerElement) return;
-    
+    const el = byId(id);
+    if (!el) return;
     if (visible) {
-        setBannerClass(bannerElement, alertTypeClass || "alert-success");
-        if (typeof htmlSetter === "function") {
-            htmlSetter(bannerElement);
-        } else if (typeof text === "string") {
-            bannerElement.textContent = text;
-        }
+        setBannerClass(el, alertTypeClass || "alert-success");
+        if (typeof htmlSetter === "function") htmlSetter(el);
+        else if (typeof text === "string") el.textContent = text;
         show(id);
     } else {
         hide(id);
@@ -147,189 +99,119 @@ function renderBanner({ id, visible, alertTypeClass, text, htmlSetter }) {
 
 
 /* Begin radio helpers */
-function readRadioBoolean(groupName) {
-    const selected = document.querySelector(`input[name="${groupName}"]:checked`);
-    if (!selected) return null;
-    return selected.value === "true";
+function readRadioBoolean(name) {
+    const sel = document.querySelector(`input[name="${name}"]:checked`);
+    return sel ? sel.value === "true" : null;
 }
-
-function setRadioBoolean(groupName, value) {
-    const desired = value ? "true" : "false";
-    const target = document.querySelector(`input[name="${groupName}"][value="${desired}"]`);
-    const opposite = document.querySelector(
-        `input[name="${groupName}"][value="${value ? "false" : "true"}"]`
-    );
-    if (target) target.checked = true;
-    if (opposite) opposite.checked = false;
+function setRadioBoolean(name, value) {
+    const v = value ? "true" : "false";
+    const t = document.querySelector(`input[name="${name}"][value="${v}"]`);
+    const o = document.querySelector(`input[name="${name}"][value="${value ? "false" : "true"}"]`);
+    if (t) t.checked = true;
+    if (o) o.checked = false;
 }
-
 function readAllToggles() {
-    const state = {};
-    TOGGLE_NAMES.forEach((name) => {
-        state[name] = readRadioBoolean(name);
-    });
-    return state;
+    const s = {};
+    TOGGLE_NAMES.forEach(n => s[n] = readRadioBoolean(n));
+    return s;
 }
-
 function syncRadiosFromMap(map) {
-    TOGGLE_NAMES.forEach((name) => {
-        if (Object.prototype.hasOwnProperty.call(map, name)) {
-            setRadioBoolean(name, !!map[name]);
-        }
-    });
+    TOGGLE_NAMES.forEach(n => { if (Object.prototype.hasOwnProperty.call(map, n)) setRadioBoolean(n, !!map[n]); });
 }
 /* End radio helpers */
 
 
 /* Begin UI rules */
 function deriveEmailForBanner() {
-    // Preference order: emailConfirm input, loginEmail, email lookup box
-    const emailConfirm = byId(FIELD_IDS.emailConfirmEmailInput)?.value?.trim();
-    if (emailConfirm) return emailConfirm;
-    
-    const loginEmail = byId(FIELD_IDS.loginEmailInput)?.value?.trim();
-    if (loginEmail) return loginEmail;
-    
-    const lookupEmail = byId(FIELD_IDS.emailLookupInput)?.value?.trim();
-    if (lookupEmail) return lookupEmail;
-    
-    return "";
+    return (
+        byId(FIELD_IDS.emailConfirmEmailInput)?.value?.trim() ||
+        byId(FIELD_IDS.loginEmailInput)?.value?.trim() ||
+        byId(FIELD_IDS.emailLookupInput)?.value?.trim() ||
+        ""
+    );
 }
-
 function derivePhoneForBanner() {
-    const phone = byId(FIELD_IDS.phoneInput)?.value?.trim();
-    return phone || "";
+    return byId(FIELD_IDS.phoneInput)?.value?.trim() || "";
 }
 
-function renderAccountAccess(toggles) {
-    // Email lookup visibility follows its toggle
-    if (toggles.emailLookup === true) {
-        show(FORM_IDS.emailLookupForm);
-    } else {
-        hide(FORM_IDS.emailLookupForm);
-    }
+/* Rule: false => show form, hide banner. true => hide form, show banner. */
+
+function renderAccountAccess(t) {
+    // Email lookup visibility driven by its toggle (not a true/false "validated" state)
+    t.emailLookup === true ? show(FORM_IDS.emailLookupForm) : hide(FORM_IDS.emailLookupForm);
     
-    // Login form is visible when NOT logged in
-    if (toggles.loggedIn === false) {
-        show(FORM_IDS.loginForm);
-    } else {
-        hide(FORM_IDS.loginForm);
-    }
-    
-    // Logged-in success banner reflects loggedIn state
+    // Logged in state uses the same rule
+    t.loggedIn === false ? show(FORM_IDS.loginForm) : hide(FORM_IDS.loginForm);
     renderBanner({
         id: BANNER_IDS.loggedInBanner,
-        visible: !!toggles.loggedIn,
+        visible: !!t.loggedIn,
         alertTypeClass: "alert-success",
         text: "Logged in successfully."
     });
 }
 
-function renderEmailVerification(toggles) {
-    // Email confirm form shows when NOT verified
-    if (toggles.emailVerified === false) {
-        show(FORM_IDS.emailConfirmForm);
-    } else {
-        hide(FORM_IDS.emailConfirmForm);
-    }
-    
-    // Email verified banner shows when verified
+function renderEmailVerification(t) {
+    t.emailVerified === false ? show(FORM_IDS.emailConfirmForm) : hide(FORM_IDS.emailConfirmForm);
     renderBanner({
         id: BANNER_IDS.emailVerifiedBanner,
-        visible: !!toggles.emailVerified,
+        visible: !!t.emailVerified,
         alertTypeClass: "alert-success",
-        htmlSetter: () => {
-            setText(FIELD_IDS.verifiedEmailValue, deriveEmailForBanner());
-        }
+        htmlSetter: () => setText(FIELD_IDS.verifiedEmailValue, deriveEmailForBanner())
     });
 }
 
-function renderPhoneVerification(toggles) {
-    // Phone confirm form shows only when JWT present AND not verified
-    const shouldShowPhoneForm = toggles.jwtPresent === true && toggles.phoneVerified === false;
-    if (shouldShowPhoneForm) {
-        show(FORM_IDS.phoneConfirmForm);
-    } else {
-        hide(FORM_IDS.phoneConfirmForm);
-    }
-    
-    // Phone verified banner shows when verified
+function renderPhoneVerification(t) {
+    // Show phone confirm only when jwtPresent AND not verified; otherwise hide form.
+    const showForm = t.jwtPresent === true && t.phoneVerified === false;
+    showForm ? show(FORM_IDS.phoneConfirmForm) : hide(FORM_IDS.phoneConfirmForm);
     renderBanner({
         id: BANNER_IDS.phoneVerifiedBanner,
-        visible: !!toggles.phoneVerified,
+        visible: !!t.phoneVerified,
         alertTypeClass: "alert-success",
-        htmlSetter: () => {
-            setText(FIELD_IDS.verifiedPhoneValue, derivePhoneForBanner());
-        }
+        htmlSetter: () => setText(FIELD_IDS.verifiedPhoneValue, derivePhoneForBanner())
     });
 }
 
-function renderProfileSection(toggles) {
-    // Simple status indicator for now
-    if (toggles.userProfile === true) {
-        renderBanner({
-            id: BANNER_IDS.profileStatusBanner,
-            visible: true,
-            alertTypeClass: "alert-info",
-            text: "Profile found in S3."
-        });
-    } else {
-        renderBanner({
-            id: BANNER_IDS.profileStatusBanner,
-            visible: true,
-            alertTypeClass: "alert-warning",
-            text: "No profile found in S3."
-        });
-    }
+function renderProfileSection(t) {
+    // false => show form, hide banner; true => hide form, show banner
+    t.userProfile === false ? show(FORM_IDS.profileForm) : hide(FORM_IDS.profileForm);
+    renderBanner({
+        id: BANNER_IDS.profileStatusBanner,
+        visible: !!t.userProfile,
+        alertTypeClass: "alert-success",
+        text: "Profile found in S3."
+    });
 }
 
-function renderCookieBanner(toggles) {
-    if (toggles.cookieAccepted === true) {
-        renderBanner({
-            id: BANNER_IDS.cookieBanner,
-            visible: true,
-            alertTypeClass: "alert-success",
-            text: "Cookies accepted."
-        });
-    } else {
-        renderBanner({
-            id: BANNER_IDS.cookieBanner,
-            visible: true,
-            alertTypeClass: "alert-warning",
-            text: "Please accept cookies to continue."
-        });
-    }
+function renderCookiesSection(t) {
+    t.cookieAccepted === false ? show(FORM_IDS.cookieForm) : hide(FORM_IDS.cookieForm);
+    renderBanner({
+        id: BANNER_IDS.cookieBanner,
+        visible: !!t.cookieAccepted,
+        alertTypeClass: "alert-success",
+        text: "Cookies accepted."
+    });
 }
 
-function renderTosBanner(toggles) {
-    if (toggles.tosAccepted === true) {
-        renderBanner({
-            id: BANNER_IDS.tosBanner,
-            visible: true,
-            alertTypeClass: "alert-success",
-            text: "Terms of Service accepted."
-        });
-    } else {
-        renderBanner({
-            id: BANNER_IDS.tosBanner,
-            visible: true,
-            alertTypeClass: "alert-danger",
-            text: "You must accept the Terms of Service."
-        });
-    }
+function renderTosSection(t) {
+    t.tosAccepted === false ? show(FORM_IDS.tosForm) : hide(FORM_IDS.tosForm);
+    renderBanner({
+        id: BANNER_IDS.tosBanner,
+        visible: !!t.tosAccepted,
+        alertTypeClass: "alert-success",
+        text: "Terms of Service accepted."
+    });
 }
 
-function renderAll(toggles) {
-    console.group("[uitest.js] Render cycle");
-    console.log("State:", toggles);
-    
-    renderAccountAccess(toggles);
-    renderEmailVerification(toggles);
-    renderPhoneVerification(toggles);
-    renderProfileSection(toggles);
-    renderCookieBanner(toggles);
-    renderTosBanner(toggles);
-    
+function renderAll(t) {
+    console.group("[uitest.js] Render");
+    console.log("State:", t);
+    renderAccountAccess(t);
+    renderEmailVerification(t);
+    renderPhoneVerification(t);
+    renderProfileSection(t);
+    renderCookiesSection(t);
+    renderTosSection(t);
     console.groupEnd();
 }
 /* End UI rules */
@@ -337,38 +219,39 @@ function renderAll(toggles) {
 
 /* Begin wiring handlers */
 function installControllerHandlers() {
-    const controllerFormElement = byId(FORM_IDS.controllerForm);
-    if (controllerFormElement) {
-        controllerFormElement.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const defaults = loadedDefaults || BUILT_IN_DEFAULTS;
-            console.info("[uitest.js] Resetting to defaults:", defaults);
-            syncRadiosFromMap(defaults);
-            renderAll(readAllToggles());
-        });
-    }
+    const controller = byId(FORM_IDS.controllerForm);
+    controller?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const defaults = loadedDefaults || BUILT_IN_DEFAULTS;
+        syncRadiosFromMap(defaults);
+        renderAll(readAllToggles());
+    });
     
-    // Instant re-render on any radio change
-    TOGGLE_NAMES.forEach((name) => {
-        document.querySelectorAll(`input[name="${name}"]`).forEach((inputElement) => {
-            inputElement.addEventListener("change", () => {
-                renderAll(readAllToggles());
-            });
+    TOGGLE_NAMES.forEach((n) => {
+        document.querySelectorAll(`input[name="${n}"]`).forEach((el) => {
+            el.addEventListener("change", () => renderAll(readAllToggles()));
         });
     });
 }
 
+function installActionButtonHandlers() {
+    byId(BUTTON_IDS.createProfile)?.addEventListener("click", () => { setRadioBoolean("userProfile", true);  renderAll(readAllToggles()); });
+    byId(BUTTON_IDS.removeProfile)?.addEventListener("click", () => { setRadioBoolean("userProfile", false); renderAll(readAllToggles()); });
+    
+    byId(BUTTON_IDS.acceptCookies)?.addEventListener("click", () => { setRadioBoolean("cookieAccepted", true);  renderAll(readAllToggles()); });
+    byId(BUTTON_IDS.rejectCookies)?.addEventListener("click", () => { setRadioBoolean("cookieAccepted", false); renderAll(readAllToggles()); });
+    
+    byId(BUTTON_IDS.acceptTos)?.addEventListener("click", () => { setRadioBoolean("tosAccepted", true);  renderAll(readAllToggles()); });
+    byId(BUTTON_IDS.declineTos)?.addEventListener("click", () => { setRadioBoolean("tosAccepted", false); renderAll(readAllToggles()); });
+}
+
 function preventLiveFormSubmissions() {
-    Object.values(FORM_IDS).forEach((formId) => {
-        const formElement = byId(formId);
-        if (!formElement) return;
-        
-        // Skip the controller form here; it has its own handler above
-        if (formId === FORM_IDS.controllerForm) return;
-        
-        formElement.addEventListener("submit", (event) => {
-            event.preventDefault();
-            console.log(`[uitest.js] Prevented submit on #${formId} (UI-only).`);
+    Object.values(FORM_IDS).forEach((id) => {
+        if (id === FORM_IDS.controllerForm) return;
+        const form = byId(id);
+        form?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            console.log(`[uitest.js] Prevented submit on #${id} (UI-only).`);
         });
     });
 }
@@ -378,15 +261,15 @@ function preventLiveFormSubmissions() {
 /* Begin initialization */
 async function loadDefaultsJson() {
     try {
-        const response = await fetch(DEFAULTS_JSON_PATH, { cache: "no-store" });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const json = await response.json();
+        const res = await fetch(DEFAULTS_JSON_PATH, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
         if (json && typeof json.toggleDefaults === "object") {
             console.info("[uitest.js] Loaded toggle defaults from uitest.json");
             return json.toggleDefaults;
         }
-    } catch (error) {
-        console.warn("[uitest.js] No uitest.json defaults found; using built-in defaults.", error);
+    } catch (e) {
+        console.warn("[uitest.js] Using built-in defaults.", e);
     }
     return null;
 }
@@ -396,23 +279,19 @@ async function init() {
     
     preventLiveFormSubmissions();
     installControllerHandlers();
+    installActionButtonHandlers();
     
     loadedDefaults = await loadDefaultsJson();
     const defaults = loadedDefaults || BUILT_IN_DEFAULTS;
-    
-    // Apply defaults to radios and render
     syncRadiosFromMap(defaults);
     
-    // Optional: allow quick one-off overrides via query params like ?loggedIn=true
-    TOGGLE_NAMES.forEach((name) => {
-        const qp = getQueryParam(name);
-        if (qp === "true" || qp === "false") {
-            setRadioBoolean(name, qp === "true");
-        }
+    // Optional overrides via query params (e.g., ?loggedIn=true)
+    TOGGLE_NAMES.forEach((n) => {
+        const qp = getQueryParam(n);
+        if (qp === "true" || qp === "false") setRadioBoolean(n, qp === "true");
     });
     
     renderAll(readAllToggles());
-    
     console.info("[uitest.js] Ready");
 }
 
