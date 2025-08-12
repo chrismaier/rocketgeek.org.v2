@@ -4,7 +4,7 @@
     <!-- Begin head section of the html file -->
     <head>
         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
-        <!-- page unique head information / meta tags etc go here -->
+        <!-- page unique head information / meta tags etc. go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
         <title>Register - Rocket Geek</title>
@@ -128,7 +128,33 @@
                                             <input class="form-control form-control-user" id="repeatPasswordInput" name="password_repeat" placeholder="Repeat Password" type="password">
                                         </div>
                                     </div>
+                                    
+                                    <!--
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button>
+                                    -->
+                                    
+                                    <!-- Begin consent buttons -->
+                                    <div class="mb-3">
+                                      <button id="registerBtn" class="btn btn-primary d-block btn-user w-100" type="submit" disabled>Register Account</button>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                      <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <button id="openCookieBtn" type="button" class="btn btn-secondary d-block btn-user w-100">
+                                          View & Accept Cookie Policy
+                                        </button>
+                                      </div>
+                                      <div class="col-sm-6">
+                                        <button id="openTosBtn" type="button" class="btn btn-secondary d-block btn-user w-100" disabled>
+                                          View & Accept Terms of Service
+                                        </button>
+                                      </div>
+                                    </div>
+                                    
+                                    <p id="consentStatusText" class="text-muted small mb-0"></p>
+                                    <!-- End consent buttons -->
+                                    
+                                    
                                     
                                     <!--
                                     <hr>
@@ -166,34 +192,51 @@
 </div>
  <!-- END: Cookie Disclaimer Container -->
  
- 
- <!-- START: Cookie Consent Modal -->
-        <!-- moved to the js file instead
-<div class="modal fade" id="cookieConsentModal" tabindex="-1" aria-labelledby="cookieConsentTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-  <div class="modal-dialog modal-dialog-centered">
+        <!-- Begin modal dialog html content - only visible in modal dialogs -->
+ <!-- Begin Cookie Policy Modal -->
+<div class="modal fade" id="cookiePolicyModal" tabindex="-1" aria-labelledby="cookiePolicyLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="cookieConsentTitle">Cookie Notice</h5>
-        
+        <h5 id="cookiePolicyLabel" class="modal-title">Cookie Policy</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
-      <div class="modal-body">
-        <p id="cookieConsentText" class="mb-0"></p>
+      <div class="modal-body p-3 text-start">
+        <p>We use strictly necessary cookies to operate the site securely. By accepting, we will remember your cookie preference so you won’t be asked again on this device and browser.</p>
+        <p>See the full policy on our <a href="/cookie-policy.html" target="_blank" rel="noopener">Cookie Policy</a> page.</p>
       </div>
-        
-      
+        <div class="modal-footer">
+            <button id="acceptCookieBtn" type="button" class="btn btn-primary btn-user" style="border-radius: 10rem; padding: .75rem 1rem;">
+            Accept & Continue
+            </button>
+        </div>
+    </div>
+  </div>
+</div>
+ <!-- End Cookie Policy Modal -->
+ 
+ <!-- Begin Terms of Service Modal -->
+<div class="modal fade" id="tosModal" tabindex="-1" aria-labelledby="tosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="tosLabel" class="modal-title">Terms of Service</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-3 text-start">
+        <p>Please review our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a>. When you accept, we’ll remember this on this device and browser.</p>
+        <small class="text-muted">Current version: <span id="tosVersionDisplay"></span></small>
+      </div>
       <div class="modal-footer">
-        <form id="cookieConsentForm" class="w-100 d-flex justify-content-end gap-2">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id="cookieConsentContinueBtn" type="submit" class="btn btn-primary">Continue</button>
-        </form>
+        <button id="acceptTosBtn" type="button" class="btn btn-primary btn-user" style="border-radius: 10rem; padding: .75rem 1rem;">
+            Accept Terms
+        </button>
       </div>
     </div>
   </div>
 </div>
--->
- <!-- END: Cookie Consent Modal -->
+ <!-- End Terms of Service Modal -->
+ <!-- End modal html content -->
  
  
  <!-- Begin Java Script -->

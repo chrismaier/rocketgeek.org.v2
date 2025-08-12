@@ -1,144 +1,71 @@
 /* START: Register page bootstrap and submit wiring */
 document.addEventListener("DOMContentLoaded", function () {
-    const signupForm = document.getElementById("rocketGeekSignupForm");
-    if (!signupForm) {
+    const form = document.getElementById("rocketGeekSignupForm");
+    if (!form) {
         console.warn("[register.js] Signup form not found: #rocketGeekSignupForm");
         return;
     }
     
-    console.info("[register.js] Page ready. Checking consent cookies…");
-    logConsentState();
+    console.info("[register.js] Page ready. Wiring submit and checking consent state…");
+    RG_GATE_logConsentState();
     
     // Intercept submit to enforce consent before proceeding
-    signupForm.addEventListener("submit", function (event) {
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
-        gateConsentThenRegister();
+        RG_GATE_consentThenRegister();
     });
 });
 /* END: Register page bootstrap and submit wiring */
 
 
-/* START: Consent helpers (must mirror names used by registration-consent.js) */
-const RG_COOKIE_ACCEPTED = "rg_cookie_accepted";
-const RG_TOS_VERSION = "rg_tos_version";
-// Keep this in sync with registration-consent.js
-const CURRENT_TOS_VERSION = "1.0.0";
-
-function getCookie(name) {
-    const encodedName = encodeURIComponent(name) + "=";
-    return document.cookie
-        .split(";")
-        .map(s => s.trim())
-        .filter(Boolean)
-        .reduce((found, part) => {
-            if (found !== null) return found;
-            return part.startsWith(encodedName) ? decodeURIComponent(part.substring(encodedName.length)) : null;
-        }, null);
-}
-
-function hasAcceptedCookies() {
-    return getCookie(RG_COOKIE_ACCEPTED) === "true";
-}
-
-function getAcceptedTosVersion() {
-    return getCookie(RG_TOS_VERSION);
-}
-
-function isTosCurrent() {
-    return getAcceptedTosVersion() === CURRENT_TOS_VERSION;
-}
-
-function isConsentComplete() {
-    return hasAcceptedCookies() && isTosCurrent();
-}
-
-function logConsentState() {
-    console.debug("[register.js] Consent state", {
-        cookieAccepted: hasAcceptedCookies(),
-        acceptedTosVersion: getAcceptedTosVersion(),
-        requiredTosVersion: CURRENT_TOS_VERSION,
-        tosCurrent: isTosCurrent()
-    });
-}
-/* END: Consent helpers */
-
-
-/* START: Modal helpers */
-function openCookiePolicyModalOrAlert() {
-    const modalEl = document.getElementById("cookiePolicyModal");
-    if (modalEl && window.bootstrap && window.bootstrap.Modal) {
-        console.log("[register.js] Opening Cookie Policy modal");
-        new bootstrap.Modal(modalEl).show();
-    } else {
-        alert("Please review and accept the Cookie Policy to continue.");
-    }
-}
-
-function openTosModalOrAlert() {
-    const modalEl = document.getElementById("tosModal");
-    if (modalEl && window.bootstrap && window.bootstrap.Modal) {
-        console.log("[register.js] Opening Terms of Service modal");
-        new bootstrap.Modal(modalEl).show();
-    } else {
-        alert("Please review and accept the latest Terms of Service to continue.");
-    }
-}
-/* END: Modal helpers */
-
-
-/* START: Consent gate → proceed or nudge */
-function gateConsentThenRegister() {
-    // If cookies are not accepted yet, nudge with Cookie Policy
-    if (!hasAcceptedCookies()) {
+/* START: Main form handler with validation and consent gate */
+function RG_GATE_consentThenRegister() {
+    // 1) Require cookie policy acceptance
+    if (!RG_GATE_hasAcceptedCookies()) {
         console.warn("[register.js] Blocking submit: cookie policy not accepted");
-        openCookiePolicyModalOrAlert();
+        RG_GATE_openCookiePolicyModalOrAlert();
         return;
     }
     
-    // If ToS is missing or outdated, nudge with ToS modal
-    if (!isTosCurrent()) {
-        const current = getAcceptedTosVersion();
-        console.warn(`[register.js] Blocking submit: ToS not current (have: ${current || "none"}, need: ${CURRENT_TOS_VERSION})`);
-        openTosModalOrAlert();
+    // 2) Require current ToS acceptance
+    if (!RG_GATE_isTosCurrent()) {
+        const have = RG_GATE_getAcceptedTosVersion() || "none";
+        const need = RG_GATE_CURRENT_TOS_VERSION;
+        console.warn(`[register.js] Blocking submit: ToS not current (have: ${have}, need: ${need})`);
+        RG_GATE_openTosModalOrAlert();
         return;
     }
     
-    // All good → proceed
+    // 3) Proceed with registration
     console.log("[register.js] Consent satisfied; proceeding with registration");
     rocketGeekSignupForm();
 }
-/* END: Consent gate → proceed or nudge */
 
-
-/* START: Main form handler with validation and Cognito sign-up */
 function rocketGeekSignupForm() {
     console.log("[register.js] Handling form submission securely");
     
-    // Gather inputs
-    const firstName = document.getElementById("firstName")?.value?.trim();
-    const lastName  = document.getElementById("lastName")?.value?.trim();
-    const email     = document.getElementById("email")?.value?.trim();
-    const phone     = document.getElementById("phoneNumber")?.value?.trim();
-    const zipCode   = document.getElementById("zipCode")?.value?.trim();
-    const password  = document.getElementById("passwordInput")?.value;
-    const repeatPwd = document.getElementById("repeatPasswordInput")?.value;
+    const firstName      = document.getElementById("firstName")?.value?.trim();
+    const lastName       = document.getElementById("lastName")?.value?.trim();
+    const email          = document.getElementById("email")?.value?.trim();
+    const phone          = document.getElementById("phoneNumber")?.value?.trim();
+    const zipCode        = document.getElementById("zipCode")?.value?.trim();
+    const password       = document.getElementById("passwordInput")?.value;
+    const repeatPassword = document.getElementById("repeatPasswordInput")?.value;
     
-    if (password !== repeatPwd) {
-        console.warn("[register.js] Password mismatch");
+    if (password !== repeatPassword) {
         alert("Passwords do not match.");
+        console.warn("[register.js] Password mismatch");
         return;
     }
     
-    // Cognito attributes
     const attributeList = [
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "given_name",       Value: firstName || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "family_name",      Value: lastName  || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email",            Value: email     || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number",     Value: phone     || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:zip_code",  Value: zipCode   || "" })
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "given_name",      Value: firstName || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "family_name",     Value: lastName  || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email",           Value: email     || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number",    Value: phone     || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:zip_code", Value: zipCode   || "" })
     ];
     
-    // Pool configuration (current)
     const poolData = {
         // UserPoolId: 'us-east-1_5j4lDdV1A',
         // ClientId:   '2mnmesf3f1olrit42g2oepmiak'
@@ -149,7 +76,7 @@ function rocketGeekSignupForm() {
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     performRegistration({ email, password, attributeList, userPool });
 }
-/* END: Main form handler with validation and Cognito sign-up */
+/* END: Main form handler with validation and consent gate */
 
 
 /* START: Registration call to Cognito */
@@ -164,12 +91,12 @@ function performRegistration({ email, password, attributeList, userPool }) {
     
     userPool.signUp(email, password, attributeList, null, function (err, result) {
         if (err) {
-            console.error("[register.js] Sign-up error:", err);
+            console.error("Sign-up error:", err);
             alert("Registration failed: " + (err.message || JSON.stringify(err)));
             return;
         }
         
-        console.log("[register.js] Sign-up successful:", result);
+        console.log("Sign-up successful:", result);
         alert(
             "Sign-up successful!\n\n" +
             "Please check your email and phone for verification codes.\n" +
@@ -182,3 +109,66 @@ function performRegistration({ email, password, attributeList, userPool }) {
     });
 }
 /* END: Registration call to Cognito */
+
+
+/* START: Consent helpers (prefixed RG_GATE_ to avoid any collision) */
+// Keep this in sync with your consent policy; distinct name to avoid conflicts
+const RG_GATE_CURRENT_TOS_VERSION = "1.0.0";
+
+function RG_GATE_getCookie(name) {
+    const encodedName = encodeURIComponent(name) + "=";
+    const parts = document.cookie.split(";").map(s => s.trim());
+    for (const part of parts) {
+        if (part.startsWith(encodedName)) {
+            return decodeURIComponent(part.substring(encodedName.length));
+        }
+    }
+    return null;
+}
+
+function RG_GATE_hasAcceptedCookies() {
+    // Uses the cookie set by registration-consent.js
+    return RG_GATE_getCookie("rg_cookie_accepted") === "true";
+}
+
+function RG_GATE_getAcceptedTosVersion() {
+    // Uses the cookie set by registration-consent.js
+    return RG_GATE_getCookie("rg_tos_version");
+}
+
+function RG_GATE_isTosCurrent() {
+    return RG_GATE_getAcceptedTosVersion() === RG_GATE_CURRENT_TOS_VERSION;
+}
+
+function RG_GATE_logConsentState() {
+    console.debug("[register.js] Consent state", {
+        cookieAccepted: RG_GATE_hasAcceptedCookies(),
+        acceptedTosVersion: RG_GATE_getAcceptedTosVersion(),
+        requiredTosVersion: RG_GATE_CURRENT_TOS_VERSION,
+        tosCurrent: RG_GATE_isTosCurrent()
+    });
+}
+/* END: Consent helpers (prefixed RG_GATE_ to avoid any collision) */
+
+
+/* START: Modal helpers (do not depend on consent script internals) */
+function RG_GATE_openCookiePolicyModalOrAlert() {
+    const modalEl = document.getElementById("cookiePolicyModal");
+    if (modalEl && window.bootstrap && window.bootstrap.Modal) {
+        console.log("[register.js] Opening Cookie Policy modal");
+        new bootstrap.Modal(modalEl).show();
+    } else {
+        alert("Please review and accept the Cookie Policy to continue.");
+    }
+}
+
+function RG_GATE_openTosModalOrAlert() {
+    const modalEl = document.getElementById("tosModal");
+    if (modalEl && window.bootstrap && window.bootstrap.Modal) {
+        console.log("[register.js] Opening Terms of Service modal");
+        new bootstrap.Modal(modalEl).show();
+    } else {
+        alert("Please review and accept the latest Terms of Service to continue.");
+    }
+}
+/* END: Modal helpers (do not depend on consent script internals) */
