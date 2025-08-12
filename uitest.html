@@ -3,312 +3,440 @@
     
     <!-- Begin head section of the html file -->
     <head>
+        <!-- Begin head notes -->
         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
-        <!-- page unique head information / meta tags etc. go here -->
+        <!-- Page-unique head information / meta tags go here -->
+        <!-- End head notes -->
+
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
         <title>UI Toggle Test - Rocket Geek</title>
         <link href="assets/css/css-reload.css" rel="stylesheet">
         
-        <!--
-        Temporarily disable the content from displaying when the page loads.
-        The css loader script will re-enable the body display once it finishes loading.
-        -->
+        <!-- Temporarily hide the body until CSS loader finishes -->
         <style>body { display: none; }</style>
         
-        <!-- load META tags FIRST -->
+        <!-- Begin load meta tags -->
         <script src="./assets/js/meta-loader.js"></script>
+        <!-- End load meta tags -->
         
-        <!-- load the CSS files second - this js re-enables the page -->
+        <!-- Begin load CSS and re-enable body -->
         <script src="./assets/js/css-loader.js"></script>
         <link href="assets/css/register.css" rel="stylesheet">
-    
+        <!-- End load CSS and re-enable body -->
     </head>
-    <!-- End of head section -->
+    <!-- End head section of the html file -->
     
     <body class="bg-gradient-primary">
-    
-<!-- Top alt navbar - signup/confirm -->
-<nav class="navbar navbar-light navbar-expand-md navbar-fixed-top" style="background:#000000;border-radius:0;border-style:none;padding-top:0;padding-bottom:10px;">
-    <div class="container">
-        <button class="navbar-toggler" data-bs-target="#navcol-1" data-bs-toggle="collapse">
-            <span class="visually-hidden">Toggle navigation</span>
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
+        <!-- Begin top alt navbar - signup/confirm -->
+        <nav class="navbar navbar-light navbar-expand-md navbar-fixed-top" style="background:#000000;border-radius:0;border-style:none;padding-top:0;padding-bottom:10px;">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-target="#navcol-1" data-bs-toggle="collapse">
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div>
-            <a class="navbar-brand border rounded" href="/index.html">
-                <span>&nbsp;Rocket Geek&nbsp;</span>
-            </a>
-        </div>
+                <div>
+                    <a class="navbar-brand border rounded" href="/index.html">
+                        <span>&nbsp;Rocket Geek&nbsp;</span>
+                    </a>
+                </div>
 
-        <div class="collapse navbar-collapse" id="navcol-1" style="color:rgb(255,255,255);">
-            <!-- START: force the left menu to be transparent -->
-            <ul class="navbar-nav nav-right" style="background:transparent !important;">
-                <li class="nav-item" style="background:transparent !important;">
-                    <a class="nav-link" href="index.html"
-                       style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item" style="background:transparent !important;">
-                    <a class="nav-link" href="about.html"
-                       style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
-                        About
-                    </a>
-                </li>
-                <li class="nav-item" style="background:transparent !important;">
-                    <a class="nav-link" href="contact.html"
-                       style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
-                        Contact
-                    </a>
-                </li>
-            </ul>
-            <!-- END: force the left menu to be transparent -->
+                <div class="collapse navbar-collapse" id="navcol-1" style="color:rgb(255,255,255);">
+                    <!-- Begin force the left menu to be transparent -->
+                    <ul class="navbar-nav nav-right" style="background:transparent !important;">
+                        <li class="nav-item" style="background:transparent !important;">
+                            <a class="nav-link" href="index.html"
+                               style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background:transparent !important;">
+                            <a class="nav-link" href="about.html"
+                               style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
+                                About
+                            </a>
+                        </li>
+                        <li class="nav-item" style="background:transparent !important;">
+                            <a class="nav-link" href="contact.html"
+                               style="color:rgba(224,217,217,0.9);background:transparent !important;border:0 !important;box-shadow:none !important;">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End force the left menu to be transparent -->
 
-            <p class="ms-auto navbar-text actions">
-                <a class="login" href="login.html" style="color:rgba(224,217,217,0.9);">Log In</a>
-                <a class="btn btn-light action-button" href="register.html" role="button"
-                   style="color:#8b0000;background:#000000;border-radius:10px;border-style:solid;border-color:rgba(0,0,0,0);font-size:16px;padding:5px 8px;">
-                    Sign Up
-                </a>
-            </p>
-        </div>
-    </div>
-</nav>
-<!-- end alt top nav -->
+                    <p class="ms-auto navbar-text actions">
+                        <a class="login" href="login.html" style="color:rgba(224,217,217,0.9);">Log In</a>
+                        <a class="btn btn-light action-button" href="register.html" role="button"
+                           style="color:#8b0000;background:#000000;border-radius:10px;border-style:solid;border-color:rgba(0,0,0,0);font-size:16px;padding:5px 8px;">
+                            Sign Up
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <!-- End top alt navbar - signup/confirm -->
         
         
         <div class="container">
             <div class="card shadow-lg o-hidden border-0 my-5">
                 <div class="card-body p-0">
                     <div class="row">
+                        <!-- Begin left image column -->
                         <div class="col-lg-5 d-none d-lg-flex">
-                            <div class="flex-grow-1 flex-shrink-1 justify-content-center align-items-center bg-register-image" style="background: url(assets/img/avatars/geek-guy.png)no-repeat center; background-size: contain;"></div>
+                            <div class="flex-grow-1 flex-shrink-1 justify-content-center align-items-center bg-register-image" style="background: url(assets/img/avatars/geek-guy.png) no-repeat center; background-size: contain;"></div>
                         </div>
+                        <!-- End left image column -->
+                        
+                        <!-- Begin right main column -->
                         <div class="col-lg-7">
                             <div class="p-5">
+                                <!-- Begin page title -->
                                 <div class="text-center">
                                     <h2 class="mb-4">Confirm Rocket Geek Registration</h2>
                                 </div>
+                                <!-- End page title -->
                                 
-                                <!-- START: Confirmation forms (unchanged) -->
-                                <!-- START: Verified status banners (hidden by default; shown by JS) -->
-                                <div id="verificationStatus" class="mb-3" style="display:none;">
-                                  <div id="emailVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
-                                    Email address <strong id="verifiedEmailValue"></strong> verified.
-                                  </div>
-                                  <div id="phoneVerifiedBanner" class="alert alert-success" role="alert" style="display:none;">
-                                    Phone number <strong id="verifiedPhoneValue"></strong> verified.
-                                  </div>
-                                </div>
-                                <!-- END: Verified status banners -->
-                                
-                                <!-- 1) EMAIL LOOKUP -->
-                                <form class="user" id="emailLookupForm">
-                                  <div class="row mb-3">
-                                    <div class="col-sm-8 mb-3">
-                                      <label for="email">Email:</label>
-                                      <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
-                                    </div>
-                                    <div class="col-sm-4 mb-3">
-                                      <label class="d-none d-sm-block">&nbsp;</label>
-                                      <button id="btnCheckEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
-                                        Confirm Account
-                                      </button>
-                                    </div>
-                                  </div>
-                                </form>
-                                
-                                <!-- LOGIN -->
-                                <form class="user" id="loginForm" style="display:none;">
-                                  <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3">
-                                      <label for="loginEmail">Email:</label>
-                                      <input class="form-control form-control-user" type="email" id="loginEmail" placeholder="user@mydomain.com" autocomplete="username">
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                      <label for="loginPassword">Password:</label>
-                                      <input class="form-control form-control-user" type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
-                                    </div>
-                                  </div>
-                                  <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3">
-                                      <button id="btnLogin" class="btn btn-primary d-block btn-user w-100" type="submit">Sign In</button>
-                                    </div>
-                                  </div>
-                                </form>
-                                
-                                <!-- 2) EMAIL CONFIRM -->
-                                <form class="user" id="emailConfirmForm" style="display:none;">
-                                  <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3">
-                                      <label for="emailConfirm">Email:</label>
-                                      <input class="form-control form-control-user" type="email" id="emailConfirm" disabled>
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                      <label for="emailCode">Confirmation Code:</label>
-                                      <input class="form-control form-control-user" type="text" id="emailCode" placeholder="123456">
-                                    </div>
-                                  </div>
-                                  <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3">
-                                      <button id="btnConfirmEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
-                                        Confirm Email
-                                      </button>
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                      <button id="btnResendEmail" class="btn btn-primary d-block btn-user w-100" type="button">
-                                        Resend Email Code
-                                      </button>
-                                    </div>
-                                  </div>
-                                </form>
-                                
-                                <!-- 3) PHONE CONFIRM -->
-                                <form class="user" id="phoneConfirmForm" style="display:none;">
-                                  <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3">
-                                      <label for="phone">Phone Number:</label>
-                                      <input class="form-control form-control-user" type="tel" id="phone" placeholder="+1 555 123 4567">
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                      <label for="phoneCode">SMS Code:</label>
-                                      <input class="form-control form-control-user" type="text" id="phoneCode" placeholder="123456">
-                                    </div>
-                                  </div>
-                                  <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3">
-                                      <button id="btnConfirmPhone" class="btn btn-primary d-block btn-user w-100" type="submit">
-                                        Confirm Phone
-                                      </button>
-                                    </div>
-                                    <div class="col-sm-6 mb-3">
-                                      <button id="btnResendPhone" class="btn btn-primary d-block btn-user w-100" type="button">
-                                        Resend SMS Code
-                                      </button>
-                                    </div>
-                                  </div>
-                                </form>
-                                <!-- END: Confirmation forms -->
-                                
-                                <!-- START: Always-on UI Controller (radios + reset) -->
-                                <form id="uiControllerForm" class="border rounded p-3 mt-4">
-                                    <h5 class="mb-3">UI Test Controller</h5>
-                                    <div class="row g-3">
-                                        <!-- Email Verified -->
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label d-block">Email Verified</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="emailVerified" id="emailVerifiedTrue" value="true">
-                                                <label class="form-check-label" for="emailVerifiedTrue">True</label>
+                                <!-- Begin Account Access Section (top, fixed) -->
+                                <section id="sectionAccountAccess" class="mb-4">
+                                    <!-- Begin email lookup form -->
+                                    <form class="user" id="emailLookupForm">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-8 mb-3">
+                                                <label for="email">Email:</label>
+                                                <input class="form-control form-control-user" type="email" id="email" placeholder="user@mydomain.com" required>
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="emailVerified" id="emailVerifiedFalse" value="false">
-                                                <label class="form-check-label" for="emailVerifiedFalse">False</label>
+                                            <div class="col-sm-4 mb-3">
+                                                <label class="d-none d-sm-block">&nbsp;</label>
+                                                <button id="btnCheckEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
+                                                    Confirm Account
+                                                </button>
                                             </div>
                                         </div>
-                                        
-                                        <!-- Phone Verified -->
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label d-block">Phone Verified</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="phoneVerified" id="phoneVerifiedTrue" value="true">
-                                                <label class="form-check-label" for="phoneVerifiedTrue">True</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="phoneVerified" id="phoneVerifiedFalse" value="false">
-                                                <label class="form-check-label" for="phoneVerifiedFalse">False</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Logged In -->
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label d-block">Logged In</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="loggedIn" id="loggedInTrue" value="true">
-                                                <label class="form-check-label" for="loggedInTrue">True</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="loggedIn" id="loggedInFalse" value="false">
-                                                <label class="form-check-label" for="loggedInFalse">False</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- JWT Present -->
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label d-block">JWT Present</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="jwtPresent" id="jwtPresentTrue" value="true">
-                                                <label class="form-check-label" for="jwtPresentTrue">True</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="jwtPresent" id="jwtPresentFalse" value="false">
-                                                <label class="form-check-label" for="jwtPresentFalse">False</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- User Profile -->
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label d-block">User Profile</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="userProfile" id="userProfileTrue" value="true">
-                                                <label class="form-check-label" for="userProfileTrue">True</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="userProfile" id="userProfileFalse" value="false">
-                                                <label class="form-check-label" for="userProfileFalse">False</label>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Email Lookup -->
-                                        <div class="col-12 col-md-6">
-                                            <label class="form-label d-block">Email Lookup</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="emailLookup" id="emailLookupTrue" value="true">
-                                                <label class="form-check-label" for="emailLookupTrue">True</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="emailLookup" id="emailLookupFalse" value="false">
-                                                <label class="form-check-label" for="emailLookupFalse">False</label>
-                                            </div>
-                                        </div>
+                                    </form>
+                                    <!-- End email lookup form -->
+                                    
+                                    <!-- Begin logged-in success banner -->
+                                    <div id="loggedInBanner" class="alert alert-success mb-3" role="alert" style="display:none;">
+                                        Logged in successfully.
                                     </div>
+                                    <!-- End logged-in success banner -->
+                                    
+                                    <!-- Begin login form -->
+                                    <form class="user" id="loginForm" style="display:none;">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3">
+                                                <label for="loginEmail">Email:</label>
+                                                <input class="form-control form-control-user" type="email" id="loginEmail" placeholder="user@mydomain.com" autocomplete="username">
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <label for="loginPassword">Password:</label>
+                                                <input class="form-control form-control-user" type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3">
+                                                <button id="btnLogin" class="btn btn-primary d-block btn-user w-100" type="submit">
+                                                    Sign In
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- End login form -->
+                                </section>
+                                <!-- End Account Access Section (top, fixed) -->
+                                
+                                <!-- Begin Email Verification Section (fixed) -->
+                                <section id="sectionEmailVerification" class="mb-4">
+                                    <!-- Begin email confirmation form -->
+                                    <form class="user" id="emailConfirmForm" style="display:none;">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3">
+                                                <label for="emailConfirm">Email:</label>
+                                                <input class="form-control form-control-user" type="email" id="emailConfirm" disabled>
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <label for="emailCode">Confirmation Code:</label>
+                                                <input class="form-control form-control-user" type="text" id="emailCode" placeholder="123456">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3">
+                                                <button id="btnConfirmEmail" class="btn btn-primary d-block btn-user w-100" type="submit">
+                                                    Confirm Email
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <button id="btnResendEmail" class="btn btn-primary d-block btn-user w-100" type="button">
+                                                    Resend Email Code
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- End email confirmation form -->
+                                    
+                                    <!-- Begin email verified banner -->
+                                    <div id="emailVerifiedBanner" class="alert alert-success mb-0" role="alert" style="display:none;">
+                                        Email address <strong id="verifiedEmailValue"></strong> verified.
+                                    </div>
+                                    <!-- End email verified banner -->
+                                </section>
+                                <!-- End Email Verification Section (fixed) -->
+                                
+                                <!-- Begin Phone Verification Section (fixed) -->
+                                <section id="sectionPhoneVerification" class="mb-4">
+                                    <!-- Begin phone confirmation form -->
+                                    <form class="user" id="phoneConfirmForm" style="display:none;">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3">
+                                                <label for="phone">Phone Number:</label>
+                                                <input class="form-control form-control-user" type="tel" id="phone" placeholder="+1 555 123 4567">
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <label for="phoneCode">SMS Code:</label>
+                                                <input class="form-control form-control-user" type="text" id="phoneCode" placeholder="123456">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3">
+                                                <button id="btnConfirmPhone" class="btn btn-primary d-block btn-user w-100" type="submit">
+                                                    Confirm Phone
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6 mb-3">
+                                                <button id="btnResendPhone" class="btn btn-primary d-block btn-user w-100" type="button">
+                                                    Resend SMS Code
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- End phone confirmation form -->
+                                    
+                                    <!-- Begin phone verified banner -->
+                                    <div id="phoneVerifiedBanner" class="alert alert-success mb-0" role="alert" style="display:none;">
+                                        Phone number <strong id="verifiedPhoneValue"></strong> verified.
+                                    </div>
+                                    <!-- End phone verified banner -->
+                                </section>
+                                <!-- End Phone Verification Section (fixed) -->
+                                
+                                <!-- Begin Profile in S3 Section (fixed) -->
+<section id="sectionProfile" class="mb-4">
+  <h5 class="mb-3 visually-hidden">Profile in S3</h5>
+    
+    <!-- Begin profile form (buttons only) -->
+  <form class="user" id="profileForm">
+    <div class="row g-2 mb-3">
+      <div class="col-sm-6">
+        <button id="btnCreateProfile" class="btn btn-primary d-block btn-user w-100" type="button">
+          Create Profile
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <button id="btnRemoveProfile" class="btn btn-secondary d-block btn-user w-100" type="button">
+          Remove Profile
+        </button>
+      </div>
+    </div>
+  </form>
+    <!-- End profile form (buttons only) -->
+    
+    <!-- Begin profile status banner -->
+  <div id="profileStatusBanner" class="alert alert-info mb-0" role="alert" style="display:none;">
+    Profile status will appear here.
+  </div>
+    <!-- End profile status banner -->
+</section>
+                                <!-- End Profile in S3 Section (fixed) -->
+                                
+                                <!-- Begin Cookie Acceptance Section (fixed) -->
+<section id="sectionCookies" class="mb-4">
+  <h5 class="mb-3 visually-hidden">Cookie Acceptance</h5>
+    
+    <!-- Begin cookie form (buttons only) -->
+  <form class="user" id="cookieForm">
+    <div class="row g-2 mb-3">
+      <div class="col-sm-6">
+        <button id="btnAcceptCookies" class="btn btn-primary d-block btn-user w-100" type="button">
+          Accept Cookies
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <button id="btnRejectCookies" class="btn btn-secondary d-block btn-user w-100" type="button">
+          Reject Cookies
+        </button>
+      </div>
+    </div>
+  </form>
+    <!-- End cookie form (buttons only) -->
+    
+    <!-- Begin cookie banner -->
+  <div id="cookieBanner" class="alert mb-0" role="alert" style="display:none;">
+    <!-- Text set by JS -->
+  </div>
+    <!-- End cookie banner -->
+</section>
+                                <!-- End Cookie Acceptance Section (fixed) -->
+                                
+                                <!-- Begin Terms of Service Acceptance Section (fixed) -->
+<section id="sectionToS" class="mb-4">
+  <h5 class="mb-3 visually-hidden">Terms of Service</h5>
+    
+    <!-- Begin ToS form (buttons only) -->
+  <form class="user" id="tosForm">
+    <div class="row g-2 mb-3">
+      <div class="col-sm-6">
+        <button id="btnAcceptTos" class="btn btn-primary d-block btn-user w-100" type="button">
+          Accept Terms
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <button id="btnDeclineTos" class="btn btn-secondary d-block btn-user w-100" type="button">
+          Decline Terms
+        </button>
+      </div>
+    </div>
+  </form>
+    <!-- End ToS form (buttons only) -->
+    
+    <!-- Begin ToS banner -->
+  <div id="tosBanner" class="alert mb-0" role="alert" style="display:none;">
+    <!-- Text set by JS -->
+  </div>
+    <!-- End ToS banner -->
+</section>
+                                <!-- End Terms of Service Acceptance Section (fixed) -->
+                                
+                                <!-- Begin UI Test Controller (always last, fixed) -->
+<form id="uiControllerForm" class="border rounded p-3 mt-4">
+  <h5 class="mb-3 visually-hidden">UI Test Controller</h5>
+  <div class="row g-3">
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">Email Verified</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="emailVerified" id="emailVerifiedTrue" value="true">
+        <label class="form-check-label" for="emailVerifiedTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="emailVerified" id="emailVerifiedFalse" value="false">
+        <label class="form-check-label" for="emailVerifiedFalse">False</label>
+      </div>
+    </div>
 
-                                    <div class="mt-3">
-                                        <button id="resetUiController" class="btn btn-primary d-block btn-user w-100" type="submit">
-                                            Reset
-                                        </button>
-                                    </div>
-                                </form>
-                                <!-- END: Always-on UI Controller -->
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">Phone Verified</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="phoneVerified" id="phoneVerifiedTrue" value="true">
+        <label class="form-check-label" for="phoneVerifiedTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="phoneVerified" id="phoneVerifiedFalse" value="false">
+        <label class="form-check-label" for="phoneVerifiedFalse">False</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">Logged In</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="loggedIn" id="loggedInTrue" value="true">
+        <label class="form-check-label" for="loggedInTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="loggedIn" id="loggedInFalse" value="false">
+        <label class="form-check-label" for="loggedInFalse">False</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">JWT Present</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="jwtPresent" id="jwtPresentTrue" value="true">
+        <label class="form-check-label" for="jwtPresentTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="jwtPresent" id="jwtPresentFalse" value="false">
+        <label class="form-check-label" for="jwtPresentFalse">False</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">User Profile</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="userProfile" id="userProfileTrue" value="true">
+        <label class="form-check-label" for="userProfileTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="userProfile" id="userProfileFalse" value="false">
+        <label class="form-check-label" for="userProfileFalse">False</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">Email Lookup</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="emailLookup" id="emailLookupTrue" value="true">
+        <label class="form-check-label" for="emailLookupTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="emailLookup" id="emailLookupFalse" value="false">
+        <label class="form-check-label" for="emailLookupFalse">False</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">Cookie Accepted</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="cookieAccepted" id="cookieAcceptedTrue" value="true">
+        <label class="form-check-label" for="cookieAcceptedTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="cookieAccepted" id="cookieAcceptedFalse" value="false">
+        <label class="form-check-label" for="cookieAcceptedFalse">False</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label d-block">ToS Accepted</label>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tosAccepted" id="tosAcceptedTrue" value="true">
+        <label class="form-check-label" for="tosAcceptedTrue">True</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tosAccepted" id="tosAcceptedFalse" value="false">
+        <label class="form-check-label" for="tosAcceptedFalse">False</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button id="resetUiController" class="btn btn-primary d-block btn-user w-100" type="submit">
+      Reset
+    </button>
+  </div>
+</form>
+                                <!-- End UI Test Controller (always last, fixed) -->
    
                             </div>
-                            
                         </div>
+                        <!-- End right main column -->
                     </div>
                 </div>
             </div>
         </div>
-
-
-<!-- Begin Java Script -->
-<!-- Bootstrap JS and Popper.js -->
+        
+        <!-- Begin core JavaScript files -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.5.1.3.min.js"></script>
-
-<!-- Core JavaScript files (all pages need these files) -->
-<!-- except this page - it doesn't use the same navigation layout -->
-<!-- <script src="assets/js/drop-down-menu-loader.js"></script> -->
         <script src="assets/js/theme.js"></script>
-<!-- <script src="assets/js/side-nav-script.js"></script> -->
         <script src="assets/js/css-reload.js"></script>
         <script src="assets/js/bs-init.js"></script>
-
-<!-- Page specific JavaScript files -->
-<!-- Removed: rocketgeeksignup.js, amazon-cognito-identity.min.js, confirm.js -->
+        <!-- End core JavaScript files -->
+        
+        <!-- Begin page specific JavaScript placeholder -->
         <script src="assets/js/uitest.js"></script>
-<!-- end Javascript -->
+        <!-- End page specific JavaScript placeholder -->
     
     </body>
 </html>
