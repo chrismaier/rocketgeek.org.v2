@@ -1,60 +1,12 @@
 {
-  "defaultScenario": "no_jwt",
   "toggleDefaults": {
     "emailVerified": false,
     "phoneVerified": false,
     "loggedIn": false,
     "jwtPresent": false,
     "userProfile": false,
-    "emailLookup": true
-  },
-  "scenarios": {
-    "no_jwt": {
-      "show": ["emailLookupForm", "loginForm"],
-      "hide": ["emailConfirmForm", "phoneConfirmForm"],
-      "banners": {
-        "emailVerified": false,
-        "phoneVerified": false
-      },
-      "fields": {
-        "emailLookup": "user@example.com",
-        "loginEmail": "user@example.com"
-      }
-    },
-    "needs_email_confirm": {
-      "show": ["emailConfirmForm"],
-      "hide": ["emailLookupForm", "loginForm", "phoneConfirmForm"],
-      "banners": {
-        "emailVerified": false,
-        "phoneVerified": false
-      },
-      "fields": {
-        "emailConfirmEmail": "user@example.com",
-        "emailConfirmCode": "123456"
-      }
-    },
-    "needs_phone_confirm": {
-      "show": ["phoneConfirmForm"],
-      "hide": ["emailLookupForm", "loginForm", "emailConfirmForm"],
-      "banners": {
-        "emailVerified": true,
-        "phoneVerified": false,
-        "emailText": "user@example.com"
-      },
-      "fields": {
-        "phone": "+1 555 123 4567",
-        "phoneCode": "654321"
-      }
-    },
-    "fully_verified": {
-      "show": [],
-      "hide": ["emailLookupForm", "loginForm", "emailConfirmForm", "phoneConfirmForm"],
-      "banners": {
-        "emailVerified": true,
-        "phoneVerified": true,
-        "emailText": "user@example.com",
-        "phoneText": "+1 555 123 4567"
-      }
-    }
+    "emailLookup": true,
+    "cookieAccepted": false,
+    "tosAccepted": false
   }
 }
