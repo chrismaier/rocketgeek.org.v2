@@ -114,16 +114,13 @@ function wireConsentEvents() {
     const openTosBtn = document.getElementById("openTosBtn");
     const acceptCookieBtn = document.getElementById("acceptCookieBtn");
     const acceptTosBtn = document.getElementById("acceptTosBtn");
+    const viewTosBtn = document.getElementById("viewTosBtn");
     
     const cookiePolicyModalEl = document.getElementById("cookiePolicyModal");
     const tosModalEl = document.getElementById("tosModal");
     
-    //const cookiePolicyModal = cookiePolicyModalEl ? new bootstrap.Modal(cookiePolicyModalEl) : null;
     const cookiePolicyModal = cookiePolicyModalEl ? bootstrap.Modal.getOrCreateInstance(cookiePolicyModalEl) : null;
-    
-    //const tosModal = tosModalEl ? new bootstrap.Modal(tosModalEl) : null;
     const tosModal = tosModalEl ? bootstrap.Modal.getOrCreateInstance(tosModalEl) : null;
-    
     
     if (openCookieBtn && cookiePolicyModal) {
         openCookieBtn.addEventListener("click", () => {
@@ -156,6 +153,11 @@ function wireConsentEvents() {
             tosModal.hide();
             updateUIState();
         });
+    if (viewTosBtn) {
+        viewTosBtn.addEventListener("click", () => {
+            window.open("/terms-of-service.html", "_blank", "noopener");
+        });
+    }
     }
     
     // Prevent submit unless both conditions met
@@ -186,12 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cookieAccepted = hasAcceptedCookies();
     const tosCurrent = isTosCurrent();
     if (cookieAccepted && !tosCurrent) {
-        // const tosModalEl = document.getElementById("tosModal");
-        const tosModal = bootstrap.Modal.getOrCreateInstance(tosModalEl);
-        
+        const tosModalEl = document.getElementById("tosModal");
         if (tosModalEl) {
             // Optional: auto-open ToS if outdated. Comment out if you prefer manual.
-            const tosModal = new bootstrap.Modal(tosModalEl);
+            const tosModal = bootstrap.Modal.getOrCreateInstance(tosModalEl);
             showCurrentTosVersionInModal();
             tosModal.show();
         }
