@@ -464,12 +464,25 @@
         <p>Please review our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a>. When you accept, we’ll remember this on this device and browser.</p>
         <small class="text-muted">Current version: <span id="tosVersionDisplay"></span></small>
       </div>
-      <div class="modal-footer">
-        <button id="acceptTosBtn" type="button" class="btn btn-primary btn-user" style="border-radius: 10rem; padding: .75rem 1rem;">
-            Accept Terms
-        </button>
-      </div>
-    </div>
+<div class="modal-footer">
+  <button id="acceptTosBtn" type="button"
+          class="btn btn-primary btn-user"
+          style="border-radius: 10rem; padding: .75rem 1rem;">
+    Accept Terms
+  </button>
+
+  <button id="viewTosBtn" type="button"
+          class="btn btn-secondary btn-user"
+          style="border-radius: 10rem; padding: .75rem 1rem;"
+          onclick="window.open('/terms-of-service.html','_blank','noopener');">
+    View Terms of Service
+  </button>
+</div>
+
+
+</div>
+
+
   </div>
 </div>
         <!-- End Terms of Service Modal -->

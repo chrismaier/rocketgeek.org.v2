@@ -118,8 +118,12 @@ function wireConsentEvents() {
     const cookiePolicyModalEl = document.getElementById("cookiePolicyModal");
     const tosModalEl = document.getElementById("tosModal");
     
-    const cookiePolicyModal = cookiePolicyModalEl ? new bootstrap.Modal(cookiePolicyModalEl) : null;
-    const tosModal = tosModalEl ? new bootstrap.Modal(tosModalEl) : null;
+    //const cookiePolicyModal = cookiePolicyModalEl ? new bootstrap.Modal(cookiePolicyModalEl) : null;
+    const cookiePolicyModal = cookiePolicyModalEl ? bootstrap.Modal.getOrCreateInstance(cookiePolicyModalEl) : null;
+    
+    //const tosModal = tosModalEl ? new bootstrap.Modal(tosModalEl) : null;
+    const tosModal = tosModalEl ? bootstrap.Modal.getOrCreateInstance(tosModalEl) : null;
+    
     
     if (openCookieBtn && cookiePolicyModal) {
         openCookieBtn.addEventListener("click", () => {
@@ -182,7 +186,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cookieAccepted = hasAcceptedCookies();
     const tosCurrent = isTosCurrent();
     if (cookieAccepted && !tosCurrent) {
-        const tosModalEl = document.getElementById("tosModal");
+        // const tosModalEl = document.getElementById("tosModal");
+        const tosModal = bootstrap.Modal.getOrCreateInstance(tosModalEl);
+        
         if (tosModalEl) {
             // Optional: auto-open ToS if outdated. Comment out if you prefer manual.
             const tosModal = new bootstrap.Modal(tosModalEl);
