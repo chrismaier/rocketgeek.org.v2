@@ -1,61 +1,21 @@
-/* Begin Bootstrap 5 variable overrides for Rocket Geek */
-:root {
-    /* Brand palette */
-    --bs-primary: #8b0000;   /* Rocket Geek Red */
-    --bs-secondary: #6c757d;
-    --bs-success: #28a745;
-    --bs-info: #0dcaf0;
-    --bs-warning: #ffc107;
-    --bs-danger: #dc3545;
-    --bs-light: #f8f9fa;
-    --bs-dark: #000000;
+/* Begin Bootstrap 5 variable overrides for Rocket Geek (variables only) */
+:root{
+  /* Brand base (safe contrast) */
+  --bs-primary: #8b0000;       /* Rocket Geek red */
+  --bs-secondary: #6c757d;
+  --bs-success: #28a745;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #111111;          /* slightly above pure black for ring contrast */
 
-    /* Links + focus ring */
-    --bs-link-color: var(--bs-primary);
-    --bs-link-hover-color: color-mix(in oklab, var(--bs-primary), black 12%);
-    --bs-focus-ring-color: color-mix(in oklab, var(--bs-primary), white 60%);
+  /* Focus ring visible on dark backgrounds */
+  --bs-focus-ring-color: rgba(139, 0, 0, 0.35);
 
-    /* Disabled button appearance */
-    --bs-btn-disabled-bg: color-mix(in oklab, var(--bs-primary), white 25%);
-    --bs-btn-disabled-border-color: color-mix(in oklab, var(--bs-primary), white 22%);
-    --bs-btn-disabled-color: #ffffff;
+  /* Global disabled buttons → neutral greys (not red/black) */
+  --bs-btn-disabled-bg: #6c757d;
+  --bs-btn-disabled-border-color: #6c757d;
+  --bs-btn-disabled-color: #ffffff;
 }
-
-
-
-
-/* End Bootstrap 5 variable overrides for Rocket Geek */
-
-/* Begin Size-stability patch (buttons & form controls) */
-/* Keep the same border in all states; use box-shadow for focus/hover highlight */
-.btn,
-.btn:hover,
-.btn:focus,
-.btn:active {
-    border-width: 2px;         /* set once, no size change on hover/focus */
-    border-style: solid;       /* ensure border exists even when “invisible” */
-}
-
-.btn:focus {
-    outline: none;             /* avoid outline surprises */
-    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35); /* visible focus ring, no layout shift */
-}
-
-/* If you also style .btn-primary specifically, keep its focus purely as shadow */
-.btn-primary:focus {
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.45);
-}
-
-/* Inputs/selects: keep border width constant too */
-.form-control,
-.form-select {
-    border-width: 2px;         /* match your :focus rule so it doesn’t “grow” */
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-width: 2px;         /* no jump on focus */
-    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.20);
-}
-/* End Size-stability patch (buttons & form controls) */
+/* End Bootstrap 5 variable overrides for Rocket Geek (variables only) */

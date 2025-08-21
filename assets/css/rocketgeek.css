@@ -589,3 +589,135 @@ select:active {
 .index-link:hover {
     color: #8b0000;
 }
+
+/* Begin Button hover/border stability – Rocket Geek */
+/* Keep border constant in all states; change only the fill on hover */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+  border-width: 2px;                  /* fixed width to prevent layout jump */
+  border-style: solid;                /* ensure border always exists */
+  border-color: #000000;              /* black border in all states */
+}
+
+.btn {
+  background-color: #000000;          /* default black fill */
+  color: #ffffff;                     /* readable text */
+}
+
+/* Begin Button focus/hover split – keep focus from forcing hover color */
+.btn:hover {
+    background-color: #8b0000;          /* hover red fill */
+    color: #ffffff;
+}
+
+/* Keep focus ring (optional), but DO NOT change background on focus */
+.btn:focus {
+    outline: none;
+    /* If you prefer no glow at all, set box-shadow: none; */
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35);
+}
+/* End Button focus/hover split */
+
+
+/* Disabled buttons: consistent neutral grey pulled from vars */
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+  background-color: var(--bs-btn-disabled-bg, #6c757d);
+  border-color: var(--bs-btn-disabled-border-color, #6c757d);
+  color: var(--bs-btn-disabled-color, #ffffff);
+  opacity: .65;                       /* keep disabled affordance */
+}
+/* End Button hover/border stability – Rocket Geek */
+
+/* Begin Button focus ring fix – kill the blue and keep fills stable */
+.btn,
+.btn-primary,
+.btn-outline-primary {
+    /* Use Rocket Geek red for the focus ring instead of Bootstrap blue */
+    --bs-btn-focus-shadow-rgb: 139, 0, 0;
+}
+
+/* Apply the red focus ring everywhere a button can get focus */
+.btn:focus,
+.btn:focus-visible,
+.btn-primary:focus,
+.btn-outline-primary:focus,
+.btn-check:focus + .btn,
+.btn-check:checked + .btn:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35) !important;
+    /* Do NOT change the background on focus: hover controls the red fill */
+    background-color: inherit !important;
+    border-color: #000000 !important; /* keep border black and constant */
+}
+/* End Button focus ring fix – kill the blue and keep fills stable */
+
+
+/* Begin Button focus fill lock – keep fill same as non-hover */
+.btn:focus,
+.btn:focus-visible {
+    background-color: #000000 !important; /* default buttons: black */
+    color: #ffffff !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35); /* red ring, no layout shift */
+}
+
+/* Primary buttons keep red fill on focus (not white/blue) */
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-check:focus + .btn-primary,
+.btn-check:focus-visible + .btn-primary {
+    background-color: #8b0000 !important; /* Rocket Geek red */
+    color: #ffffff !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.45);
+}
+
+/* Your custom black button variant */
+.btn-user:focus,
+.btn-user:focus-visible,
+.btn-check:focus + .btn-user,
+.btn-check:focus-visible + .btn-user {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35);
+}
+/* End Button focus fill lock – keep fill same as non-hover */
+
+/* Begin Button focused-hover restore – let hover win while focused */
+
+/* Default buttons (black base → red on hover), even when focused */
+.btn:hover,
+.btn:focus:hover,
+.btn:focus-visible:hover {
+    background-color: #8b0000 !important;  /* hover red */
+    color: #ffffff !important;
+}
+
+/* Primary buttons: darker red on hover, even while focused */
+.btn-primary:hover,
+.btn-primary:focus:hover,
+.btn-primary:focus-visible:hover,
+.btn-check:focus + .btn-primary:hover,
+.btn-check:focus-visible + .btn-primary:hover {
+    background-color: #6f0000 !important;  /* hover shade of red */
+    border-color: #660000 !important;
+    color: #ffffff !important;
+}
+
+/* Custom .btn-user (black base → red on hover), even while focused */
+.btn-user:hover,
+.btn-user:focus:hover,
+.btn-user:focus-visible:hover,
+.btn-check:focus + .btn-user:hover,
+.btn-check:focus-visible + .btn-user:hover {
+    background-color: #8b0000 !important;
+    border-color: #8b0000 !important;
+    color: #ffffff !important;
+}
+/* End Button focused-hover restore – let hover win while focused */
+
