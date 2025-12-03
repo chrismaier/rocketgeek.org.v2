@@ -1,0 +1,86 @@
+{
+  "id": "chem-hx752-4a58f0f1-1b41-4e1a-bc4f-7ad0c9e2e9b2",
+  "reference_id": "HX752",
+  "chemical_compound": "difunctional aziridine amide derived from isophthalic acid and propylene imine",
+  "common_name": "HX-752",
+  "aliases": [
+    "Dynamar HX-752"
+  ],
+  "cas_number": null,
+  "category": "liquids",
+  "subcategory": "bonding_agent",
+  "purpose": [
+    "bonding_agent",
+    "chain_extender",
+    "crosslinker"
+  ],
+  "physical_form": "colorless to yellow viscous liquid or whitish solid melting near 35 °C",
+  "hygroscopic": false,
+  "density_g_per_cc": 1.12,
+  "viscosity_mpa_s_25C": 5000,
+  "functional_groups": [
+    "acyl_aziridine"
+  ],
+  "equivalent_weight": {
+    "description": "Overall equivalent weight for reactive aziridine functionality (KCNS titration).",
+    "equivalent_weight_g_per_eq": 133.0,
+    "determination_method": "KCNS titration (per 3M Dynamar HX-752 product bulletin)",
+    "notes": "Use this equivalent weight to determine stoichiometric ratios when HX-752 is used as a curative, chain extender, or bonding agent in polyurethane or carboxyl-functional systems."
+  },
+  "recommended_usage": {
+    "role_in_propellant": "bonding agent / curative for AP in polybutadiene matrices",
+    "typical_loading_weight_percent": {
+      "min": 0.05,
+      "max": 0.50
+    },
+    "mixing_notes": [
+      "Typically used at low levels as a bonding agent for AP in HTPB or PB matrices.",
+      "Does not generate ammonia, so it does not cause foaming the way HX-878 can.",
+      "Material tends to supercool and crystallize; may need warming to ~45 °C to re-liquefy before use."
+    ]
+  },
+  "procurement_sources": [
+    {
+      "name": "3M Dynamar HX-752",
+      "url": "https://www.machichemicals.com/pdf/3M_HX-752.pdf"
+    }
+  ],
+  "other_references": [
+    {
+      "description": "3M Dynamar HX-752 product bulletin (difunctional aziridine amide bonding agent / curative)",
+      "url": "https://www.machichemicals.com/pdf/3M_HX-752.pdf"
+    }
+  ],
+  "safety": {
+    "msds_url": "https://www.machichemicals.com/pdf/3M_HX-752.pdf",
+    "hazards_summary": "Difunctional aziridine amide; may be corrosive and can polymerize exothermically if overheated. Avoid skin and eye contact, inhalation of vapors, and prolonged exposure.",
+    "recommended_ppe": [
+      "chemical-resistant gloves",
+      "splash goggles or face shield",
+      "lab coat or chemical-resistant apron",
+      "suitable respirator if vapors may be present"
+    ],
+    "special_hazards": [
+      "hazardous polymerization may occur if a mass of product is heated above approximately 55 °C",
+      "exothermic behavior observed near 190 °C with ~121 cal/g heat release in DSC tests"
+    ]
+  },
+  "storage": {
+    "recommended_temperature_C": {
+      "min": -25,
+      "max": 5
+    },
+    "conditions": [
+      "recommended storage at approximately -18 °C (0 °F) for long-term stability",
+      "avoid repeated warm-cool cycles; repack into batch-sized containers if partial lots are used",
+      "protect from moisture and excessive heat"
+    ],
+    "shelf_life_notes": "At -18 °C, typical shelf life is at least one year. At higher temperatures, HX-752 will slowly homopolymerize or rearrange to the oxazoline form."
+  },
+  "notes": [
+    "Acts as a bonding agent for ammonium perchlorate in polybutadiene matrices and can also serve as a chain extender or crosslinker for carboxyl-functional or hydroxyl-functional polymers in the presence of acidic species.",
+    "Requires refrigeration and careful handling because of its tendency to supercool and its potential for hazardous polymerization at elevated temperatures."
+  },
+  "last_updated": "2025-12-02"
+}
+

@@ -1,0 +1,109 @@
+{
+  "id": "chem-hx878-9f4a3c3b-9a0a-4c5f-9d9d-2f8b9b8e1f01",
+  "reference_id": "HX878",
+  "chemical_compound": "Cyanoethylated polyamine",
+  "common_name": "HX-878",
+  "aliases": [
+    "TEPANOL",
+    "Dynamar HX-878",
+    "Lica HX-878"
+  ],
+  "cas_number": "68412-46-4",
+  "category": "liquids",
+  "subcategory": "bonding_agent",
+  "purpose": [
+    "bonding_agent",
+    "processing_aid",
+    "secondary_fuel_support"
+  ],
+  "physical_form": "amber viscous liquid",
+  "hygroscopic": false,
+  "density_g_per_cc": 1.10,
+  "viscosity_mpa_s_25C": {
+    "min": 30000,
+    "max": 60000
+  },
+  "functional_groups": [
+    "amine",
+    "hydroxyl",
+    "nitrile"
+  ],
+  "equivalent_weight": {
+    "description": "Amine and hydroxyl functionality for NCO/OH and cure-ratio calculations.",
+    "amine_equivalents_per_100g": 1.0,
+    "hydroxyl_equivalents_per_100g": 0.5,
+    "amine_equivalent_weight_g_per_eq": 100.0,
+    "hydroxyl_equivalent_weight_g_per_eq": 200.0,
+    "notes": "Values from 3M Dynamar HX-878 product bulletin; use for preliminary cure-ratio calculations and verify against the current TDS."
+  },
+  "recommended_usage": {
+    "role_in_propellant": "bonding agent / processing aid for AP or AN in HTPB matrices",
+    "typical_loading_weight_percent": {
+      "min": 0.05,
+      "max": 0.50
+    },
+    "mixing_notes": [
+      "Add early in the mix cycle before curatives so that ammonia liberated from AP can be removed under vacuum or by sparging.",
+      "Intended to reduce end-of-mix viscosity and improve mechanical properties of cured propellant."
+    ]
+  },
+  "procurement_sources": [
+    {
+      "name": "3M Advanced Materials (Dynamar HX-878)",
+      "url": "https://multimedia.3m.com"
+    },
+    {
+      "name": "Tanyun HX-878 (Cyanoethylated Polyamine)",
+      "url": "https://www.tanyunchem.com/Products/cyanoethylatedpol.html"
+    }
+  ],
+  "other_references": [
+    {
+      "description": "3M Dynamar HX-878 product bulletin (bonding agent / processing aid)",
+      "url": "https://www.machichemicals.com/pdf/3M_HX-878.pdf"
+    },
+    {
+      "description": "3M Dynamar HX-878 Safety Data Sheet",
+      "url": "https://multimedia.3m.com"
+    },
+    {
+      "description": "TEPANOL / HX-878 technical summary and parameters (Tanyun)",
+      "url": "https://www.tanyunchem.com/Products/cyanoethylatedpol.html"
+    }
+  ],
+  "safety": {
+    "msds_url": "https://multimedia.3m.com",
+    "hazards_summary": "Toxic polynitrile hydroxylamine polymer; health hazards not fully characterized. Avoid skin and eye contact; avoid inhalation of vapors or aerosols.",
+    "recommended_ppe": [
+      "chemical-resistant gloves",
+      "splash goggles or safety glasses with side shields",
+      "lab coat or chemical-resistant apron",
+      "local exhaust ventilation or respirator if aerosols/vapors may be present"
+    ],
+    "combustion_products": [
+      "amine compounds",
+      "carbon monoxide",
+      "carbon dioxide",
+      "hydrogen cyanide"
+    ]
+  },
+  "storage": {
+    "recommended_temperature_C": {
+      "min": 10,
+      "max": 30
+    },
+    "conditions": [
+      "store sealed in a cool, dry, well-ventilated area",
+      "protect from moisture",
+      "avoid strong oxidizers"
+    ],
+    "shelf_life_notes": "Refer to current manufacturer TDS; typical shelf life is at least 12 months in unopened containers stored cool and dry."
+  },
+  "notes": [
+    "Acts as a bonding agent between AP/AN surfaces and HTPB binder, improving mechanical properties and reducing end-of-mix viscosity.",
+    "Ammonia evolution during reaction with AP can cause foaming if not removed; vacuum or sparging step is required."
+  ],
+  "last_updated": "2025-12-02"
+}
+
+
