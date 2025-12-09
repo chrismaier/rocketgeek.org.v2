@@ -1,0 +1,44 @@
+{
+  "assembly_id": "assembly_54mm_amw_long_snapring_v1",
+  "version": "v1",
+  "display_name": "54 mm AMW Long Snap-Ring Assembly",
+  "motor_standard": "54mm",
+  "ecosystem": ["AMW"],
+  "notes": "Standard AMW long 54 mm snap-ring assembly with bulkhead forward closure and integrated aft nozzle.",
+
+  "parts": [
+    {
+      "role": "case",
+      "part_id": "case_54mm_amw_long_v1"
+    },
+    {
+      "role": "forward_closure",
+      "part_id": "fwd_closure_54mm_amw_bulkhead_v1"
+    },
+    {
+      "role": "aft_closure_nozzle",
+      "part_id": "aft_nozzle_54mm_amw_snapring_v1"
+    }
+  ],
+
+  "stack_geometry": {
+    "case_usable_length_inch": 10.50,
+    "forward_shoulder_length_inch": 0.50,
+    "aft_shoulder_length_inch": 0.40,
+
+    "available_liner_length_inch": 9.60,
+    "recommended_liner_cut_length_inch": 9.75,
+    "maximum_grain_stack_length_inch": 9.50,
+    "recommended_grain_stack_length_inch": 9.25
+  },
+
+  "hardware_mass": {
+    "case_mass_grams": 950.0,
+    "forward_closure_mass_grams": 220.0,
+    "aft_nozzle_mass_grams": 260.0,
+    "total_hardware_mass_grams": 1430.0,
+    "total_hardware_mass_ounces": 50.44,
+    "total_hardware_mass_pounds": 3.15
+  }
+}
+

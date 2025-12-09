@@ -1,0 +1,33 @@
+{
+  "casting_supply_id": "liner_54mm_truecore_stock_v1",
+  "supply_type": "liner",
+  "version": "v1",
+  "display_name": "TrueCore 54 mm Phenolic Liner Stock",
+  "motor_standard": "54mm",
+  "ecosystem": ["AMW", "AT", "CTI"],
+  "vendor_id": "TrueCore",
+  "vendor_name": "TrueCore",
+  "notes": "Generic 54 mm TrueCore liner stock used for multiple 54 mm assemblies.",
+
+  "dimensions": {
+    "liner_inner_diameter_inch": 1.800,
+    "liner_inner_diameter_mm": 45.72,
+    "liner_outer_diameter_inch": 1.900,
+    "liner_outer_diameter_mm": 48.26
+  },
+
+  "stock_length_inch": 36.0,
+  "stock_length_mm": 914.40,
+
+  "mass": {
+    "total_grams": 600.0,
+    "total_ounces": 21.16,
+    "total_pounds": 1.32
+  },
+
+  "linear_mass": {
+    "grams_per_inch": 16.7,
+    "ounces_per_inch": 0.59
+  }
+}
+

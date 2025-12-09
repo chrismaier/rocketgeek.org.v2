@@ -1,0 +1,49 @@
+{
+  "part_id": "aft_nozzle_54mm_amw_snapring_v1",
+  "part_type": "nozzle",
+  "role": "aft_closure_nozzle",
+  "version": "v1",
+  "display_name": "54 mm AMW Snap-Ring Aft Nozzle",
+  "motor_standard": "54mm",
+  "ecosystem": ["AMW"],
+  "manufacturer_id": "AMW",
+  "manufacturer_name": "Animal Motor Works",
+  "notes": "Graphite nozzle integrated as the aft closure for snap-ring AMW hardware.",
+
+  "nozzle_geometry": {
+    "throat_diameter_inch": 0.500,
+    "throat_diameter_mm": 12.70,
+    "exit_diameter_inch": 1.000,
+    "exit_diameter_mm": 25.40,
+    "expansion_ratio": 4.0,
+    "expansion_profile": "neutral"
+  },
+
+  "shoulder": {
+    "shoulder_length_inch": 0.40,
+    "shoulder_length_mm": 10.16,
+    "shoulder_outer_diameter_inch": 1.925,
+    "shoulder_outer_diameter_mm": 48.90
+  },
+
+  "mass": {
+    "total_grams": 260.0,
+    "total_ounces": 9.17,
+    "total_pounds": 0.57
+  },
+
+  "o_rings": [
+    {
+      "position": "nozzle_case_seal",
+      "part_number": "AS568-227",
+      "cross_section_inch": 0.139,
+      "inner_diameter_inch": 2.112,
+      "quantity": 1,
+      "material": "Viton",
+      "groove_depth_inch": 0.070,
+      "groove_width_inch": 0.140,
+      "groove_center_offset_inch": 0.150
+    }
+  ]
+}
+

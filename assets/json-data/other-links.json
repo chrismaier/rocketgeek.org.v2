@@ -2,17 +2,17 @@
   {
     "title": "Pad Inventory",
     "url": "https://rocketgeek.org/pad-boxes.html",
-    "description": "Inventory of all the pad equipment for the ESRA livestream"
+    "description": "Inventory of all the (legacy) pad equipment for the ESRA livestream"
   },
   {
     "title": "MAC Address List",
     "url": "https://rocketgeek.org/network-devices.html",
-    "description": "All the network devices - inventory of MAC address, name, and assigned IP address"
+    "description": "(legacy) All the network devices - inventory of MAC address, name, and assigned IP address"
   },
   {
-    "title": "Another Example Website",
-    "url": "https://www.anotherexample.com",
-    "description": "Another example website"
+    "title": "NASA Wing Flutter Analysis",
+    "url": "https://ntrs.nasa.gov/api/citations/20030064926/downloads/20030064926.pdf",
+    "description": "A PDF for wing flutter analysis provided by NASA"
   },
   {
     "title": " Example Website",

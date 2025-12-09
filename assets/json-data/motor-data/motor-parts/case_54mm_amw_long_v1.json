@@ -1,0 +1,33 @@
+{
+  "part_id": "case_54mm_amw_long_v1",
+  "part_type": "case",
+  "version": "v1",
+  "display_name": "54 mm AMW Long Case",
+  "motor_standard": "54mm",
+  "ecosystem": ["AMW"],
+  "manufacturer_id": "AMW",
+  "manufacturer_name": "Animal Motor Works",
+  "notes": "Long 54 mm AMW snap-ring case body.",
+
+  "dimensions": {
+    "inner_diameter_inch": 1.945,
+    "inner_diameter_mm": 49.40,
+    "outer_diameter_inch": 2.250,
+    "outer_diameter_mm": 57.15,
+    "overall_length_inch": 11.50,
+    "overall_length_mm": 292.10,
+    "usable_length_inch": 10.50,
+    "usable_length_mm": 266.70
+  },
+
+  "retention": "snap-ring",
+  "material": "6061-T6 Aluminum",
+  "max_operating_pressure_psi": 1500,
+
+  "mass": {
+    "total_grams": 950.0,
+    "total_ounces": 33.51,
+    "total_pounds": 2.09
+  }
+}
+

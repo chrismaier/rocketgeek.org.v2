@@ -1,0 +1,60 @@
+{
+  "motor_reload_id": "motor_reload_magenta_red_54mm_amw_long_v1",
+  "version": "v1",
+  "display_name": "Magenta Red APCP Reload for 54 mm AMW Long",
+  "assembly_id": "assembly_54mm_amw_long_snapring_v1",
+  "motor_standard": "54mm",
+  "ecosystem": ["AMW"],
+  "propellant_id": "magenta_red_apcp_v1",
+  "notes": "Example red APCP reload built to fit the 54 mm AMW long snap-ring assembly.",
+
+  "liner": {
+    "casting_supply_id": "liner_54mm_truecore_stock_v1",
+    "cut_length_inch": 9.75,
+    "cut_length_mm": 247.65,
+    "pieces_per_motor": 1
+  },
+
+  "casting_tubes": {
+    "casting_supply_id": "casting_tube_54mm_truecore_stock_v1",
+    "grain_count": 3,
+    "cut_length_per_grain_inch": 3.25,
+    "cut_length_per_grain_mm": 82.55,
+    "total_casting_tube_length_inch": 9.75,
+    "total_casting_tube_length_mm": 247.65
+  },
+
+  "grain_geometry": {
+    "grain_outer_diameter_inch": 1.780,
+    "grain_outer_diameter_mm": 45.21,
+    "grain_core_diameter_inch": 0.750,
+    "grain_core_diameter_mm": 19.05,
+    "grain_length_inch": 3.25,
+    "grain_length_mm": 82.55,
+    "grain_count": 3,
+    "web_thickness_inch": 0.515,
+    "web_thickness_mm": 13.08
+  },
+
+  "consumables": {
+    "o_rings_single_use": [
+      {
+        "part_number": "AS568-222",
+        "application": "forward_closure_case_seal",
+        "quantity_per_motor": 2,
+        "material": "Viton",
+        "nominal_cross_section_inch": 0.139,
+        "nominal_inner_diameter_inch": 1.737
+      },
+      {
+        "part_number": "AS568-227",
+        "application": "aft_closure_nozzle_seal",
+        "quantity_per_motor": 1,
+        "material": "Viton",
+        "nominal_cross_section_inch": 0.139,
+        "nominal_inner_diameter_inch": 2.112
+      }
+    ]
+  }
+}
+
