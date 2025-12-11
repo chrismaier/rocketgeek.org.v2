@@ -1,5 +1,5 @@
 {
-  "id": "55555555-5555-5555-5555-333333333333",
+  "id": "c1a1e001-0001-4000-8000-000000000503",
   "reference_id": "ca_cl2",
   "chemical_name": "Calcium chloride",
   "chemical_compound": "CaCl2",
@@ -14,5 +14,7 @@
   "notes": "Calcium chloride can provide orange-red coloration with moderate saturation but is very hygroscopic; often more useful as a halogen donor in color systems than as a primary colorant.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

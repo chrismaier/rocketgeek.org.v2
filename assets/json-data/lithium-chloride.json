@@ -1,5 +1,5 @@
 {
-  "id": "11111111-1111-1111-1111-333333333333",
+  "id": "c1a1e001-0001-4000-8000-000000000103",
   "reference_id": "li_cl",
   "chemical_name": "Lithium chloride",
   "chemical_compound": "LiCl",
@@ -14,5 +14,7 @@
   "notes": "Lithium chloride produces a more saturated crimson-red emission than many other lithium salts but is very hygroscopic and corrosive; primarily a color donor rather than a practical rocket oxidizer.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

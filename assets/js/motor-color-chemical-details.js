@@ -1,249 +1,246 @@
-// Begin query string helper functions
-function getQueryParameterValue(parameterName) {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    return urlSearchParams.get(parameterName);
-}
+// Begin motor color chemical details logic
+console.log("motor-color-chemical-details.js: script file loaded and evaluated.");
 
-function isValidJsonFileName(fileName) {
-    if (typeof fileName !== "string") {
-        return false;
-    }
-    // Only allow lower-case letters, digits, dashes, and ".json" suffix
-    const fileNamePattern = /^[a-z0-9-]+\.json$/;
-    return fileNamePattern.test(fileName);
-}
-// End query string helper functions
-
-// Begin badge rendering helpers
-function createCompatibilityBadge(apcpCompatibility) {
-    const badgeElement = document.createElement("span");
-    const compatibilityValue = apcpCompatibility || "unknown";
-    
-    badgeElement.textContent = compatibilityValue;
-    
-    if (compatibilityValue === "suitable") {
-        badgeElement.className = "badge bg-success";
-    } else if (compatibilityValue === "limited") {
-        badgeElement.className = "badge bg-warning text-dark";
-    } else if (compatibilityValue === "unsuitable") {
-        badgeElement.className = "badge bg-danger";
-    } else {
-        badgeElement.className = "badge bg-secondary";
-    }
-    
-    return badgeElement;
-}
-
-function createSaturationBadge(colorSaturation) {
-    const badgeElement = document.createElement("span");
-    const saturationValue = colorSaturation || "unknown";
-    
-    badgeElement.textContent = saturationValue;
-    
-    if (saturationValue === "high") {
-        badgeElement.className = "badge bg-primary";
-    } else if (saturationValue === "medium") {
-        badgeElement.className = "badge bg-info text-dark";
-    } else if (saturationValue === "low") {
-        badgeElement.className = "badge bg-secondary";
-    } else {
-        badgeElement.className = "badge bg-light text-dark";
-    }
-    
-    return badgeElement;
-}
-
-function createStrongEmitterBadge(isStrongEmitter) {
-    const badgeElement = document.createElement("span");
-    const strongEmitterValue = Boolean(isStrongEmitter);
-    
-    badgeElement.textContent = strongEmitterValue ? "yes" : "no";
-    badgeElement.className = strongEmitterValue ? "badge bg-success" : "badge bg-secondary";
-    
-    return badgeElement;
-}
-// End badge rendering helpers
-
-// Begin procurement rendering helpers
-function renderProcurementSources(containerElement, procurementSources) {
-    if (!Array.isArray(procurementSources) || procurementSources.length === 0) {
-        const noDataParagraph = document.createElement("p");
-        noDataParagraph.textContent = "No procurement sources are listed for this chemical.";
-        containerElement.appendChild(noDataParagraph);
-        return;
-    }
-    
-    const listElement = document.createElement("ul");
-    listElement.className = "list-unstyled";
-    
-    procurementSources.forEach(function (sourceEntry) {
-        const listItem = document.createElement("li");
-        listItem.className = "mb-2";
-        
-        const vendorName = sourceEntry.vendor_name || "Unknown vendor";
-        const vendorUrl = sourceEntry.url || "";
-        const minimumOrderQuantity = sourceEntry.minimum_order_quantity;
-        const minimumOrderUnit = sourceEntry.minimum_order_unit || "";
-        const typicalPurity = sourceEntry.typical_purity || "";
-        const acquisitionRestrictions = sourceEntry.acquisition_restrictions || "";
-        const notes = sourceEntry.notes || "";
-        
-        const vendorHeader = document.createElement("strong");
-        if (vendorUrl) {
-            const vendorLink = document.createElement("a");
-            vendorLink.href = vendorUrl;
-            vendorLink.target = "_blank";
-            vendorLink.rel = "noopener noreferrer";
-            vendorLink.textContent = vendorName;
-            vendorHeader.appendChild(vendorLink);
-        } else {
-            vendorHeader.textContent = vendorName;
-        }
-        
-        listItem.appendChild(vendorHeader);
-        
-        const detailsParagraph = document.createElement("div");
-        detailsParagraph.className = "small";
-        
-        if (minimumOrderQuantity !== null && minimumOrderQuantity !== undefined && minimumOrderUnit) {
-            const moqSpan = document.createElement("span");
-            moqSpan.textContent = " | MOQ: " + minimumOrderQuantity + " " + minimumOrderUnit;
-            detailsParagraph.appendChild(moqSpan);
-        }
-        
-        if (typicalPurity) {
-            const puritySpan = document.createElement("span");
-            puritySpan.textContent = " | Purity: " + typicalPurity;
-            detailsParagraph.appendChild(puritySpan);
-        }
-        
-        if (acquisitionRestrictions) {
-            const restrictionsSpan = document.createElement("span");
-            restrictionsSpan.textContent = " | Restrictions: " + acquisitionRestrictions;
-            detailsParagraph.appendChild(restrictionsSpan);
-        }
-        
-        if (notes) {
-            const notesSpan = document.createElement("span");
-            notesSpan.textContent = " | Notes: " + notes;
-            detailsParagraph.appendChild(notesSpan);
-        }
-        
-        listItem.appendChild(detailsParagraph);
-        listElement.appendChild(listItem);
-    });
-    
-    containerElement.appendChild(listElement);
-}
-// End procurement rendering helpers
-
-// Begin main render logic
 document.addEventListener("DOMContentLoaded", function () {
-    const titleElement = document.getElementById("chemicalDetailTitle");
-    const contentElement = document.getElementById("chemicalDetailContent");
+    console.log("motor-color-chemical-details.js: DOMContentLoaded fired.");
     
-    if (!titleElement || !contentElement) {
-        console.error("Chemical detail container elements not found.");
+    const contentElement = document.getElementById("chemicalDetailsContent");
+    if (!contentElement) {
+        console.error("motor-color-chemical-details.js: #chemicalDetailsContent not found in DOM.");
         return;
     }
     
-    const fileParameter = getQueryParameterValue("file");
+    // Begin helper functions
+    function getQueryParameter(parameterName) {
+        const urlParameters = new URLSearchParams(window.location.search);
+        return urlParameters.get(parameterName);
+    }
     
-    if (!isValidJsonFileName(fileParameter)) {
-        titleElement.textContent = "Propellant Colorant Details";
-        const errorParagraph = document.createElement("p");
-        errorParagraph.textContent = "No valid chemical file was specified in the URL.";
-        contentElement.appendChild(errorParagraph);
+    function createCardElement() {
+        const cardElement = document.createElement("div");
+        cardElement.className = "card mb-3";
+        return cardElement;
+    }
+    
+    function createCardBodyElement() {
+        const cardBodyElement = document.createElement("div");
+        cardBodyElement.className = "card-body";
+        return cardBodyElement;
+    }
+    
+    function createHeadingElement(level, textContent) {
+        const headingElement = document.createElement(level);
+        headingElement.textContent = textContent;
+        return headingElement;
+    }
+    
+    function createListElement() {
+        const listElement = document.createElement("ul");
+        listElement.className = "list-unstyled mb-0";
+        return listElement;
+    }
+    
+    function appendBullet(listElement, labelText, valueText) {
+        if (valueText === undefined || valueText === null || valueText === "") {
+            return;
+        }
+        const listItemElement = document.createElement("li");
+        listItemElement.innerHTML = "<strong>" + labelText + ":</strong> " + valueText;
+        listElement.appendChild(listItemElement);
+    }
+    
+    function renderProcurementSources(parentElement, sourcesArray) {
+        if (!Array.isArray(sourcesArray) || sourcesArray.length === 0) {
+            return;
+        }
+        
+        const cardElement = createCardElement();
+        const cardBodyElement = createCardBodyElement();
+        
+        const headingElement = createHeadingElement("h5", "Procurement sources");
+        headingElement.classList.add("card-title", "mb-3");
+        cardBodyElement.appendChild(headingElement);
+        
+        const listElement = document.createElement("ul");
+        listElement.className = "mb-0";
+        
+        sourcesArray.forEach(function (sourceItem, sourceIndex) {
+            const listItemElement = document.createElement("li");
+            
+            const vendorName = sourceItem.vendor_name || "Vendor";
+            const vendorUrl = sourceItem.url || "";
+            const vendorLinkElement = document.createElement("a");
+            vendorLinkElement.textContent = vendorName;
+            if (vendorUrl) {
+                vendorLinkElement.href = vendorUrl;
+                vendorLinkElement.target = "_blank";
+                vendorLinkElement.rel = "noopener noreferrer";
+            } else {
+                vendorLinkElement.href = "#";
+            }
+            
+            const detailsParts = [];
+            
+            if (sourceItem.minimum_order_quantity !== undefined && sourceItem.minimum_order_unit) {
+                detailsParts.push(
+                    "MOQ: " +
+                    String(sourceItem.minimum_order_quantity) +
+                    " " +
+                    sourceItem.minimum_order_unit
+                );
+            }
+            
+            if (sourceItem.typical_purity) {
+                detailsParts.push("Typical purity: " + sourceItem.typical_purity);
+            }
+            
+            if (sourceItem.acquisition_restrictions) {
+                detailsParts.push("Restrictions: " + sourceItem.acquisition_restrictions);
+            }
+            
+            if (sourceItem.notes) {
+                detailsParts.push("Notes: " + sourceItem.notes);
+            }
+            
+            listItemElement.appendChild(vendorLinkElement);
+            
+            if (detailsParts.length > 0) {
+                const detailsParagraphElement = document.createElement("div");
+                detailsParagraphElement.className = "small text-muted";
+                detailsParagraphElement.textContent = detailsParts.join(" | ");
+                listItemElement.appendChild(document.createElement("br"));
+                listItemElement.appendChild(detailsParagraphElement);
+            }
+            
+            listElement.appendChild(listItemElement);
+        });
+        
+        cardBodyElement.appendChild(listElement);
+        cardElement.appendChild(cardBodyElement);
+        parentElement.appendChild(cardElement);
+    }
+    // End helper functions
+    
+    // Begin main flow
+    const fileParameter = getQueryParameter("file");
+    if (!fileParameter) {
+        const warningParagraphElement = document.createElement("p");
+        warningParagraphElement.className = "text-warning";
+        warningParagraphElement.textContent =
+            "No chemical file specified. Please navigate here from the matrix page.";
+        contentElement.appendChild(warningParagraphElement);
         return;
     }
     
     const jsonUrl = "/assets/json-data/" + fileParameter;
+    console.log("motor-color-chemical-details.js: attempting to fetch JSON from:", jsonUrl);
     
     fetch(jsonUrl)
         .then(function (response) {
+            console.log("motor-color-chemical-details.js: fetch response status:", response.status);
             if (!response.ok) {
-                throw new Error("Failed to load chemical JSON file: " + response.status);
+                throw new Error("Failed to load chemical JSON: " + response.status);
             }
             return response.json();
         })
         .then(function (chemicalData) {
-            // Heading
-            const chemicalName = chemicalData.chemical_name || "Unknown chemical";
-            titleElement.textContent = chemicalName;
+            console.log("motor-color-chemical-details.js: parsed chemical JSON:", chemicalData);
             
-            // Summary card container
-            const summaryCard = document.createElement("div");
-            summaryCard.className = "card mb-3";
+            const summaryCardElement = createCardElement();
+            const summaryCardBodyElement = createCardBodyElement();
             
-            const summaryBody = document.createElement("div");
-            summaryBody.className = "card-body";
+            const titleText =
+                chemicalData.chemical_name || chemicalData.reference_id || "Chemical details";
+            const titleElement = createHeadingElement("h4", titleText);
+            titleElement.classList.add("card-title", "mb-3");
+            summaryCardBodyElement.appendChild(titleElement);
             
-            // Flame color line
-            const flameColorParagraph = document.createElement("p");
-            flameColorParagraph.innerHTML = "<strong>Flame color:</strong> " +
-                (chemicalData.flame_color || "unknown");
-            summaryBody.appendChild(flameColorParagraph);
+            const bulletListElement = createListElement();
             
-            // APCP compatibility, saturation, strong emitter badges
-            const badgeRow = document.createElement("p");
+            // Flame color + density + saturation bullet
+            const flameColor = chemicalData.flame_color || "unknown";
+            const colorDensity = chemicalData.color_density || "";
+            const colorSaturation = chemicalData.color_saturation || "";
             
-            const compatibilityLabel = document.createElement("span");
-            compatibilityLabel.innerHTML = "<strong>APCP compatibility:</strong> ";
-            badgeRow.appendChild(compatibilityLabel);
-            badgeRow.appendChild(
-                createCompatibilityBadge(chemicalData.apcp_compatibility)
+            const flameParts = [];
+            flameParts.push(flameColor);
+            if (colorDensity) {
+                flameParts.push(colorDensity);
+            }
+            if (colorSaturation) {
+                flameParts.push("saturation " + colorSaturation);
+            }
+            const flameDescriptor = flameParts.join(" – ");
+            
+            appendBullet(bulletListElement, "Flame color", flameDescriptor);
+            
+            // APCP compatibility
+            appendBullet(
+                bulletListElement,
+                "APCP compatibility",
+                chemicalData.apcp_compatibility || "unknown"
             );
             
-            const spacingSpanOne = document.createElement("span");
-            spacingSpanOne.textContent = "  ";
-            badgeRow.appendChild(spacingSpanOne);
-            
-            const saturationLabel = document.createElement("span");
-            saturationLabel.innerHTML = "<strong>Color saturation:</strong> ";
-            badgeRow.appendChild(saturationLabel);
-            badgeRow.appendChild(
-                createSaturationBadge(chemicalData.color_saturation)
+            // Strong emitter
+            const strongEmitterFlag = Boolean(chemicalData.strong_emitter);
+            appendBullet(
+                bulletListElement,
+                "Strong emitter",
+                strongEmitterFlag ? "yes" : "no"
             );
             
-            const spacingSpanTwo = document.createElement("span");
-            spacingSpanTwo.textContent = "  ";
-            badgeRow.appendChild(spacingSpanTwo);
-            
-            const strongEmitterLabel = document.createElement("span");
-            strongEmitterLabel.innerHTML = "<strong>Strong emitter:</strong> ";
-            badgeRow.appendChild(strongEmitterLabel);
-            badgeRow.appendChild(
-                createStrongEmitterBadge(chemicalData.strong_emitter)
-            );
-            
-            summaryBody.appendChild(badgeRow);
-            
-            // Notes
-            if (chemicalData.notes) {
-                const notesParagraph = document.createElement("p");
-                notesParagraph.innerHTML = "<strong>Notes:</strong> " + chemicalData.notes;
-                summaryBody.appendChild(notesParagraph);
+            // Hygroscopic
+            if (chemicalData.hygroscopic === true || chemicalData.hygroscopic === false) {
+                appendBullet(
+                    bulletListElement,
+                    "Hygroscopic",
+                    chemicalData.hygroscopic ? "yes" : "no"
+                );
             }
             
-            summaryCard.appendChild(summaryBody);
-            contentElement.appendChild(summaryCard);
+            // Burn contribution and modification
+            appendBullet(
+                bulletListElement,
+                "Burn contribution",
+                chemicalData.burn_contribution || ""
+            );
+            appendBullet(
+                bulletListElement,
+                "Burn modification",
+                chemicalData.burn_modification || ""
+            );
             
-            // Procurement section
-            const procurementHeader = document.createElement("h3");
-            procurementHeader.className = "h5 mt-3";
-            procurementHeader.textContent = "Procurement Sources";
-            contentElement.appendChild(procurementHeader);
+            // Physical form
+            appendBullet(
+                bulletListElement,
+                "Physical form",
+                chemicalData.physical_form || ""
+            );
             
-            const procurementContainer = document.createElement("div");
-            renderProcurementSources(procurementContainer, chemicalData.procurement_sources);
-            contentElement.appendChild(procurementContainer);
+            // Notes
+            appendBullet(
+                bulletListElement,
+                "Notes",
+                chemicalData.notes || ""
+            );
+            
+            summaryCardBodyElement.appendChild(bulletListElement);
+            summaryCardElement.appendChild(summaryCardBodyElement);
+            contentElement.appendChild(summaryCardElement);
+            
+            // Procurement sources
+            if (Array.isArray(chemicalData.procurement_sources)) {
+                renderProcurementSources(contentElement, chemicalData.procurement_sources);
+            }
         })
         .catch(function (error) {
-            console.error("Error loading chemical detail JSON:", error);
-            titleElement.textContent = "Propellant Colorant Details";
-            const errorParagraph = document.createElement("p");
-            errorParagraph.textContent = "There was a problem loading the chemical details.";
-            contentElement.appendChild(errorParagraph);
+            console.error("motor-color-chemical-details.js: error loading or rendering details:", error);
+            const errorParagraphElement = document.createElement("p");
+            errorParagraphElement.className = "text-danger";
+            errorParagraphElement.textContent =
+                "There was a problem loading the chemical details. Please try again later.";
+            contentElement.appendChild(errorParagraphElement);
         });
+    // End main flow
 });
-// End main render logic
+// End motor color chemical details logic

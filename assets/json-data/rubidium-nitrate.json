@@ -1,5 +1,5 @@
 {
-  "id": "33333333-3333-3333-3333-111111111111",
+  "id": "c1a1e001-0001-4000-8000-000000000301",
   "reference_id": "rb_no3",
   "chemical_name": "Rubidium nitrate",
   "chemical_compound": "RbNO3",
@@ -22,25 +22,9 @@
       "typical_purity": "99\u201399.9%",
       "acquisition_restrictions": "research / industrial use; may not sell directly to consumers; hazmat shipping likely",
       "notes": "Specialty supplier with multiple rubidium compounds including rubidium nitrate."
-    },
-    {
-      "vendor_name": "Thermo Fisher Scientific",
-      "url": "https://www.thermofisher.com/order/catalog/product/012889.30",
-      "minimum_order_quantity": 10,
-      "minimum_order_unit": "g",
-      "typical_purity": "99% purity",
-      "acquisition_restrictions": "for laboratory use only; business or institutional account often required",
-      "notes": "Laboratory reagent supplier offering small bottles of rubidium nitrate."
-    },
-    {
-      "vendor_name": "Sigma-Aldrich / MilliporeSigma",
-      "url": "https://www.sigmaaldrich.com/US/en/product/aldrich/289299",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "99.7% trace metals basis",
-      "acquisition_restrictions": "research-use-only; hazardous material shipping and regulatory compliance required",
-      "notes": "High-purity rubidium nitrate for analytical and research applications."
     }
   ],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

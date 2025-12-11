@@ -1,5 +1,5 @@
 {
-  "id": "55555555-5555-5555-5555-111111111111",
+  "id": "c1a1e001-0001-4000-8000-000000000501",
   "reference_id": "ca_no3",
   "chemical_name": "Calcium nitrate",
   "chemical_compound": "Ca(NO3)2",
@@ -22,25 +22,9 @@
       "typical_purity": "lab / technical grade",
       "acquisition_restrictions": "oxidizer; restricted carriers and hazmat considerations",
       "notes": "Hobby-accessible source for smaller calcium nitrate quantities."
-    },
-    {
-      "vendor_name": "Connection Chemical",
-      "url": "https://www.connectionchemical.com/calcium-nitrate/",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "industrial grades",
-      "acquisition_restrictions": "industrial supplier; likely business account and larger MOQs required",
-      "notes": "Bulk distributor for industrial-scale calcium nitrate supply."
-    },
-    {
-      "vendor_name": "AllanChem",
-      "url": "https://allanchem.com/calcium-nitrate/",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "ACS grade Ca(NO3)2\u00b74H2O",
-      "acquisition_restrictions": "industrial / lab supplier; business or institutional customers preferred",
-      "notes": "U.S.-based supplier offering higher-purity calcium nitrate in various package sizes."
     }
   ],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

@@ -1,5 +1,5 @@
 {
-  "id": "44444444-4444-4444-4444-333333333333",
+  "id": "c1a1e001-0001-4000-8000-000000000403",
   "reference_id": "cs_cl",
   "chemical_name": "Cesium chloride",
   "chemical_compound": "CsCl",
@@ -14,5 +14,7 @@
   "notes": "Cesium chloride yields highly saturated blue-violet emission lines; like other cesium compounds, it is expensive and typically reserved for research or specialized effects.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

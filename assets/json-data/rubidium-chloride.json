@@ -1,5 +1,5 @@
 {
-  "id": "33333333-3333-3333-3333-333333333333",
+  "id": "c1a1e001-0001-4000-8000-000000000303",
   "reference_id": "rb_cl",
   "chemical_name": "Rubidium chloride",
   "chemical_compound": "RbCl",
@@ -14,5 +14,7 @@
   "notes": "Rubidium chloride yields very intense red-violet emission lines; availability and cost generally limit it to research or specialty display applications.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

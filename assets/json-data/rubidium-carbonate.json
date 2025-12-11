@@ -1,5 +1,5 @@
 {
-  "id": "33333333-3333-3333-3333-222222222222",
+  "id": "c1a1e001-0001-4000-8000-000000000302",
   "reference_id": "rb_co3",
   "chemical_name": "Rubidium carbonate",
   "chemical_compound": "Rb2CO3",
@@ -24,5 +24,7 @@
       "notes": "Vendor offering rubidium carbonate for specialty and research use."
     }
   ],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

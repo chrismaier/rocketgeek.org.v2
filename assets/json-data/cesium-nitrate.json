@@ -1,5 +1,5 @@
 {
-  "id": "44444444-4444-4444-4444-111111111111",
+  "id": "c1a1e001-0001-4000-8000-000000000401",
   "reference_id": "cs_no3",
   "chemical_name": "Cesium nitrate",
   "chemical_compound": "CsNO3",
@@ -22,25 +22,9 @@
       "typical_purity": "high purity grades",
       "acquisition_restrictions": "research / industrial supplier; may require institutional account",
       "notes": "Specialty supplier for cesium nitrate with multiple packaging options."
-    },
-    {
-      "vendor_name": "Thermo Fisher Scientific",
-      "url": "https://www.thermofisher.com/order/catalog/product/038617.22",
-      "minimum_order_quantity": 100,
-      "minimum_order_unit": "g",
-      "typical_purity": "99.999% (metals basis)",
-      "acquisition_restrictions": "laboratory reagent; restricted to professional/industrial customers",
-      "notes": "High-purity cesium nitrate intended for spectroscopy and advanced applications."
-    },
-    {
-      "vendor_name": "Sigma-Aldrich / MilliporeSigma",
-      "url": "https://www.sigmaaldrich.com/US/en/product/aldrich/289337",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "reagent grade",
-      "acquisition_restrictions": "research-use-only; hazmat shipping rules apply",
-      "notes": "Laboratory-grade cesium nitrate for synthesis and research."
     }
   ],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

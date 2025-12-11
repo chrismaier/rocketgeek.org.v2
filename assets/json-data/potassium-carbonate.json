@@ -1,5 +1,5 @@
 {
-  "id": "22222222-2222-2222-2222-222222222222",
+  "id": "c1a1e001-0001-4000-8000-000000000202",
   "reference_id": "k_co3",
   "chemical_name": "Potassium carbonate",
   "chemical_compound": "K2CO3",
@@ -14,5 +14,7 @@
   "notes": "Potassium carbonate is moderately hygroscopic and can act as a mild color donor but is more often a byproduct of combustion than a primary colorant.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

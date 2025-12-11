@@ -1,5 +1,5 @@
 {
-  "id": "55555555-5555-5555-5555-222222222222",
+  "id": "c1a1e001-0001-4000-8000-000000000502",
   "reference_id": "ca_co3",
   "chemical_name": "Calcium carbonate",
   "chemical_compound": "CaCO3",
@@ -14,5 +14,7 @@
   "notes": "Calcium carbonate is a stable mineral filler that can contribute orange-red flame components and often acts as a burn inhibitor and slag former at high loadings.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "suitable",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

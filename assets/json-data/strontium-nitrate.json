@@ -1,5 +1,5 @@
 {
-  "id": "66666666-6666-6666-6666-111111111111",
+  "id": "c1a1e001-0001-4000-8000-000000000601",
   "reference_id": "sr_no3",
   "chemical_name": "Strontium nitrate",
   "chemical_compound": "Sr(NO3)2",
@@ -22,25 +22,9 @@
       "typical_purity": "high purity, ~200 micron",
       "acquisition_restrictions": "oxidizer; may have hazmat or carrier restrictions depending on destination",
       "notes": "Hobby-friendly pyrotechnic supplier offering 1 lb quantities and bulk discounts."
-    },
-    {
-      "vendor_name": "Skylighter",
-      "url": "https://www.skylighter.com/products/strontium-nitrate",
-      "minimum_order_quantity": 1,
-      "minimum_order_unit": "lb",
-      "typical_purity": "technical / pyrotechnic grade",
-      "acquisition_restrictions": "oxidizer; US shipping only; hazmat and carrier rules apply",
-      "notes": "Well-known fireworks chemical supplier with small to medium packaging for hobbyists."
-    },
-    {
-      "vendor_name": "AllanChem",
-      "url": "https://allanchem.com/strontium-nitrate/",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "ACS and technical grade options",
-      "acquisition_restrictions": "industrial supplier; may require business account and larger minimum orders",
-      "notes": "Industrial chemical distributor suitable for larger-volume procurement."
     }
   ],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "suitable",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

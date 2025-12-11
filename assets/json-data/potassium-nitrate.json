@@ -1,5 +1,5 @@
 {
-  "id": "22222222-2222-2222-2222-111111111111",
+  "id": "c1a1e001-0001-4000-8000-000000000201",
   "reference_id": "k_no3",
   "chemical_name": "Potassium nitrate",
   "chemical_compound": "KNO3",
@@ -21,26 +21,10 @@
       "minimum_order_unit": "lb",
       "typical_purity": "99.5% technical grade",
       "acquisition_restrictions": "oxidizer; hazmat and shipping restrictions apply in some regions",
-      "notes": "Widely used oxidizer for black powder and pyrotechnic compositions; 1 lb and bulk sizes."
-    },
-    {
-      "vendor_name": "Fireworks Cookbook",
-      "url": "https://www.fireworkscookbook.com/product/potassium-nitrate/",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "technical grade",
-      "acquisition_restrictions": "oxidizer; subject to typical fireworks chemical shipping rules",
-      "notes": "Pyrotechnic-focused supplier with milled and technical grade potassium nitrate."
-    },
-    {
-      "vendor_name": "EverythingSKS",
-      "url": "https://www.ammoniumnitrateforsale.com/store-2/Potassium-Nitrate-c125941844",
-      "minimum_order_quantity": null,
-      "minimum_order_unit": "",
-      "typical_purity": "99.8% purity",
-      "acquisition_restrictions": "oxidizer; U.S. regulations on oxidizers apply; may have weight limits per shipment",
-      "notes": "Supplier specializing in high-purity potassium nitrate for black powder and pyrotechnics."
+      "notes": "Widely used oxidizer for black powder and pyrotechnic formulations; 1 lb and bulk sizes."
     }
   ],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "suitable",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

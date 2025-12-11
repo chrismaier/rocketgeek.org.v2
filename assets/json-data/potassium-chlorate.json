@@ -1,5 +1,5 @@
 {
-  "id": "22222222-2222-2222-2222-444444444444",
+  "id": "c1a1e001-0001-4000-8000-000000000204",
   "reference_id": "k_clo3",
   "chemical_name": "Potassium chlorate",
   "chemical_compound": "KClO3",
@@ -14,6 +14,7 @@
   "notes": "Potassium chlorate is a powerful oxidizer used in many traditional color compositions, but the potassium emission itself is relatively low saturation; chlorate-based compositions are sensitive and generally incompatible with APCP practices. Extreme caution is required.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T17:00:00Z",
-  "apcp_compatibility": "unsuitable"
+  "apcp_compatibility": "unsuitable",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

@@ -1,5 +1,5 @@
 {
-  "id": "66666666-6666-6666-6666-333333333333",
+  "id": "c1a1e001-0001-4000-8000-000000000603",
   "reference_id": "sr_cl2",
   "chemical_name": "Strontium chloride",
   "chemical_compound": "SrCl2",
@@ -14,5 +14,7 @@
   "notes": "Strontium chloride provides extremely strong deep red emission and is often used in color systems when maximum red saturation is desired, though hygroscopicity and compatibility must be managed.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

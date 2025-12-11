@@ -1,5 +1,5 @@
 {
-  "id": "11111111-1111-1111-1111-111111111111",
+  "id": "c1a1e001-0001-4000-8000-000000000101",
   "reference_id": "li_no3",
   "chemical_name": "Lithium nitrate",
   "chemical_compound": "LiNO3",
@@ -14,5 +14,7 @@
   "notes": "Lithium nitrate is an oxidizing lithium salt that can contribute to red flame coloration but is less commonly used in APCP than strontium compounds.",
   "other_references": [],
   "procurement_sources": [],
-  "last_updated": "2025-12-10T16:30:00Z"
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-10T17:32:00Z"
 }

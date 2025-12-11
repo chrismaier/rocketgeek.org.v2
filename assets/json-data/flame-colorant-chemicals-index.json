@@ -1,4 +1,225 @@
 {
-  "chemicals": [],
-  "last_updated": "2025-12-10T17:15:00Z"
+  "chemicals": [
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000502",
+      "chemical_name": "Calcium carbonate",
+      "file_name": "calcium-carbonate.json",
+      "flame_color": "orange",
+      "color_density": "pale",
+      "apcp_compatibility": "suitable",
+      "color_saturation": "low",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=calcium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000503",
+      "chemical_name": "Calcium chloride",
+      "file_name": "calcium-chloride.json",
+      "flame_color": "orange",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=calcium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000501",
+      "chemical_name": "Calcium nitrate",
+      "file_name": "calcium-nitrate.json",
+      "flame_color": "orange",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=calcium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000402",
+      "chemical_name": "Cesium carbonate",
+      "file_name": "cesium-carbonate.json",
+      "flame_color": "violet",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=cesium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000403",
+      "chemical_name": "Cesium chloride",
+      "file_name": "cesium-chloride.json",
+      "flame_color": "violet",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=cesium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000401",
+      "chemical_name": "Cesium nitrate",
+      "file_name": "cesium-nitrate.json",
+      "flame_color": "violet",
+      "color_density": "blue-tinged",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=cesium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000102",
+      "chemical_name": "Lithium carbonate",
+      "file_name": "lithium-carbonate.json",
+      "flame_color": "red",
+      "color_density": "pale",
+      "apcp_compatibility": "limited",
+      "color_saturation": "low",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=lithium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000103",
+      "chemical_name": "Lithium chloride",
+      "file_name": "lithium-chloride.json",
+      "flame_color": "red",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=lithium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000101",
+      "chemical_name": "Lithium nitrate",
+      "file_name": "lithium-nitrate.json",
+      "flame_color": "red",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=lithium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000202",
+      "chemical_name": "Potassium carbonate",
+      "file_name": "potassium-carbonate.json",
+      "flame_color": "violet",
+      "color_density": "pale",
+      "apcp_compatibility": "limited",
+      "color_saturation": "low",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=potassium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000204",
+      "chemical_name": "Potassium chlorate",
+      "file_name": "potassium-chlorate.json",
+      "flame_color": "violet",
+      "color_density": "pale",
+      "apcp_compatibility": "unsuitable",
+      "color_saturation": "low",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=potassium-chlorate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000203",
+      "chemical_name": "Potassium chloride",
+      "file_name": "potassium-chloride.json",
+      "flame_color": "violet",
+      "color_density": "normal",
+      "apcp_compatibility": "suitable",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=potassium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000201",
+      "chemical_name": "Potassium nitrate",
+      "file_name": "potassium-nitrate.json",
+      "flame_color": "violet",
+      "color_density": "pale",
+      "apcp_compatibility": "suitable",
+      "color_saturation": "low",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=potassium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000302",
+      "chemical_name": "Rubidium carbonate",
+      "file_name": "rubidium-carbonate.json",
+      "flame_color": "violet",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=rubidium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000303",
+      "chemical_name": "Rubidium chloride",
+      "file_name": "rubidium-chloride.json",
+      "flame_color": "violet",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=rubidium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000301",
+      "chemical_name": "Rubidium nitrate",
+      "file_name": "rubidium-nitrate.json",
+      "flame_color": "violet",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=rubidium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000602",
+      "chemical_name": "Strontium carbonate",
+      "file_name": "strontium-carbonate.json",
+      "flame_color": "red",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "details_url": "/motor-color-chemical-details.html?file=strontium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000604",
+      "chemical_name": "Strontium chlorate",
+      "file_name": "strontium-chlorate.json",
+      "flame_color": "red",
+      "color_density": "deep",
+      "apcp_compatibility": "unsuitable",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=strontium-chlorate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000603",
+      "chemical_name": "Strontium chloride",
+      "file_name": "strontium-chloride.json",
+      "flame_color": "red",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=strontium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000601",
+      "chemical_name": "Strontium nitrate",
+      "file_name": "strontium-nitrate.json",
+      "flame_color": "red",
+      "color_density": "deep",
+      "apcp_compatibility": "suitable",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "details_url": "/motor-color-chemical-details.html?file=strontium-nitrate.json"
+    }
+  ],
+  "last_updated": "2025-12-10T18:15:00Z"
 }
