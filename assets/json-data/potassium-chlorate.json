@@ -1,0 +1,19 @@
+{
+  "id": "22222222-2222-2222-2222-444444444444",
+  "reference_id": "k_clo3",
+  "chemical_name": "Potassium chlorate",
+  "chemical_compound": "KClO3",
+  "flame_color": "pale_violet",
+  "burn_contribution": "oxidizer",
+  "burn_modification": "burn_accelerant",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": false,
+  "color_saturation": "low",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Potassium chlorate is a powerful oxidizer used in many traditional color compositions, but the potassium emission itself is relatively low saturation; chlorate-based compositions are sensitive and generally incompatible with APCP practices. Extreme caution is required.",
+  "other_references": [],
+  "procurement_sources": [],
+  "last_updated": "2025-12-10T17:00:00Z",
+  "apcp_compatibility": "unsuitable"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "33333333-3333-3333-3333-333333333333",
+  "reference_id": "rb_cl",
+  "chemical_name": "Rubidium chloride",
+  "chemical_compound": "RbCl",
+  "flame_color": "red_violet",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "crystalline solid",
+  "hygroscopic": true,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Rubidium chloride yields very intense red-violet emission lines; availability and cost generally limit it to research or specialty display applications.",
+  "other_references": [],
+  "procurement_sources": [],
+  "last_updated": "2025-12-10T16:30:00Z"
+}

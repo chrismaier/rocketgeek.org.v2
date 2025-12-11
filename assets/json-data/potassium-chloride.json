@@ -1,0 +1,18 @@
+{
+  "id": "22222222-2222-2222-2222-333333333333",
+  "reference_id": "k_cl",
+  "chemical_name": "Potassium chloride",
+  "chemical_compound": "KCl",
+  "flame_color": "pale_violet",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "crystalline salt",
+  "hygroscopic": false,
+  "color_saturation": "medium",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Potassium chloride produces the characteristic lilac potassium emission with modest color saturation; commonly available and relatively benign as a color donor but rarely used alone in pyrotechnic formulas.",
+  "other_references": [],
+  "procurement_sources": [],
+  "last_updated": "2025-12-10T16:30:00Z"
+}

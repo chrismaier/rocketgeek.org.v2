@@ -1,0 +1,28 @@
+{
+  "id": "33333333-3333-3333-3333-222222222222",
+  "reference_id": "rb_co3",
+  "chemical_name": "Rubidium carbonate",
+  "chemical_compound": "Rb2CO3",
+  "flame_color": "red_violet",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": true,
+  "color_saturation": "medium",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Rubidium carbonate is a specialty material; as a flame colorant it is expensive and rarely used in hobby-scale pyrotechnics.",
+  "other_references": [],
+  "procurement_sources": [
+    {
+      "vendor_name": "Stanford Advanced Materials",
+      "url": "https://www.samaterials.com/rubidium/1874-rubidium-carbonate-rb2co3.html",
+      "minimum_order_quantity": null,
+      "minimum_order_unit": "",
+      "typical_purity": "high purity grades",
+      "acquisition_restrictions": "research / industrial supplier; not typically hobby-focused",
+      "notes": "Vendor offering rubidium carbonate for specialty and research use."
+    }
+  ],
+  "last_updated": "2025-12-10T16:30:00Z"
+}

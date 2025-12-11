@@ -1,0 +1,28 @@
+{
+  "id": "11111111-1111-1111-1111-222222222222",
+  "reference_id": "li_co3",
+  "chemical_name": "Lithium carbonate",
+  "chemical_compound": "Li2CO3",
+  "flame_color": "red",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": false,
+  "color_saturation": "low",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Lithium carbonate is a stable lithium salt that can act as a red color donor but has limited solubility and lower color strength than some other red emitters.",
+  "other_references": [],
+  "procurement_sources": [
+    {
+      "vendor_name": "New Mexico Clay",
+      "url": "https://nmclay.com/lico-lithium-carbonate-fine",
+      "minimum_order_quantity": 0.1,
+      "minimum_order_unit": "lb",
+      "typical_purity": "ceramic grade, fine powder",
+      "acquisition_restrictions": "general chemical; typical consumer shipping rules apply",
+      "notes": "Ceramics supplier with small to moderate quantities of fine lithium carbonate."
+    }
+  ],
+  "last_updated": "2025-12-10T16:30:00Z"
+}

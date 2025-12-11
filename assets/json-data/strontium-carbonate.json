@@ -1,0 +1,46 @@
+{
+  "id": "66666666-6666-6666-6666-222222222222",
+  "reference_id": "sr_co3",
+  "chemical_name": "Strontium carbonate",
+  "chemical_compound": "SrCO3",
+  "flame_color": "deep_red",
+  "burn_contribution": "color_donor",
+  "burn_modification": "burn_inhibitor",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": false,
+  "color_saturation": "medium",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Strontium carbonate is a common, more stable red color donor that tends to slow burn rate and increase slag formation compared to strontium nitrate.",
+  "other_references": [],
+  "procurement_sources": [
+    {
+      "vendor_name": "Skylighter",
+      "url": "https://www.skylighter.com/products/strontium-carbonate",
+      "minimum_order_quantity": 1,
+      "minimum_order_unit": "lb",
+      "typical_purity": "fine 325-mesh powder",
+      "acquisition_restrictions": "may be treated as general chemical; shipping restrictions lighter than oxidizers",
+      "notes": "Common red colorant for fireworks stars and flares; convenient 1 lb packaging."
+    },
+    {
+      "vendor_name": "Stanford Advanced Materials",
+      "url": "https://www.samaterials.com/strontium/181-strontium-carbonate.html",
+      "minimum_order_quantity": null,
+      "minimum_order_unit": "",
+      "typical_purity": "97% and higher",
+      "acquisition_restrictions": "industrial / research supplier; may prefer business or institutional customers",
+      "notes": "Global supplier with options for larger-volume, higher-purity material."
+    },
+    {
+      "vendor_name": "Heeger Materials",
+      "url": "https://heegermaterials.com/strontium/3037-strontium-carbonate-srco3-cas-1633-05-2.html",
+      "minimum_order_quantity": null,
+      "minimum_order_unit": "",
+      "typical_purity": "high purity grades available",
+      "acquisition_restrictions": "industrial chemical; may have export or business-use constraints",
+      "notes": "Specialty supplier with multiple packaging and purity options."
+    }
+  ],
+  "last_updated": "2025-12-10T16:30:00Z"
+}

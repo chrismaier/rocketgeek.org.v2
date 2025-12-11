@@ -1,0 +1,19 @@
+{
+  "id": "66666666-6666-6666-6666-444444444444",
+  "reference_id": "sr_clo3_2",
+  "chemical_name": "Strontium chlorate",
+  "chemical_compound": "Sr(ClO3)2",
+  "flame_color": "deep_red",
+  "burn_contribution": "oxidizer",
+  "burn_modification": "burn_accelerant",
+  "physical_form": "crystalline solid",
+  "hygroscopic": true,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Strontium chlorate yields very intense red coloration but is an extremely sensitive oxidizer with serious compatibility and stability issues; generally unsuitable for APCP and must be handled only with advanced pyrotechnic safety practice.",
+  "other_references": [],
+  "procurement_sources": [],
+  "last_updated": "2025-12-10T17:00:00Z",
+  "apcp_compatibility": "unsuitable"
+}

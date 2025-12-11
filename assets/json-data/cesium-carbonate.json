@@ -1,0 +1,28 @@
+{
+  "id": "44444444-4444-4444-4444-222222222222",
+  "reference_id": "cs_co3",
+  "chemical_name": "Cesium carbonate",
+  "chemical_compound": "Cs2CO3",
+  "flame_color": "blue_violet",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": true,
+  "color_saturation": "medium",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Cesium carbonate is highly hygroscopic and rarely used as a flame colorant in practical pyrotechnics due to cost and handling difficulty.",
+  "other_references": [],
+  "procurement_sources": [
+    {
+      "vendor_name": "Sigma-Aldrich / MilliporeSigma",
+      "url": "https://www.sigmaaldrich.com/US/en/product/aldrich/255645",
+      "minimum_order_quantity": null,
+      "minimum_order_unit": "",
+      "typical_purity": "99.995% trace metals basis",
+      "acquisition_restrictions": "research-use-only; hazmat shipping and institutional account likely required",
+      "notes": "High-purity cesium carbonate used mainly in research and advanced materials work."
+    }
+  ],
+  "last_updated": "2025-12-10T16:30:00Z"
+}

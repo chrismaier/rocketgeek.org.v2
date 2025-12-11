@@ -1,0 +1,46 @@
+{
+  "id": "33333333-3333-3333-3333-111111111111",
+  "reference_id": "rb_no3",
+  "chemical_name": "Rubidium nitrate",
+  "chemical_compound": "RbNO3",
+  "flame_color": "red_violet",
+  "burn_contribution": "oxidizer",
+  "burn_modification": "burn_accelerant",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": true,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Rubidium nitrate is a specialty oxidizer and colorant used for red-violet and infrared pyrotechnic compositions; it is more expensive and less common than potassium or strontium salts.",
+  "other_references": [],
+  "procurement_sources": [
+    {
+      "vendor_name": "Stanford Advanced Materials",
+      "url": "https://www.samaterials.com/rubidium/1211-rubidium-nitrate-rbno3.html",
+      "minimum_order_quantity": null,
+      "minimum_order_unit": "",
+      "typical_purity": "99\u201399.9%",
+      "acquisition_restrictions": "research / industrial use; may not sell directly to consumers; hazmat shipping likely",
+      "notes": "Specialty supplier with multiple rubidium compounds including rubidium nitrate."
+    },
+    {
+      "vendor_name": "Thermo Fisher Scientific",
+      "url": "https://www.thermofisher.com/order/catalog/product/012889.30",
+      "minimum_order_quantity": 10,
+      "minimum_order_unit": "g",
+      "typical_purity": "99% purity",
+      "acquisition_restrictions": "for laboratory use only; business or institutional account often required",
+      "notes": "Laboratory reagent supplier offering small bottles of rubidium nitrate."
+    },
+    {
+      "vendor_name": "Sigma-Aldrich / MilliporeSigma",
+      "url": "https://www.sigmaaldrich.com/US/en/product/aldrich/289299",
+      "minimum_order_quantity": null,
+      "minimum_order_unit": "",
+      "typical_purity": "99.7% trace metals basis",
+      "acquisition_restrictions": "research-use-only; hazardous material shipping and regulatory compliance required",
+      "notes": "High-purity rubidium nitrate for analytical and research applications."
+    }
+  ],
+  "last_updated": "2025-12-10T16:30:00Z"
+}
