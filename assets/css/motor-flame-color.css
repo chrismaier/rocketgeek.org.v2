@@ -1,0 +1,31 @@
+/* Begin flame-color-table styling */
+
+.fct-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.fct-red { background-color: #d13c3c; }
+.fct-orange { background-color: #e67e22; }
+.fct-yellow { background-color: #f1c40f; color: #000; }
+.fct-green { background-color: #27ae60; }
+.fct-blue { background-color: #3498db; }
+.fct-violet { background-color: #8e44ad; }
+.fct-gray { background-color: #7f8c8d; }
+
+.fct-low { background-color: #95a5a6; }
+.fct-medium { background-color: #5dade2; }
+.fct-high { background-color: #2ecc71; }
+
+.fct-role-oxidizer { background-color: #c0392b; }
+.fct-role-color { background-color: #8e44ad; }
+.fct-role-inert { background-color: #7f8c8d; }
+.fct-role-inhibitor { background-color: #2c3e50; }
+.fct-role-binder { background-color: #16a085; }
+
+/* End flame-color-table styling */

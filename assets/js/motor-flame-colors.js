@@ -1,146 +1,154 @@
 /* Begin motor-flame-colors.js */
 
-/* Begin configuration */
 const flameColorantIndexUrl = "/assets/json-data/flame-colorant-chemicals-index.json";
-
-/**
- * This must match the <tbody> id in your existing HTML.
- * The markup you provided uses:
- *
- *   <tbody id="colorant-matrix-body"></tbody>
- */
 const tableBodyElementId = "colorant-matrix-body";
-/* End configuration */
 
-/* Begin utility functions */
+/* Begin pill creation helpers */
 
-/**
- * Begin addTextCell
- * Create a basic text cell and append it to the row.
- */
-function addTextCell(rowElement, textContent) {
-    const cellElement = rowElement.insertCell();
-    cellElement.textContent = textContent ?? "";
+function createPill(label, className) {
+    const span = document.createElement("span");
+    span.textContent = label ?? "";
+    span.classList.add("fct-pill");
+    if (className) {
+        span.classList.add(className);
+    }
+    return span;
 }
-/* End addTextCell */
 
-/**
- * Begin addLinkCell
- * Create a link cell for the chemical name.
- */
-function addLinkCell(rowElement, linkText, hrefValue) {
-    const cellElement = rowElement.insertCell();
-    const anchorElement = document.createElement("a");
+/* Begin pillForFlameColor */
+function pillForFlameColor(color) {
+    const normalizedColor = (color || "").toLowerCase();
     
-    anchorElement.textContent = linkText ?? "";
-    anchorElement.href = hrefValue || "#";
+    if (normalizedColor === "red") {
+        return createPill(color, "fct-red");
+    }
+    if (normalizedColor === "orange") {
+        return createPill(color, "fct-orange");
+    }
+    if (normalizedColor === "yellow") {
+        return createPill(color, "fct-yellow");
+    }
+    if (normalizedColor === "green") {
+        return createPill(color, "fct-green");
+    }
+    if (normalizedColor === "blue") {
+        return createPill(color, "fct-blue");
+    }
+    if (normalizedColor === "violet") {
+        return createPill(color, "fct-violet");
+    }
     
-    cellElement.appendChild(anchorElement);
+    return createPill(color || "n/a", "fct-gray");
 }
-/* End addLinkCell */
+/* End pillForFlameColor */
 
+/* Begin pillForDensity */
 /**
- * Begin createCompatibilityBadge
- * Create a small label for APCP compatibility.
- * Styling is minimal so your existing site CSS / Bootstrap
- * controls the final look (no grid lines or corner changes here).
+ * Map:
+ *   pale   -> low (fct-low)
+ *   normal -> medium (fct-medium)
+ *   deep / blue-tinged -> high (fct-high)
+ * Anything else -> gray
  */
-function createCompatibilityBadge(compatibilityValue) {
-    const spanElement = document.createElement("span");
-    const normalizedValue = (compatibilityValue || "").toLowerCase();
+function pillForDensity(level) {
+    const normalizedLevel = (level || "").toLowerCase();
     
-    spanElement.textContent = compatibilityValue || "unknown";
-    
-    // Minimal, standard Bootstrap-style classes.
-    // Your existing CSS already defines how these look.
-    spanElement.classList.add("badge");
-    
-    if (normalizedValue === "suitable") {
-        spanElement.classList.add("bg-success");
-    } else if (normalizedValue === "limited") {
-        spanElement.classList.add("bg-warning", "text-dark");
-    } else if (normalizedValue === "unsuitable") {
-        spanElement.classList.add("bg-danger");
-    } else {
-        spanElement.classList.add("bg-secondary");
+    if (normalizedLevel === "pale") {
+        return createPill(level, "fct-low");
+    }
+    if (normalizedLevel === "normal") {
+        return createPill(level, "fct-medium");
+    }
+    if (normalizedLevel === "deep" || normalizedLevel === "blue-tinged") {
+        return createPill(level, "fct-high");
     }
     
-    return spanElement;
+    return createPill(level || "n/a", "fct-gray");
 }
-/* End createCompatibilityBadge */
+/* End pillForDensity */
 
+/* Begin pillForSaturation */
 /**
- * Begin formatStrongEmitterLabel
- * Turn the boolean strong_emitter flag into human text.
+ * saturation is already low / medium / high in your data,
+ * so we can map directly to fct-low / fct-medium / fct-high.
  */
-function formatStrongEmitterLabel(strongEmitterFlag) {
-    if (strongEmitterFlag === true) {
-        return "Yes";
+function pillForSaturation(level) {
+    const normalizedLevel = (level || "").toLowerCase();
+    
+    if (normalizedLevel === "low") {
+        return createPill(level, "fct-low");
     }
-    if (strongEmitterFlag === false) {
-        return "No";
+    if (normalizedLevel === "medium") {
+        return createPill(level, "fct-medium");
     }
-    return "Unknown";
+    if (normalizedLevel === "high") {
+        return createPill(level, "fct-high");
+    }
+    
+    return createPill(level || "n/a", "fct-gray");
 }
-/* End formatStrongEmitterLabel */
+/* End pillForSaturation */
 
-/**
- * Begin formatBurnContributionLabel
- * Make burn_contribution readable for humans.
- */
-function formatBurnContributionLabel(burnContribution) {
-    if (!burnContribution) {
-        return "";
+/* Begin pillForEmitter */
+function pillForEmitter(value) {
+    if (value === true) {
+        return createPill("Yes", "fct-high");
     }
-    
-    const normalizedValue = burnContribution.toLowerCase();
-    
-    if (normalizedValue === "oxidizer") {
-        return "Oxidizer";
+    if (value === false) {
+        return createPill("No", "fct-low");
     }
-    if (normalizedValue === "color_donor") {
-        return "Color donor";
-    }
-    if (normalizedValue === "inert_filler") {
-        return "Inert / filler";
-    }
-    if (normalizedValue === "burn_inhibitor") {
-        return "Burn inhibitor";
-    }
-    if (normalizedValue === "binder_like") {
-        return "Binder-like contribution";
-    }
-    
-    const fallbackLabel = normalizedValue
-        .replace(/_/g, " ")
-        .replace(/^\w/, function (firstCharacter) {
-            return firstCharacter.toUpperCase();
-        });
-    
-    return fallbackLabel;
+    return createPill("Unknown", "fct-gray");
 }
-/* End formatBurnContributionLabel */
+/* End pillForEmitter */
 
-/* End utility functions */
+/* Begin pillForCompatibility */
+function pillForCompatibility(value) {
+    const normalized = (value || "").toLowerCase();
+    
+    if (normalized === "suitable") {
+        return createPill("Suitable", "fct-green");
+    }
+    if (normalized === "limited") {
+        return createPill("Limited", "fct-yellow");
+    }
+    if (normalized === "unsuitable") {
+        return createPill("Unsuitable", "fct-red");
+    }
+    
+    return createPill("Unknown", "fct-gray");
+}
+/* End pillForCompatibility */
+
+/* Begin pillForBurnRole */
+function pillForBurnRole(role) {
+    const normalizedRole = (role || "").toLowerCase();
+    
+    if (normalizedRole === "oxidizer") {
+        return createPill("Oxidizer", "fct-role-oxidizer");
+    }
+    if (normalizedRole === "color_donor") {
+        return createPill("Color donor", "fct-role-color");
+    }
+    if (normalizedRole === "inert_filler") {
+        return createPill("Inert filler", "fct-role-inert");
+    }
+    if (normalizedRole === "burn_inhibitor") {
+        return createPill("Burn inhibitor", "fct-role-inhibitor");
+    }
+    if (normalizedRole === "binder_like") {
+        return createPill("Binder-like", "fct-role-binder");
+    }
+    
+    return createPill(role || "n/a", "fct-gray");
+}
+/* End pillForBurnRole */
+
+/* End pill creation helpers */
 
 /* Begin rendering logic */
 
-/**
- * Begin renderFlameColorantMatrix
- * Populate the table body from the index JSON data.
- *
- * Column order MUST match your <thead>:
- *  1. Chemical
- *  2. Flame color
- *  3. Color density
- *  4. Color saturation
- *  5. Burn role
- *  6. APCP compatibility
- *  7. Strong emitter
- */
 function renderFlameColorantMatrix(chemicalList) {
     const tableBodyElement = document.getElementById(tableBodyElementId);
-    
     if (!tableBodyElement) {
         console.error(
             "motor-flame-colors.js: Could not find table body with id:",
@@ -149,95 +157,97 @@ function renderFlameColorantMatrix(chemicalList) {
         return;
     }
     
-    // Clear existing rows
-    while (tableBodyElement.firstChild) {
-        tableBodyElement.removeChild(tableBodyElement.firstChild);
-    }
+    tableBodyElement.innerHTML = "";
     
     if (!Array.isArray(chemicalList) || chemicalList.length === 0) {
         const placeholderRow = tableBodyElement.insertRow();
         const placeholderCell = placeholderRow.insertCell();
-        // You have 7 columns in the header
         placeholderCell.colSpan = 7;
         placeholderCell.textContent = "No flame colorant data available.";
         return;
     }
     
-    for (let index = 0; index < chemicalList.length; index++) {
-        const chemicalItem = chemicalList[index];
+    chemicalList.forEach(function (chemicalItem) {
         const rowElement = tableBodyElement.insertRow();
         
+        // Column order matches your <thead>:
+        // 1. Chemical
+        // 2. Flame color
+        // 3. Color density
+        // 4. Color saturation
+        // 5. Burn role
+        // 6. APCP compatibility
+        // 7. Strong emitter
+        
         // 1. Chemical (clickable)
-        addLinkCell(
-            rowElement,
-            chemicalItem.chemical_name,
-            chemicalItem.details_url || "#"
-        );
+        const nameCell = rowElement.insertCell();
+        const anchorElement = document.createElement("a");
+        anchorElement.textContent = chemicalItem.chemical_name ?? "";
+        anchorElement.href = chemicalItem.details_url || "#";
+        nameCell.appendChild(anchorElement);
         
         // 2. Flame color
-        addTextCell(rowElement, chemicalItem.flame_color);
+        const flameColorCell = rowElement.insertCell();
+        flameColorCell.appendChild(pillForFlameColor(chemicalItem.flame_color));
         
         // 3. Color density
-        addTextCell(rowElement, chemicalItem.color_density);
+        const densityCell = rowElement.insertCell();
+        densityCell.appendChild(pillForDensity(chemicalItem.color_density));
         
         // 4. Color saturation
-        addTextCell(rowElement, chemicalItem.color_saturation);
+        const saturationCell = rowElement.insertCell();
+        saturationCell.appendChild(pillForSaturation(chemicalItem.color_saturation));
         
-        // 5. Burn role (burn_contribution)
-        addTextCell(
-            rowElement,
-            formatBurnContributionLabel(chemicalItem.burn_contribution)
-        );
+        // 5. Burn role
+        const burnRoleCell = rowElement.insertCell();
+        burnRoleCell.appendChild(pillForBurnRole(chemicalItem.burn_contribution));
         
-        // 6. APCP compatibility (badge)
+        // 6. APCP compatibility
         const compatibilityCell = rowElement.insertCell();
-        const compatibilityBadge = createCompatibilityBadge(
-            chemicalItem.apcp_compatibility
+        compatibilityCell.appendChild(
+            pillForCompatibility(chemicalItem.apcp_compatibility)
         );
-        compatibilityCell.appendChild(compatibilityBadge);
         
         // 7. Strong emitter
-        addTextCell(
-            rowElement,
-            formatStrongEmitterLabel(chemicalItem.strong_emitter)
-        );
-    }
+        const emitterCell = rowElement.insertCell();
+        emitterCell.appendChild(pillForEmitter(chemicalItem.strong_emitter));
+    });
 }
-/* End renderFlameColorantMatrix */
 
-/**
- * Begin loadFlameColorantIndex
- * Fetch the index JSON and hand off to the renderer.
- */
+/* End rendering logic */
+
+/* Begin data loading */
+
 function loadFlameColorantIndex() {
     fetch(flameColorantIndexUrl, { cache: "no-cache" })
-        .then(function handleResponse(responseObject) {
+        .then(function (responseObject) {
             if (!responseObject.ok) {
                 throw new Error("HTTP error " + responseObject.status);
             }
             return responseObject.json();
         })
-        .then(function handleJson(responseData) {
+        .then(function (responseData) {
             const chemicalList = Array.isArray(responseData.chemicals)
                 ? responseData.chemicals
                 : [];
             renderFlameColorantMatrix(chemicalList);
         })
-        .catch(function handleError(errorObject) {
+        .catch(function (errorObject) {
             console.error(
                 "motor-flame-colors.js: Failed to load index JSON:",
                 errorObject
             );
         });
 }
-/* End loadFlameColorantIndex */
 
-/* End rendering logic */
+/* End data loading */
 
 /* Begin event wiring */
-document.addEventListener("DOMContentLoaded", function handleDomReady() {
+
+document.addEventListener("DOMContentLoaded", function () {
     loadFlameColorantIndex();
 });
+
 /* End event wiring */
 
 /* End motor-flame-colors.js */
