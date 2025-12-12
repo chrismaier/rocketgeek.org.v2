@@ -3,7 +3,8 @@
   "reference_id": "cs_no3",
   "chemical_name": "Cesium nitrate",
   "chemical_compound": "CsNO3",
-  "flame_color": "blue_violet",
+  "flame_color": "violet",
+  "color_density": "blue-tinged",
   "burn_contribution": "oxidizer",
   "burn_modification": "burn_accelerant",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "high",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Cesium nitrate is a specialty oxidizer used for blue-violet and infrared applications; typically high cost and often restricted to research or industrial customers.",
+  "notes": "Cesium nitrate provides blue-violet emission and is primarily used in research or specialized color systems.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -20,11 +21,11 @@
       "minimum_order_quantity": null,
       "minimum_order_unit": "",
       "typical_purity": "high purity grades",
-      "acquisition_restrictions": "research / industrial supplier; may require institutional account",
-      "notes": "Specialty supplier for cesium nitrate with multiple packaging options."
+      "acquisition_restrictions": "research / institutional customers preferred",
+      "notes": "Specialty supplier for cesium nitrate."
     }
   ],
   "apcp_compatibility": "limited",
   "strong_emitter": true,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

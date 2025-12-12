@@ -1,6 +1,42 @@
 {
   "chemicals": [
     {
+      "id": "c1a1e001-0001-4000-8000-000000000903",
+      "chemical_name": "Barium carbonate",
+      "file_name": "barium-carbonate.json",
+      "flame_color": "green",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=barium-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000902",
+      "chemical_name": "Barium chloride",
+      "file_name": "barium-chloride.json",
+      "flame_color": "green",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=barium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000901",
+      "chemical_name": "Barium nitrate",
+      "file_name": "barium-nitrate.json",
+      "flame_color": "green",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "oxidizer",
+      "details_url": "/motor-color-chemical-details.html?file=barium-nitrate.json"
+    },
+    {
       "id": "c1a1e001-0001-4000-8000-000000000502",
       "chemical_name": "Calcium carbonate",
       "file_name": "calcium-carbonate.json",
@@ -9,6 +45,7 @@
       "apcp_compatibility": "suitable",
       "color_saturation": "low",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=calcium-carbonate.json"
     },
     {
@@ -20,6 +57,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=calcium-chloride.json"
     },
     {
@@ -31,6 +69,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=calcium-nitrate.json"
     },
     {
@@ -42,6 +81,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=cesium-carbonate.json"
     },
     {
@@ -53,6 +93,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=cesium-chloride.json"
     },
     {
@@ -64,7 +105,68 @@
       "apcp_compatibility": "limited",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=cesium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000001004",
+      "chemical_name": "Copper benzoate",
+      "file_name": "copper-benzoate.json",
+      "flame_color": "blue",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=copper-benzoate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000001003",
+      "chemical_name": "Copper carbonate basic",
+      "file_name": "copper-carbonate.json",
+      "flame_color": "green",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "medium",
+      "strong_emitter": false,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=copper-carbonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000001001",
+      "chemical_name": "Copper(I) chloride",
+      "file_name": "copper-chloride-i.json",
+      "flame_color": "blue",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=copper-chloride-i.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000001005",
+      "chemical_name": "Copper(II) acetoacetonate",
+      "file_name": "copper-acetoacetonate.json",
+      "flame_color": "blue",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=copper-acetoacetonate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000001002",
+      "chemical_name": "Copper(II) chloride",
+      "file_name": "copper-chloride-ii.json",
+      "flame_color": "green",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=copper-chloride-ii.json"
     },
     {
       "id": "c1a1e001-0001-4000-8000-000000000102",
@@ -75,6 +177,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "low",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=lithium-carbonate.json"
     },
     {
@@ -86,6 +189,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=lithium-chloride.json"
     },
     {
@@ -97,6 +201,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=lithium-nitrate.json"
     },
     {
@@ -108,6 +213,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "low",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=potassium-carbonate.json"
     },
     {
@@ -119,6 +225,7 @@
       "apcp_compatibility": "unsuitable",
       "color_saturation": "low",
       "strong_emitter": false,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=potassium-chlorate.json"
     },
     {
@@ -130,6 +237,7 @@
       "apcp_compatibility": "suitable",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=potassium-chloride.json"
     },
     {
@@ -141,6 +249,7 @@
       "apcp_compatibility": "suitable",
       "color_saturation": "low",
       "strong_emitter": false,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=potassium-nitrate.json"
     },
     {
@@ -152,6 +261,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=rubidium-carbonate.json"
     },
     {
@@ -163,6 +273,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=rubidium-chloride.json"
     },
     {
@@ -174,7 +285,44 @@
       "apcp_compatibility": "limited",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=rubidium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000702",
+      "chemical_name": "Sodium chloride",
+      "file_name": "sodium-chloride.json",
+      "flame_color": "yellow",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=sodium-chloride.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000701",
+      "chemical_name": "Sodium nitrate",
+      "file_name": "sodium-nitrate.json",
+      "flame_color": "yellow",
+      "color_density": "normal",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "oxidizer",
+      "details_url": "/motor-color-chemical-details.html?file=sodium-nitrate.json"
+    },
+    {
+      "id": "c1a1e001-0001-4000-8000-000000000703",
+      "chemical_name": "Sodium oxalate",
+      "file_name": "sodium-oxalate.json",
+      "flame_color": "yellow",
+      "color_density": "deep",
+      "apcp_compatibility": "limited",
+      "color_saturation": "high",
+      "strong_emitter": true,
+      "burn_contribution": "color_donor",
+      "details_url": "/motor-color-chemical-details.html?file=sodium-oxalate.json"
     },
     {
       "id": "c1a1e001-0001-4000-8000-000000000602",
@@ -185,6 +333,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "medium",
       "strong_emitter": false,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=strontium-carbonate.json"
     },
     {
@@ -196,6 +345,7 @@
       "apcp_compatibility": "unsuitable",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=strontium-chlorate.json"
     },
     {
@@ -207,6 +357,7 @@
       "apcp_compatibility": "limited",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "color_donor",
       "details_url": "/motor-color-chemical-details.html?file=strontium-chloride.json"
     },
     {
@@ -218,8 +369,9 @@
       "apcp_compatibility": "suitable",
       "color_saturation": "high",
       "strong_emitter": true,
+      "burn_contribution": "oxidizer",
       "details_url": "/motor-color-chemical-details.html?file=strontium-nitrate.json"
     }
   ],
-  "last_updated": "2025-12-10T18:15:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

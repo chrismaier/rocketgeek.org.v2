@@ -3,7 +3,8 @@
   "reference_id": "rb_no3",
   "chemical_name": "Rubidium nitrate",
   "chemical_compound": "RbNO3",
-  "flame_color": "red_violet",
+  "flame_color": "violet",
+  "color_density": "deep",
   "burn_contribution": "oxidizer",
   "burn_modification": "burn_accelerant",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "high",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Rubidium nitrate is a specialty oxidizer and colorant used for red-violet and infrared pyrotechnic compositions; it is more expensive and less common than potassium or strontium salts.",
+  "notes": "Rubidium nitrate yields intense red-violet emission but is expensive and mainly of interest for specialty or research work.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -20,11 +21,11 @@
       "minimum_order_quantity": null,
       "minimum_order_unit": "",
       "typical_purity": "99\u201399.9%",
-      "acquisition_restrictions": "research / industrial use; may not sell directly to consumers; hazmat shipping likely",
-      "notes": "Specialty supplier with multiple rubidium compounds including rubidium nitrate."
+      "acquisition_restrictions": "research / industrial; may not sell directly to consumers",
+      "notes": "Specialty supplier of rubidium nitrate in various purities."
     }
   ],
   "apcp_compatibility": "limited",
   "strong_emitter": true,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

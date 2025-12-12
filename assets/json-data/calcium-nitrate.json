@@ -3,7 +3,8 @@
   "reference_id": "ca_no3",
   "chemical_name": "Calcium nitrate",
   "chemical_compound": "Ca(NO3)2",
-  "flame_color": "orange_red",
+  "flame_color": "orange",
+  "color_density": "normal",
   "burn_contribution": "oxidizer",
   "burn_modification": "burn_accelerant",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "medium",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Calcium nitrate is a strongly hygroscopic oxidizer; while it can contribute orange-red coloration, its moisture sensitivity limits its usefulness in many APCP or solid compositions.",
+  "notes": "Calcium nitrate is a hygroscopic oxidizer that can contribute orange-red coloration but needs careful handling.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -19,12 +20,12 @@
       "url": "https://unitednuclear.com/calcium-nitrate-p-112.html",
       "minimum_order_quantity": 1,
       "minimum_order_unit": "lb",
-      "typical_purity": "lab / technical grade",
-      "acquisition_restrictions": "oxidizer; restricted carriers and hazmat considerations",
-      "notes": "Hobby-accessible source for smaller calcium nitrate quantities."
+      "typical_purity": "technical grade",
+      "acquisition_restrictions": "oxidizer; check carrier / region limits",
+      "notes": "Hobby-accessible source for calcium nitrate."
     }
   ],
   "apcp_compatibility": "limited",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

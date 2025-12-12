@@ -3,7 +3,8 @@
   "reference_id": "sr_co3",
   "chemical_name": "Strontium carbonate",
   "chemical_compound": "SrCO3",
-  "flame_color": "deep_red",
+  "flame_color": "red",
+  "color_density": "normal",
   "burn_contribution": "color_donor",
   "burn_modification": "burn_inhibitor",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "medium",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Strontium carbonate is a common, more stable red color donor that tends to slow burn rate and increase slag formation compared to strontium nitrate.",
+  "notes": "Strontium carbonate is a stable red color donor and typically slows the burn rate compared to strontium nitrate.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -20,11 +21,11 @@
       "minimum_order_quantity": 1,
       "minimum_order_unit": "lb",
       "typical_purity": "fine 325-mesh powder",
-      "acquisition_restrictions": "may be treated as general chemical; shipping restrictions lighter than oxidizers",
-      "notes": "Common red colorant for fireworks stars and flares; convenient 1 lb packaging."
+      "acquisition_restrictions": "general chemical; fewer restrictions than oxidizers",
+      "notes": "Common red colorant for fireworks stars and flares."
     }
   ],
   "apcp_compatibility": "limited",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

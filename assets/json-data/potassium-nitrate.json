@@ -3,7 +3,8 @@
   "reference_id": "k_no3",
   "chemical_name": "Potassium nitrate",
   "chemical_compound": "KNO3",
-  "flame_color": "pale_violet",
+  "flame_color": "violet",
+  "color_density": "pale",
   "burn_contribution": "oxidizer",
   "burn_modification": "burn_accelerant",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "low",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Potassium nitrate is a primary oxidizer widely used in black powder and pyrotechnic formulations; its own flame color is a pale lilac/violet and often masked by other colorants.",
+  "notes": "Potassium nitrate is a widely used oxidizer; its own flame color is a pale lilac that is easily masked by other colorants.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -20,11 +21,11 @@
       "minimum_order_quantity": 1,
       "minimum_order_unit": "lb",
       "typical_purity": "99.5% technical grade",
-      "acquisition_restrictions": "oxidizer; hazmat and shipping restrictions apply in some regions",
-      "notes": "Widely used oxidizer for black powder and pyrotechnic formulations; 1 lb and bulk sizes."
+      "acquisition_restrictions": "oxidizer; some shipping restrictions",
+      "notes": "Widely used oxidizer for black powder and pyrotechnic compositions."
     }
   ],
   "apcp_compatibility": "suitable",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

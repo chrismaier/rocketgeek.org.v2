@@ -153,28 +153,28 @@
                     
                     <!-- Main body (page unique) content goes here -->
                     <div class="container-fluid">
-                    <h2 class="h4 mb-3">Propellant Colorant &amp; Compatibility Matrix</h2>
+                        <h2 class="mb-1">Propellant Colorant & Compatibility Matrix</h2>
                     
-                        <div class="table-responsive mb-4">
-                            <table id="flameColorantsTable" class="table table-striped table-hover table-sm">
+                        <div class="table-responsive">
+                            
+                            <!-- <table class="table table-striped table-bordered table-sm mb-0"> -->
+                            <table class="table table-sm table-borderless table-striped mb-0 rounded">
                                 <thead>
                                     <tr>
                                         <th>Chemical</th>
-                                        <th>Flame Color</th>
-                                        <th>APCP Compatibility</th>
-                                        <th>Color Saturation</th>
-                                        <th>Strong Emitter</th>
+                                        <th>Flame color</th>
+                                        <th>Color density</th>
+                                        <th>Color saturation</th>
+                                        <th>Burn role</th>
+                                        <th>APCP compatibility</th>
+                                        <th>Strong emitter</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <!-- Rows will be injected by motor-flame-colors.js -->
-                                </tbody>
+                                <tbody id="colorant-matrix-body"></tbody>
                             </table>
-
                         </div>
                     </div>
-                                        <!-- End main boxy content -->
-                    
+                    <!-- End main boxy content -->
                 </div>
                 
                 

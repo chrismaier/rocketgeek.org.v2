@@ -4,6 +4,7 @@
   "chemical_name": "Lithium carbonate",
   "chemical_compound": "Li2CO3",
   "flame_color": "red",
+  "color_density": "pale",
   "burn_contribution": "color_donor",
   "burn_modification": "neutral",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "low",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Lithium carbonate is a stable lithium salt that can act as a red color donor but has limited solubility and lower color strength than some other red emitters.",
+  "notes": "Lithium carbonate is a stable lithium salt that acts as a red color donor with relatively modest color strength.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -20,11 +21,11 @@
       "minimum_order_quantity": 0.1,
       "minimum_order_unit": "lb",
       "typical_purity": "ceramic grade, fine powder",
-      "acquisition_restrictions": "general chemical; typical consumer shipping rules apply",
-      "notes": "Ceramics supplier with small to moderate quantities of fine lithium carbonate."
+      "acquisition_restrictions": "general chemical; typical consumer shipping rules",
+      "notes": "Ceramics supplier with fine lithium carbonate in small quantities."
     }
   ],
   "apcp_compatibility": "limited",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

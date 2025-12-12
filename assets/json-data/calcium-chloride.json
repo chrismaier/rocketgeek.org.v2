@@ -3,7 +3,8 @@
   "reference_id": "ca_cl2",
   "chemical_name": "Calcium chloride",
   "chemical_compound": "CaCl2",
-  "flame_color": "orange_red",
+  "flame_color": "orange",
+  "color_density": "normal",
   "burn_contribution": "color_donor",
   "burn_modification": "neutral",
   "physical_form": "highly hygroscopic crystalline solid",
@@ -11,10 +12,10 @@
   "color_saturation": "medium",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Calcium chloride can provide orange-red coloration with moderate saturation but is very hygroscopic; often more useful as a halogen donor in color systems than as a primary colorant.",
+  "notes": "Calcium chloride provides moderate orange-red coloration and acts as a halide donor but is strongly hygroscopic.",
   "other_references": [],
   "procurement_sources": [],
   "apcp_compatibility": "limited",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

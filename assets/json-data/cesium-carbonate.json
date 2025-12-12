@@ -3,7 +3,8 @@
   "reference_id": "cs_co3",
   "chemical_name": "Cesium carbonate",
   "chemical_compound": "Cs2CO3",
-  "flame_color": "blue_violet",
+  "flame_color": "violet",
+  "color_density": "normal",
   "burn_contribution": "color_donor",
   "burn_modification": "neutral",
   "physical_form": "fine crystalline powder",
@@ -11,7 +12,7 @@
   "color_saturation": "medium",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Cesium carbonate is highly hygroscopic and rarely used as a flame colorant in practical pyrotechnics due to cost and handling difficulty.",
+  "notes": "Cesium carbonate is highly hygroscopic and seldom used as a colorant in practical pyrotechnics.",
   "other_references": [],
   "procurement_sources": [
     {
@@ -20,11 +21,11 @@
       "minimum_order_quantity": null,
       "minimum_order_unit": "",
       "typical_purity": "99.995% trace metals basis",
-      "acquisition_restrictions": "research-use-only; hazmat shipping and institutional account likely required",
-      "notes": "High-purity cesium carbonate used mainly in research and advanced materials work."
+      "acquisition_restrictions": "research-use-only; likely requires institutional account",
+      "notes": "High-purity cesium carbonate."
     }
   ],
   "apcp_compatibility": "limited",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

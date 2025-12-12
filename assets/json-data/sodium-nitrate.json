@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000000701",
+  "reference_id": "na_no3",
+  "chemical_name": "Sodium nitrate",
+  "chemical_compound": "NaNO3",
+  "flame_color": "yellow",
+  "color_density": "normal",
+  "burn_contribution": "oxidizer",
+  "burn_modification": "burn_accelerant",
+  "physical_form": "crystalline powder",
+  "hygroscopic": true,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Sodium nitrate is a strong yellow emitter but tends to overwhelm other colors; hygroscopic and rarely used in APCP color systems.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-12T18:00:00Z"
+}

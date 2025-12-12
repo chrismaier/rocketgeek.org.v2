@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000000703",
+  "reference_id": "na_ox",
+  "chemical_name": "Sodium oxalate",
+  "chemical_compound": "Na2C2O4",
+  "flame_color": "yellow",
+  "color_density": "deep",
+  "burn_contribution": "color_donor",
+  "burn_modification": "burn_inhibitor",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": false,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Sodium oxalate is a strong yellow color donor commonly used in pyrotechnic yellow compositions; a small amount goes a long way.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-12T18:00:00Z"
+}

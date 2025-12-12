@@ -3,7 +3,8 @@
   "reference_id": "cs_cl",
   "chemical_name": "Cesium chloride",
   "chemical_compound": "CsCl",
-  "flame_color": "blue_violet",
+  "flame_color": "violet",
+  "color_density": "deep",
   "burn_contribution": "color_donor",
   "burn_modification": "neutral",
   "physical_form": "crystalline solid",
@@ -11,10 +12,10 @@
   "color_saturation": "high",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Cesium chloride yields highly saturated blue-violet emission lines; like other cesium compounds, it is expensive and typically reserved for research or specialized effects.",
+  "notes": "Cesium chloride yields saturated violet emission but is expensive and generally reserved for research work.",
   "other_references": [],
   "procurement_sources": [],
   "apcp_compatibility": "limited",
   "strong_emitter": true,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

@@ -3,7 +3,8 @@
   "reference_id": "ca_co3",
   "chemical_name": "Calcium carbonate",
   "chemical_compound": "CaCO3",
-  "flame_color": "orange_red",
+  "flame_color": "orange",
+  "color_density": "pale",
   "burn_contribution": "color_donor",
   "burn_modification": "burn_inhibitor",
   "physical_form": "fine crystalline powder",
@@ -11,10 +12,10 @@
   "color_saturation": "low",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Calcium carbonate is a stable mineral filler that can contribute orange-red flame components and often acts as a burn inhibitor and slag former at high loadings.",
+  "notes": "Calcium carbonate is a stable filler that can give a pale orange hue and tends to act as a burn inhibitor at higher loadings.",
   "other_references": [],
   "procurement_sources": [],
   "apcp_compatibility": "suitable",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

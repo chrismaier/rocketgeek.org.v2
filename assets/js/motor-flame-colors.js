@@ -1,119 +1,243 @@
-// Begin motor flame colors table logic
-console.log("motor-flame-colors.js: script file loaded and evaluated.");
+/* Begin motor-flame-colors.js */
 
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("motor-flame-colors.js: DOMContentLoaded fired.");
+/* Begin configuration */
+const flameColorantIndexUrl = "/assets/json-data/flame-colorant-chemicals-index.json";
+
+/**
+ * This must match the <tbody> id in your existing HTML.
+ * The markup you provided uses:
+ *
+ *   <tbody id="colorant-matrix-body"></tbody>
+ */
+const tableBodyElementId = "colorant-matrix-body";
+/* End configuration */
+
+/* Begin utility functions */
+
+/**
+ * Begin addTextCell
+ * Create a basic text cell and append it to the row.
+ */
+function addTextCell(rowElement, textContent) {
+    const cellElement = rowElement.insertCell();
+    cellElement.textContent = textContent ?? "";
+}
+/* End addTextCell */
+
+/**
+ * Begin addLinkCell
+ * Create a link cell for the chemical name.
+ */
+function addLinkCell(rowElement, linkText, hrefValue) {
+    const cellElement = rowElement.insertCell();
+    const anchorElement = document.createElement("a");
     
-    const tableElement = document.getElementById("flameColorantsTable");
-    if (!tableElement) {
-        console.error("motor-flame-colors.js: #flameColorantsTable not found in DOM.");
-        return;
+    anchorElement.textContent = linkText ?? "";
+    anchorElement.href = hrefValue || "#";
+    
+    cellElement.appendChild(anchorElement);
+}
+/* End addLinkCell */
+
+/**
+ * Begin createCompatibilityBadge
+ * Create a small label for APCP compatibility.
+ * Styling is minimal so your existing site CSS / Bootstrap
+ * controls the final look (no grid lines or corner changes here).
+ */
+function createCompatibilityBadge(compatibilityValue) {
+    const spanElement = document.createElement("span");
+    const normalizedValue = (compatibilityValue || "").toLowerCase();
+    
+    spanElement.textContent = compatibilityValue || "unknown";
+    
+    // Minimal, standard Bootstrap-style classes.
+    // Your existing CSS already defines how these look.
+    spanElement.classList.add("badge");
+    
+    if (normalizedValue === "suitable") {
+        spanElement.classList.add("bg-success");
+    } else if (normalizedValue === "limited") {
+        spanElement.classList.add("bg-warning", "text-dark");
+    } else if (normalizedValue === "unsuitable") {
+        spanElement.classList.add("bg-danger");
+    } else {
+        spanElement.classList.add("bg-secondary");
     }
     
-    const tableBody = tableElement.querySelector("tbody");
-    if (!tableBody) {
-        console.error("motor-flame-colors.js: <tbody> not found inside #flameColorantsTable.");
-        return;
+    return spanElement;
+}
+/* End createCompatibilityBadge */
+
+/**
+ * Begin formatStrongEmitterLabel
+ * Turn the boolean strong_emitter flag into human text.
+ */
+function formatStrongEmitterLabel(strongEmitterFlag) {
+    if (strongEmitterFlag === true) {
+        return "Yes";
+    }
+    if (strongEmitterFlag === false) {
+        return "No";
+    }
+    return "Unknown";
+}
+/* End formatStrongEmitterLabel */
+
+/**
+ * Begin formatBurnContributionLabel
+ * Make burn_contribution readable for humans.
+ */
+function formatBurnContributionLabel(burnContribution) {
+    if (!burnContribution) {
+        return "";
     }
     
-    const indexUrl = "/assets/json-data/flame-colorant-chemicals-index.json";
-    console.log("motor-flame-colors.js: attempting to fetch index from:", indexUrl);
+    const normalizedValue = burnContribution.toLowerCase();
     
-    fetch(indexUrl)
-        .then(function (response) {
-            console.log("motor-flame-colors.js: fetch response status:", response.status);
-            if (!response.ok) {
-                throw new Error("Failed to load flame colorant index JSON: " + response.status);
-            }
-            return response.json();
-        })
-        .then(function (indexData) {
-            console.log("motor-flame-colors.js: index JSON parsed:", indexData);
-            
-            if (!indexData || !Array.isArray(indexData.chemicals)) {
-                console.error("motor-flame-colors.js: 'chemicals' array missing or invalid in index JSON.");
-                return;
-            }
-            
-            indexData.chemicals.forEach(function (chemicalEntry, entryIndex) {
-                console.log("motor-flame-colors.js: rendering entry", entryIndex, chemicalEntry);
-                
-                const tableRow = document.createElement("tr");
-                
-                // Chemical name (clickable)
-                const nameCell = document.createElement("td");
-                const nameLink = document.createElement("a");
-                nameLink.textContent = chemicalEntry.chemical_name || "";
-                nameLink.href = chemicalEntry.details_url || "#";
-                nameCell.appendChild(nameLink);
-                tableRow.appendChild(nameCell);
-                
-                // Flame color (simple value: red, violet, orange, etc.)
-                const colorCell = document.createElement("td");
-                const flameColorValue = chemicalEntry.flame_color || "unknown";
-                colorCell.textContent = flameColorValue;
-                tableRow.appendChild(colorCell);
-                
-                // APCP compatibility
-                const compatibilityCell = document.createElement("td");
-                const compatibilityBadge = document.createElement("span");
-                const compatibility = chemicalEntry.apcp_compatibility || "unknown";
-                
-                compatibilityBadge.textContent = compatibility;
-                
-                if (compatibility === "suitable") {
-                    compatibilityBadge.className = "badge bg-success";
-                } else if (compatibility === "limited") {
-                    compatibilityBadge.className = "badge bg-warning text-dark";
-                } else if (compatibility === "unsuitable") {
-                    compatibilityBadge.className = "badge bg-danger";
-                } else {
-                    compatibilityBadge.className = "badge bg-secondary";
-                }
-                
-                compatibilityCell.appendChild(compatibilityBadge);
-                tableRow.appendChild(compatibilityCell);
-                
-                // Color saturation
-                const saturationCell = document.createElement("td");
-                const saturationBadge = document.createElement("span");
-                const saturation = chemicalEntry.color_saturation || "unknown";
-                
-                saturationBadge.textContent = saturation;
-                
-                if (saturation === "high") {
-                    saturationBadge.className = "badge bg-primary";
-                } else if (saturation === "medium") {
-                    saturationBadge.className = "badge bg-info text-dark";
-                } else if (saturation === "low") {
-                    saturationBadge.className = "badge bg-secondary";
-                } else {
-                    saturationBadge.className = "badge bg-light text-dark";
-                }
-                
-                saturationCell.appendChild(saturationBadge);
-                tableRow.appendChild(saturationCell);
-                
-                // Strong emitter (yes/no)
-                const strongEmitterCell = document.createElement("td");
-                const strongEmitterBadge = document.createElement("span");
-                const strongEmitterValue = Boolean(chemicalEntry.strong_emitter);
-                
-                strongEmitterBadge.textContent = strongEmitterValue ? "yes" : "no";
-                strongEmitterBadge.className = strongEmitterValue
-                    ? "badge bg-success"
-                    : "badge bg-secondary";
-                
-                strongEmitterCell.appendChild(strongEmitterBadge);
-                tableRow.appendChild(strongEmitterCell);
-                
-                tableBody.appendChild(tableRow);
-            });
-            
-            console.log("motor-flame-colors.js: finished rendering table rows.");
-        })
-        .catch(function (error) {
-            console.error("motor-flame-colors.js: error loading or rendering flame colorant index:", error);
+    if (normalizedValue === "oxidizer") {
+        return "Oxidizer";
+    }
+    if (normalizedValue === "color_donor") {
+        return "Color donor";
+    }
+    if (normalizedValue === "inert_filler") {
+        return "Inert / filler";
+    }
+    if (normalizedValue === "burn_inhibitor") {
+        return "Burn inhibitor";
+    }
+    if (normalizedValue === "binder_like") {
+        return "Binder-like contribution";
+    }
+    
+    const fallbackLabel = normalizedValue
+        .replace(/_/g, " ")
+        .replace(/^\w/, function (firstCharacter) {
+            return firstCharacter.toUpperCase();
         });
+    
+    return fallbackLabel;
+}
+/* End formatBurnContributionLabel */
+
+/* End utility functions */
+
+/* Begin rendering logic */
+
+/**
+ * Begin renderFlameColorantMatrix
+ * Populate the table body from the index JSON data.
+ *
+ * Column order MUST match your <thead>:
+ *  1. Chemical
+ *  2. Flame color
+ *  3. Color density
+ *  4. Color saturation
+ *  5. Burn role
+ *  6. APCP compatibility
+ *  7. Strong emitter
+ */
+function renderFlameColorantMatrix(chemicalList) {
+    const tableBodyElement = document.getElementById(tableBodyElementId);
+    
+    if (!tableBodyElement) {
+        console.error(
+            "motor-flame-colors.js: Could not find table body with id:",
+            tableBodyElementId
+        );
+        return;
+    }
+    
+    // Clear existing rows
+    while (tableBodyElement.firstChild) {
+        tableBodyElement.removeChild(tableBodyElement.firstChild);
+    }
+    
+    if (!Array.isArray(chemicalList) || chemicalList.length === 0) {
+        const placeholderRow = tableBodyElement.insertRow();
+        const placeholderCell = placeholderRow.insertCell();
+        // You have 7 columns in the header
+        placeholderCell.colSpan = 7;
+        placeholderCell.textContent = "No flame colorant data available.";
+        return;
+    }
+    
+    for (let index = 0; index < chemicalList.length; index++) {
+        const chemicalItem = chemicalList[index];
+        const rowElement = tableBodyElement.insertRow();
+        
+        // 1. Chemical (clickable)
+        addLinkCell(
+            rowElement,
+            chemicalItem.chemical_name,
+            chemicalItem.details_url || "#"
+        );
+        
+        // 2. Flame color
+        addTextCell(rowElement, chemicalItem.flame_color);
+        
+        // 3. Color density
+        addTextCell(rowElement, chemicalItem.color_density);
+        
+        // 4. Color saturation
+        addTextCell(rowElement, chemicalItem.color_saturation);
+        
+        // 5. Burn role (burn_contribution)
+        addTextCell(
+            rowElement,
+            formatBurnContributionLabel(chemicalItem.burn_contribution)
+        );
+        
+        // 6. APCP compatibility (badge)
+        const compatibilityCell = rowElement.insertCell();
+        const compatibilityBadge = createCompatibilityBadge(
+            chemicalItem.apcp_compatibility
+        );
+        compatibilityCell.appendChild(compatibilityBadge);
+        
+        // 7. Strong emitter
+        addTextCell(
+            rowElement,
+            formatStrongEmitterLabel(chemicalItem.strong_emitter)
+        );
+    }
+}
+/* End renderFlameColorantMatrix */
+
+/**
+ * Begin loadFlameColorantIndex
+ * Fetch the index JSON and hand off to the renderer.
+ */
+function loadFlameColorantIndex() {
+    fetch(flameColorantIndexUrl, { cache: "no-cache" })
+        .then(function handleResponse(responseObject) {
+            if (!responseObject.ok) {
+                throw new Error("HTTP error " + responseObject.status);
+            }
+            return responseObject.json();
+        })
+        .then(function handleJson(responseData) {
+            const chemicalList = Array.isArray(responseData.chemicals)
+                ? responseData.chemicals
+                : [];
+            renderFlameColorantMatrix(chemicalList);
+        })
+        .catch(function handleError(errorObject) {
+            console.error(
+                "motor-flame-colors.js: Failed to load index JSON:",
+                errorObject
+            );
+        });
+}
+/* End loadFlameColorantIndex */
+
+/* End rendering logic */
+
+/* Begin event wiring */
+document.addEventListener("DOMContentLoaded", function handleDomReady() {
+    loadFlameColorantIndex();
 });
-// End motor flame colors table logic
+/* End event wiring */
+
+/* End motor-flame-colors.js */

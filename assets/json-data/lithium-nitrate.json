@@ -4,6 +4,7 @@
   "chemical_name": "Lithium nitrate",
   "chemical_compound": "LiNO3",
   "flame_color": "red",
+  "color_density": "normal",
   "burn_contribution": "oxidizer",
   "burn_modification": "burn_accelerant",
   "physical_form": "fine crystalline powder",
@@ -11,10 +12,10 @@
   "color_saturation": "medium",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Lithium nitrate is an oxidizing lithium salt that can contribute to red flame coloration but is less commonly used in APCP than strontium compounds.",
+  "notes": "Lithium nitrate can contribute to red flame coloration but is less commonly used in APCP than strontium compounds.",
   "other_references": [],
   "procurement_sources": [],
   "apcp_compatibility": "limited",
   "strong_emitter": false,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

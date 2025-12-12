@@ -4,6 +4,7 @@
   "chemical_name": "Lithium chloride",
   "chemical_compound": "LiCl",
   "flame_color": "red",
+  "color_density": "deep",
   "burn_contribution": "color_donor",
   "burn_modification": "neutral",
   "physical_form": "highly hygroscopic crystalline solid",
@@ -11,10 +12,10 @@
   "color_saturation": "high",
   "equivalent_weight": null,
   "oh_value": null,
-  "notes": "Lithium chloride produces a more saturated crimson-red emission than many other lithium salts but is very hygroscopic and corrosive; primarily a color donor rather than a practical rocket oxidizer.",
+  "notes": "Lithium chloride provides a deep crimson-red emission but is very hygroscopic and corrosive; mainly a color donor.",
   "other_references": [],
   "procurement_sources": [],
   "apcp_compatibility": "limited",
   "strong_emitter": true,
-  "last_updated": "2025-12-10T17:32:00Z"
+  "last_updated": "2025-12-12T18:00:00Z"
 }

@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000000901",
+  "reference_id": "ba_no3_2",
+  "chemical_name": "Barium nitrate",
+  "chemical_compound": "Ba(NO3)2",
+  "flame_color": "green",
+  "color_density": "deep",
+  "burn_contribution": "oxidizer",
+  "burn_modification": "burn_accelerant",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": false,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Barium nitrate is a classic bright green oxidizer; toxicity and regulatory issues limit its use and availability.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-12T18:00:00Z"
+}

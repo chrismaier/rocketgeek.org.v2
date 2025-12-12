@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000000903",
+  "reference_id": "ba_co3",
+  "chemical_name": "Barium carbonate",
+  "chemical_compound": "BaCO3",
+  "flame_color": "green",
+  "color_density": "normal",
+  "burn_contribution": "color_donor",
+  "burn_modification": "burn_inhibitor",
+  "physical_form": "fine crystalline powder",
+  "hygroscopic": false,
+  "color_saturation": "medium",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Barium carbonate is less soluble and somewhat safer than other barium salts; it yields green emission but is weaker than barium nitrate or chloride.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-12T18:00:00Z"
+}

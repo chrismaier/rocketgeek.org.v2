@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000001001",
+  "reference_id": "cu_cl",
+  "chemical_name": "Copper(I) chloride",
+  "chemical_compound": "CuCl",
+  "flame_color": "blue",
+  "color_density": "deep",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "fine powder",
+  "hygroscopic": false,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Copper(I) chloride produces intense blue-green emission and is a key colorant in many blue flame systems when sufficient halide is present.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-12T18:00:00Z"
+}

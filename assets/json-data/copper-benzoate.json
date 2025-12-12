@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000001004",
+  "reference_id": "cu_bz2",
+  "chemical_name": "Copper benzoate",
+  "chemical_compound": "Cu(C7H5O2)2",
+  "flame_color": "blue",
+  "color_density": "normal",
+  "burn_contribution": "color_donor",
+  "burn_modification": "burn_inhibitor",
+  "physical_form": "fine powder",
+  "hygroscopic": false,
+  "color_saturation": "medium",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Copper benzoate is an organic copper salt that can produce blue-green emission in lower temperature systems; in APCP it is mainly experimental.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": false,
+  "last_updated": "2025-12-12T18:00:00Z"
+}

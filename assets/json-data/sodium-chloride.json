@@ -1,0 +1,21 @@
+{
+  "id": "c1a1e001-0001-4000-8000-000000000702",
+  "reference_id": "na_cl",
+  "chemical_name": "Sodium chloride",
+  "chemical_compound": "NaCl",
+  "flame_color": "yellow",
+  "color_density": "normal",
+  "burn_contribution": "color_donor",
+  "burn_modification": "neutral",
+  "physical_form": "crystalline salt",
+  "hygroscopic": false,
+  "color_saturation": "high",
+  "equivalent_weight": null,
+  "oh_value": null,
+  "notes": "Sodium chloride provides intense yellow emission even at low loadings and can easily contaminate other color compositions.",
+  "other_references": [],
+  "procurement_sources": [],
+  "apcp_compatibility": "limited",
+  "strong_emitter": true,
+  "last_updated": "2025-12-12T18:00:00Z"
+}
