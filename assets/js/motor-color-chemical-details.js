@@ -1,246 +1,590 @@
-// Begin motor color chemical details logic
-console.log("motor-color-chemical-details.js: script file loaded and evaluated.");
+/* Begin motor-color-chemical-details.js */
 
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("motor-color-chemical-details.js: DOMContentLoaded fired.");
+/* Begin configuration */
+const detailJsonBasePath = "/assets/json-data/";
+const detailContainerElementId = "colorant-detail-container";
+/* End configuration */
+
+/* Begin helper: query string parsing */
+function getQueryParameter(parameterName) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const rawValue = urlSearchParams.get(parameterName);
+    return rawValue !== null ? rawValue : "";
+}
+/* End helper: query string parsing */
+
+/* Begin DOM helpers */
+function getDetailContainer() {
+    const containerElement = document.getElementById(detailContainerElementId);
+    if (!containerElement) {
+        console.error(
+            "motor-color-chemical-details.js: Missing detail container with id:",
+            detailContainerElementId
+        );
+    }
+    return containerElement;
+}
+
+function clearContainer(containerElement) {
+    if (!containerElement) {
+        return;
+    }
+    while (containerElement.firstChild) {
+        containerElement.removeChild(containerElement.firstChild);
+    }
+}
+
+function createSectionTitle(titleText, headingLevel) {
+    const effectiveHeadingLevel = headingLevel || "h4";
+    const headingElement = document.createElement(effectiveHeadingLevel);
+    headingElement.textContent = titleText;
+    return headingElement;
+}
+/* End DOM helpers */
+
+/* Begin shared emission strength text helper */
+/*
+   Normalized mapping:
+   - "strong" or true    => "Strong"
+   - "moderate"          => "Moderate"
+   - "weak" or false     => "Weak"
+   - everything else     => "Unknown"
+*/
+
+/*
+function emissionStrengthText(strongEmitterField) {
+    const rawValue = strongEmitterField;
     
-    const contentElement = document.getElementById("chemicalDetailsContent");
-    if (!contentElement) {
-        console.error("motor-color-chemical-details.js: #chemicalDetailsContent not found in DOM.");
+    // Allow future string-based levels
+    if (typeof rawValue === "string") {
+        const normalized = rawValue.toLowerCase().trim();
+        if (normalized === "strong") {
+            return "Strong";
+        }
+        if (normalized === "moderate") {
+            return "Moderate";
+        }
+        if (normalized === "weak") {
+            return "Weak";
+        }
+        return "Unknown";
+    }
+    
+    // Current schema: boolean or null
+    if (rawValue === true) {
+        return "Strong";
+    }
+    if (rawValue === false) {
+        return "Weak";
+    }
+    
+    // null / undefined / anything else
+    return "Unknown";
+}
+*/
+
+function emissionStrengthText(rawValue) {
+    
+    // Support future string levels first
+    if (typeof rawValue === "string") {
+        const normalized = rawValue.toLowerCase().trim();
+        if (normalized === "strong")   return "Strong";
+        if (normalized === "moderate") return "Moderate";
+        if (normalized === "weak")     return "Weak";
+        return "Unknown";
+    }
+    
+    // Support current schema (boolean)
+    if (rawValue === true)  return "Strong";
+    if (rawValue === false) return "Weak";
+    
+    return "Unknown";
+}
+/* End shared emission strength text helper */
+
+
+/* End shared emission strength text helper */
+
+/* Begin pill helpers (matching matrix styles) */
+function createPill(labelText, className) {
+    const pillElement = document.createElement("span");
+    pillElement.textContent = labelText ?? "";
+    pillElement.classList.add("fct-pill");
+    if (className) {
+        pillElement.classList.add(className);
+    }
+    return pillElement;
+}
+
+function pillForFlameColor(colorValue) {
+    const normalizedColorValue = (colorValue || "").toLowerCase();
+    
+    if (normalizedColorValue === "red") {
+        return createPill(colorValue, "fct-red");
+    }
+    if (normalizedColorValue === "orange") {
+        return createPill(colorValue, "fct-orange");
+    }
+    if (normalizedColorValue === "yellow") {
+        return createPill(colorValue, "fct-yellow");
+    }
+    if (normalizedColorValue === "green") {
+        return createPill(colorValue, "fct-green");
+    }
+    if (normalizedColorValue === "blue") {
+        return createPill(colorValue, "fct-blue");
+    }
+    if (normalizedColorValue === "violet") {
+        return createPill(colorValue, "fct-violet");
+    }
+    
+    return createPill(colorValue || "n/a", "fct-gray");
+}
+
+function pillForSaturation(levelValue) {
+    const normalizedLevelValue = (levelValue || "").toLowerCase();
+    
+    if (normalizedLevelValue === "low") {
+        return createPill(levelValue, "fct-low");
+    }
+    if (normalizedLevelValue === "medium") {
+        return createPill(levelValue, "fct-medium");
+    }
+    if (normalizedLevelValue === "high") {
+        return createPill(levelValue, "fct-high");
+    }
+    
+    return createPill(levelValue || "n/a", "fct-gray");
+}
+
+function pillForDensity(levelValue) {
+    const normalizedLevelValue = (levelValue || "").toLowerCase();
+    
+    if (normalizedLevelValue === "pale") {
+        return createPill(levelValue, "fct-low");
+    }
+    if (normalizedLevelValue === "normal") {
+        return createPill(levelValue, "fct-medium");
+    }
+    if (normalizedLevelValue === "deep" || normalizedLevelValue === "blue-tinged") {
+        return createPill(levelValue, "fct-high");
+    }
+    
+    return createPill(levelValue || "n/a", "fct-gray");
+}
+
+/*
+function pillForEmitter(strongEmitterField) {
+    const label = emissionStrengthText(strongEmitterField);
+    let intensityClass = "fct-gray";
+    
+    if (label === "Strong") {
+        intensityClass = "fct-high";
+    } else if (label === "Moderate") {
+        intensityClass = "fct-medium";
+    } else if (label === "Weak") {
+        intensityClass = "fct-low";
+    } else {
+        intensityClass = "fct-gray";
+    }
+    
+    return createPill(label, intensityClass);
+}
+*/
+
+function pillForEmitter(rawValue) {
+    const label = emissionStrengthText(rawValue);
+    
+    let intensityClass = "fct-gray";
+    if (label === "Strong")   intensityClass = "fct-high";
+    if (label === "Moderate") intensityClass = "fct-medium";
+    if (label === "Weak")     intensityClass = "fct-low";
+    
+    return createPill(label, intensityClass);
+}
+
+
+function pillForCompatibility(compatibilityValue) {
+    const normalizedCompatibilityValue = (compatibilityValue || "").toLowerCase();
+    
+    if (normalizedCompatibilityValue === "suitable") {
+        return createPill("APCP: Suitable", "fct-green");
+    }
+    if (normalizedCompatibilityValue === "limited") {
+        return createPill("APCP: Limited", "fct-yellow");
+    }
+    if (normalizedCompatibilityValue === "unsuitable") {
+        return createPill("APCP: Unsuitable", "fct-red");
+    }
+    
+    return createPill("APCP: Unknown", "fct-gray");
+}
+
+function pillForBurnRole(burnContributionValue) {
+    const normalizedBurnContribution = (burnContributionValue || "").toLowerCase();
+    
+    if (normalizedBurnContribution === "oxidizer") {
+        return createPill("Burn role: Oxidizer", "fct-role-oxidizer");
+    }
+    if (normalizedBurnContribution === "color_donor") {
+        return createPill("Burn role: Color donor", "fct-role-color");
+    }
+    if (normalizedBurnContribution === "inert_filler") {
+        return createPill("Burn role: Inert filler", "fct-role-inert");
+    }
+    if (normalizedBurnContribution === "burn_inhibitor") {
+        return createPill("Burn role: Burn inhibitor", "fct-role-inhibitor");
+    }
+    if (normalizedBurnContribution === "binder_like") {
+        return createPill("Burn role: Binder-like", "fct-role-binder");
+    }
+    
+    return createPill("Burn role: n/a", "fct-gray");
+}
+/* End pill helpers */
+
+/* Begin table row helpers */
+function addSummaryTableRow(tableElement, labelText, valueNode) {
+    const rowElement = document.createElement("tr");
+    
+    const labelCellElement = document.createElement("td");
+    labelCellElement.classList.add("colorant-detail-cell-label");
+    labelCellElement.textContent = labelText;
+    
+    const valueCellElement = document.createElement("td");
+    valueCellElement.classList.add("colorant-detail-cell-value");
+    if (valueNode) {
+        valueCellElement.appendChild(valueNode);
+    }
+    
+    rowElement.appendChild(labelCellElement);
+    rowElement.appendChild(valueCellElement);
+    tableElement.appendChild(rowElement);
+}
+
+function addKeyPropertyTableRow(tableElement, labelText, valueText) {
+    const rowElement = document.createElement("tr");
+    
+    const labelCellElement = document.createElement("td");
+    labelCellElement.classList.add("colorant-detail-cell-label");
+    labelCellElement.textContent = labelText;
+    
+    const valueCellElement = document.createElement("td");
+    valueCellElement.classList.add(
+        "colorant-detail-cell-value",
+        "colorant-detail-key-cell-value"
+    );
+    valueCellElement.textContent = valueText;
+    
+    rowElement.appendChild(labelCellElement);
+    rowElement.appendChild(valueCellElement);
+    tableElement.appendChild(rowElement);
+}
+/* End table row helpers */
+
+/* Begin main render */
+function renderChemicalDetails(chemicalData) {
+    const outerContainerElement = getDetailContainer();
+    if (!outerContainerElement) {
         return;
     }
     
-    // Begin helper functions
-    function getQueryParameter(parameterName) {
-        const urlParameters = new URLSearchParams(window.location.search);
-        return urlParameters.get(parameterName);
+    clearContainer(outerContainerElement);
+    
+    // Outer card: 3px rounded border around everything
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("colorant-detail-card");
+    
+    // Header with chemical name + formula
+    const headerElement = document.createElement("div");
+    const nameHeadingElement = document.createElement("h3");
+    const compoundParagraphElement = document.createElement("p");
+    
+    nameHeadingElement.textContent = chemicalData.chemical_name || "Unknown chemical";
+    compoundParagraphElement.textContent = chemicalData.chemical_compound || "";
+    
+    headerElement.appendChild(nameHeadingElement);
+    headerElement.appendChild(compoundParagraphElement);
+    cardElement.appendChild(headerElement);
+    
+    /* Summary section – pills in right column, inner bordered box with table */
+    const summarySectionElement = document.createElement("div");
+    summarySectionElement.classList.add("colorant-detail-section");
+    
+    const summaryTitleElement = createSectionTitle("Summary", "h4");
+    summarySectionElement.appendChild(summaryTitleElement);
+    
+    const summaryTableElement = document.createElement("table");
+    summaryTableElement.classList.add("colorant-detail-table");
+    
+    addSummaryTableRow(
+        summaryTableElement,
+        "Flame color",
+        pillForFlameColor(chemicalData.flame_color)
+    );
+    
+    addSummaryTableRow(
+        summaryTableElement,
+        "Color density",
+        pillForDensity(chemicalData.color_density)
+    );
+    
+    addSummaryTableRow(
+        summaryTableElement,
+        "Color saturation",
+        pillForSaturation(chemicalData.color_saturation)
+    );
+    
+    addSummaryTableRow(
+        summaryTableElement,
+        "Burn role",
+        pillForBurnRole(chemicalData.burn_contribution)
+    );
+    
+    addSummaryTableRow(
+        summaryTableElement,
+        "APCP compatibility",
+        pillForCompatibility(chemicalData.apcp_compatibility)
+    );
+    
+    addSummaryTableRow(
+        summaryTableElement,
+        "Emission strength",
+        pillForEmitter(chemicalData.strong_emitter)
+    );
+    
+    summarySectionElement.appendChild(summaryTableElement);
+    cardElement.appendChild(summarySectionElement);
+    
+    /* Key properties – similar table layout, plain text on the right */
+    const keyPropertiesSectionElement = document.createElement("div");
+    keyPropertiesSectionElement.classList.add("colorant-detail-section");
+    
+    const propertiesTitleElement = createSectionTitle("Key properties", "h4");
+    keyPropertiesSectionElement.appendChild(propertiesTitleElement);
+    
+    const keyPropertiesTableElement = document.createElement("table");
+    keyPropertiesTableElement.classList.add("colorant-detail-table");
+    
+    const flameColorDescription =
+        (chemicalData.flame_color || "unknown") +
+        " (" +
+        (chemicalData.color_density || "unknown density") +
+        ", " +
+        (chemicalData.color_saturation || "unknown saturation") +
+        ")";
+    addKeyPropertyTableRow(
+        keyPropertiesTableElement,
+        "Flame behavior",
+        flameColorDescription
+    );
+    
+    if (chemicalData.burn_contribution) {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "Burn role",
+            chemicalData.burn_contribution
+        );
     }
     
-    function createCardElement() {
-        const cardElement = document.createElement("div");
-        cardElement.className = "card mb-3";
-        return cardElement;
+    if (chemicalData.burn_modification) {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "Burn modification",
+            chemicalData.burn_modification
+        );
     }
     
-    function createCardBodyElement() {
-        const cardBodyElement = document.createElement("div");
-        cardBodyElement.className = "card-body";
-        return cardBodyElement;
+    if (typeof chemicalData.hygroscopic === "boolean") {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "Hygroscopic",
+            chemicalData.hygroscopic ? "yes" : "no"
+        );
     }
     
-    function createHeadingElement(level, textContent) {
-        const headingElement = document.createElement(level);
-        headingElement.textContent = textContent;
-        return headingElement;
+    if (chemicalData.physical_form) {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "Physical form",
+            chemicalData.physical_form
+        );
     }
     
-    function createListElement() {
-        const listElement = document.createElement("ul");
-        listElement.className = "list-unstyled mb-0";
-        return listElement;
+    if (chemicalData.apcp_compatibility) {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "APCP compatibility",
+            chemicalData.apcp_compatibility
+        );
     }
     
-    function appendBullet(listElement, labelText, valueText) {
-        if (valueText === undefined || valueText === null || valueText === "") {
-            return;
-        }
-        const listItemElement = document.createElement("li");
-        listItemElement.innerHTML = "<strong>" + labelText + ":</strong> " + valueText;
-        listElement.appendChild(listItemElement);
+    if (typeof chemicalData.strong_emitter !== "undefined") {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "Emission strength",
+            emissionStrengthText(chemicalData.strong_emitter)
+        );
     }
     
-    function renderProcurementSources(parentElement, sourcesArray) {
-        if (!Array.isArray(sourcesArray) || sourcesArray.length === 0) {
-            return;
-        }
+    if (chemicalData.notes) {
+        addKeyPropertyTableRow(
+            keyPropertiesTableElement,
+            "Notes",
+            chemicalData.notes
+        );
+    }
+    
+    keyPropertiesSectionElement.appendChild(keyPropertiesTableElement);
+    cardElement.appendChild(keyPropertiesSectionElement);
+    
+    /* Procurement sources – list inside the outer card (no table layout) */
+    if (Array.isArray(chemicalData.procurement_sources) &&
+        chemicalData.procurement_sources.length > 0) {
         
-        const cardElement = createCardElement();
-        const cardBodyElement = createCardBodyElement();
+        const procurementSectionElement = document.createElement("div");
+        procurementSectionElement.classList.add("colorant-detail-section");
         
-        const headingElement = createHeadingElement("h5", "Procurement sources");
-        headingElement.classList.add("card-title", "mb-3");
-        cardBodyElement.appendChild(headingElement);
+        const procurementTitleElement = createSectionTitle(
+            "Representative procurement sources",
+            "h4"
+        );
+        procurementSectionElement.appendChild(procurementTitleElement);
         
-        const listElement = document.createElement("ul");
-        listElement.className = "mb-0";
+        const procurementListElement = document.createElement("ul");
         
-        sourcesArray.forEach(function (sourceItem, sourceIndex) {
+        for (let index = 0; index < chemicalData.procurement_sources.length; index++) {
+            const sourceItem = chemicalData.procurement_sources[index];
             const listItemElement = document.createElement("li");
             
-            const vendorName = sourceItem.vendor_name || "Vendor";
-            const vendorUrl = sourceItem.url || "";
-            const vendorLinkElement = document.createElement("a");
-            vendorLinkElement.textContent = vendorName;
-            if (vendorUrl) {
-                vendorLinkElement.href = vendorUrl;
-                vendorLinkElement.target = "_blank";
-                vendorLinkElement.rel = "noopener noreferrer";
-            } else {
-                vendorLinkElement.href = "#";
+            const lineParts = [];
+            
+            if (sourceItem.vendor_name) {
+                lineParts.push(sourceItem.vendor_name);
             }
-            
-            const detailsParts = [];
-            
-            if (sourceItem.minimum_order_quantity !== undefined && sourceItem.minimum_order_unit) {
-                detailsParts.push(
+            if (sourceItem.typical_purity) {
+                lineParts.push("purity: " + sourceItem.typical_purity);
+            }
+            if (sourceItem.minimum_order_quantity && sourceItem.minimum_order_unit) {
+                lineParts.push(
                     "MOQ: " +
-                    String(sourceItem.minimum_order_quantity) +
+                    sourceItem.minimum_order_quantity +
                     " " +
                     sourceItem.minimum_order_unit
                 );
             }
-            
-            if (sourceItem.typical_purity) {
-                detailsParts.push("Typical purity: " + sourceItem.typical_purity);
-            }
-            
             if (sourceItem.acquisition_restrictions) {
-                detailsParts.push("Restrictions: " + sourceItem.acquisition_restrictions);
-            }
-            
-            if (sourceItem.notes) {
-                detailsParts.push("Notes: " + sourceItem.notes);
-            }
-            
-            listItemElement.appendChild(vendorLinkElement);
-            
-            if (detailsParts.length > 0) {
-                const detailsParagraphElement = document.createElement("div");
-                detailsParagraphElement.className = "small text-muted";
-                detailsParagraphElement.textContent = detailsParts.join(" | ");
-                listItemElement.appendChild(document.createElement("br"));
-                listItemElement.appendChild(detailsParagraphElement);
-            }
-            
-            listElement.appendChild(listItemElement);
-        });
-        
-        cardBodyElement.appendChild(listElement);
-        cardElement.appendChild(cardBodyElement);
-        parentElement.appendChild(cardElement);
-    }
-    // End helper functions
-    
-    // Begin main flow
-    const fileParameter = getQueryParameter("file");
-    if (!fileParameter) {
-        const warningParagraphElement = document.createElement("p");
-        warningParagraphElement.className = "text-warning";
-        warningParagraphElement.textContent =
-            "No chemical file specified. Please navigate here from the matrix page.";
-        contentElement.appendChild(warningParagraphElement);
-        return;
-    }
-    
-    const jsonUrl = "/assets/json-data/" + fileParameter;
-    console.log("motor-color-chemical-details.js: attempting to fetch JSON from:", jsonUrl);
-    
-    fetch(jsonUrl)
-        .then(function (response) {
-            console.log("motor-color-chemical-details.js: fetch response status:", response.status);
-            if (!response.ok) {
-                throw new Error("Failed to load chemical JSON: " + response.status);
-            }
-            return response.json();
-        })
-        .then(function (chemicalData) {
-            console.log("motor-color-chemical-details.js: parsed chemical JSON:", chemicalData);
-            
-            const summaryCardElement = createCardElement();
-            const summaryCardBodyElement = createCardBodyElement();
-            
-            const titleText =
-                chemicalData.chemical_name || chemicalData.reference_id || "Chemical details";
-            const titleElement = createHeadingElement("h4", titleText);
-            titleElement.classList.add("card-title", "mb-3");
-            summaryCardBodyElement.appendChild(titleElement);
-            
-            const bulletListElement = createListElement();
-            
-            // Flame color + density + saturation bullet
-            const flameColor = chemicalData.flame_color || "unknown";
-            const colorDensity = chemicalData.color_density || "";
-            const colorSaturation = chemicalData.color_saturation || "";
-            
-            const flameParts = [];
-            flameParts.push(flameColor);
-            if (colorDensity) {
-                flameParts.push(colorDensity);
-            }
-            if (colorSaturation) {
-                flameParts.push("saturation " + colorSaturation);
-            }
-            const flameDescriptor = flameParts.join(" – ");
-            
-            appendBullet(bulletListElement, "Flame color", flameDescriptor);
-            
-            // APCP compatibility
-            appendBullet(
-                bulletListElement,
-                "APCP compatibility",
-                chemicalData.apcp_compatibility || "unknown"
-            );
-            
-            // Strong emitter
-            const strongEmitterFlag = Boolean(chemicalData.strong_emitter);
-            appendBullet(
-                bulletListElement,
-                "Strong emitter",
-                strongEmitterFlag ? "yes" : "no"
-            );
-            
-            // Hygroscopic
-            if (chemicalData.hygroscopic === true || chemicalData.hygroscopic === false) {
-                appendBullet(
-                    bulletListElement,
-                    "Hygroscopic",
-                    chemicalData.hygroscopic ? "yes" : "no"
+                lineParts.push(
+                    "restrictions: " + sourceItem.acquisition_restrictions
                 );
             }
             
-            // Burn contribution and modification
-            appendBullet(
-                bulletListElement,
-                "Burn contribution",
-                chemicalData.burn_contribution || ""
-            );
-            appendBullet(
-                bulletListElement,
-                "Burn modification",
-                chemicalData.burn_modification || ""
-            );
+            const combinedText = lineParts.join(" | ");
             
-            // Physical form
-            appendBullet(
-                bulletListElement,
-                "Physical form",
-                chemicalData.physical_form || ""
-            );
-            
-            // Notes
-            appendBullet(
-                bulletListElement,
-                "Notes",
-                chemicalData.notes || ""
-            );
-            
-            summaryCardBodyElement.appendChild(bulletListElement);
-            summaryCardElement.appendChild(summaryCardBodyElement);
-            contentElement.appendChild(summaryCardElement);
-            
-            // Procurement sources
-            if (Array.isArray(chemicalData.procurement_sources)) {
-                renderProcurementSources(contentElement, chemicalData.procurement_sources);
+            if (sourceItem.url) {
+                const linkElement = document.createElement("a");
+                linkElement.href = sourceItem.url;
+                linkElement.target = "_blank";
+                linkElement.rel = "noopener noreferrer";
+                linkElement.textContent = combinedText || sourceItem.url;
+                listItemElement.appendChild(linkElement);
+            } else {
+                listItemElement.textContent =
+                    combinedText || "Source details unavailable";
             }
+            
+            if (sourceItem.notes) {
+                const notesElement = document.createElement("div");
+                notesElement.textContent = sourceItem.notes;
+                notesElement.classList.add("small");
+                listItemElement.appendChild(notesElement);
+            }
+            
+            procurementListElement.appendChild(listItemElement);
+        }
+        
+        procurementSectionElement.appendChild(procurementListElement);
+        cardElement.appendChild(procurementSectionElement);
+    }
+    
+    /* Metadata footer */
+    if (chemicalData.last_updated) {
+        const metaParagraphElement = document.createElement("p");
+        metaParagraphElement.classList.add("small", "text-muted", "mb-0");
+        metaParagraphElement.textContent =
+            "Record last updated: " + chemicalData.last_updated;
+        cardElement.appendChild(metaParagraphElement);
+    }
+    
+    outerContainerElement.appendChild(cardElement);
+}
+/* End main render */
+
+/* Begin error handling */
+function renderDetailError(messageText) {
+    const outerContainerElement = getDetailContainer();
+    if (!outerContainerElement) {
+        return;
+    }
+    
+    clearContainer(outerContainerElement);
+    
+    const cardElement = document.createElement("div");
+    cardElement.classList.add("colorant-detail-card");
+    
+    const alertElement = document.createElement("div");
+    alertElement.classList.add("alert", "alert-warning", "mb-0");
+    alertElement.textContent = messageText;
+    
+    cardElement.appendChild(alertElement);
+    outerContainerElement.appendChild(cardElement);
+}
+/* End error handling */
+
+/* Begin data loading */
+function loadChemicalDetail() {
+    const fileName = getQueryParameter("file");
+    
+    if (!fileName) {
+        renderDetailError(
+            "No chemical file specified. Please navigate here from the colorant matrix."
+        );
+        return;
+    }
+    
+    if (fileName.indexOf("/") !== -1 || fileName.indexOf("\\") !== -1) {
+        renderDetailError("Invalid file parameter.");
+        return;
+    }
+    
+    const jsonUrl = detailJsonBasePath + fileName;
+    
+    fetch(jsonUrl, { cache: "no-cache" })
+        .then(function (responseObject) {
+            if (!responseObject.ok) {
+                throw new Error("HTTP " + responseObject.status);
+            }
+            return responseObject.json();
         })
-        .catch(function (error) {
-            console.error("motor-color-chemical-details.js: error loading or rendering details:", error);
-            const errorParagraphElement = document.createElement("p");
-            errorParagraphElement.className = "text-danger";
-            errorParagraphElement.textContent =
-                "There was a problem loading the chemical details. Please try again later.";
-            contentElement.appendChild(errorParagraphElement);
+        .then(function (chemicalData) {
+            renderChemicalDetails(chemicalData);
+        })
+        .catch(function (errorObject) {
+            console.error(
+                "motor-color-chemical-details.js: Failed to load chemical JSON:",
+                errorObject
+            );
+            renderDetailError(
+                "Unable to load chemical details. Please check the link or try again later."
+            );
         });
-    // End main flow
+}
+/* End data loading */
+
+/* Begin event wiring */
+document.addEventListener("DOMContentLoaded", function () {
+    loadChemicalDetail();
 });
-// End motor color chemical details logic
+/* End event wiring */
+
+/* End motor-color-chemical-details.js */
