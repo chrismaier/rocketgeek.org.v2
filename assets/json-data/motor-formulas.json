@@ -4,6 +4,7 @@
   {"label": "Chemical Master List", "url":  "/formulas/master-chemical-list.html"},
   {"label": "Basic Formula", "url": "/formulas/basic-formula.html"},
   {"label": "Batch Sheet Calculator", "url": "/motormixing/batch-calculator.html"},
+  {"label": "Motor Colorants", "url": "/motor-flame-colors.html"},
   {"label": "Formula X", "url": "/formulas/formula-x.html"},
   {"label": "Formula Y", "url": "/formulas/formula-y.html"}
 ]
