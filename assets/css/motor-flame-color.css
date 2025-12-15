@@ -137,5 +137,21 @@
 
 /* End colorant detail layout */
 
+/* Chemical compound (formula) styling */
+.colorant-chemical-compound {
+    font-family: "DejaVu Sans", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.015em;
+    color: #8b0000;
+}
+
+/* Subscript tuning for chemical formulas */
+.colorant-chemical-compound sub {
+    font-size: 0.7em;
+    vertical-align: sub;
+    line-height: 0;
+}
+
 
 /* End flame-color-table styling */

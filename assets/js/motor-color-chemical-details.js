@@ -42,6 +42,50 @@ function createSectionTitle(titleText, headingLevel) {
 }
 /* End DOM helpers */
 
+/* Begin chemical formula rendering */
+function renderChemicalFormulaIntoElement(targetElement, formulaText) {
+    if (!targetElement) {
+        return;
+    }
+    
+    // Clear any existing content
+    while (targetElement.firstChild) {
+        targetElement.removeChild(targetElement.firstChild);
+    }
+    
+    const rawFormulaText = (formulaText || "").toString().trim();
+    if (!rawFormulaText) {
+        return;
+    }
+    
+    // Render digits as subscripts (e.g., H2O -> H<sub>2</sub>O)
+    let currentIndex = 0;
+    while (currentIndex < rawFormulaText.length) {
+        const currentChar = rawFormulaText[currentIndex];
+        
+        if (currentChar >= "0" && currentChar <= "9") {
+            let digitStartIndex = currentIndex;
+            while (currentIndex < rawFormulaText.length) {
+                const digitChar = rawFormulaText[currentIndex];
+                if (digitChar < "0" || digitChar > "9") {
+                    break;
+                }
+                currentIndex += 1;
+            }
+            
+            const digitText = rawFormulaText.slice(digitStartIndex, currentIndex);
+            const subElement = document.createElement("sub");
+            subElement.textContent = digitText;
+            targetElement.appendChild(subElement);
+            continue;
+        }
+        
+        targetElement.appendChild(document.createTextNode(currentChar));
+        currentIndex += 1;
+    }
+}
+/* End chemical formula rendering */
+
 /* Begin shared emission strength text helper */
 /*
    Normalized mapping:
@@ -299,9 +343,10 @@ function renderChemicalDetails(chemicalData) {
     const headerElement = document.createElement("div");
     const nameHeadingElement = document.createElement("h3");
     const compoundParagraphElement = document.createElement("p");
+    compoundParagraphElement.classList.add("colorant-chemical-compound");
     
     nameHeadingElement.textContent = chemicalData.chemical_name || "Unknown chemical";
-    compoundParagraphElement.textContent = chemicalData.chemical_compound || "";
+    renderChemicalFormulaIntoElement(compoundParagraphElement, chemicalData.chemical_compound);
     
     headerElement.appendChild(nameHeadingElement);
     headerElement.appendChild(compoundParagraphElement);
