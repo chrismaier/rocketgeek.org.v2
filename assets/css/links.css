@@ -39,3 +39,82 @@
     font-size: 16px;
     color: #333;
 }
+
+/* Begin link badges container */
+.link-badges {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+/* End link badges container */
+
+
+/* Begin base badge styling */
+.link-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.45rem;
+    margin-right: 0.35rem;
+    border-radius: 0.25rem;
+    line-height: 1.2;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+/* End base badge styling */
+
+
+/* Begin PDF badge */
+.link-badge-pdf {
+    background-color: #8b0000;
+    color: #ffffff;
+}
+/* End PDF badge */
+
+
+/* Begin external badge */
+.link-badge-external {
+    background-color: #495057;
+    color: #ffffff;
+}
+/* End external badge */
+
+
+/* Begin internal badge */
+.link-badge-internal {
+    background-color: #198754;
+    color: #ffffff;
+}
+/* End internal badge */
+
+
+/* Begin unknown badge */
+.link-badge-unknown {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+/* End unknown badge */
+
+
+/* Begin link anchor paragraph */
+.link-anchor {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+/* End link anchor paragraph */
+
+
+/* Begin anchor link styling */
+.link-anchor-link {
+    font-size: 14px;
+    color: #8b0000;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+.link-anchor-link:hover,
+.link-anchor-link:focus {
+    text-decoration: underline;
+}
+/* End anchor link styling */
