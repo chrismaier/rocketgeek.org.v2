@@ -1,0 +1,60 @@
+aws_registration_steps:
+  - step: "1. Introduction"
+    fields:
+      - "Nothing to do on this page"
+
+  - step: "2. 10DLC Campaign registration information"
+    fields:
+      - "campaign description"
+      - "vertical"
+      - "companies terms and conditions URL"
+      - "companies terms and conditions file"
+      - "companies privacy policy URL"
+      - "companies privacy policy file"
+      - "campaign opt-in workflow"
+      - "campaign opt-in screen shot"
+      - "opt-in keyword"
+      - "opt-in confirmation message"
+      - "help message"
+      - "stop message"
+
+  - step: "3. Campaign capabilities"
+    fields:
+      - "number capabilities"
+      - "message type"
+
+  - step: "4. Messaging use case"
+    fields:
+      - "use case (AWS dropdown)"
+      - "sub use case"
+      - "subscriber opt-in"
+      - "subscriber opt-out"
+      - "subscriber help"
+      - "direct lending or loan agreement"
+      - "embedded link"
+      - "embedded link sample"
+      - "embedded phone number"
+      - "age-gated content"
+
+  - step: "5. Message samples"
+    fields:
+      - "message sample 1"
+      - "message sample 2"
+      - "message sample 3"
+      - "message sample 4"
+      - "message sample 5"
+
+  - step: "6. MMS file samples"
+    fields:
+      - "MMS file sample 1"
+      - "MMS file sample 2"
+      - "MMS file sample 3"
+      - "MMS file sample 4"
+      - "MMS file sample 5"
+
+  - step: "7. Review"
+    fields: []
+
+  - step: "8. Validate and submit"
+    fields:
+      - "new option to have AI review"

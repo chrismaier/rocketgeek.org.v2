@@ -18,9 +18,33 @@
     "description": "A PDF for wing flutter analysis provided by NASA"
   },
   {
-    "title": " Example Website",
-    "link_anchor": "Link text to click on",
-    "url": "https://www.anotherexample.com",
-    "description": "Another example website"
+    "title": "Pressure Transducer",
+    "link_anchor": "DATAQ High Precision Pressure Transducer",
+    "url": "https://www.dataq.com/products/accessories/pressure-sensor/2000361-hs-2000.html",
+    "description": "High precision 2000 PSI pressure transducer"
+  },
+  {
+    "title": "ATO Load Cell",
+    "link_anchor": "ATO High Precision Load Cell",
+    "url": "https://www.ato.com/low-profile-load-cell",
+    "description": "High precision load cell that measures 2,000 lbs and higher"
+  },
+  {
+    "title": "ATO S Load Cell",
+    "link_anchor": "ATO S Type Load Cell",
+    "url": "https://www.ato.com/tension-load-cell-s-type-5kg-to-500kg",
+    "description": "An S type strain gauge load cell that come in many load sizes"
+  },
+  {
+    "title": "ATO Load Cell Transmitter",
+    "link_anchor": "ATO High Precision Load Cell Transmitter",
+    "url": "https://www.ato.com/load-cell-transmitter-output-0-5v-4-20ma",
+    "description": "High precision load cell transmitter that can be used with ATO load cells"
+  },
+  {
+    "title": "Transducer Techniques Load Buttons",
+    "link_anchor": "Load Cell Load Buttons",
+    "url": "https://www.transducertechniques.com/load-button.aspx",
+    "description": "A list of load buttons for load cells if you have won the lottery and chose to spend your money this way"
   }
 ]
