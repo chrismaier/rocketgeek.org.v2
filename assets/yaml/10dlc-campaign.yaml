@@ -2,6 +2,8 @@ aws_registration_steps:
   - step: "1. Introduction"
     fields:
       - "Nothing to do on this page"
+    data:
+      note: "Proceed to campaign registration information."
 
   - step: "2. 10DLC Campaign registration information"
     fields:
@@ -17,11 +19,56 @@ aws_registration_steps:
       - "opt-in confirmation message"
       - "help message"
       - "stop message"
+    data:
+      brand:
+        legal_name: "Rocket Geek LLC"
+        known_issue:
+          - "Campaign previously rejected due to brand physical address missing or incomplete"
+          - "Brand shows as 'Accepted' but fields are locked"
+        resolution_options:
+          - "Re-register brand with full physical address"
+          - "Request AWS SMS/10DLC support to update the TCR record"
+      campaign:
+        intent: "transactional"
+        primary_use_case: "2FA"
+        fallback_use_case: "account_notifications"
+        channels:
+          - "SMS"
+        exclusions:
+          - "No MMS"
+          - "No voice"
+          - "No marketing"
+          - "No affiliate content"
+          - "No political, charity, finance, health, or age-gated content"
+      campaign_description: "Account security: one-time passcodes for login, registration, and password recovery."
+      vertical: "Account Security / Authentication (2FA)"
+      companies_terms_and_conditions:
+        url: "<provide-terms-url-in-aws-form>"
+        file: "<optional-upload-if-you-choose-file-instead-of-url>"
+      companies_privacy_policy:
+        url: "<provide-privacy-url-in-aws-form>"
+        file: "<optional-upload-if-you-choose-file-instead-of-url>"
+      campaign_opt_in_workflow: >
+        Users provide their phone number on the Rocket Geek LLC registration or password recovery form and check a box to agree to
+        receive SMS verification codes. By opting in, they consent to recurring text messages used solely for account security.
+        Message frequency will vary but is typically 1–2 per login attempt. Reply HELP for support or STOP to opt out.
+        Msg&data rates may apply. Terms: <terms-url> Privacy: <privacy-url>
+      campaign_opt_in_screen_shot: "<upload-screenshot-of-the-opt-in-checkbox-and-text-on-your-site>"
+      opt_in_keyword: "JOIN"
+      opt_in_confirmation_message: >
+        Rocket Geek: You are subscribed to receive verification codes for your Rocket Geek LLC account. Message frequency varies,
+        reply HELP for support or STOP to opt out. Msg&data rates may apply.
+      help_message: "Rocket Geek: For help, email support@rocketgeek.org. Msg&data rates may apply."
+      stop_message: >
+        You have unsubscribed from Rocket Geek verification messages. You will no longer receive login or password recovery codes.
 
   - step: "3. Campaign capabilities"
     fields:
       - "number capabilities"
       - "message type"
+    data:
+      number_capabilities: "SMS"
+      message_type: "Transactional"
 
   - step: "4. Messaging use case"
     fields:
@@ -35,6 +82,17 @@ aws_registration_steps:
       - "embedded link sample"
       - "embedded phone number"
       - "age-gated content"
+    data:
+      use_case_aws_dropdown: "2FA"
+      sub_use_case: null
+      subscriber_opt_in: "Yes"
+      subscriber_opt_out: "Yes"
+      subscriber_help: "Yes"
+      direct_lending_or_loan_agreement: "No"
+      embedded_link: "No"
+      embedded_link_sample: null
+      embedded_phone_number: "No"
+      age_gated_content: "No"
 
   - step: "5. Message samples"
     fields:
@@ -43,6 +101,19 @@ aws_registration_steps:
       - "message sample 3"
       - "message sample 4"
       - "message sample 5"
+    data:
+      message_sample_1: "Rocket Geek: Your verification code is 123456. This code expires in 15 minutes, do not share it."
+      message_sample_2: >
+        Rocket Geek: Your new verification code is 654321. The previous code has expired. Do not share this code.
+      message_sample_3: >
+        Rocket Geek: You are subscribed to receive verification codes for your Rocket Geek LLC account. Message frequency varies,
+        reply HELP for support or STOP to opt out. Msg&data rates may apply.
+      message_sample_4: "Rocket Geek: For help, email support@rocketgeek.org. Msg&data rates may apply."
+      message_sample_5: >
+        You have unsubscribed from Rocket Geek verification messages. You will no longer receive login or password recovery codes.
+      notes:
+        - "Keep samples aligned to real production messages."
+        - "Do not include links or phone numbers in samples."
 
   - step: "6. MMS file samples"
     fields:
@@ -51,10 +122,45 @@ aws_registration_steps:
       - "MMS file sample 3"
       - "MMS file sample 4"
       - "MMS file sample 5"
+    data:
+      action: "Leave blank / Not applicable"
+      reason: "SMS-only campaign; MMS excluded by requirement."
 
   - step: "7. Review"
     fields: []
+    data:
+      checklist:
+        - "Brand physical address is complete and matches legal business records"
+        - "Transactional + SMS only"
+        - "Use case set to 2FA"
+        - "Opt-in workflow includes explicit consent + frequency + HELP/STOP + msg&data rates + Terms/Privacy references"
+        - "No embedded links, no embedded phone numbers, no age-gated content"
+        - "MMS samples left blank"
 
   - step: "8. Validate and submit"
     fields:
       - "new option to have AI review"
+    data:
+      ai_review_option: "Enable (recommended) if present in the UI"
+      submission_notes:
+        - "If rejected, capture the exact rejection reason text and update only the referenced fields."
+
+must_not_be_assumed_or_revisited:
+  - "Do not reference Amazon Pinpoint"
+  - "Do not use legacy AWS UI step names"
+  - "Do not assume Consumer Services is a valid vertical"
+  - "Do not omit explicit consent language"
+  - "Do not omit frequency disclosure"
+  - "Do not omit HELP / STOP instructions"
+  - "Do not include MMS, links, phone numbers, or voice"
+  - "Do not include prose explanations in future summaries"
+
+carry_forward_exclusions_verbatim:
+  - "Do not reference Amazon Pinpoint"
+  - "Do not use legacy AWS UI step names"
+  - "Do not assume Consumer Services is a valid vertical"
+  - "Do not omit explicit consent language"
+  - "Do not omit frequency disclosure"
+  - "Do not omit HELP / STOP instructions"
+  - "Do not include MMS, links, phone numbers, or voice"
+  - "Do not include prose explanations"
