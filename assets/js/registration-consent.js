@@ -1,5 +1,6 @@
 /* START: configuration */
 const RG_COOKIE_ACCEPTED = "rg_cookie_accepted";
+const RG_SMS_ACCEPTED = "rg_sms_accepted";
 const RG_TOS_VERSION = "rg_tos_version";
 
 // Update this whenever your Terms change
@@ -41,6 +42,10 @@ function hasAcceptedCookies() {
     return getCookie(RG_COOKIE_ACCEPTED) === "true";
 }
 
+function hasAcceptedSmsPolicy() {
+    return getCookie(RG_SMS_ACCEPTED) === "true";
+}
+
 function getAcceptedTosVersion() {
     return getCookie(RG_TOS_VERSION);
 }
@@ -61,6 +66,7 @@ function updateStatusText() {
     if (!status) return;
     
     const cookieAccepted = hasAcceptedCookies();
+    const smsAccepted = hasAcceptedSmsPolicy();
     const tosVersion = getAcceptedTosVersion();
     const tosCurrent = isTosCurrent();
     
@@ -68,8 +74,12 @@ function updateStatusText() {
         status.textContent = "Step 1: Accept cookie policy to continue.";
         return;
     }
+    if (!smsAccepted) {
+        status.textContent = "Step 2: Review and accept the SMS policy.";
+        return;
+    }
     if (!tosVersion) {
-        status.textContent = "Step 2: Review and accept the Terms of Service.";
+        status.textContent = "Step 3: Review and accept the Terms of Service.";
         return;
     }
     if (!tosCurrent) {
@@ -79,20 +89,71 @@ function updateStatusText() {
     status.textContent = "All set: You may register now.";
 }
 
+function setButtonAcceptedTextColor(buttonElement, isAccepted) {
+    if (!buttonElement) return;
+    
+    if (isAccepted) {
+        buttonElement.classList.add("text-success");
+        buttonElement.classList.remove("text-muted");
+    } else {
+        buttonElement.classList.remove("text-success");
+    }
+}
+
+function setButtonTextState(buttonElement, state) {
+    if (!buttonElement) return;
+    
+    // Clean slate
+    buttonElement.classList.remove("text-success", "text-warning", "text-muted");
+    
+    if (state === "accepted") {
+        buttonElement.classList.add("text-success");
+        return;
+    }
+    
+    if (state === "outdated") {
+        buttonElement.classList.add("text-warning");
+        return;
+    }
+    
+    // state === "none" (or anything else): leave default button text color
+}
+
+
+
 function updateUIState() {
     const registerBtn = document.getElementById("registerBtn");
     const openCookieBtn = document.getElementById("openCookieBtn");
+    const openSmsBtn = document.getElementById("openSmsBtn");
     const openTosBtn = document.getElementById("openTosBtn");
     
     const cookieAccepted = hasAcceptedCookies();
+    const smsAccepted = hasAcceptedSmsPolicy();
     const tosCurrent = isTosCurrent();
     
     setDisabled(openCookieBtn, false);
-    setDisabled(openTosBtn, !cookieAccepted);         // ToS only after cookies accepted
-    setDisabled(registerBtn, !(cookieAccepted && tosCurrent));
+    setDisabled(openSmsBtn, !cookieAccepted);                 // SMS only after cookies accepted
+    setDisabled(openTosBtn, !(cookieAccepted && smsAccepted)); // ToS only after cookies + SMS accepted
+    setDisabled(registerBtn, !(cookieAccepted && smsAccepted && tosCurrent));
+    
+    setButtonAcceptedTextColor(openCookieBtn, cookieAccepted);
+    setButtonAcceptedTextColor(openSmsBtn, smsAccepted);
+    setButtonAcceptedTextColor(openTosBtn, tosCurrent);
+    
+    setButtonTextState(openCookieBtn, cookieAccepted ? "accepted" : "none");
+    setButtonTextState(openSmsBtn, smsAccepted ? "accepted" : "none");
+    
+    if (!getAcceptedTosVersion()) {
+        setButtonTextState(openTosBtn, "none");
+    } else if (tosCurrent) {
+        setButtonTextState(openTosBtn, "accepted");
+    } else {
+        setButtonTextState(openTosBtn, "outdated");
+    }
     
     console.debug("[consent] UI updated", {
         cookieAccepted,
+        smsAccepted,
         acceptedTosVersion: getAcceptedTosVersion(),
         requiredTosVersion: CURRENT_TOS_VERSION,
         tosCurrent
@@ -111,20 +172,32 @@ function showCurrentTosVersionInModal() {
 /* START: event wiring */
 function wireConsentEvents() {
     const openCookieBtn = document.getElementById("openCookieBtn");
+    const openSmsBtn = document.getElementById("openSmsBtn");
     const openTosBtn = document.getElementById("openTosBtn");
+    
     const acceptCookieBtn = document.getElementById("acceptCookieBtn");
+    const acceptSmsBtn = document.getElementById("acceptSmsBtn");
     const acceptTosBtn = document.getElementById("acceptTosBtn");
     
     const cookiePolicyModalEl = document.getElementById("cookiePolicyModal");
+    const smsPolicyModalEl = document.getElementById("smsPolicyModal");
     const tosModalEl = document.getElementById("tosModal");
     
     const cookiePolicyModal = cookiePolicyModalEl ? new bootstrap.Modal(cookiePolicyModalEl) : null;
+    const smsPolicyModal = smsPolicyModalEl ? new bootstrap.Modal(smsPolicyModalEl) : null;
     const tosModal = tosModalEl ? new bootstrap.Modal(tosModalEl) : null;
     
     if (openCookieBtn && cookiePolicyModal) {
         openCookieBtn.addEventListener("click", () => {
             console.log("[consent] Opening Cookie Policy modal");
             cookiePolicyModal.show();
+        });
+    }
+    
+    if (openSmsBtn && smsPolicyModal) {
+        openSmsBtn.addEventListener("click", () => {
+            console.log("[consent] Opening SMS Policy modal");
+            smsPolicyModal.show();
         });
     }
     
@@ -145,6 +218,15 @@ function wireConsentEvents() {
         });
     }
     
+    if (acceptSmsBtn && smsPolicyModal) {
+        acceptSmsBtn.addEventListener("click", () => {
+            console.log("[consent] SMS policy accepted (persistent)");
+            setPersistentCookie(RG_SMS_ACCEPTED, "true");
+            smsPolicyModal.hide();
+            updateUIState();
+        });
+    }
+    
     if (acceptTosBtn && tosModal) {
         acceptTosBtn.addEventListener("click", () => {
             console.log(`[consent] ToS accepted (persistent) v${CURRENT_TOS_VERSION}`);
@@ -154,12 +236,12 @@ function wireConsentEvents() {
         });
     }
     
-    // Prevent submit unless both conditions met
+    // Prevent submit unless all conditions met
     const form = document.getElementById("registrationConsentForm");
     const registerBtn = document.getElementById("registerBtn");
     if (form && registerBtn) {
         form.addEventListener("submit", (evt) => {
-            const canSubmit = hasAcceptedCookies() && isTosCurrent();
+            const canSubmit = hasAcceptedCookies() && hasAcceptedSmsPolicy() && isTosCurrent();
             if (!canSubmit) {
                 console.warn("[consent] Submission blocked: requirements not met");
                 evt.preventDefault();
@@ -180,8 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // If user has an older ToS accepted, nudge them by enabling ToS button and optional auto-open logic
     const cookieAccepted = hasAcceptedCookies();
+    const smsAccepted = hasAcceptedSmsPolicy();
     const tosCurrent = isTosCurrent();
-    if (cookieAccepted && !tosCurrent) {
+    if (cookieAccepted && smsAccepted && !tosCurrent) {
         const tosModalEl = document.getElementById("tosModal");
         if (tosModalEl) {
             // Optional: auto-open ToS if outdated. Comment out if you prefer manual.

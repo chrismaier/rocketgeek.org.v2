@@ -78,7 +78,7 @@
 </nav>
  <!-- END: top alt navbar - signup/confirm -->
         
-        
+      <!-- Main body and form -->
         <div class = "container">
             <div class = "card shadow-lg o-hidden border-0 my-5">
                 <div class = "card-body p-0">
@@ -138,19 +138,26 @@
                                       <button id="registerBtn" class="btn btn-primary d-block btn-user w-100" type="submit" disabled>Register Account</button>
                                     </div>
                                     
-                                    <div class="row mb-3">
-                                      <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <button id="openCookieBtn" type="button" class="btn btn-secondary d-block btn-user w-100">
-                                          View & Accept Cookie Policy
-                                        </button>
-                                      </div>
-                                      <div class="col-sm-6">
-                                        <button id="openTosBtn" type="button" class="btn btn-secondary d-block btn-user w-100" disabled>
-                                          View & Accept Terms of Service
-                                        </button>
-                                      </div>
-                                    </div>
-                                    
+                                    <!-- Begin consent action buttons -->
+<div class="row mb-3">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <button id="openCookieBtn" type="button" class="btn btn-secondary d-block btn-user w-100 mb-3">
+      View & Accept Cookie Policy
+    </button>
+
+    <button id="openSmsBtn" type="button" class="btn btn-secondary d-block btn-user w-100" disabled>
+      View & Accept SMS Policy
+    </button>
+  </div>
+
+  <div class="col-sm-6">
+    <button id="openTosBtn" type="button" class="btn btn-secondary d-block btn-user w-100" disabled>
+      View & Accept Terms of Service
+    </button>
+  </div>
+</div>
+                                    <!-- End consent action buttons -->
+
                                     <p id="consentStatusText" class="text-muted small mb-0"></p>
                                     <!-- End consent buttons -->
                                     
@@ -176,6 +183,25 @@
                 </div>
             </div>
         </div>
+        
+        <!-- End main body and form -->
+ 
+ 
+ <!-- START: SMS Disclaimer Container -->
+<div class="container mt-1">
+    <div class="card shadow-lg o-hidden border-0">
+        <div class="card-body p-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="smsDisclaimer" checked disabled>
+                <label class="form-check-label small text-muted" for="smsDisclaimer">
+                    By signing up for the Rocket Geek site you agree to allow strictly necessary SMS Message to be sent to you. (standard message rates apply)
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- END: Cookie Disclaimer Container -->
  
  <!-- START: Cookie Disclaimer Container -->
 <div class="container mt-1">
@@ -191,6 +217,33 @@
     </div>
 </div>
  <!-- END: Cookie Disclaimer Container -->
+ 
+ 
+ <!-- Begin SMS Policy Modal -->
+<div class="modal fade" id="smsPolicyModal" tabindex="-1" aria-labelledby="smsPolicyLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="smsPolicyLabel" class="modal-title">SMS Policy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-3 text-start">
+        <p>Rocket Geek LLC uses SMS only for account security (for example: registration, login verification, and password recovery codes).</p>
+        <p>Message frequency varies based on account activity. Message and data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.</p>
+        <p>See the full details of our SMS messaging use in our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> under section <strong>3.1</strong>.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="acceptSmsBtn" type="button" class="btn btn-primary btn-user" style="border-radius: 10rem; padding: .75rem 1rem;">
+          Accept SMS Policy
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- End SMS Policy Modal -->
+ 
+ 
+ 
  
         <!-- Begin modal dialog html content - only visible in modal dialogs -->
  <!-- Begin Cookie Policy Modal -->
@@ -257,6 +310,8 @@
         <script src = "assets/js/amazon-cognito-identity.min.js"></script>
         <script src = "assets/js/register.js"></script>
         <script src="assets/js/registration-consent.js"></script>
+        <!-- Remove before production deployment -->
+        <script src="assets/js/reset-consent.js"></script>
         <!-- end Javascript -->
     
     </body>
