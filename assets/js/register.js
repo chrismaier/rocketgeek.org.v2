@@ -1,4 +1,6 @@
 /* START: Register page bootstrap and submit wiring */
+let RG_GATE_REQUIRED_TOS_VERSION = "0.0.0";
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("rocketGeekSignupForm");
     if (!form) {
@@ -6,20 +8,88 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
     
-    console.info("[register.js] Page ready. Wiring submit and checking consent state…");
-    RG_GATE_logConsentState();
+    console.info("[register.js] Page ready. Initializing ToS version source and wiring submit…");
     
-    // Intercept submit to enforce consent before proceeding
+    // Begin ToS version initialization
+    RG_GATE_initializeRequiredTosVersion()
+        .then(() => {
+            RG_GATE_logConsentState();
+        })
+        .catch((error) => {
+            console.error("[register.js] ToS version initialization failed:", error);
+            RG_GATE_logConsentState();
+        });
+    // End ToS version initialization
+    
+    // Begin Submit intercept
     form.addEventListener("submit", function (event) {
         event.preventDefault();
         RG_GATE_consentThenRegister();
     });
+    // End Submit intercept
 });
 /* END: Register page bootstrap and submit wiring */
 
 
+/* START: ToS version source of truth (read from /terms-of-service.html body marker) */
+async function RG_GATE_initializeRequiredTosVersion() {
+    const fetchedTosVersion = await RG_GATE_fetchTosVersionFromTermsPage();
+    if (!fetchedTosVersion) {
+        console.warn("[register.js] Could not determine required ToS version from /terms-of-service.html; defaulting to 0.0.0");
+        RG_GATE_REQUIRED_TOS_VERSION = "0.0.0";
+        return;
+    }
+    
+    RG_GATE_REQUIRED_TOS_VERSION = fetchedTosVersion;
+    console.info("[register.js] Required ToS version loaded from Terms page:", RG_GATE_REQUIRED_TOS_VERSION);
+}
+
+async function RG_GATE_fetchTosVersionFromTermsPage() {
+    try {
+        const response = await fetch("/terms-of-service.html", { cache: "no-store" });
+        if (!response.ok) {
+            console.warn("[register.js] Failed to fetch /terms-of-service.html:", response.status);
+            return null;
+        }
+        
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const termsDocument = parser.parseFromString(htmlText, "text/html");
+        
+        const versionElement = termsDocument.getElementById("rgTosVersionSource");
+        if (!versionElement) {
+            console.warn("[register.js] #rgTosVersionSource not found in /terms-of-service.html");
+            return null;
+        }
+        
+        const dataVersion = (versionElement.getAttribute("data-tos-version") || "").trim();
+        if (dataVersion.length > 0) {
+            return dataVersion;
+        }
+        
+        const textVersion = (versionElement.textContent || "").trim();
+        if (textVersion.length > 0) {
+            return textVersion.replace(/^v/i, "").trim();
+        }
+        
+        console.warn("[register.js] #rgTosVersionSource found, but no version value present");
+        return null;
+    } catch (error) {
+        console.error("[register.js] Error fetching/parsing /terms-of-service.html:", error);
+        return null;
+    }
+}
+
+function RG_GATE_getRequiredTosVersion() {
+    return RG_GATE_REQUIRED_TOS_VERSION;
+}
+/* END: ToS version source of truth (read from /terms-of-service.html body marker) */
+
+
 /* START: Main form handler with validation and consent gate */
 function RG_GATE_consentThenRegister() {
+    const requiredTosVersion = RG_GATE_getRequiredTosVersion();
+    
     // 1) Require cookie policy acceptance
     if (!RG_GATE_hasAcceptedCookies()) {
         console.warn("[register.js] Blocking submit: cookie policy not accepted");
@@ -27,16 +97,22 @@ function RG_GATE_consentThenRegister() {
         return;
     }
     
-    // 2) Require current ToS acceptance
+    // 2) Require SMS policy acceptance
+    if (!RG_GATE_hasAcceptedSmsPolicy()) {
+        console.warn("[register.js] Blocking submit: SMS policy not accepted");
+        RG_GATE_openSmsPolicyModalOrAlert();
+        return;
+    }
+    
+    // 3) Require current ToS acceptance
     if (!RG_GATE_isTosCurrent()) {
-        const have = RG_GATE_getAcceptedTosVersion() || "none";
-        const need = RG_GATE_CURRENT_TOS_VERSION;
-        console.warn(`[register.js] Blocking submit: ToS not current (have: ${have}, need: ${need})`);
+        const acceptedTosVersion = RG_GATE_getAcceptedTosVersion() || "none";
+        console.warn(`[register.js] Blocking submit: ToS not current (have: ${acceptedTosVersion}, need: ${requiredTosVersion})`);
         RG_GATE_openTosModalOrAlert();
         return;
     }
     
-    // 3) Proceed with registration
+    // 4) Proceed with registration
     console.log("[register.js] Consent satisfied; proceeding with registration");
     rocketGeekSignupForm();
 }
@@ -44,12 +120,12 @@ function RG_GATE_consentThenRegister() {
 function rocketGeekSignupForm() {
     console.log("[register.js] Handling form submission securely");
     
-    const firstName      = document.getElementById("firstName")?.value?.trim();
-    const lastName       = document.getElementById("lastName")?.value?.trim();
-    const email          = document.getElementById("email")?.value?.trim();
-    const phone          = document.getElementById("phoneNumber")?.value?.trim();
-    const zipCode        = document.getElementById("zipCode")?.value?.trim();
-    const password       = document.getElementById("passwordInput")?.value;
+    const firstName = document.getElementById("firstName")?.value?.trim();
+    const lastName = document.getElementById("lastName")?.value?.trim();
+    const email = document.getElementById("email")?.value?.trim();
+    const phone = document.getElementById("phoneNumber")?.value?.trim();
+    const zipCode = document.getElementById("zipCode")?.value?.trim();
+    const password = document.getElementById("passwordInput")?.value;
     const repeatPassword = document.getElementById("repeatPasswordInput")?.value;
     
     if (password !== repeatPassword) {
@@ -59,18 +135,18 @@ function rocketGeekSignupForm() {
     }
     
     const attributeList = [
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "given_name",      Value: firstName || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "family_name",     Value: lastName  || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email",           Value: email     || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number",    Value: phone     || "" }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:zip_code", Value: zipCode   || "" })
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "given_name", Value: firstName || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "family_name", Value: lastName || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "email", Value: email || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "phone_number", Value: phone || "" }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: "custom:zip_code", Value: zipCode || "" })
     ];
     
     const poolData = {
         // UserPoolId: 'us-east-1_5j4lDdV1A',
         // ClientId:   '2mnmesf3f1olrit42g2oepmiak'
-        UserPoolId: 'us-east-1_clrYuNqI3',
-        ClientId:   '3u51gurg8r0ri4riq2isa8aq7h'
+        UserPoolId: "us-east-1_clrYuNqI3",
+        ClientId: "3u51gurg8r0ri4riq2isa8aq7h"
     };
     
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -112,9 +188,6 @@ function performRegistration({ email, password, attributeList, userPool }) {
 
 
 /* START: Consent helpers (prefixed RG_GATE_ to avoid any collision) */
-// Keep this in sync with your consent policy; distinct name to avoid conflicts
-const RG_GATE_CURRENT_TOS_VERSION = "1.0.0";
-
 function RG_GATE_getCookie(name) {
     const encodedName = encodeURIComponent(name) + "=";
     const parts = document.cookie.split(";").map(s => s.trim());
@@ -131,20 +204,29 @@ function RG_GATE_hasAcceptedCookies() {
     return RG_GATE_getCookie("rg_cookie_accepted") === "true";
 }
 
+function RG_GATE_hasAcceptedSmsPolicy() {
+    // Uses the cookie set by registration-consent.js
+    return RG_GATE_getCookie("rg_sms_accepted") === "true";
+}
+
 function RG_GATE_getAcceptedTosVersion() {
     // Uses the cookie set by registration-consent.js
     return RG_GATE_getCookie("rg_tos_version");
 }
 
 function RG_GATE_isTosCurrent() {
-    return RG_GATE_getAcceptedTosVersion() === RG_GATE_CURRENT_TOS_VERSION;
+    const requiredTosVersion = RG_GATE_getRequiredTosVersion();
+    if (!requiredTosVersion || requiredTosVersion === "0.0.0") return false;
+    
+    return RG_GATE_getAcceptedTosVersion() === requiredTosVersion;
 }
 
 function RG_GATE_logConsentState() {
     console.debug("[register.js] Consent state", {
         cookieAccepted: RG_GATE_hasAcceptedCookies(),
+        smsAccepted: RG_GATE_hasAcceptedSmsPolicy(),
         acceptedTosVersion: RG_GATE_getAcceptedTosVersion(),
-        requiredTosVersion: RG_GATE_CURRENT_TOS_VERSION,
+        requiredTosVersion: RG_GATE_getRequiredTosVersion(),
         tosCurrent: RG_GATE_isTosCurrent()
     });
 }
@@ -159,6 +241,16 @@ function RG_GATE_openCookiePolicyModalOrAlert() {
         new bootstrap.Modal(modalEl).show();
     } else {
         alert("Please review and accept the Cookie Policy to continue.");
+    }
+}
+
+function RG_GATE_openSmsPolicyModalOrAlert() {
+    const modalEl = document.getElementById("smsPolicyModal");
+    if (modalEl && window.bootstrap && window.bootstrap.Modal) {
+        console.log("[register.js] Opening SMS Policy modal");
+        new bootstrap.Modal(modalEl).show();
+    } else {
+        alert("Please review and accept the SMS Policy to continue.");
     }
 }
 

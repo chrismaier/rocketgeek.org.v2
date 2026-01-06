@@ -135,48 +135,41 @@
                                     
                                     <!-- Begin consent buttons -->
                                     <div class="mb-3">
-                                      <button id="registerBtn" class="btn btn-primary d-block btn-user w-100" type="submit" disabled>Register Account</button>
+                                      <button id="registerBtn" class="btn btn-primary d-block btn-user w-100 mb-3" type="submit" disabled>
+                                        Register Account
+                                      </button>
                                     </div>
-                                    
                                     <!-- Begin consent action buttons -->
-<div class="row mb-3">
-  <div class="col-sm-6 mb-3 mb-sm-0">
-    <button id="openCookieBtn" type="button" class="btn btn-secondary d-block btn-user w-100 mb-3">
-      View & Accept Cookie Policy
-    </button>
-
-    <button id="openSmsBtn" type="button" class="btn btn-secondary d-block btn-user w-100" disabled>
-      View & Accept SMS Policy
-    </button>
-  </div>
-
-  <div class="col-sm-6">
-    <button id="openTosBtn" type="button" class="btn btn-secondary d-block btn-user w-100" disabled>
-      View & Accept Terms of Service
-    </button>
-  </div>
-</div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <button id="openCookieBtn" type="button" class="btn btn-primary d-block btn-user w-100 mb-3">
+                                          View & Accept Cookie Policy
+                                        </button>
+                                    
+                                        <button id="openSmsBtn" type="button" class="btn btn-primary d-block btn-user w-100 mb-3" disabled>
+                                          View & Accept SMS Policy
+                                        </button>
+                                      </div>
+                                    
+                                      <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <button id="openTosBtn" type="button" class="btn btn-primary d-block btn-user w-100 mb-3" disabled>
+                                          View & Accept Terms of Service
+                                        </button>
+                                    
+                                        <button id="openSignupProcessBtn" type="button" class="btn btn-primary d-block btn-user w-100 mb-3" data-bs-toggle="modal" data-bs-target="#signupProcessModal">
+                                          Review Signup Process
+                                        </button>
+                                      </div>
+                                    </div>
                                     <!-- End consent action buttons -->
+                                    
 
                                     <p id="consentStatusText" class="text-muted small mb-0"></p>
                                     <!-- End consent buttons -->
                                     
-                                    
-                                    
-                                    <!--
-                                    <hr>
-                                    <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Register with Google</a>
-                                    <a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
-                                    <hr>
-                                    -->
                                 </form>
                                 <!-- End of registration form -->
-                                <!--
-                                <div class = "text-center" id = "forgot-password-text"><a class = "border-0 shadow-none small" href = "forgot-password.html">Forgot
-                                                                                                                                                             Password?</a>
-                                </div>
-                                <div class = "text-center"><a class = "small" href = "login.html">Already have an account? Login!</a></div>
-                                -->
+                                
                             </div>
                         </div>
                     </div>
@@ -192,7 +185,7 @@
     <div class="card shadow-lg o-hidden border-0">
         <div class="card-body p-4">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="smsDisclaimer" checked disabled>
+                <input class="form-check-input" type="checkbox" id="smsDisclaimer" disabled>
                 <label class="form-check-label small text-muted" for="smsDisclaimer">
                     By signing up for the Rocket Geek site you agree to allow strictly necessary SMS Message to be sent to you. (standard message rates apply)
                 </label>
@@ -208,7 +201,7 @@
     <div class="card shadow-lg o-hidden border-0">
         <div class="card-body p-4">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="cookieDisclaimer" checked disabled>
+                <input class="form-check-input" type="checkbox" id="cookieDisclaimer" disabled>
                 <label class="form-check-label small text-muted" for="cookieDisclaimer">
                     By signing up for the Rocket Geek site you agree to allow strictly necessary cookies to be set on your system. We do not use tracking cookies or allow third parties access to our cookies or anything of that sort. However, if you are super worried about cookies, don't sign up for this site as we do use some cookies to ensure this site functions properly.
                 </label>
@@ -217,6 +210,21 @@
     </div>
 </div>
  <!-- END: Cookie Disclaimer Container -->
+ 
+ <!-- Begin ToS Disclaimer Container -->
+<div class="container mt-1">
+    <div class="card shadow-lg o-hidden border-0">
+        <div class="card-body p-4">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="tosDisclaimer" disabled>
+                <label class="form-check-label small text-muted" for="tosDisclaimer">
+                    By signing up for the Rocket Geek site you agree to the Rocket Geek Terms of Service.
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- End ToS Disclaimer Container -->
  
  
  <!-- Begin SMS Policy Modal -->
@@ -229,7 +237,8 @@
       </div>
       <div class="modal-body p-3 text-start">
         <p>Rocket Geek LLC uses SMS only for account security (for example: registration, login verification, and password recovery codes).</p>
-        <p>Message frequency varies based on account activity. Message and data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.</p>
+          <p>Message frequency varies based on account activity, login frequency, and password recovery attempts. </p>
+          <p>Message and data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.</p>
         <p>See the full details of our SMS messaging use in our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> under section <strong>3.1</strong>.</p>
       </div>
       <div class="modal-footer">
@@ -289,6 +298,81 @@
   </div>
 </div>
  <!-- End Terms of Service Modal -->
+ 
+ <!-- Begin Signup Process Modal -->
+<div class="modal fade" id="signupProcessModal" tabindex="-1" aria-labelledby="signupProcessLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="signupProcessLabel" class="modal-title">Signup Process Overview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+        <div class="modal-body p-4 text-start" style="max-height: 70vh; overflow-y: auto;">
+      
+          <div class="modal-body p-4 text-start">
+            <p class="mb-3">
+              This overview explains the full enrollment and verification process so you know exactly what to expect.
+            </p>
+          
+            <h5 class="mt-3">Step 1: Accept the Cookie Policy</h5>
+            <ul>
+              <li>We use strictly necessary cookies for secure site operation (not advertising or tracking).</li>
+              <li>Review the policy here: <a href="/cookie-policy.html" target="_blank" rel="noopener">Cookie Policy</a>.</li>
+            </ul>
+          
+            <h5 class="mt-3">Step 2: Accept the SMS Policy</h5>
+            <ul>
+              <li>Rocket Geek LLC uses SMS only for account security (one-time passcodes and account verification).</li>
+              <li>Message frequency varies based on account activity. Message and data rates may apply.</li>
+              <li>Reply <strong>STOP</strong> to opt out (SMS-based verification may be required for account access).</li>
+              <li>Reply <strong>HELP</strong> for help or email <a href="mailto:support@rocketgeek.org">support@rocketgeek.org</a>.</li>
+              <li>See details here: <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> (Section 3.1).</li>
+            </ul>
+          
+            <h5 class="mt-3">Step 3: Accept the Terms of Service</h5>
+            <ul>
+              <li>Review the Terms here: <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a>.</li>
+            </ul>
+          
+            <h5 class="mt-3">Step 4: Complete the Registration Form</h5>
+            <ul>
+              <li><strong>Name:</strong> Use your real name. Avoid unusual characters, emojis, or markup.</li>
+              <li><strong>Email:</strong> Use an address you can access immediately (you must verify the email address entered).</li>
+              <li><strong>Phone:</strong> Use a valid mobile number that can receive SMS messages (include country code if prompted).</li>
+              <li><strong>Zip Code:</strong> Use a valid postal zip code for your location.</li>
+              <li><strong>Password:</strong> Your password must meet the complexity requirements shown during signup.</li>
+            </ul>
+          
+            <h5 class="mt-3">Step 5: Verify Your Email</h5>
+            <ul>
+                <li>After clicking <strong>Register Account</strong>, you will be redirected to the confirmation page to enter verification codes.</li>
+                <li>You will receive a verification email from Rocket Geek LLC via Amazon Cognito (the sender address can vary based on configuration).</li>
+                <li>Check your spam/junk folder if you don’t see it within a few minutes.</li>
+                <li>Enter the email verification code to continue.</li>
+                <li style="color: #8b0000;">The email verification code will expire in 72 hours</li>
+            </ul>
+          
+            <h5 class="mt-3">Step 6: Verify Your Phone (SMS)</h5>
+            <ul>
+              <li>After email verification is complete, an SMS verification code will be sent to the phone number you entered.</li>
+              <li>Enter the SMS code to complete verification.</li>
+              <li>Once both email and SMS verification are complete, your account is ready to use.</li>
+            </ul>
+          </div>
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-user" data-bs-dismiss="modal" style="border-radius: 10rem; padding: .75rem 1rem;">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- End Signup Process Modal -->
+ 
  <!-- End modal html content -->
  
  
@@ -311,7 +395,9 @@
         <script src = "assets/js/register.js"></script>
         <script src="assets/js/registration-consent.js"></script>
         <!-- Remove before production deployment -->
-        <script src="assets/js/reset-consent.js"></script>
+        
+         <script src="assets/js/reset-consent.js"></script>
+         
         <!-- end Javascript -->
     
     </body>
