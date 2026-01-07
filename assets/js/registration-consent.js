@@ -25,19 +25,22 @@ function setPersistentCookie(name, value, days = DEFAULT_PERSISTENCE_DAYS) {
         `Max-Age=${days * 24 * 60 * 60}`
     ].join("; ");
     document.cookie = cookie;
+    setLocalConsent(name, value);
     console.info(`[consent] Set cookie: ${name}=<redacted>; Expires=${expires}`);
 }
 
 function getCookie(name) {
-    const target = `${encodeURIComponent(name)}=`;
+    const cookieName = encodeURIComponent(name);
+    const target = `${cookieName}=`;
     const parts = document.cookie.split(";").map(s => s.trim());
     for (const part of parts) {
         if (part.startsWith(target)) {
             return decodeURIComponent(part.substring(target.length));
         }
     }
-    return null;
+    try { return localStorage.getItem(cookieName); } catch (error) { return null; }
 }
+
 
 function hasAcceptedCookies() {
     return getCookie(RG_COOKIE_ACCEPTED) === "true";
@@ -60,6 +63,10 @@ function isTosCurrent() {
     if (!requiredTosVersion || requiredTosVersion === "0.0.0") return false;
     return getAcceptedTosVersion() === requiredTosVersion;
 }
+
+function setLocalConsent(name, value) { try { localStorage.setItem(name, value); } catch (error) {} }
+function getLocalConsent(name) { try { return localStorage.getItem(name); } catch (error) { return null; } }
+
 /* STOP: cookie utilities */
 
 /* START: Terms version source of truth (read from /terms-of-service.html body marker) */
