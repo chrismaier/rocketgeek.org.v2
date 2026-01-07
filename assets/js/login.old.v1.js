@@ -2,9 +2,11 @@
 // START: Cognito Pool Setup
 // ==============================
 
-const poolData = { UserPoolId: "us-east-1_clrYuNqI3", ClientId: "3u51gurg8r0ri4riq2isa8aq7h" };
+const poolData = {
+    UserPoolId: 'us-east-1_clrYuNqI3',
+    ClientId: '3u51gurg8r0ri4riq2isa8aq7h'
+};
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-
 // ==============================
 // END: Cognito Pool Setup
 // ==============================
@@ -17,25 +19,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailField = document.getElementById("email");
     const passwordField = document.getElementById("password");
     const debugBtn = document.getElementById("debugTokenButton");
-
+    
     if (!form || !emailField || !passwordField) {
         console.error("❌ Login form elements not found.");
         return;
     }
-
+    
     form.addEventListener("submit", function (event) {
         event.preventDefault();
         handleLogin(emailField, passwordField);
     });
-
+    
     const forgotLink = document.getElementById("forgotPasswordLink");
     if (forgotLink) {
-        forgotLink.addEventListener("click", function (event) {
-            event.preventDefault();
+        forgotLink.addEventListener("click", function (e) {
+            e.preventDefault();
             handleForgotPassword(emailField);
         });
     }
-
+    
     if (debugBtn) {
         debugBtn.addEventListener("click", handleDebugToken);
     } else {
@@ -65,73 +67,39 @@ function setButtonLoading(button, loading) {
 // ==============================
 
 // ==============================
-// START: JWT Helpers
-// ==============================
-function base64UrlToBase64(base64UrlString) {
-    if (typeof base64UrlString !== "string" || base64UrlString.length === 0) return "";
-    let base64String = base64UrlString.replace(/-/g, "+");
-    base64String = base64String.replace(/_/g, "/");
-    const paddingRequired = (4 - (base64String.length % 4)) % 4;
-    if (paddingRequired === 2) base64String = base64String + "==";
-    if (paddingRequired === 3) base64String = base64String + "=";
-    return base64String;
-}
-
-function decodeJwtPayload(jwtToken) {
-    if (typeof jwtToken !== "string") return null;
-    const jwtParts = jwtToken.split(".");
-    if (jwtParts.length < 2) return null;
-
-    const payloadPart = jwtParts[1];
-    const base64Payload = base64UrlToBase64(payloadPart);
-    if (!base64Payload) return null;
-
-    try {
-        const jsonString = atob(base64Payload);
-        return JSON.parse(jsonString);
-    } catch (err) {
-        console.warn("⚠️ Could not decode JWT payload:", err);
-        return null;
-    }
-}
-
-function isFullyConfirmed(jwtPayload) {
-    if (!jwtPayload || typeof jwtPayload !== "object") return false;
-    const emailVerified = jwtPayload.email_verified === true;
-    const phoneVerified = jwtPayload.phone_number_verified === true;
-    return emailVerified && phoneVerified;
-}
-// ==============================
-// END: JWT Helpers
-// ==============================
-
-// ==============================
 // START: Login Handler
 // ==============================
 async function handleLogin(emailField, passwordField) {
     const email = emailField.value.trim();
     const password = passwordField.value;
     const loginBtn = document.querySelector("form.user button[type='submit']");
-
+    
     console.log("🔐 Login attempt for:", email);
-
+    
     if (!email || !password) {
         alert("Please enter both email and password.");
         console.warn("❌ Missing login credentials");
         return;
     }
-
+    
     if (!email.includes("@")) {
         alert("Please use your email address to log in.");
         console.warn("❌ Rejected non-email login attempt");
         return;
     }
-
+    
     setButtonLoading(loginBtn, true);
-
-    const authDetails = new AmazonCognitoIdentity.AuthenticationDetails({ Username: email, Password: password });
-    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({ Username: email, Pool: userPool });
-
+    
+    const authDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+        Username: email,
+        Password: password
+    });
+    
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: email,
+        Pool: userPool
+    });
+    
     try {
         const result = await new Promise((resolve, reject) => {
             cognitoUser.authenticateUser(authDetails, {
@@ -144,55 +112,45 @@ async function handleLogin(emailField, passwordField) {
                 }
             });
         });
-
+        
         const idToken = result.getIdToken().getJwtToken();
+        const username = result.getIdToken().payload["cognito:username"];
         localStorage.setItem("idToken", idToken);
-
-        const jwtPayload = decodeJwtPayload(idToken);
-        const username = jwtPayload && jwtPayload["cognito:username"] ? jwtPayload["cognito:username"] : null;
-
-        console.log("✅ Login successful for:", username || "unknown");
-
-        if (jwtPayload) {
-            console.log("🧾 Decoded ID token payload:", jwtPayload);
-        } else {
-            console.warn("⚠️ Could not decode ID token payload; treating as not verified.");
+        console.log("✅ Login successful for:", username);
+        
+        try {
+            const payload = JSON.parse(atob(idToken.split('.')[1]));
+            console.log("🧾 Decoded ID token payload:", payload);
+        } catch (err) {
+            console.warn("⚠️ Could not decode ID token payload:", err);
         }
-
-        // ------------------------------
-        // GATING: Block app actions until BOTH email + phone are verified
-        // ------------------------------
-        if (!isFullyConfirmed(jwtPayload)) {
-            alert("Your account still needs verification. Please complete confirmation to continue.");
-            window.location.href = "/confirm.html";
-            return;
-        }
-
+        
         alert("Login successful! Setting up your profile...");
-
-        const apiBase = (window.RG_API_BASE && typeof window.RG_API_BASE === "string") ? window.RG_API_BASE : "https://api.rocketgeek.org";
-        const getProfileUrl = apiBase.replace(/\/$/, "") + "/get-profile";
-
-        const response = await fetch(getProfileUrl, {
+        
+        const response = await fetch("https://api.rocketgeek.org/get-profile", {
             method: "POST",
-            headers: { Authorization: `Bearer ${idToken}`, "Content-Type": "application/json" },
+            headers: {
+                Authorization: `Bearer ${idToken}`,
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({ username })
         });
-
+        
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}`);
         }
-
+        
         const data = await response.json();
-
+        
         if (data.created) {
             console.log(`📁 Profile created for user [${username}]`);
             alert("Welcome! We've created your user profile.");
         } else {
             console.log(`📁 Profile loaded for existing user [${username}]`);
         }
-
+        
         window.location.href = "/home.html";
+        
     } catch (err) {
         console.error("❌ Login failed:", err);
         alert("Login failed: " + (err.message || JSON.stringify(err)));
@@ -209,16 +167,19 @@ async function handleLogin(emailField, passwordField) {
 // ==============================
 function handleForgotPassword(emailField) {
     const email = emailField.value.trim();
-
+    
     if (!email || !email.includes("@")) {
         alert("Please enter a valid email address to reset your password.");
         return;
     }
-
+    
     console.log("🔁 Forgot password requested for:", email);
-
-    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({ Username: email, Pool: userPool });
-
+    
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: email,
+        Pool: userPool
+    });
+    
     cognitoUser.forgotPassword({
         onSuccess: function () {
             alert("A verification code has been sent to your email or phone.");
@@ -230,7 +191,7 @@ function handleForgotPassword(emailField) {
         inputVerificationCode: function () {
             const code = prompt("Enter the verification code you received:");
             const newPassword = prompt("Enter your new password:");
-
+            
             cognitoUser.confirmPassword(code, newPassword, {
                 onSuccess: function () {
                     alert("Password reset successful. You can now log in.");
@@ -254,45 +215,48 @@ async function handleDebugToken(event) {
     const debugBtn = event.currentTarget;
     setButtonLoading(debugBtn, true);
     const start = performance.now();
-
+    
     try {
         const cognitoUser = userPool.getCurrentUser();
-
+        
         if (!cognitoUser) {
             alert("No user is currently logged in.");
             console.warn("⚠️ No Cognito user found.");
             return;
         }
-
+        
         const session = await new Promise((resolve, reject) => {
-            cognitoUser.getSession((err, sessionResult) => {
+            cognitoUser.getSession((err, session) => {
                 if (err) return reject(err);
-                resolve(sessionResult);
+                resolve(session);
             });
         });
-
+        
         const duration = performance.now() - start;
         console.log(`⏱️ getSession() completed in ${duration.toFixed(2)}ms`);
-
+        
         if (!session.isValid()) {
             alert("Session is not valid.");
             console.warn("⚠️ Invalid session.");
             return;
         }
-
+        
         const idToken = session.getIdToken().getJwtToken();
         console.log("✅ ID Token:", idToken);
-
-        const payload = decodeJwtPayload(idToken);
-        if (payload) {
+        
+        try {
+            const payload = JSON.parse(atob(idToken.split('.')[1]));
             console.log("🧾 Decoded ID token payload:", payload);
+            
+            // Precise logging
             console.log(`✅ email_verified [${payload.email || "unknown"}] : ${payload.email_verified}`);
             console.log(`📞 phone_number_verified [${payload.phone_number || "unknown"}] : ${payload.phone_number_verified}`);
-        } else {
-            console.warn("⚠️ Could not decode JWT payload.");
+        } catch (err) {
+            console.warn("⚠️ Could not decode JWT payload:", err);
         }
-
+        
         alert("Token has been logged to the DevTools console.");
+        
     } catch (err) {
         console.error("❌ JWT debug failed:", err);
         alert("Unable to retrieve token: " + (err.message || JSON.stringify(err)));

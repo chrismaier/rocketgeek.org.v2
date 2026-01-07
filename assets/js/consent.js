@@ -1,4 +1,5 @@
 /* START: configuration */
+
 const RG_COOKIE_ACCEPTED = "rg_cookie_accepted";
 const RG_TOS_VERSION = "rg_tos_version";
 

@@ -1,6 +1,7 @@
 // ==============================
 // START: Profile Dropdown Logic
 // ==============================
+// top-nav-login-check.js
 
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("[top-nav-login-check] DOMContentLoaded triggered");
