@@ -1,0 +1,63 @@
+10DLC Registration notes
+
+
+Denied 2026 01 08
+-----------------
+
+Campaign unclear Info
+- Campaign description does not sufficiently describe the service the message program is providing to the end user.
+
+(new)
+Rocket Geek LLC provides an account security SMS program for our website users.
+The program delivers one-time passcodes and verification messages that help users securely create an account, verify login attempts (MFA), and complete password recovery.
+Messages are sent only when the user requests or triggers a security action (registration, login verification, or password recovery).
+No marketing or promotional messages are sent as part of this program. Message frequency varies by user request.
+Msg & data rates may apply.
+Reply STOP to opt out, HELP for help, or contact support@rocketgeek.org
+
+
+Sample messages use case mismatch Info
+- Sample message(s) use case does not match declared use case(s).
+
+Opt-in workflow insufficient consent Info
+- Opt-in workflow does not obtain sufficient consent
+
+
+
+Campaign Workflow box:
+Users opt in by entering their phone number on the Rocket Geek LLC registration or password recovery form and checking a box,
+then confirmation button, review SMS policy, check another checkbox, press another confirmation button to receive
+recurring SMS verification codes used only for account security.
+Message frequency varies, typically 1–2 messages per login attempt.
+Msg&data rates may apply. Reply HELP for help or email support@rocketgeek.org.
+Reply STOP to opt out. Terms & Conditions: https://rocketgeek.org/terms-of-service.html
+Privacy Policy: https://rocketgeek.org/privacy-policy.html
+
+(reworked)
+Users explicitly opt in on the Rocket Geek LLC registration or password recovery page by opening the SMS Policy modal.
+In the modal, the user enters a US mobile number and reviews the SMS disclosures (account security use only,
+message frequency varies based on user request, message and data rates may apply, STOP to opt out,
+HELP for help, support@rocketgeek.orgcontact, and links to our Terms of Service section 3.1 and Privacy Policy).
+The opt-in checkbox is unchecked by default and is separate from general Terms acceptance.
+The “Accept SMS Messages” button remains disabled until the phone number is valid and the user checks the opt-in checkbox.
+Only after the user clicks “Accept SMS Messages” is consent recorded and the phone number saved back to the form.
+Closing the modal without accepting does not record consent.
+We send no marketing or promotional texts; messages are limited to account security verification codes and password recovery.
+Consent is not a condition of purchase.
+
+
+Message Examples (updated)
+1) Registration OTP
+Rocket Geek: Your registration verification code is 123456. Msg&data rates may apply.
+
+2) Login verification OTP (MFA)
+Rocket Geek: Your login verification code is 123456. Msg&data rates may apply.
+
+3) Password recovery OTP
+Rocket Geek: Your password reset code is 123456. Msg&data rates may apply.
+
+4) HELP response
+Rocket Geek: Help: reply STOP to opt out. Email support@rocketgeek.org for support. Msg&data rates may apply.
+
+5) STOP confirmation
+Rocket Geek: You are opted out and will no longer receive account security SMS messages. For help, email support@rocketgeek.org. Msg&data rates may apply.

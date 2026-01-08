@@ -244,24 +244,75 @@
       <form class="user" id="smsConsentForm">
         <div class="modal-body p-4 text-start" style="max-height: 70vh; overflow-y: auto;">
 
-          <p>Rocket Geek LLC uses SMS only for account security, including one-time passcodes for registration, login verification, and password recovery.</p>
-
-          <ul class="mb-3">
-            <li><strong>Program/Brand:</strong> Rocket Geek LLC account security messages.</li>
-            <li><strong>Message frequency:</strong> Varies based on account activity (for example: login attempts and password recovery).</li>
-            <li><strong>Rates:</strong> Message and data rates may apply.</li>
-            <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> to opt out of SMS messages.
-              <ul>
-                <li style="color: #8b0000;">Opting out may prevent account access because SMS verification may be required for login and recovery.</li>
-              </ul>
-            </li>
-            <li><strong>Help:</strong> Reply <strong>HELP</strong> for help or contact <a href="mailto:support@rocketgeek.org">support@rocketgeek.org</a>.</li>
-            <li><strong>No marketing:</strong> We do not send marketing or promotional text messages as part of this program.</li>
-            <li><strong>Consent:</strong> Consent is not a condition of purchase.</li>
-            <li><strong>Privacy:</strong> Mobile opt-in data will not be shared with third parties. See our <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.</li>
-            <li><strong>Terms:</strong> See full details in our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> under section <strong>3.1</strong>.</li>
-          </ul>
-
+            <p class="small mb-1">Rocket Geek LLC uses SMS only for account security, including one-time passcodes for registration, login verification, and password recovery.</p>
+          
+            <!-- Begin SMS Policy Disclosure List -->
+            <ul class="mb-1 small">
+              <li>
+                <strong>Program/Brand:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">Rocket Geek LLC account security messages.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Message frequency:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">Varies based on user request; messages are sent only when a user attempts to register, log in, or recover a password.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Rates:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">Message and data rates may apply.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Opt-out:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">Reply <strong>STOP</strong> to opt out of SMS messages.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Help:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">Reply <strong>HELP</strong> for help or contact <a href="mailto:support@rocketgeek.org" class="text-black">support@rocketgeek.org</a>.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>No marketing:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">We do not send marketing or promotional text messages as part of this program.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Consent:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">Consent is not a condition of purchase.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Privacy:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">We do not sell or share mobile opt-in information for marketing. Service providers and carriers may process data to deliver messages. See our <a href="/privacy-policy.html" target="_blank" rel="noopener" class="text-black">Privacy Policy</a>.</li>
+                </ul>
+              </li>
+            
+              <li>
+                <strong>Terms:</strong>
+                <ul class="mb-1">
+                  <li class="text-black small">See full details in our <a href="/terms-of-service.html" target="_blank" rel="noopener" class="text-black">Terms of Service</a> under section <strong>3.1</strong>.</li>
+                </ul>
+              </li>
+            </ul>
+            <!-- End SMS Policy Disclosure List -->
+            
             <!-- Begin Phone Number Entry Fields -->
             <div class="row mb-3">
               <div class="col-sm-2 mb-3 mb-sm-0">
@@ -283,7 +334,7 @@
 
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" id="smsEnrollCheckbox">
-            <label class="form-check-label small text-muted" for="smsEnrollCheckbox">Enroll me to receive SMS messages from Rocket Geek LLC.</label>
+            <label class="form-check-label small text-muted" for="smsEnrollCheckbox">Enroll me to receive account security SMS messages from Rocket Geek LLC.</label>
           </div>
 
         </div>
@@ -446,15 +497,21 @@
         <script src="assets/js/bs-init.js"></script>
         
         <!-- Page specific JavaScript files -->
+        
         <script src="assets/js/rocketgeeksignup.js"></script>
         <script src = "assets/js/amazon-cognito-identity.min.js"></script>
         <script src = "assets/js/register.js"></script>
         <script src="assets/js/registration-consent.js"></script>
+        
         <!-- Remove before production deployment -->
         <!--
          <script src="assets/js/reset-consent.js"></script>
          -->
         <!-- end Javascript -->
+        
+        <!-- Begin Failsafe Body Render -->
+        <script src="assets/js/unhide-body-fallback.js"></script>
+        <!-- End Failsafe body render -->
     
     </body>
 </html>
