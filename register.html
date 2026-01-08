@@ -161,6 +161,11 @@
                                         </button>
                                       </div>
                                     </div>
+                                    <div class="form-check mb-3">
+                                      <input class="form-check-input" type="checkbox" id="smsOptInCheckboxMain">
+                                      <label class="form-check-label small text-muted" for="smsOptInCheckboxMain">Allow Rocket Geek LLC to send me SMS messages for account security (one-time passcodes for registration, login verification, and password recovery).</label>
+                                    </div>
+                                    
                                     <!-- End consent action buttons -->
                                     
 
@@ -227,31 +232,81 @@
  <!-- End ToS Disclaimer Container -->
  
  
- <!-- Begin SMS Policy Modal -->
+<!-- Begin SMS Policy Modal -->
 <div class="modal fade" id="smsPolicyModal" tabindex="-1" aria-labelledby="smsPolicyLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 id="smsPolicyLabel" class="modal-title">SMS Policy</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body p-3 text-start">
-        <p>Rocket Geek LLC uses SMS only for account security (for example: registration, login verification, and password recovery codes).</p>
-          <p>Message frequency varies based on account activity, login frequency, and password recovery attempts. </p>
-          <p>Message and data rates may apply. Reply <strong>STOP</strong> to opt out. Reply <strong>HELP</strong> for help.</p>
-        <p>See the full details of our SMS messaging use in our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> under section <strong>3.1</strong>.</p>
-      </div>
-      <div class="modal-footer">
-        <button id="acceptSmsBtn" type="button" class="btn btn-primary btn-user" style="border-radius: 10rem; padding: .75rem 1rem;">
-          Accept SMS Policy
-        </button>
-      </div>
+
+      <form class="user" id="smsConsentForm">
+        <div class="modal-body p-4 text-start" style="max-height: 70vh; overflow-y: auto;">
+
+          <p>Rocket Geek LLC uses SMS only for account security, including one-time passcodes for registration, login verification, and password recovery.</p>
+
+          <ul class="mb-3">
+            <li><strong>Program/Brand:</strong> Rocket Geek LLC account security messages.</li>
+            <li><strong>Message frequency:</strong> Varies based on account activity (for example: login attempts and password recovery).</li>
+            <li><strong>Rates:</strong> Message and data rates may apply.</li>
+            <li><strong>Opt-out:</strong> Reply <strong>STOP</strong> to opt out of SMS messages.
+              <ul>
+                <li style="color: #8b0000;">Opting out may prevent account access because SMS verification may be required for login and recovery.</li>
+              </ul>
+            </li>
+            <li><strong>Help:</strong> Reply <strong>HELP</strong> for help or contact <a href="mailto:support@rocketgeek.org">support@rocketgeek.org</a>.</li>
+            <li><strong>No marketing:</strong> We do not send marketing or promotional text messages as part of this program.</li>
+            <li><strong>Consent:</strong> Consent is not a condition of purchase.</li>
+            <li><strong>Privacy:</strong> Mobile opt-in data will not be shared with third parties. See our <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.</li>
+            <li><strong>Terms:</strong> See full details in our <a href="/terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> under section <strong>3.1</strong>.</li>
+          </ul>
+
+            <!-- Begin Phone Number Entry Fields -->
+            <div class="row mb-3">
+              <div class="col-sm-2 mb-3 mb-sm-0">
+                <label for="smsCountryCode">Country</label>
+                <input id="smsCountryCode" class="form-control form-control-user" type="text" value="+1" readonly>
+              </div>
+              <div class="col-sm-2 mb-3 mb-sm-0">
+                <label for="smsAreaCode">Area Code</label>
+                <input id="smsAreaCode" class="form-control form-control-user" type="text" inputmode="numeric" maxlength="3" placeholder="###" autocomplete="tel-area-code">
+              </div>
+              <div class="col-sm-3 mb-3 mb-sm-0">
+                <label for="smsPhoneLocal">Phone Number</label>
+                <input id="smsPhoneLocal" class="form-control form-control-user" type="text" inputmode="numeric" maxlength="7" placeholder="#######" autocomplete="tel-local">
+              </div>
+              <div class="col-sm-5 d-none d-sm-block"></div>
+            </div>
+            <!-- End Phone Number Entry Fields -->
+          
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="smsEnrollCheckbox">
+            <label class="form-check-label small text-muted" for="smsEnrollCheckbox">Enroll me to receive SMS messages from Rocket Geek LLC.</label>
+          </div>
+
+        </div>
+
+          <!-- Begin SMS phone status text -->
+          <div class="form-text ms-4">
+            <p id="smsPhoneStatusText" class="text-muted small mb-0">Please enter your phone number</p>
+          </div>
+          <!-- End SMS phone status text -->
+          
+        <div class="modal-footer">
+            <button id="acceptSmsBtn" type="button" class="btn btn-primary btn-user" style="border-radius: 10rem; padding: .75rem 1rem;" disabled>
+         
+            Accept SMS Messages
+          </button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
- <!-- End SMS Policy Modal -->
- 
- 
+<!-- End SMS Policy Modal -->
+
  
  
         <!-- Begin modal dialog html content - only visible in modal dialogs -->

@@ -29,6 +29,8 @@ function setPersistentCookie(name, value, days = DEFAULT_PERSISTENCE_DAYS) {
     console.info(`[consent] Set cookie: ${name}=<redacted>; Expires=${expires}`);
 }
 
+/*
+// Old cookie function
 function getCookie(name) {
     const cookieName = encodeURIComponent(name);
     const target = `${cookieName}=`;
@@ -40,6 +42,21 @@ function getCookie(name) {
     }
     try { return localStorage.getItem(cookieName); } catch (error) { return null; }
 }
+ */
+
+//New cookie function
+function getCookie(name) {
+    const cookieName = encodeURIComponent(name);
+    const target = `${cookieName}=`;
+    const parts = document.cookie.split(";").map(part => part.trim());
+    for (const part of parts) {
+        if (part.startsWith(target)) {
+            return decodeURIComponent(part.substring(target.length));
+        }
+    }
+    return getLocalConsent(name);
+}
+
 
 
 function hasAcceptedCookies() {
@@ -64,8 +81,27 @@ function isTosCurrent() {
     return getAcceptedTosVersion() === requiredTosVersion;
 }
 
+/*
 function setLocalConsent(name, value) { try { localStorage.setItem(name, value); } catch (error) {} }
 function getLocalConsent(name) { try { return localStorage.getItem(name); } catch (error) { return null; } }
+*/
+
+function setLocalConsent(name, value) {
+    try {
+        localStorage.setItem(String(name || ""), String(value || ""));
+    } catch (error) {
+        // Intentionally ignore storage errors (Safari private mode, storage blocked, etc.)
+    }
+}
+
+function getLocalConsent(name) {
+    try {
+        const storedValue = localStorage.getItem(String(name || ""));
+        return storedValue === null ? null : storedValue;
+    } catch (error) {
+        return null;
+    }
+}
 
 /* STOP: cookie utilities */
 
@@ -319,36 +355,166 @@ function showCurrentTosVersionInModal() {
 
 /* START: event wiring */
 function wireConsentEvents() {
+
+    /* START: element lookups */
     const openCookieBtn = document.getElementById("openCookieBtn");
     const openSmsBtn = document.getElementById("openSmsBtn");
     const openTosBtn = document.getElementById("openTosBtn");
-    
+
     const acceptCookieBtn = document.getElementById("acceptCookieBtn");
     const acceptSmsBtn = document.getElementById("acceptSmsBtn");
     const acceptTosBtn = document.getElementById("acceptTosBtn");
-    
+
     const cookiePolicyModalEl = document.getElementById("cookiePolicyModal");
     const smsPolicyModalEl = document.getElementById("smsPolicyModal");
     const tosModalEl = document.getElementById("tosModal");
-    
+
+    const smsOptInCheckboxMain = document.getElementById("smsOptInCheckboxMain");
+    const smsEnrollCheckbox = document.getElementById("smsEnrollCheckbox");
+
+    const smsAreaCode = document.getElementById("smsAreaCode");
+    const smsPhoneLocal = document.getElementById("smsPhoneLocal");
+    const smsPhoneStatusText = document.getElementById("smsPhoneStatusText");
+
+    const mainPhoneNumber = document.getElementById("phoneNumber");
+    /* STOP: element lookups */
+
+
+    /* START: modal object construction */
     const cookiePolicyModal = cookiePolicyModalEl ? new bootstrap.Modal(cookiePolicyModalEl) : null;
     const smsPolicyModal = smsPolicyModalEl ? new bootstrap.Modal(smsPolicyModalEl) : null;
     const tosModal = tosModalEl ? new bootstrap.Modal(tosModalEl) : null;
-    
+    /* STOP: modal object construction */
+
+
+    /* START: SMS phone helpers */
+    function RG_SMS_onlyDigits(value) { return String(value || "").replace(/[^\d]/g, ""); }
+    function RG_SMS_isValidAreaCode(value) { return /^[2-9]\d{2}$/.test(value); }
+    function RG_SMS_isValidLocalNumber(value) { return /^[2-9]\d{6}$/.test(value); }
+
+    function RG_SMS_getArea() { return RG_SMS_onlyDigits(smsAreaCode ? smsAreaCode.value : ""); }
+    function RG_SMS_getLocal() { return RG_SMS_onlyDigits(smsPhoneLocal ? smsPhoneLocal.value : ""); }
+
+    function RG_SMS_isPhoneEmpty() {
+        const area = RG_SMS_getArea();
+        const local = RG_SMS_getLocal();
+        return !area && !local;
+    }
+
+    function RG_SMS_isPhoneValid() {
+        const area = RG_SMS_getArea();
+        const local = RG_SMS_getLocal();
+        return RG_SMS_isValidAreaCode(area) && RG_SMS_isValidLocalNumber(local);
+    }
+
+    function RG_SMS_setStatusText(text, isError) {
+        if (!smsPhoneStatusText) return;
+        smsPhoneStatusText.textContent = text || "";
+        smsPhoneStatusText.className = isError ? "small mb-0" : "text-muted small mb-0";
+        smsPhoneStatusText.style.color = isError ? "#8b0000" : "";
+    }
+
+    function RG_SMS_updateStatusAndControls() {
+        const phoneEmpty = RG_SMS_isPhoneEmpty();
+        const phoneValid = RG_SMS_isPhoneValid();
+
+        if (phoneEmpty) {
+            RG_SMS_setStatusText("Please enter your phone number", false);
+        } else if (!phoneValid) {
+            RG_SMS_setStatusText("Invalid phone number, please correct the phone and area code", true);
+        } else {
+            RG_SMS_setStatusText("", false);
+        }
+
+        if (acceptSmsBtn) {
+            const consentChecked = !!(smsEnrollCheckbox && smsEnrollCheckbox.checked);
+            acceptSmsBtn.disabled = !(consentChecked && phoneValid);
+        }
+    }
+
+    function RG_SMS_resetModalState() {
+        if (smsAreaCode) smsAreaCode.value = "";
+        if (smsPhoneLocal) smsPhoneLocal.value = "";
+        if (smsEnrollCheckbox) smsEnrollCheckbox.checked = false;
+        if (acceptSmsBtn) acceptSmsBtn.disabled = true;
+        RG_SMS_setStatusText("Please enter your phone number", false);
+    }
+    /* STOP: SMS phone helpers */
+
+
+    /* START: main SMS opt-in checkbox gates the SMS modal open button */
+    if (smsOptInCheckboxMain && openSmsBtn) {
+        smsOptInCheckboxMain.checked = false;
+        openSmsBtn.disabled = true;
+        smsOptInCheckboxMain.addEventListener("change", () => {
+            openSmsBtn.disabled = !smsOptInCheckboxMain.checked;
+        });
+    }
+    /* STOP: main SMS opt-in checkbox gates the SMS modal open button */
+
+
+    /* START: SMS input field normalization and live validation */
+    if (smsAreaCode) {
+        smsAreaCode.addEventListener("input", () => {
+            smsAreaCode.value = RG_SMS_onlyDigits(smsAreaCode.value).slice(0, 3);
+            if (smsEnrollCheckbox && smsEnrollCheckbox.checked && !RG_SMS_isPhoneValid()) {
+                smsEnrollCheckbox.checked = false;
+            }
+            RG_SMS_updateStatusAndControls();
+        });
+    }
+
+    if (smsPhoneLocal) {
+        smsPhoneLocal.addEventListener("input", () => {
+            smsPhoneLocal.value = RG_SMS_onlyDigits(smsPhoneLocal.value).slice(0, 7);
+            if (smsEnrollCheckbox && smsEnrollCheckbox.checked && !RG_SMS_isPhoneValid()) {
+                smsEnrollCheckbox.checked = false;
+            }
+            RG_SMS_updateStatusAndControls();
+        });
+    }
+    /* STOP: SMS input field normalization and live validation */
+
+
+    /* START: SMS enroll checkbox gating (cannot check unless phone is valid) */
+    if (smsEnrollCheckbox) {
+        smsEnrollCheckbox.addEventListener("click", (event) => {
+            if (!RG_SMS_isPhoneValid()) {
+                event.preventDefault();
+                RG_SMS_updateStatusAndControls();
+            }
+        });
+
+        smsEnrollCheckbox.addEventListener("change", () => {
+            RG_SMS_updateStatusAndControls();
+        });
+    }
+    /* STOP: SMS enroll checkbox gating (cannot check unless phone is valid) */
+
+
+    /* START: SMS modal lifecycle reset */
+    if (smsPolicyModalEl) {
+        smsPolicyModalEl.addEventListener("shown.bs.modal", () => { RG_SMS_resetModalState(); });
+        smsPolicyModalEl.addEventListener("hidden.bs.modal", () => { RG_SMS_resetModalState(); });
+    }
+    /* STOP: SMS modal lifecycle reset */
+
+
+    /* START: modal open buttons */
     if (openCookieBtn && cookiePolicyModal) {
         openCookieBtn.addEventListener("click", () => {
             console.log("[consent] Opening Cookie Policy modal");
             cookiePolicyModal.show();
         });
     }
-    
+
     if (openSmsBtn && smsPolicyModal) {
         openSmsBtn.addEventListener("click", () => {
             console.log("[consent] Opening SMS Policy modal");
             smsPolicyModal.show();
         });
     }
-    
+
     if (openTosBtn && tosModal) {
         openTosBtn.addEventListener("click", () => {
             console.log("[consent] Opening ToS modal");
@@ -356,7 +522,10 @@ function wireConsentEvents() {
             tosModal.show();
         });
     }
-    
+    /* STOP: modal open buttons */
+
+
+    /* START: accept buttons */
     if (acceptCookieBtn && cookiePolicyModal) {
         acceptCookieBtn.addEventListener("click", () => {
             console.log("[consent] Cookie policy accepted (persistent)");
@@ -365,39 +534,50 @@ function wireConsentEvents() {
             updateUIState();
         });
     }
-    
+
     if (acceptSmsBtn && smsPolicyModal) {
         acceptSmsBtn.addEventListener("click", () => {
+            const area = RG_SMS_getArea();
+            const local = RG_SMS_getLocal();
+            const phoneValid = RG_SMS_isValidAreaCode(area) && RG_SMS_isValidLocalNumber(local);
+
+            if (!smsEnrollCheckbox || !smsEnrollCheckbox.checked || !phoneValid) {
+                console.warn("[consent] SMS acceptance blocked: missing consent or invalid phone");
+                RG_SMS_updateStatusAndControls();
+                return;
+            }
+
+            const e164 = "+1" + area + local;
+            if (mainPhoneNumber) {
+                mainPhoneNumber.value = e164;
+                mainPhoneNumber.readOnly = true;
+            }
+
             console.log("[consent] SMS policy accepted (persistent)");
             setPersistentCookie(RG_SMS_ACCEPTED, "true");
             smsPolicyModal.hide();
             updateUIState();
         });
     }
-    
+
     if (acceptTosBtn && tosModal) {
         acceptTosBtn.addEventListener("click", () => {
             const requiredTosVersion = getRequiredTosVersion();
-            console.log(`[consent] ToS accepted (persistent) v${requiredTosVersion}`);
+            console.log("[consent] ToS accepted (persistent) v" + requiredTosVersion);
             setPersistentCookie(RG_TOS_VERSION, requiredTosVersion);
             tosModal.hide();
             updateUIState();
         });
     }
-    
-    
-    
-    // Prevent submit unless all conditions met (kept for compatibility; register.js is the primary submit gate)
+    /* STOP: accept buttons */
+
+
+    /* START: form submit gate (kept for compatibility; register.js is the primary submit gate) */
     const form = document.getElementById("registrationConsentForm");
     const registerBtn = document.getElementById("registerBtn");
     if (form && registerBtn) {
         form.addEventListener("submit", (evt) => {
-            const canSubmit =
-                hasAcceptedCookies() &&
-                hasAcceptedSmsPolicy() &&
-                isTosCurrent() &&
-                isRegistrationFormCompleteEnoughToEnableSubmit();
-            
+            const canSubmit = hasAcceptedCookies() && hasAcceptedSmsPolicy() && isTosCurrent() && isRegistrationFormCompleteEnoughToEnableSubmit();
             if (!canSubmit) {
                 console.warn("[consent] Submission blocked: requirements not met");
                 evt.preventDefault();
@@ -408,6 +588,7 @@ function wireConsentEvents() {
             }
         });
     }
+    /* STOP: form submit gate (kept for compatibility; register.js is the primary submit gate) */
 }
 /* STOP: event wiring */
 

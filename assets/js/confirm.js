@@ -400,42 +400,159 @@ function wireLoginForm(){
   });
 }
 
+/* No JWT Email Handler Helper Functions */
+function ensureEmailLookupMessageElement(){
+  const existing = document.getElementById('rgEmailLookupMessage');
+  if (existing) return existing;
+  const emailInputEl = document.getElementById('email');
+  if (!emailInputEl || !emailInputEl.parentNode) return null;
+  const messageDiv = document.createElement('div');
+  messageDiv.id = 'rgEmailLookupMessage';
+  messageDiv.className = 'small mt-2';
+  messageDiv.style.color = '#8b0000';
+  messageDiv.textContent = '';
+  emailInputEl.parentNode.appendChild(messageDiv);
+  return messageDiv;
+}
 
+function setEmailLookupMode(mode, notFoundEmail){
+  const buttonEl = document.getElementById('btnCheckEmail');
+  if (!buttonEl) return;
+  if (!buttonEl.dataset.rgOriginalLabel) buttonEl.dataset.rgOriginalLabel = buttonEl.textContent.trim();
+  if (mode === 'register') {
+    buttonEl.textContent = 'Register';
+    buttonEl.dataset.rgMode = 'register';
+    buttonEl.dataset.rgNotFoundEmail = String(notFoundEmail || '').trim();
+  } else {
+    buttonEl.textContent = buttonEl.dataset.rgOriginalLabel || 'Confirm Account';
+    buttonEl.dataset.rgMode = 'confirm';
+    buttonEl.dataset.rgNotFoundEmail = '';
+  }
+}
+/* end No JWT Email Handler Helper Functions */
+
+/* No JWT Email Handler */
 function wireNoJwtEmailHandler(){
-  const sel = RGConfirmConfig.selectors;
-  const emailInput = qs(sel.emailInput);
-  const emailButton = qs(sel.emailSubmitButton);
+  const selectors = RGConfirmConfig.selectors;
+  const emailInput = qs(selectors.emailInput);
+  const emailButton = qs(selectors.emailSubmitButton);
 
-  if(!emailInput || !emailButton){ rgLogWarn('No-JWT controls missing'); return; }
+  if(!emailInput || !emailButton){
+    rgLogWarn('No-JWT controls missing');
+    return;
+  }
 
-  const onSubmit = async function(evt){
+  function ensureEmailLookupMessageElement(){
+    const existing = document.getElementById('rgEmailLookupMessage');
+    if (existing) return existing;
+
+    const emailInputEl = document.getElementById('email');
+    if (!emailInputEl || !emailInputEl.parentNode) return null;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'rgEmailLookupMessage';
+    messageDiv.className = 'small mt-2';
+    messageDiv.style.color = '#8b0000';
+    messageDiv.textContent = '';
+    emailInputEl.parentNode.appendChild(messageDiv);
+
+    return messageDiv;
+  }
+
+  function setEmailLookupMode(mode, notFoundEmail){
+    const buttonEl = document.getElementById('btnCheckEmail');
+    if (!buttonEl) return;
+
+    if (!buttonEl.dataset.rgOriginalLabel) {
+      buttonEl.dataset.rgOriginalLabel = buttonEl.textContent.trim();
+    }
+
+    if (mode === 'register') {
+      buttonEl.textContent = 'Register';
+      buttonEl.dataset.rgMode = 'register';
+      buttonEl.dataset.rgNotFoundEmail = String(notFoundEmail || '').trim();
+    } else {
+      buttonEl.textContent = buttonEl.dataset.rgOriginalLabel || 'Confirm Account';
+      buttonEl.dataset.rgMode = 'confirm';
+      buttonEl.dataset.rgNotFoundEmail = '';
+    }
+  }
+
+  if (emailButton.dataset && emailButton.dataset.rgRegisterWired !== 'true') {
+    emailButton.dataset.rgRegisterWired = 'true';
+    emailButton.addEventListener('click', function(event){
+      const mode = emailButton.dataset.rgMode || 'confirm';
+      if (mode !== 'register') return;
+      event.preventDefault();
+      window.location.href = RGConfirmConfig.signupUrl;
+    });
+  }
+
+  const onSubmit = async function(event){
     try{
-      if(evt && typeof evt.preventDefault === 'function') evt.preventDefault();
-      const emailValue = (emailInput.value || '').trim();
-      if(!isLikelyEmail(emailValue)){ rgLogWarn('Invalid email entered'); emailInput.focus(); return; }
+      if(event && typeof event.preventDefault === 'function') event.preventDefault();
 
-      const status = await fetchAccountStatus(emailValue);
-      if(!status.exists){
-        rgLogInfo('Account does not exist (no-JWT path); redirecting to signup');
+      const messageEl = ensureEmailLookupMessageElement();
+      if (messageEl) messageEl.textContent = '';
+      setEmailLookupMode('confirm', '');
+
+      const emailValue = (emailInput.value || '').trim();
+      if(!isLikelyEmail(emailValue)){
+        rgLogWarn('Invalid email entered');
+        if (messageEl) messageEl.textContent = 'Please enter a valid email address.';
+        emailInput.focus();
         return;
       }
 
-      applyVerificationUi(status, emailValue);
-
-      if(status.emailVerified && status.phoneVerified){
-        rgLogInfo('Both verified but no JWT token available; skipping profile ensure.');
+      const status = await fetchAccountStatus(emailValue);
+      if(!status.exists){
+        rgLogInfo('Account does not exist (no-JWT path); offering registration');
+        if (messageEl) messageEl.textContent = 'No account found for that email. Click Register to create one.';
+        setEmailLookupMode('register', emailValue);
+        return;
       }
 
-      window.rgConfirmState = { email: emailValue, status: status };
+      window.rgConfirmState = window.rgConfirmState || {};
+      window.rgConfirmState.email = emailValue;
+      window.rgConfirmState.status = status;
+
+      applyVerificationUi(status, emailValue);
+
+      if(status.emailVerified !== true){
+        const alreadySentForThisEmail =
+          window.rgConfirmState.emailCodeSent === true &&
+          window.rgConfirmState.emailCodeSentFor === emailValue;
+
+        if(!alreadySentForThisEmail){
+          rgLogInfo('Email not verified; auto-sending verification code');
+          const resendResponse = await confirmationResendEmailCode(emailValue);
+
+          if(resendResponse.ok){
+            window.rgConfirmState.emailCodeSent = true;
+            window.rgConfirmState.emailCodeSentFor = emailValue;
+            rgLogInfo('Auto-send email code: success');
+          } else {
+            rgLogWarn('Auto-send email code: failed', resendResponse.json || resendResponse.text);
+            alert('Unable to send verification code. Please click Resend Email Code.');
+          }
+        } else {
+          rgLogInfo('Email code already sent for this email during this session; not resending');
+        }
+      }
     }catch(handlerError){
       rgLogError('Error in no-JWT submit handler', handlerError);
     }
   };
 
-  const form = emailButton.closest('form');
-  if(form){ form.addEventListener('submit', onSubmit); }
-  else { emailButton.addEventListener('click', onSubmit); }
+  const formElement = emailButton.closest('form');
+  if(formElement){
+    formElement.addEventListener('submit', onSubmit);
+  } else {
+    emailButton.addEventListener('click', onSubmit);
+  }
 }
+/* End No JWT Email Handler */
+
 
 
 /* Verification form wiring */
