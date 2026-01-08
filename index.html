@@ -14,10 +14,19 @@
         =TEMPORARILY= disable the content from displaying when the page loads
         The css loader script will re-enable the body display once it finishes loading
         -->
-        <style>body
-        {
-            display: none;
-        }</style>
+        <style>
+        body{visibility:hidden;}
+        #rg-page-loader{visibility:visible;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000000;z-index:9999;}
+        #rg-page-loader .rg-orbit{position:relative;width:96px;height:96px;animation:rg-orbit 1.2s linear infinite;}
+        #rg-page-loader .rg-orbit::before{content:"";position:absolute;inset:0;border:2px solid rgba(255,255,255,0.18);border-radius:50%;}
+        #rg-page-loader .rg-rocket{position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(90deg);width:28px;height:28px;}
+        #rg-page-loader .rg-rocket svg{display:block;width:100%;height:100%;}
+        @keyframes rg-orbit{to{transform:rotate(360deg);}}
+        @media (prefers-reduced-motion: reduce){#rg-page-loader .rg-orbit{animation:none;}}
+        body.loaded #rg-page-loader{opacity:0;transition:opacity 150ms ease;pointer-events:none;}
+        </style>
+        
+        
         
         <!-- load META tags =FIRST= -->
         <script src = "/assets/js/meta-loader.js"></script>
@@ -30,6 +39,22 @@
     
     <!-- Begin body section of html -->
     <body id = "page-top">
+        
+        <!-- Begin page loader -->
+        <div id="rg-page-loader" role="status" aria-live="polite" aria-label="Loading">
+            <div class="rg-orbit" aria-hidden="true">
+                <div class="rg-rocket">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 4c8 6 14 16 14 28 0 6-2 12-6 17l-8 8-8-8c-4-5-6-11-6-17 0-12 6-22 14-28z" fill="#8b0000"/>
+                        <circle cx="32" cy="28" r="6" fill="#ffffff"/>
+                        <path d="M24 50l-6 10 10-6 4 4 4-4 10 6-6-10-6 6-2-2-2 2-6-6z" fill="#8b0000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- End page loader -->
+        
+        
         
         <!-- wrapper object for CSS -->
         <div id = "wrapper">

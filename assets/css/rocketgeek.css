@@ -766,4 +766,44 @@ form.user .form-control-user:focus
 .rg-italic {
     font-style: italic;
 }
-/* End Rocket Geek emphasis utilities */
+    /* End Rocket Geek emphasis utilities */
+
+/* Begin Topbar search rounding */
+.navbar-search .input-group
+{
+    align-items: center;
+    gap: 6px;
+}
+
+.navbar-search .input-group > :not(:first-child)
+{
+    margin-left: 0 !important;
+}
+
+.navbar-search .input-group .form-control
+{
+    border-radius: 9999px !important;
+    border-top-right-radius: 9999px !important;
+    border-bottom-right-radius: 9999px !important;
+}
+
+.navbar-search .input-group .btn
+{
+    border-radius: 50% !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
+}
+
+.navbar-search .input-group .btn i
+{
+    margin: 0;
+}
+/* End Topbar search rounding */
