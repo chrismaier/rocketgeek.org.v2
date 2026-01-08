@@ -1,0 +1,338 @@
+[
+  {
+    "url": "/.venv/lib/python3.10/site-packages/setuptools/tests/indexes/test_links_priority/external.html",
+    "title": "external.html",
+    "description": "",
+    "content": "bad old link",
+    "section": ".venv"
+  },
+  {
+    "url": "/.venv/lib/python3.10/site-packages/setuptools/tests/indexes/test_links_priority/simple/foobar/",
+    "title": "index.html",
+    "description": "",
+    "content": "foobar-0.1.tar.gz external homepage",
+    "section": ".venv"
+  },
+  {
+    "url": "/assets/testhtml/all-of-the-hotness.html",
+    "title": "Testing all of the html optimizations - Rocket Geek",
+    "description": "",
+    "content": "Testing all of the html optimizations - Rocket Geek Rocket Geek Search for... Search for... alerts center alerts center Random Geek Profile Settings Activity log Logout Copyright © Rocket Geek 2024",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/bootstrap-five-old-top-nav.html",
+    "title": "Testing all of the html optimizations - Rocket Geek",
+    "description": "",
+    "content": "Testing all of the html optimizations - Rocket Geek Rocket Geek Search for... Search for... Rocket Motor Test Test 1 Test 2 Test 3 Rocket Motor Test Rocket Motor Test Mixing Batter Vendors List Links center Alerts center Message center Random Geek Profile Settings Activity log Logout Copyright © Rocket Geek 2024",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/brokenheader.html",
+    "title": "Broken Header",
+    "description": "",
+    "content": "Broken Header alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/calendar-test-two.html",
+    "title": "Dynamic Calendar",
+    "description": "",
+    "content": "Dynamic Calendar",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/calendar-v2.html",
+    "title": "Launch Calendar - Rocket Geek",
+    "description": "",
+    "content": "Launch Calendar - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout May No events for this day. Sunday Monday Tuesday Wednesday thursday Friday Saturday 27 Event with Long Name 28 29 30 1 2 span event 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 Copyright © Rocket Geek",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/clubs-a.html",
+    "title": "Profile - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Profile - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Rocket Clubs Test Peformance 65.2% 5% si…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/cookies.html",
+    "title": "Title",
+    "description": "",
+    "content": "Title Our website uses some cookies and records your IP address for the purposes of accessibility, security, and managing your access to the telecommunication network. You can disable data collection and cookies by changing your browser settings, but it may affect how this website functions. Learn more . With your consent, JetBrains may also use cookies and your IP address to collect individual statistics and provide you with personalized offers and ads subject to the Privacy Policy and the Terms of Use . JetBrains may use third-party services for this purpose. You can adjust or withdraw your consent at any time by visiting the Opt-Out page . Necessary Statistics Marketing Personalization [A]ccept All Accept [S]elected",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/css-include-file-list.html",
+    "title": "css-include-file-list.html",
+    "description": "",
+    "content": "",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/css-meta-include.html",
+    "title": "CSS Metadata File List",
+    "description": "",
+    "content": "CSS Metadata File List",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/dynamic-calendar.html",
+    "title": "Profile - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Profile - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Copyright © Rocket Geek 2024",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/dynamic-event-calendar.html",
+    "title": "Dynamic Calendar",
+    "description": "Rocket Geek website",
+    "content": "Dynamic Calendar Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Prev Next Sun Mon Tue Wed Thu Fri Sat Copyrig…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/header.html",
+    "title": "Header Sample",
+    "description": "",
+    "content": "Header Sample",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/icon-nav-left-test.html",
+    "title": "Dashboard - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Dashboard - Rocket Geek Rocket Geek Blog Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome Charts alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Rocket Geek Icon Test Page…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/js-script-include.html",
+    "title": "Java Script Include File List",
+    "description": "",
+    "content": "Java Script Include File List",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/json-data-form.html",
+    "title": "JSON Data Form",
+    "description": "",
+    "content": "JSON Data Form Field 1: Field 2: Field 3: Field 4: Field 5: Submit",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/machine-info.html",
+    "title": "Machine Information Load",
+    "description": "",
+    "content": "Machine Information Load Network Device List Devices:",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/network-devices-bad.html",
+    "title": "Network Device Inventory - Rocket Geek",
+    "description": "",
+    "content": "Network Device Inventory - Rocket Geek Rocket Geek Search for... Search for... alerts center alerts center Random Geek Profile Settings Activity log Logout Network Device Inventory Copyright © Rocket Geek 2024",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/photos-backup.html",
+    "title": "Table - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Table - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Photos Highlighted Photo Collections Launc…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/raw-gpt-test.html",
+    "title": "YouTube Video List",
+    "description": "",
+    "content": "YouTube Video List Title Video Video Title 1 Video Description Video Title 1 Video Description",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/register-old.html",
+    "title": "Register - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Register - Rocket Geek Toggle navigation Rocket Geek Home About Contact Log In Sign Up Join Rocket Geek Register Account Register with Google Register with Facebook Forgot Password? Already have an account? Login!",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/sampleindex.html",
+    "title": "Dashboard - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Dashboard - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Rocket Geek Index Page Welcome fellow…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/table.html",
+    "title": "Table - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Table - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Random Table HTML File Example Table Info…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/test-calendar.html",
+    "title": "Profile - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Profile - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout May No events for this day. Sunday Monda…",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/untitled.html",
+    "title": "Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Rocket Geek Login",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/workingheader.html",
+    "title": "Header Test (Working)",
+    "description": "",
+    "content": "Header Test (Working) alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/youtube-list-test.html",
+    "title": "YouTube Test Video List",
+    "description": "Rocket Geek website",
+    "content": "YouTube Test Video List Title Description Video Video Title 1 Very descriptive information about the video here Video Title 2 Very descriptive information about the video here",
+    "section": "assets"
+  },
+  {
+    "url": "/assets/testhtml/youtube-videos-backup.html",
+    "title": "Table - Rocket Geek",
+    "description": "Rocket Geek website",
+    "content": "Table - Rocket Geek Rocket Geek Blog Calendar Clubs Dashboard Donations Login Photos Profile Register Videos Welcome alerts center December 12, 2019 A new monthly report is ready to download! December 7, 2019 $290.29 has been deposited into your account! December 2, 2019 Spending Alert: We've noticed unusually high spending for your account. Show All Alerts alerts center Hi there! I am wondering if you can help me with a problem I've been having. Emily Fowler - 58m I have the photos that you ordered last month! Jae Chun - 1d Last month's report looks great, I am very happy with the progress so far, keep up the good work! Morgan Alvarez - 2d Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good... Chicken the Dog · 2w Show All Alerts Random Geek Profile Settings Activity log Logout Highlighted Videos Rocket Geek YouTube Cha…",
+    "section": "assets"
+  },
+  {
+    "url": "/formulas/",
+    "title": "Rocket Motor Formulas - Rocket Geek",
+    "description": "",
+    "content": "Rocket Motor Formulas - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Formulas - Introduction Formula List Related resources Copyright © Rocket Geek 2024",
+    "section": "formulas"
+  },
+  {
+    "url": "/formulas/basic-formula.html",
+    "title": "Basic Formula - Rocket Geek",
+    "description": "",
+    "content": "Basic Formula - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Basic Rocket Motor Formula Formula Test Results Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "formulas"
+  },
+  {
+    "url": "/formulas/chemical-safety.html",
+    "title": "Chemical Safety and Handling - Rocket Geek",
+    "description": "",
+    "content": "Chemical Safety and Handling - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "formulas"
+  },
+  {
+    "url": "/formulas/chemicals.html",
+    "title": "Chemicals - Rocket Geek",
+    "description": "",
+    "content": "Chemicals - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "formulas"
+  },
+  {
+    "url": "/formulas/formula-x.html",
+    "title": "Formula X - Rocket Geek",
+    "description": "",
+    "content": "Formula X - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Formula X Sub-heading section one Rocket Motor Formula - X Copyright © Rocket Geek 2024",
+    "section": "formulas"
+  },
+  {
+    "url": "/formulas/formula-y.html",
+    "title": "Formula Y - Rocket Geek",
+    "description": "",
+    "content": "Formula Y - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Formula Y Sub-heading section one Rocket Motor Formula - Y Copyright © Rocket Geek 2024",
+    "section": "formulas"
+  },
+  {
+    "url": "/formulas/master-chemical-list.html",
+    "title": "Basic Formula - Rocket Geek",
+    "description": "",
+    "content": "Basic Formula - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Rocket Motor Chemicals Copyright © Rocket Geek 2025",
+    "section": "formulas"
+  },
+  {
+    "url": "/motormixing/",
+    "title": "Testing all of the html optimizations - Rocket Geek",
+    "description": "",
+    "content": "Testing all of the html optimizations - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motormixing/batch-calculator.html",
+    "title": "Batch Calculator - Rocket Geek",
+    "description": "",
+    "content": "Batch Calculator - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motormixing/batch-sheet-calculator.html",
+    "title": "Batch Sheet Calculator - Rocket Geek",
+    "description": "",
+    "content": "Batch Sheet Calculator - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Batch Sheet Calculator Sub-heading section one Calculate a batch off-line using excel... Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motormixing/mixing-basics.html",
+    "title": "Mixing Basics - Rocket Geek",
+    "description": "",
+    "content": "Mixing Basics - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motormixing/mixing-equipment.html",
+    "title": "Mixing Equipment - Rocket Geek",
+    "description": "",
+    "content": "Mixing Equipment - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motormixing/mixing-resources.html",
+    "title": "Mixing Resources- Rocket Geek",
+    "description": "",
+    "content": "Mixing Resources- Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motormixing/mixing-safety.html",
+    "title": "Mixing Safety - Rocket Geek",
+    "description": "",
+    "content": "Mixing Safety - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motormixing"
+  },
+  {
+    "url": "/motortesting/",
+    "title": "Testing all of the html optimizations - Rocket Geek",
+    "description": "",
+    "content": "Testing all of the html optimizations - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motortesting"
+  },
+  {
+    "url": "/motortesting/motor-characterization.html",
+    "title": "Rocket Motor Characterization - Rocket Geek",
+    "description": "",
+    "content": "Rocket Motor Characterization - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motortesting"
+  },
+  {
+    "url": "/motortesting/motor-test-examples.html",
+    "title": "Rocket Motor Text Examples - Rocket Geek",
+    "description": "",
+    "content": "Rocket Motor Text Examples - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motortesting"
+  },
+  {
+    "url": "/motortesting/motor-testing-equipment.html",
+    "title": "Motor Testing Equipment - Rocket Geek",
+    "description": "",
+    "content": "Motor Testing Equipment - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motortesting"
+  },
+  {
+    "url": "/motortesting/motor-testing-safety.html",
+    "title": "Motor Testing Safety - Rocket Geek",
+    "description": "",
+    "content": "Motor Testing Safety - Rocket Geek Rocket Geek Search for... Search for... Random Geek Profile Settings Activity log Logout Main Heading Sub-heading section one Sub-heading section two (remove as required) Copyright © Rocket Geek 2024",
+    "section": "motortesting"
+  }
+]

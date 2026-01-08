@@ -1,0 +1,571 @@
+#!/usr/bin/env python3
+"""
+build-search-index.py
+
+Generate (latest + archive snapshot):
+- assets/json-data/search-index.json
+- assets/json-data/search-index-YYYY-MM-DD.json
+
+Generate two domain-specific sitemap files (no overwrites of sitemap.xml):
+- prod-sitemap.xml  (for https://rocketgeek.org)
+- test-sitemap.xml  (for https://test.rocketgeek.org)
+
+Optional sitemap archive snapshots:
+- assets/json-data/prod-sitemap-YYYY-MM-DD.xml
+- assets/json-data/test-sitemap-YYYY-MM-DD.xml
+
+Designed to live in: <site-root>/aws/build-search-index.py
+Run from anywhere:
+  python3 aws/build-search-index.py
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import logging
+import re
+import shutil
+from dataclasses import dataclass
+from datetime import datetime
+from html import unescape
+from html.parser import HTMLParser
+from pathlib import Path
+from typing import Iterable, Optional
+from xml.sax.saxutils import escape as xml_escape
+
+try:
+    from zoneinfo import ZoneInfo
+except Exception:
+    ZoneInfo = None  # type: ignore[assignment]
+
+
+# Begin Configuration
+TIMEZONE_NAME_DEFAULT = "America/Chicago"
+
+DEFAULT_PROD_BASE_URL = "https://rocketgeek.org"
+DEFAULT_TEST_BASE_URL = "https://test.rocketgeek.org"
+
+OUTPUT_INDEX_RELATIVE_PATH = Path("assets/json-data/search-index.json")
+ARCHIVE_INDEX_PREFIX = "search-index-"
+
+WRITE_SITEMAPS = True
+ARCHIVE_SITEMAPS = True
+
+PROD_SITEMAP_OUTPUT_RELATIVE_PATH = Path("prod-sitemap.xml")
+TEST_SITEMAP_OUTPUT_RELATIVE_PATH = Path("test-sitemap.xml")
+
+SITEMAP_ARCHIVE_DIR_RELATIVE_PATH = Path("assets/json-data")
+
+USE_DIRECTORY_INDEX_URLS = True
+CONTENT_EXCERPT_MAX_CHARS = 900
+
+EXCLUDE_GLOBS = [
+    "assets/**",
+    "aws/**",
+    "secure/**",
+    ".git/**",
+    "node_modules/**",
+    "loganalytics/**",
+    "assets/testhtml/**",
+    ".venv/**",
+]
+
+INCLUDE_GLOBS = [
+    "**/*.html",
+]
+# End Configuration
+
+
+# Begin Logging Setup
+def configure_logging(verbose: bool) -> None:
+    log_level = logging.DEBUG if verbose else logging.INFO
+    logging.basicConfig(
+        level=log_level,
+        format="%(levelname)s: %(message)s",
+    )
+# End Logging Setup
+
+
+# Begin Helpers
+def get_site_root(script_path: Path) -> Path:
+    aws_directory = script_path.resolve().parent
+    site_root = aws_directory.parent
+    return site_root
+
+
+def get_now_local(timezone_name: str) -> datetime:
+    if ZoneInfo is None:
+        return datetime.now()
+    try:
+        return datetime.now(ZoneInfo(timezone_name))
+    except Exception:
+        return datetime.now()
+
+
+def format_archive_date(now_local: datetime) -> str:
+    return now_local.strftime("%Y-%m-%d")
+
+
+def format_archive_time(now_local: datetime) -> str:
+    return now_local.strftime("%H%M%S")
+
+
+def posix_relative_path(site_root: Path, file_path: Path) -> str:
+    resolved_site_root = site_root.resolve()
+    resolved_file_path = file_path.resolve()
+    return resolved_file_path.relative_to(resolved_site_root).as_posix()
+
+
+def matches_any_glob(posix_path: str, glob_patterns: Iterable[str]) -> bool:
+    path_object = Path(posix_path)
+    for pattern_value in glob_patterns:
+        if path_object.match(pattern_value):
+            return True
+    return False
+
+
+def should_include_file(site_root: Path, file_path: Path) -> bool:
+    relative_posix = posix_relative_path(site_root, file_path)
+    if matches_any_glob(relative_posix, EXCLUDE_GLOBS):
+        return False
+    if not matches_any_glob(relative_posix, INCLUDE_GLOBS):
+        return False
+    return True
+
+
+def safe_read_text(file_path: Path) -> str:
+    try:
+        return file_path.read_text(encoding="utf-8", errors="strict")
+    except Exception:
+        return file_path.read_text(encoding="latin-1", errors="replace")
+
+
+def collapse_whitespace(text_value: str) -> str:
+    return re.sub(r"\s+", " ", text_value).strip()
+
+
+def strip_html_scripts_and_styles(html_text: str) -> str:
+    without_scripts = re.sub(
+        r"<script\b[^>]*>.*?</script>",
+        " ",
+        html_text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    without_styles = re.sub(
+        r"<style\b[^>]*>.*?</style>",
+        " ",
+        without_scripts,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    return without_styles
+
+
+def compute_lastmod_date(file_path: Path) -> str:
+    try:
+        modified_timestamp = file_path.stat().st_mtime
+        modified_datetime = datetime.fromtimestamp(modified_timestamp)
+        return modified_datetime.strftime("%Y-%m-%d")
+    except Exception:
+        return ""
+
+
+def ensure_parent_directory(file_path: Path) -> None:
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+# End Helpers
+
+
+# Begin HTML Extraction
+class TitleAndDescriptionParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.in_title_tag = False
+        self.title_fragments: list[str] = []
+        self.meta_description: str = ""
+
+    def handle_starttag(
+        self,
+        tag: str,
+        attrs: list[tuple[str, Optional[str]]],
+    ) -> None:
+        tag_lower = tag.lower()
+        if tag_lower == "title":
+            self.in_title_tag = True
+            return
+
+        if tag_lower != "meta":
+            return
+
+        attrs_dict = {key.lower(): (value or "") for key, value in attrs}
+        if attrs_dict.get("name", "").lower() == "description":
+            self.meta_description = attrs_dict.get("content", "")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() == "title":
+            self.in_title_tag = False
+
+    def handle_data(self, data: str) -> None:
+        if self.in_title_tag and data:
+            self.title_fragments.append(data)
+
+
+class VisibleTextParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.text_fragments: list[str] = []
+        self.in_ignored_tag_stack: list[str] = []
+
+    def handle_starttag(
+        self,
+        tag: str,
+        attrs: list[tuple[str, Optional[str]]],
+    ) -> None:
+        tag_lower = tag.lower()
+        if tag_lower in ("script", "style", "noscript"):
+            self.in_ignored_tag_stack.append(tag_lower)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag_lower = tag.lower()
+        if self.in_ignored_tag_stack and self.in_ignored_tag_stack[-1] == tag_lower:
+            self.in_ignored_tag_stack.pop()
+
+    def handle_data(self, data: str) -> None:
+        if self.in_ignored_tag_stack:
+            return
+        if data:
+            self.text_fragments.append(data)
+# End HTML Extraction
+
+
+# Begin Data Model
+@dataclass(frozen=True)
+class SearchRecord:
+    url: str
+    title: str
+    description: str
+    content: str
+    section: str
+
+
+def derive_section_from_url(url_path: str) -> str:
+    cleaned = url_path.strip("/")
+    if not cleaned:
+        return ""
+    first_segment = cleaned.split("/", maxsplit=1)[0]
+    return first_segment
+# End Data Model
+
+
+# Begin URL Canonicalization
+def to_site_url_path(site_root: Path, file_path: Path) -> str:
+    relative_posix = posix_relative_path(site_root, file_path)
+
+    if relative_posix == "index.html":
+        return "/"
+
+    if USE_DIRECTORY_INDEX_URLS and relative_posix.endswith("/index.html"):
+        directory_path = relative_posix[: -len("index.html")]
+        if not directory_path.startswith("/"):
+            directory_path = "/" + directory_path
+        return directory_path
+
+    return "/" + relative_posix
+# End URL Canonicalization
+
+
+# Begin Index Generation
+def extract_record_from_html(
+    site_root: Path,
+    file_path: Path,
+) -> Optional[SearchRecord]:
+    try:
+        html_text = safe_read_text(file_path)
+        html_text = strip_html_scripts_and_styles(html_text)
+
+        title_parser = TitleAndDescriptionParser()
+        title_parser.feed(html_text)
+
+        visible_text_parser = VisibleTextParser()
+        visible_text_parser.feed(html_text)
+
+        title_value = collapse_whitespace(
+            unescape("".join(title_parser.title_fragments))
+        )
+        description_value = collapse_whitespace(
+            unescape(title_parser.meta_description or "")
+        )
+
+        visible_text_value = collapse_whitespace(
+            unescape(" ".join(visible_text_parser.text_fragments))
+        )
+        if len(visible_text_value) > CONTENT_EXCERPT_MAX_CHARS:
+            truncated = visible_text_value[:CONTENT_EXCERPT_MAX_CHARS].rstrip()
+            visible_text_value = truncated + "…"
+
+        if not title_value:
+            title_value = file_path.name
+
+        url_path = to_site_url_path(site_root, file_path)
+        section_value = derive_section_from_url(url_path)
+
+        return SearchRecord(
+            url=url_path,
+            title=title_value,
+            description=description_value,
+            content=visible_text_value,
+            section=section_value,
+        )
+    except Exception as exception_value:
+        logging.warning(
+            "Failed parsing HTML: %s (%s)",
+            file_path,
+            exception_value,
+        )
+        return None
+
+
+def gather_html_files(site_root: Path) -> list[Path]:
+    discovered_files: list[Path] = []
+    for include_pattern in INCLUDE_GLOBS:
+        for found_path in site_root.glob(include_pattern):
+            if found_path.is_file() and should_include_file(site_root, found_path):
+                discovered_files.append(found_path)
+    unique_files = sorted(set(discovered_files))
+    return unique_files
+
+
+def archive_existing_file(
+    existing_file_path: Path,
+    archive_directory: Path,
+    archive_prefix: str,
+    archive_date: str,
+    archive_time: str,
+    archive_extension: str,
+) -> Optional[Path]:
+    if not existing_file_path.exists():
+        return None
+
+    archive_base_name = f"{archive_prefix}{archive_date}.{archive_extension}"
+    archive_path = archive_directory / archive_base_name
+
+    if archive_path.exists():
+        archive_base_name = (
+            f"{archive_prefix}{archive_date}-{archive_time}.{archive_extension}"
+        )
+        archive_path = archive_directory / archive_base_name
+
+    ensure_parent_directory(archive_path)
+    shutil.copy2(existing_file_path, archive_path)
+    return archive_path
+
+
+def write_search_index(
+    output_file_path: Path,
+    records: list[SearchRecord],
+) -> None:
+    ensure_parent_directory(output_file_path)
+
+    payload: list[dict[str, str]] = []
+    for record in records:
+        payload.append(
+            {
+                "url": record.url,
+                "title": record.title,
+                "description": record.description,
+                "content": record.content,
+                "section": record.section,
+            }
+        )
+
+    json_text = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
+    output_file_path.write_text(json_text, encoding="utf-8")
+# End Index Generation
+
+
+# Begin Sitemap Generation
+def write_sitemap(
+    site_root: Path,
+    output_file_path: Path,
+    base_url: str,
+    html_files: list[Path],
+) -> None:
+    ensure_parent_directory(output_file_path)
+
+    base_url_clean = base_url.rstrip("/")
+    lines: list[str] = []
+    lines.append('<?xml version="1.0" encoding="UTF-8"?>')
+    lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+    for file_path in html_files:
+        url_path = to_site_url_path(site_root, file_path)
+        full_url = base_url_clean + url_path
+        lastmod_value = compute_lastmod_date(file_path)
+
+        lines.append("  <url>")
+        lines.append(f"    <loc>{xml_escape(full_url)}</loc>")
+        if lastmod_value:
+            lines.append(f"    <lastmod>{xml_escape(lastmod_value)}</lastmod>")
+        lines.append("  </url>")
+
+    lines.append("</urlset>")
+    output_file_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+# End Sitemap Generation
+
+
+# Begin Main
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Generate search-index.json and two sitemap files for the site.",
+    )
+    parser.add_argument(
+        "--site-root",
+        default="",
+        help="Optional explicit site root. Defaults to parent of aws/ directory.",
+    )
+    parser.add_argument(
+        "--prod-base-url",
+        default=DEFAULT_PROD_BASE_URL,
+        help="Base URL used for prod-sitemap.xml entries.",
+    )
+    parser.add_argument(
+        "--test-base-url",
+        default=DEFAULT_TEST_BASE_URL,
+        help="Base URL used for test-sitemap.xml entries.",
+    )
+    parser.add_argument(
+        "--timezone",
+        default=TIMEZONE_NAME_DEFAULT,
+        help="Timezone name used for archive filename date stamps.",
+    )
+    parser.add_argument(
+        "--skip-sitemaps",
+        action="store_true",
+        help="Generate only search-index.json (do not write sitemap files).",
+    )
+    parser.add_argument(
+        "--no-sitemap-archive",
+        action="store_true",
+        help="Do not archive previous sitemap files.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Discover and parse files, but do not write output files.",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Enable debug logging.",
+    )
+    args = parser.parse_args()
+
+    configure_logging(args.verbose)
+
+    script_path = Path(__file__)
+    if args.site_root:
+        site_root = Path(args.site_root).resolve()
+    else:
+        site_root = get_site_root(script_path)
+
+    if not site_root.exists():
+        logging.error("Site root does not exist: %s", site_root)
+        return 2
+
+    output_index_path = site_root / OUTPUT_INDEX_RELATIVE_PATH
+    prod_sitemap_path = site_root / PROD_SITEMAP_OUTPUT_RELATIVE_PATH
+    test_sitemap_path = site_root / TEST_SITEMAP_OUTPUT_RELATIVE_PATH
+
+    now_local = get_now_local(args.timezone)
+    archive_date = format_archive_date(now_local)
+    archive_time = format_archive_time(now_local)
+
+    logging.info("Site root: %s", site_root)
+    logging.info("Output index: %s", output_index_path)
+    logging.info("Prod sitemap: %s", prod_sitemap_path)
+    logging.info("Test sitemap: %s", test_sitemap_path)
+
+    html_files = gather_html_files(site_root)
+    logging.info("HTML files discovered (post-exclude): %d", len(html_files))
+
+    records: list[SearchRecord] = []
+    for file_path in html_files:
+        extracted_record = extract_record_from_html(site_root, file_path)
+        if extracted_record is not None:
+            records.append(extracted_record)
+
+    records = sorted(records, key=lambda record: record.url)
+    logging.info("Index records generated: %d", len(records))
+
+    if args.dry_run:
+        logging.info("Dry run enabled; no files written.")
+        return 0
+
+    archived_index_path = archive_existing_file(
+        existing_file_path=output_index_path,
+        archive_directory=output_index_path.parent,
+        archive_prefix=ARCHIVE_INDEX_PREFIX,
+        archive_date=archive_date,
+        archive_time=archive_time,
+        archive_extension="json",
+    )
+    if archived_index_path:
+        logging.info("Archived previous index: %s", archived_index_path)
+
+    write_search_index(output_index_path, records)
+    logging.info("Wrote latest index: %s", output_index_path)
+
+    if not WRITE_SITEMAPS or args.skip_sitemaps:
+        logging.info("Skipping sitemap generation.")
+        return 0
+
+    archive_sitemaps_flag = ARCHIVE_SITEMAPS and (not args.no_sitemap_archive)
+    sitemap_archive_dir = site_root / SITEMAP_ARCHIVE_DIR_RELATIVE_PATH
+
+    if archive_sitemaps_flag and prod_sitemap_path.exists():
+        archived_prod_sitemap_path = archive_existing_file(
+            existing_file_path=prod_sitemap_path,
+            archive_directory=sitemap_archive_dir,
+            archive_prefix="prod-sitemap-",
+            archive_date=archive_date,
+            archive_time=archive_time,
+            archive_extension="xml",
+        )
+        if archived_prod_sitemap_path:
+            logging.info("Archived previous prod sitemap: %s", archived_prod_sitemap_path)
+
+    if archive_sitemaps_flag and test_sitemap_path.exists():
+        archived_test_sitemap_path = archive_existing_file(
+            existing_file_path=test_sitemap_path,
+            archive_directory=sitemap_archive_dir,
+            archive_prefix="test-sitemap-",
+            archive_date=archive_date,
+            archive_time=archive_time,
+            archive_extension="xml",
+        )
+        if archived_test_sitemap_path:
+            logging.info("Archived previous test sitemap: %s", archived_test_sitemap_path)
+
+    write_sitemap(
+        site_root=site_root,
+        output_file_path=prod_sitemap_path,
+        base_url=args.prod_base_url,
+        html_files=html_files,
+    )
+    logging.info("Wrote prod sitemap: %s", prod_sitemap_path)
+
+    write_sitemap(
+        site_root=site_root,
+        output_file_path=test_sitemap_path,
+        base_url=args.test_base_url,
+        html_files=html_files,
+    )
+    logging.info("Wrote test sitemap: %s", test_sitemap_path)
+
+    logging.info("Done.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+# End Main
+
