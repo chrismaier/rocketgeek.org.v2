@@ -179,11 +179,31 @@
                     </nav>
                     <!-- end top nav bar -->
                     
-                    <!-- Main body (page unique) content goes here -->
-                    <div class = "container-fluid">
-                        <h2 class = "rg-heading">Blank Page - Yeah, its really blank...</h2>
+                    <!-- Begin Search Results (page unique) content -->
+                    <div class="container-fluid">
+                      <h2 class="rg-heading">Search Results</h2>
+                    
+                      <div class="row mb-3">
+                        <div class="col-12">
+                          <form id="rgSearchResultsForm" class="mb-2">
+                            <div class="input-group">
+                              <input id="rgSearchResultsInput" type="search" class="form-control" placeholder="Search Rocket Geek..." aria-label="Search Rocket Geek" autocomplete="off">
+                              <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                          </form>
+                    
+                          <div id="rgSearchSummary" class="small text-muted"></div>
+                        </div>
+                      </div>
+                    
+                      <div class="row">
+                        <div class="col-12">
+                          <div id="rgSearchResults"></div>
+                        </div>
+                      </div>
                     </div>
-                    <!-- End main boxy content -->
+                    <!-- End Search Results (page unique) content -->
+                    
                     
                 </div>
                 
@@ -210,7 +230,6 @@
         <script src="assets/js/css-reload.js"></script>
         <script src="assets/js/bs-init.js"></script>
         <script src="assets/js/top-nav-login-check.js"></script>
-        <script src="assets/js/site-search.js"></script>
         
         <!-- Remote JavaScript files -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -218,6 +237,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         
         <!-- Page specific JavaScript files -->
+        <script src="assets/js/site-search.js"></script>
         <!-- <script src="assets/js/pad-box-loader.js"></script> -->
         <!-- end Javascript -->
     
