@@ -721,3 +721,49 @@ fieldset:disabled .btn {
 }
 /* End Button focused-hover restore – let hover win while focused */
 
+/* Begin Register form control stability (no layout jump on focus) */
+form.user .form-control,
+form.user .form-control-user
+{
+    border-width: 2px;
+    border-style: solid;
+    border-color: #8b0000;
+    box-shadow: none;
+}
+
+form.user .form-control:hover,
+form.user .form-control-user:hover
+{
+    border-color: #8b0000;
+}
+
+form.user .form-control:focus,
+form.user .form-control-user:focus
+{
+    border-width: 2px;
+    border-style: solid;
+    border-color: #8b0000;
+    box-shadow: none;
+    outline: none;
+}
+/* End Register form control stability (no layout jump on focus) */
+
+/* Begin Rocket Geek heading style utility */
+.rg-heading {
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
+}
+/* End Rocket Geek heading style utility */
+
+/* Begin Rocket Geek emphasis utilities */
+.rg-red {
+    color: #8b0000;
+}
+.rg-bold {
+    font-weight: bolder;
+}
+.rg-italic {
+    font-style: italic;
+}
+/* End Rocket Geek emphasis utilities */
