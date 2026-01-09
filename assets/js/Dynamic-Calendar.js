@@ -1,3 +1,7 @@
+// Dynamic-Calendar.js
+
+// File name is wrong / does not conform
+
 // Function to generate the calendar
 function generateCalendar()
 {

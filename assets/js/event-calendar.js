@@ -1,4 +1,4 @@
-// script.js
+// event-calendar.js
 
 // Define an array to store events
 let events = [];

@@ -1,3 +1,5 @@
+// affiliate-loader.js
+
 // ==================== START: Load Affiliate Items ====================
 document.addEventListener("DOMContentLoaded", () => {
     fetch("assets/json-data/affiliate-items.json")

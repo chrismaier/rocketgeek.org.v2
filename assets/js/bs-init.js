@@ -1,3 +1,5 @@
+// bs-init.js
+
 document.addEventListener('DOMContentLoaded', function ()
 {
     

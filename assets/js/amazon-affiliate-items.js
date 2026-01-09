@@ -1,3 +1,5 @@
+// amazon-affiliate-items.js
+
 document.addEventListener("DOMContentLoaded", function () {
     fetch("/assets/json-data/amazon-affiliate-items.json")
         .then(response => response.json())

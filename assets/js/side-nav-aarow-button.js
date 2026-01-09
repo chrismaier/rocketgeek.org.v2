@@ -1,3 +1,5 @@
+// side-nav-aarow-button.js
+
 // JavaScript for toggling sidebar
 document.getElementById('sidebarToggle').addEventListener('click', function ()
 {

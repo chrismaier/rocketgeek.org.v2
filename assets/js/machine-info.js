@@ -1,4 +1,6 @@
-// script.js
+// machine-info.js
+
+
 async function loadConfiguration() {
     try {
         const response = await fetch('/assets/json-data/tsconfig.json');

@@ -1,3 +1,5 @@
+// registration-consent.js
+
 /* START: configuration */
 const RG_COOKIE_ACCEPTED = "rg_cookie_accepted";
 const RG_SMS_ACCEPTED = "rg_sms_accepted";

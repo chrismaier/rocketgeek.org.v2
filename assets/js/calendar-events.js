@@ -1,3 +1,5 @@
+// calendar-events.js
+
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/assets/json-data/calendar-events.json')
         .then(response => response.json())

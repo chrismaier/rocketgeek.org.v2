@@ -1,3 +1,5 @@
+// launch-clubs.js
+
 $(document).ready(function () {
     console.log("Loading Launch Clubs");
     
@@ -14,7 +16,7 @@ $(document).ready(function () {
                         </button>
                     </h2>
                 </div>
-                <div id="collapseLaunch${club.id}" class="collapse" aria-labelledby="headingLaunch${club.id}" data-parent="#launch-club-list">
+                <div id="collapseLaunch${club.id}" class="collapse" aria-labelledby="headingLaunch${club.id}" data-bs-parent="#launch-club-list">
                     <div class="card-body">
                         <ul>
                             <li><strong>Name:</strong> ${club.name}</li>

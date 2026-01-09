@@ -1,3 +1,5 @@
+// rg-calendar.js
+
 // Function to generate the calendar
 function generateCalendar()
 {

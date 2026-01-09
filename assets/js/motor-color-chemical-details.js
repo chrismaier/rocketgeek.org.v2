@@ -1,4 +1,4 @@
-/* Begin motor-color-chemical-details.js */
+// motor-color-chemical-details.js
 
 /* Begin configuration */
 const detailJsonBasePath = "/assets/json-data/";

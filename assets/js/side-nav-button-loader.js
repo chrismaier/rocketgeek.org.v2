@@ -1,3 +1,5 @@
+// side-nav-button-loader.js
+
 /*
     Try and fix the odd side nav arrow button by loading it later in the page load process
     window.onload didn't load the button...

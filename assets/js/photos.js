@@ -1,3 +1,6 @@
+// photos.js
+
+
 $(document).ready(function() {
     // Fetch images from a JSON file
     $.getJSON('/assets/json-data/photos.json', function(data) {

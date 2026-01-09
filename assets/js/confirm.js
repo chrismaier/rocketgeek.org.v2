@@ -1,3 +1,5 @@
+// confirm.js
+
 /* -------------------------------------------------
    File: confirm.js
    Page: confirm.html

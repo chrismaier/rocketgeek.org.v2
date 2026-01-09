@@ -1,3 +1,5 @@
+// links.js
+
 document.addEventListener('DOMContentLoaded', function () {
     fetch('/assets/json-data/other-links.json')
         .then(response => response.json())

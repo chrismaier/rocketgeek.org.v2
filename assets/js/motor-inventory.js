@@ -1,3 +1,6 @@
+// motor-inventory.js
+
+
 $(document).ready(function () {
     console.log("Document is ready");
     

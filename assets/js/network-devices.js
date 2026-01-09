@@ -1,3 +1,5 @@
+// network-devices.js
+
 // Assuming you're using jQuery for simplicity, make sure to include jQuery library in your HTML file
 $(document).ready(function() {
     // Fetch data from JSON file

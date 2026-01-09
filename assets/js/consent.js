@@ -1,3 +1,5 @@
+// consent.js
+
 /* START: configuration */
 
 const RG_COOKIE_ACCEPTED = "rg_cookie_accepted";

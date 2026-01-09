@@ -1,3 +1,5 @@
+// side-nav-test-script.js
+
 document.addEventListener("DOMContentLoaded", function() {
     fetch('/assets/json-data/side-nav-data-active-example.json')
         .then(response => response.json())

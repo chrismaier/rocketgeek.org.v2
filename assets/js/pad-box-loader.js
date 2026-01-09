@@ -1,3 +1,5 @@
+// pad-box-loader.js
+
 // Fetch the JSON data from the server
 fetch('/assets/json-data/pad-box-inventory.json')
     .then(response => {

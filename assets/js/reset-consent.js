@@ -1,3 +1,5 @@
+// reset-consent.js
+
 /* START: Reset consent cookies (dev/test only) */
 (function () {
     console.warn("[reset-consent.js] Loaded — DO NOT include in production!");

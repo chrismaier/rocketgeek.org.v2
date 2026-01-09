@@ -1,3 +1,5 @@
+// rocketgeek-signup-form.js
+
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('rocketGeekSignupForm');
     form.addEventListener('submit', rocketGeekSignupForm);

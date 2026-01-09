@@ -1,3 +1,5 @@
+// drop-down-menu-loader.js
+
 document.addEventListener("DOMContentLoaded", function() {
     // Define function to fetch and populate dropdown menu
     function populateDropdownMenu(menuId, triggerId, jsonFile, headerText) {

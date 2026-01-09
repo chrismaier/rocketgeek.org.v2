@@ -1,3 +1,5 @@
+// register.js
+
 /* START: Register page bootstrap and submit wiring */
 let RG_GATE_REQUIRED_TOS_VERSION = "0.0.0";
 

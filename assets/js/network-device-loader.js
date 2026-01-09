@@ -1,4 +1,5 @@
 // network-device-loader.js
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/assets/json-data/network-devices.json')
         .then(response => response.json())

@@ -1,3 +1,5 @@
+// college-clubs.js
+
 $(document).ready(function () {
     console.log("Loading College & HS Clubs");
     
@@ -49,7 +51,7 @@ $(document).ready(function () {
                         </button>
                     </h2>
                 </div>
-                <div id="collapseCollege${club.id}" class="collapse" aria-labelledby="headingCollege${club.id}" data-parent="#college-club-list">
+                <div id="collapseCollege${club.id}" class="collapse" aria-labelledby="headingCollege${club.id}" data-bs-parent="#college-club-list">
                     <div class="card-body">
                         <ul>
                             <li><strong>Name:</strong> ${club.name}</li>

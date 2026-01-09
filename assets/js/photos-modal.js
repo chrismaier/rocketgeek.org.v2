@@ -1,3 +1,6 @@
+// photos-modal.js
+
+
 $(document).ready(function() {
     // Fetch images from a JSON file
     $.getJSON('images.json', function(data) {

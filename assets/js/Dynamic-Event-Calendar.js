@@ -1,3 +1,7 @@
+// Dynamic-Event-Calendar.js
+
+// File name is wrong / does not conform
+
 // Get today's date
 let today = new Date();
 let currentMonth = today.getMonth();

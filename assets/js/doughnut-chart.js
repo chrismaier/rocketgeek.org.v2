@@ -1,3 +1,5 @@
+// doughnut-chart.js
+
 // Async function to load chart data and render the chart with a dynamic title
 async function loadDoughnutChart() {
     try {

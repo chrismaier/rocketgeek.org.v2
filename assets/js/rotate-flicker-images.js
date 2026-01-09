@@ -1,3 +1,5 @@
+// rotate-flicker-images.js
+
 document.addEventListener("DOMContentLoaded", function () {
     const jsonFilePath = "/assets/json-data/flicker-rotating-photos.json"; // Adjust path to your JSON file
     const imageElement = document.querySelector("#flickr-photo");

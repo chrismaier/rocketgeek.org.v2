@@ -1,3 +1,6 @@
+// master-chemical-list.js
+
+
 $(document).ready(function () {
     console.log("Chemical list document is ready");
     

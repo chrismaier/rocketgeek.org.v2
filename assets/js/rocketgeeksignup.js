@@ -1,3 +1,5 @@
+// rocketgeeksignup.js
+
 // Function to check password complexity
 function checkPasswordComplexity(password) {
     // Add your password complexity requirements here
