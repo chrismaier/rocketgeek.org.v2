@@ -1,0 +1,100 @@
+acb:
+  thread: "Rocket Geek Enrollment / Verification Requirements"
+  date: "2026-01-10"
+  scope:
+    - Document enrollment + verification requirements
+    - Document API routes and auth model for api.rocketgeek.org
+    - Preserve naming semantics: UI username vs account GUID
+  constraints:
+    - No traditional database; S3 static pages + JSON
+    - User home directory is an Account GUID in an S3 directory bucket
+    - Do not expose Account GUID to end users or public APIs
+    - CORS OPTIONS handled by Lambda per route (keep pattern)
+    - Prefer small modular Lambdas/routes over monolithic handlers
+  terminology:
+    ui_username:
+      meaning: "User-facing username shown in prompts like 'Username' (email address)"
+      notes:
+        - "Do not label as 'Username (Email Address)' due to UI wrapping issues"
+    account_guid:
+      meaning: "Internal Cognito username (GUID) used as S3 home directory key"
+  ui_workflow_happy_path:
+    - step: 1
+      name: "Accept Cookie Policy"
+    - step: 2
+      name: "Accept SMS Policy + provide phone"
+      notes:
+        - "SMS modal captures phone and writes back to registration form"
+    - step: 3
+      name: "Accept Terms of Service"
+    - step: 4
+      name: "Submit registration form"
+      notes:
+        - "Captures password"
+        - "Creates Cognito user record"
+        - "User must not gain protected access yet"
+    - step: 5
+      name: "Verify email (code)"
+    - step: 6
+      name: "Verify password (authenticate for enrollment only)"
+      notes:
+        - "Enrollment auth only; no protected site access"
+    - step: 7
+      name: "Verify phone (SMS code)"
+    - step: 8
+      name: "Logout (clear enrollment token/session)"
+    - step: 9
+      name: "Log in (full access only after both email + SMS verified)"
+    - step: 10
+      name: "Create stub profile after full verification (preferred)"
+  token_storage_rules:
+    enrollment_token: "memory-based (or otherwise short-lived)"
+    full_token: "session-based"
+  api_routes:
+    public_no_auth:
+      - /register
+      - /signup
+      - /confirmation
+      - /cors-check
+      - /test-api
+    enrollment_partial_auth:
+      - /auth-verification
+      - /verify
+    full_auth:
+      - /login
+      - /authenticated
+      - /guid-generator
+      - /guid-processor
+      - /qr-generator
+      - /qr-reader
+      - /qr-reader-enhanced
+      - /get-profile
+      - /update-profile
+      - /create-profile
+    parked_undetermined:
+      - /motor-list
+    notes:
+      - "OPTIONS routes exist for most paths and map to Lambda (retain pattern)."
+      - "GET routes may be converted to POST later."
+  auth_model_plan:
+    cognito_app_clients:
+      - name: "Enrollment App Client"
+        purpose: "Restricted JWT used only for enrollment endpoints"
+      - name: "Primary App Client"
+        purpose: "Full JWT after enrollment complete"
+    api_gateway_authorizers:
+      - name: "Enrollment JWT authorizer"
+        attach_to:
+          - /verify (POST)
+          - /auth-verification (POST)
+      - name: "Primary JWT authorizer"
+        attach_to:
+          - "All profile + user-data routes"
+    triggers:
+      - name: "PreSignUp"
+        purpose: "Enforce uniqueness of email + phone"
+      - name: "PreAuth"
+        purpose: "Block access until SMS verified (except minimal enrollment endpoints)"
+  profile_rules:
+    storage: "S3 directory bucket JSON under Account GUID path"
+    creation: "Create stub profile after full verification (preferred; may move earlier if needed)"

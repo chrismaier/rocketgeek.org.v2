@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang = "en">
     
-    
     <!-- Begin head section of the html file -->
     <head>
         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
-        <!-- page unique head information / meta tags etc go here -->
+        <!-- page unique head information / meta tags etc. go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
         <title>Affiliate Links - Rocket Geek</title>
-        <link href="assets/css/css-reload.css" rel="stylesheet">
+        
+        <!-- Begin CSS loader logic -->
+        <link href="/assets/css/css-reload.css" rel="stylesheet">
         
         <!--
         =TEMPORARILY= disable the content from displaying when the page loads
         The css loader script will re-enable the body display once it finishes loading
         -->
-        <style>body { display: none; }</style>
+        <style>
+        body{visibility:hidden;}
+        #rg-page-loader{visibility:visible;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000000;z-index:9999;}
+        #rg-page-loader .rg-orbit{position:relative;width:96px;height:96px;animation:rg-orbit 1.2s linear infinite;}
+        #rg-page-loader .rg-orbit::before{content:"";position:absolute;inset:0;border:2px solid rgba(255,255,255,0.18);border-radius:50%;}
+        #rg-page-loader .rg-rocket{position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(90deg);width:28px;height:28px;}
+        #rg-page-loader .rg-rocket svg{display:block;width:100%;height:100%;}
+        @keyframes rg-orbit{to{transform:rotate(360deg);}}
+        @media (prefers-reduced-motion: reduce){#rg-page-loader .rg-orbit{animation:none;}}
+        body.loaded #rg-page-loader{opacity:0;transition:opacity 150ms ease;pointer-events:none;}
+        </style>
         
+        
+        <!-- Begin meta tag loader -->
         <!-- load META tags =FIRST= -->
-        <script src="./assets/js/meta-loader.js"></script>
+        <script src="/assets/js/meta-loader.js"></script>
+        <!-- End meta tag loader -->
         
         <!-- load the CSS files second - this js re-enables the page -->
-        <script src="./assets/js/css-loader.js"></script>
+        <script src="/assets/js/css-loader.js"></script>
+        <!-- end CSS loader logic -->
     </head>
     <!-- End of head section -->
+    
     
     <!-- Begin body section of html -->
     <body id="page-top">
