@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
     
     
     <!-- Begin head section of the html file -->
@@ -8,7 +8,7 @@
         <!-- page unique head information / meta tags etc. go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
-        <title>How To Attend A Launch - Rocket Geek</title>
+        <title>Blank Page - Rocket Geek</title>
         
         <!-- Begin CSS loader logic -->
         <link href="/assets/css/css-reload.css" rel="stylesheet">
@@ -41,9 +41,24 @@
     </head>
     <!-- End of head section -->
     
-    
     <!-- Begin body section of html -->
     <body id="page-top">
+        
+        <!-- Begin page loader -->
+        <div id="rg-page-loader" role="status" aria-live="polite" aria-label="Loading">
+            <div class="rg-orbit" aria-hidden="true">
+                <div class="rg-rocket">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 4c8 6 14 16 14 28 0 6-2 12-6 17l-8 8-8-8c-4-5-6-11-6-17 0-12 6-22 14-28z" fill="#8b0000"/>
+                        <circle cx="32" cy="28" r="6" fill="#ffffff"/>
+                        <path d="M24 50l-6 10 10-6 4 4 4-4 10 6-6-10-6 6-2-2-2 2-6-6z" fill="#8b0000"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- End page loader -->
+        
+        
         
         <!-- wrapper object for CSS -->
         <div id="wrapper">
@@ -86,7 +101,7 @@
                             </form>
                             <!-- Search Form - END -->
                             
-                            <!-- Top nav bar with drop down menus -->
+                            <!-- Start Top nav bar with drop down menus -->
                             <ul class="navbar-nav flex-nowrap ms-auto">
                                 <li class="nav-item dropdown d-sm-none no-arrow">
                                     <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
@@ -142,17 +157,17 @@
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="messageCenter"></div>
                                 </li>
                             </ul>
-                            <!-- end top nav dropdown menus -->
+                            <!-- end Top nav bar with drop down menus -->
                             
                             
                             <!-- Profile Dropdown -->
                             <div class="nav-item dropdown no-arrow">
-                                <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="/profile.html">
+                                <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="profile.html">
                                     <span class="d-none d-lg-inline me-2 text-white-600 small">Random Geek</span>
                                     <img class="border rounded-circle img-profile" src="/assets/img/avatars/geek-guy.png" alt="">
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                    <a class="dropdown-item" href="/profile.html">
+                                    <a class="dropdown-item" href="profile.html">
                                         <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
                                     <a class="dropdown-item" href="#">
                                         <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
@@ -168,58 +183,54 @@
                     </nav>
                     <!-- end top nav bar -->
                     
-                    <!-- Main body (page unique) content goes here -->
+                    <!-- Start Main body content -->
+                    <!-- page unique content goes here -->
                     <div class = "container-fluid">
-                        <h2 class = "mb-4">How To Attend A Launch</h2>
-                        <div class = "card shadow">
-                            <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">What is required to attend?</p>
-                                <div class = "d-flex flex-column justify-content-center align-items-stretch box">
-                                    <div class = "content-block"></div>
-                                </div>
-                            </div>
-                            <div class = "card-header py-3">
-                                <p class = "m-0 fw-bold">Attending a high power rocket launch</p>
-                            </div>
-                        
-                        </div>
+                        <h2 class = "rg-heading">Blank Page - Yeah, its really blank...</h2>
                     </div>
+                    <!-- End main body content -->
                     
-                    <!-- end of main body -->
-                
                 </div>
                 
-                <!-- footer elements -->
-                <footer class="bg-white sticky-footer">
-                    <div class="container my-auto">
-                        <div class="text-center my-auto copyright"><span>Copyright © Rocket Geek 2024</span></div>
+                
+                <footer class = "bg-white sticky-footer">
+                    <div class = "container my-auto">
+                        <div class = "text-center my-auto copyright"><span>Copyright © Rocket Geek 2024</span></div>
                     </div>
                 </footer>
-                <!-- end footer -->
-            
             </div>
-            <!-- end flex layout -->
-            
-            <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+            <a class = "border rounded d-inline scroll-to-top" href = "#page-top"><i class = "fas fa-angle-up"></i></a>
         </div>
-        <!-- end of wrapper object -->
         
-        <!-- Begin Java Script -->
-        <!-- Bootstrap JS and Popper.js -->
-        <script src="./assets/js/jquery-3.6.0.min.js"></script>
+        
+        <!-- Begin JavaScript -->
+        <!-- Begin Bootstrap JS and Popper.js -->
         <script src="/assets/js/popper.min.js"></script>
         <script src="/assets/js/bootstrap.5.1.3.min.js"></script>
+        <!-- <script src="/assets/js/jquery-3.7.1.min.js"></script> -->
+        <!-- End Bootstrap JS and Popper.js -->
         
-        <!-- Core JavaScript files (all pages need these files) -->
+        <!-- Begin Core JavaScript files -->
+        <!-- (all pages need these files) -->
         <script src="/assets/js/drop-down-menu-loader.js"></script>
         <script src="/assets/js/theme.js"></script>
         <script src="/assets/js/side-nav-script.js"></script>
         <script src="/assets/js/css-reload.js"></script>
         <script src="/assets/js/bs-init.js"></script>
+        <script src="/assets/js/top-nav-login-check.js"></script>
+        <script src="/assets/js/site-search.js"></script>
+        <!-- End Core JavaScript files -->
         
-        <!-- Page specific JavaScript files -->
-        <!-- <script src="/assets/js/pad-box-loader.js"></script> -->
-        <!-- end Javascript -->
+        <!-- Begin Remote JavaScript files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <!-- End Remote JavaScript files -->
+        
+        <!-- Begin Page specific JavaScript files -->
+        <!-- <script src="assets/js/pad-box-loader.js"></script> -->
+        <!-- End Page specific JavaScript files -->
+        <!-- End JavaScript -->
     
     </body>
 </html>
