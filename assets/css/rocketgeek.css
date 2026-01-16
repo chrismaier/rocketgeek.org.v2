@@ -746,7 +746,32 @@ form.user .form-control-user:focus
     box-shadow: none;
     outline: none;
 }
+
+form.user textarea.form-control-user:focus
+{
+    box-shadow: none !important;
+}
 /* End Register form control stability (no layout jump on focus) */
+
+
+/* Begin BurnSim textarea stability (no layout jump on focus) */
+form.user textarea#burnsimRawInput,
+form.user textarea#burnsimRawInput:hover,
+form.user textarea#burnsimRawInput:focus,
+form.user textarea#burnsimRawInput:active
+{
+    box-sizing: border-box !important;
+    border: 2px solid #8b0000 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: none !important;
+    resize: none !important;
+    overflow-y: scroll !important;
+    scrollbar-gutter: stable;
+}
+/* End BurnSim textarea stability (no layout jump on focus) */
+
+
 
 /* Begin Rocket Geek heading style utility */
 .rg-heading {

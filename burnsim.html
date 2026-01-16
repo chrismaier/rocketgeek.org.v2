@@ -8,7 +8,7 @@
         <!-- page unique head information / meta tags etc. go here -->
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
-        <title>Blank Page - Rocket Geek</title>
+        <title>Burnsim Analysis Page - Rocket Geek</title>
         
         <!-- Begin CSS loader logic -->
         <link href="/assets/css/css-reload.css" rel="stylesheet">
@@ -183,12 +183,82 @@
                     </nav>
                     <!-- end top nav bar -->
                     
-                    <!-- Start Main body content -->
+                    <!-- Begin Main body content -->
                     <!-- page unique content goes here -->
-                    <div class = "container-fluid">
-                        <h2 class = "rg-heading">Blank Page - Yeah, its really blank...</h2>
+                    <div class="container">
+                      <div class="card shadow-lg o-hidden border-0 my-5">
+                        <div class="card-body p-0">
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="p-5">
+                                <div class="text-center">
+                                  <h2 class="mb-4">BurnSim File Parser</h2>
+                                </div>
+                    
+                                <!-- Begin BurnSim parser form -->
+                                <form class="user" id="burnsimParseForm">
+                                  <!-- Begin Raw input -->
+                                  <div class="mb-3">
+                                    <label for="burnsimRawInput">Raw BurnSim data</label>
+                                      <textarea class="form-control form-control-user" id="burnsimRawInput" name="burnsim_raw_input" placeholder="Paste BurnSim XML/HTML here, or choose a file below." rows="10" spellcheck="false" style="text-align:center; padding-top:3.25rem; scrollbar-gutter:stable; box-sizing:border-box; outline:none;"></textarea>
+                                  </div>
+                                  <!-- End Raw input -->
+                    
+                                  <!-- Begin File upload controls -->
+                                  <div class="mb-3">
+                                    <label for="burnsimFileInput">Upload BurnSim file</label>
+                                    <input type="file" id="burnsimFileInput" name="burnsim_file_input" accept=".xml,.html,.htm,.txt" class="d-none" />
+                                    <div class="row g-2">
+                                      <div class="col-auto">
+                                        <button type="button" class="btn btn-primary d-block btn-user" id="burnsimChooseFileButton">Choose File</button>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control form-control-user" id="burnsimChosenFileName" name="burnsim_chosen_file_name" placeholder="No file selected" readonly />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- End File upload controls -->
+                    
+                                  <!-- Begin Parse/Clear button row -->
+                                  <div class="mb-3 text-center">
+                                    <button type="button" class="btn btn-primary btn-user px-5 me-2" id="burnsimParseButton">Parse</button>
+                                    <button type="button" class="btn btn-primary btn-user px-5" id="burnsimClearButton">Clear</button>
+                                  </div>
+                                  <!-- End Parse/Clear button row -->
+                                  
+                    
+                                  <!-- Begin Parse status banner -->
+                                  <div id="burnsimParseStatus" class="alert d-none" role="alert"></div>
+                                  <!-- End Parse status banner -->
+                    
+                                  <!-- Begin Parsed propellants table -->
+                                  <div class="table-responsive">
+                                    <table class="table table-striped table-hover align-middle d-none" id="burnsimPropellantTable">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">Name</th>
+                                          <th scope="col" class="text-end">ISPStar</th>
+                                          <th scope="col" class="text-end">A</th>
+                                          <th scope="col" class="text-end">N</th>
+                                          <th scope="col" class="text-end">Density</th>
+                                          <th scope="col" class="text-end">SpecificHeatRatio</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="burnsimPropellantTableBody"></tbody>
+                                    </table>
+                                  </div>
+                                  <!-- End Parsed propellants table -->
+                                </form>
+                                <!-- End BurnSim parser form -->
+                    
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <!-- End main body content -->
+                    
                     
                 </div>
                 
@@ -228,7 +298,8 @@
         <!-- End Remote JavaScript files -->
         
         <!-- Begin Page specific JavaScript files -->
-        <!-- <script src="assets/js/pad-box-loader.js"></script> -->
+        <!-- <script src="/assets/js/pad-box-loader.js"></script> -->
+        <script src="/assets/js/parse-burnsim.js"></script>
         <!-- End Page specific JavaScript files -->
         <!-- End JavaScript -->
     
