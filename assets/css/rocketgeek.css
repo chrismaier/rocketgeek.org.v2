@@ -771,6 +771,91 @@ form.user textarea#burnsimRawInput:active
 }
 /* End BurnSim textarea stability (no layout jump on focus) */
 
+/* Begin BurnSim folder tabs */
+.rg-folder-tabs
+{
+    background: #ffffff;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 1.0rem;
+}
+
+.rg-folder-tabs .nav-tabs
+{
+    border-bottom: 2px solid #8b0000;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link
+{
+    background: #f3d36a !important;
+    color: #111 !important;
+    border: 2px solid #8b0000 !important;
+    border-bottom: none !important;
+    border-top-left-radius: 0.75rem !important;
+    border-top-right-radius: 0.75rem !important;
+    margin-right: 0.5rem;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link:hover
+{
+    background: #f6de8b !important;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link.active
+{
+    background: #fff3bf !important;
+    color: #111 !important;
+    position: relative;
+    top: 2px;
+}
+/* End BurnSim folder tabs */
+
+
+/* Begin BurnSim ENG - chart sizing */
+.burnsim-eng-chart-box
+{
+    position: relative;
+    height: 400px;
+}
+
+.burnsim-eng-delta-box
+{
+    position: relative;
+    height: 130px;
+}
+
+.burnsim-eng-chart-box canvas
+{
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.burnsim-eng-delta-box canvas
+{
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+/* End BurnSim ENG - chart sizing */
+
+/* Begin BurnSim ENG - table highlight colors */
+#burnsimEngCurveTable tbody tr.table-info,
+#burnsimEngCurveTable tbody tr.table-success,
+#burnsimEngCurveTable tbody tr.table-warning
+{
+    background-color: rgba(139, 0, 0, 0.12) !important;
+}
+
+#burnsimEngCurveTable tbody tr.table-info td,
+#burnsimEngCurveTable tbody tr.table-success td,
+#burnsimEngCurveTable tbody tr.table-warning td
+{
+    color: #111;
+}
+/* End BurnSim ENG - table highlight colors */
 
 
 /* Begin Rocket Geek heading style utility */

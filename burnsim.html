@@ -6,52 +6,116 @@
     <head>
         <!-- Head section uses dynamic load modules to make the pages more maintainable -->
         <!-- page unique head information / meta tags etc. go here -->
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+        <meta charset = "utf-8">
+        <meta content = "width=device-width, initial-scale=1.0, shrink-to-fit=no" name = "viewport">
         <title>Burnsim Analysis Page - Rocket Geek</title>
         
         <!-- Begin CSS loader logic -->
-        <link href="/assets/css/css-reload.css" rel="stylesheet">
+        <link href = "/assets/css/css-reload.css" rel = "stylesheet">
         
         <!--
         =TEMPORARILY= disable the content from displaying when the page loads
         The css loader script will re-enable the body display once it finishes loading
         -->
         <style>
-        body{visibility:hidden;}
-        #rg-page-loader{visibility:visible;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000000;z-index:9999;}
-        #rg-page-loader .rg-orbit{position:relative;width:96px;height:96px;animation:rg-orbit 1.2s linear infinite;}
-        #rg-page-loader .rg-orbit::before{content:"";position:absolute;inset:0;border:2px solid rgba(255,255,255,0.18);border-radius:50%;}
-        #rg-page-loader .rg-rocket{position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(90deg);width:28px;height:28px;}
-        #rg-page-loader .rg-rocket svg{display:block;width:100%;height:100%;}
-        @keyframes rg-orbit{to{transform:rotate(360deg);}}
-        @media (prefers-reduced-motion: reduce){#rg-page-loader .rg-orbit{animation:none;}}
-        body.loaded #rg-page-loader{opacity:0;transition:opacity 150ms ease;pointer-events:none;}
+        body
+        {
+            visibility: hidden;
+        }
+        
+        #rg-page-loader
+        {
+            align-items: center;
+            background: #000000;
+            display: flex;
+            inset: 0;
+            justify-content: center;
+            position: fixed;
+            visibility: visible;
+            z-index: 9999;
+        }
+        
+        #rg-page-loader .rg-orbit
+        {
+            animation: rg-orbit 1.2s linear infinite;
+            height: 96px;
+            position: relative;
+            width: 96px;
+        }
+        
+        #rg-page-loader .rg-orbit::before
+        {
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            content: "";
+            inset: 0;
+            position: absolute;
+        }
+        
+        #rg-page-loader .rg-rocket
+        {
+            height: 28px;
+            left: 50%;
+            position: absolute;
+            top: -10px;
+            transform: translateX(-50%) rotate(90deg);
+            width: 28px;
+        }
+        
+        #rg-page-loader .rg-rocket svg
+        {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+        
+        @keyframes rg-orbit
+        {
+            to
+            {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce)
+        {
+            #rg-page-loader .rg-orbit
+            {
+                animation: none;
+            }
+        }
+        
+        body.loaded #rg-page-loader
+        {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 150ms ease;
+        }
         </style>
         
         
         <!-- Begin meta tag loader -->
         <!-- load META tags =FIRST= -->
-        <script src="/assets/js/meta-loader.js"></script>
+        <script src = "/assets/js/meta-loader.js"></script>
         <!-- End meta tag loader -->
         
         <!-- load the CSS files second - this js re-enables the page -->
-        <script src="/assets/js/css-loader.js"></script>
+        <script src = "/assets/js/css-loader.js"></script>
         <!-- end CSS loader logic -->
     </head>
     <!-- End of head section -->
     
     <!-- Begin body section of html -->
-    <body id="page-top">
+    <body id = "page-top">
         
         <!-- Begin page loader -->
-        <div id="rg-page-loader" role="status" aria-live="polite" aria-label="Loading">
-            <div class="rg-orbit" aria-hidden="true">
-                <div class="rg-rocket">
-                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M32 4c8 6 14 16 14 28 0 6-2 12-6 17l-8 8-8-8c-4-5-6-11-6-17 0-12 6-22 14-28z" fill="#8b0000"/>
-                        <circle cx="32" cy="28" r="6" fill="#ffffff"/>
-                        <path d="M24 50l-6 10 10-6 4 4 4-4 10 6-6-10-6 6-2-2-2 2-6-6z" fill="#8b0000"/>
+        <div aria-label = "Loading" aria-live = "polite" id = "rg-page-loader" role = "status">
+            <div aria-hidden = "true" class = "rg-orbit">
+                <div class = "rg-rocket">
+                    <svg viewBox = "0 0 64 64" xmlns = "http://www.w3.org/2000/svg">
+                        <path d = "M32 4c8 6 14 16 14 28 0 6-2 12-6 17l-8 8-8-8c-4-5-6-11-6-17 0-12 6-22 14-28z" fill = "#8b0000" />
+                        <circle cx = "32" cy = "28" fill = "#ffffff" r = "6" />
+                        <path d = "M24 50l-6 10 10-6 4 4 4-4 10 6-6-10-6 6-2-2-2 2-6-6z" fill = "#8b0000" />
                     </svg>
                 </div>
             </div>
@@ -59,123 +123,122 @@
         <!-- End page loader -->
         
         
-        
         <!-- wrapper object for CSS -->
-        <div id="wrapper">
+        <div id = "wrapper">
             
             <!-- side navbar stuff -->
-            <nav class="navbar navbar-dark border-secondary border-2 shadow-sm align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-                <div class="container-fluid d-flex flex-column p-0" id="side-nav">
-                    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/index.html">
-                        <div class="sidebar-brand-text mx-3"><span>Rocket Geek</span></div>
+            <nav class = "navbar navbar-dark border-secondary border-2 shadow-sm align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+                <div class = "container-fluid d-flex flex-column p-0" id = "side-nav">
+                    <a class = "navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href = "/index.html">
+                        <div class = "sidebar-brand-text mx-3"><span>Rocket Geek</span></div>
                     </a>
-                    <hr class="sidebar-divider my-0">
-                    <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <hr class = "sidebar-divider my-0">
+                    <ul class = "navbar-nav text-light" id = "accordionSidebar">
                         <!-- Side nav items dynamically loaded -->
                     </ul>
-                    <div class="text-center d-none d-md-inline" id="nav-slider-button">
-                        <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+                    <div class = "text-center d-none d-md-inline" id = "nav-slider-button">
+                        <button class = "btn rounded-circle border-0" id = "sidebarToggle" type = "button"></button>
                     </div>
                 </div>
             </nav>
             <!-- end of side navbar stuff -->
             
             <!-- flex layout -->
-            <div class="d-flex flex-column" id="content-wrapper">
-                <div id="content">
+            <div class = "d-flex flex-column" id = "content-wrapper">
+                <div id = "content">
                     
                     <!-- Begin top navbar elements -->
-                    <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="top-nav-bar-container">
-                        <div class="container-fluid" id="top-nav-bar">
-                            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
-                                <i class="fas fa-bars"></i>
+                    <nav class = "navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id = "top-nav-bar-container">
+                        <div class = "container-fluid" id = "top-nav-bar">
+                            <button class = "btn btn-link d-md-none rounded-circle me-3" id = "sidebarToggleTop" type = "button">
+                                <i class = "fas fa-bars"></i>
                             </button>
                             
                             <!-- Search Form -->
-                            <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                <div class="input-group">
-                                    <label for="searchInput" class="visually-hidden">Search for...</label>
-                                    <input id="searchInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
-                                    <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
+                            <form class = "d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class = "input-group">
+                                    <label class = "visually-hidden" for = "searchInput">Search for...</label>
+                                    <input class = "bg-light form-control border-0 small" id = "searchInput" placeholder = "Search for ..." type = "text">
+                                    <button class = "btn btn-primary py-0" type = "button"><i class = "fas fa-search"></i></button>
                                 </div>
                             </form>
                             <!-- Search Form - END -->
                             
                             <!-- Start Top nav bar with drop down menus -->
-                            <ul class="navbar-nav flex-nowrap ms-auto">
-                                <li class="nav-item dropdown d-sm-none no-arrow">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                    <div aria-labelledby="searchDropdown" class="dropdown-menu dropdown-menu-end p-3 animated--grow-in">
-                                        <form class="me-auto navbar-search w-100">
-                                            <div class="input-group">
-                                                <label for="hideInput" class="visually-hidden">Search for...</label>
-                                                <input id="hideInput" class="bg-light form-control border-0 small" placeholder="Search for ..." type="text">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
+                            <ul class = "navbar-nav flex-nowrap ms-auto">
+                                <li class = "nav-item dropdown d-sm-none no-arrow">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#"><i class = "fas fa-search"></i></a>
+                                    <div aria-labelledby = "searchDropdown" class = "dropdown-menu dropdown-menu-end p-3 animated--grow-in">
+                                        <form class = "me-auto navbar-search w-100">
+                                            <div class = "input-group">
+                                                <label class = "visually-hidden" for = "hideInput">Search for...</label>
+                                                <input class = "bg-light form-control border-0 small" id = "hideInput" placeholder = "Search for ..." type = "text">
+                                                <div class = "input-group-append">
+                                                    <button class = "btn btn-primary py-0" type = "button"><i class = "fas fa-search"></i></button>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="questionAndAnswerTrigger"><i class="fa fa-question-circle fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="questionAndAnswer"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "questionAndAnswerTrigger"><i class = "fa fa-question-circle fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "questionAndAnswer"></div>
                                 </li>
                                 
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="rocketPerformanceTrigger"><i class="fas fa-rocket fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="rocketPerformance"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "rocketPerformanceTrigger"><i class = "fas fa-rocket fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "rocketPerformance"></div>
                                 </li>
                                 
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="motorTestingTrigger"><i class="fas fa-fire fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="motorTesting"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "motorTestingTrigger"><i class = "fas fa-fire fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "motorTesting"></div>
                                 </li>
                                 
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="mixingMotorsTrigger"><i class="fas fa-blender fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="mixingMotors"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "mixingMotorsTrigger"><i class = "fas fa-blender fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "mixingMotors"></div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="motorFormulaTrigger"><i class="fas fa-flask fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="motorFormulas"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "motorFormulaTrigger"><i class = "fas fa-flask fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "motorFormulas"></div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="vendorListTrigger"><i class="fas fa-shopping-cart fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="vendorList"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "vendorListTrigger"><i class = "fas fa-shopping-cart fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "vendorList"></div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="linksCenterTrigger"><i class="fas fa-link fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="linksCenter"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "linksCenterTrigger"><i class = "fas fa-link fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "linksCenter"></div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="alertsCenterTrigger"><i class="fas fa-bell fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="alertsCenter"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "alertsCenterTrigger"><i class = "fas fa-bell fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "alertsCenter"></div>
                                 </li>
-                                <li class="nav-item dropdown no-arrow mx-1">
-                                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" id="messageCenterTrigger"><i class="fas fa-envelope fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="messageCenter"></div>
+                                <li class = "nav-item dropdown no-arrow mx-1">
+                                    <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "#" id = "messageCenterTrigger"><i class = "fas fa-envelope fa-fw"></i></a>
+                                    <div class = "dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id = "messageCenter"></div>
                                 </li>
                             </ul>
                             <!-- end Top nav bar with drop down menus -->
                             
                             
                             <!-- Profile Dropdown -->
-                            <div class="nav-item dropdown no-arrow">
-                                <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="profile.html">
-                                    <span class="d-none d-lg-inline me-2 text-white-600 small">Random Geek</span>
-                                    <img class="border rounded-circle img-profile" src="/assets/img/avatars/geek-guy.png" alt="">
+                            <div class = "nav-item dropdown no-arrow">
+                                <a aria-expanded = "false" class = "dropdown-toggle nav-link" data-bs-toggle = "dropdown" href = "profile.html">
+                                    <span class = "d-none d-lg-inline me-2 text-white-600 small">Random Geek</span>
+                                    <img alt = "" class = "border rounded-circle img-profile" src = "/assets/img/avatars/geek-guy.png">
                                 </a>
-                                <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                    <a class="dropdown-item" href="profile.html">
-                                        <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                <div class = "dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                    <a class = "dropdown-item" href = "profile.html">
+                                        <i class = "fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+                                    <a class = "dropdown-item" href = "#">
+                                        <i class = "fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
+                                    <a class = "dropdown-item" href = "#">
+                                        <i class = "fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
+                                    <div class = "dropdown-divider"></div>
+                                    <a class = "dropdown-item" href = "#">
+                                        <i class = "fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                 </div>
                             </div>
                             <!-- end profile dropdown -->
@@ -185,80 +248,365 @@
                     
                     <!-- Begin Main body content -->
                     <!-- page unique content goes here -->
-                    <div class="container">
-                      <div class="card shadow-lg o-hidden border-0 my-5">
-                        <div class="card-body p-0">
-                          <div class="row">
-                            <div class="col-12">
-                              <div class="p-5">
-                                <div class="text-center">
-                                  <h2 class="mb-4">BurnSim File Parser</h2>
-                                </div>
                     
-                                <!-- Begin BurnSim parser form -->
-                                <form class="user" id="burnsimParseForm">
-                                  <!-- Begin Raw input -->
-                                  <div class="mb-3">
-                                    <label for="burnsimRawInput">Raw BurnSim data</label>
-                                      <textarea class="form-control form-control-user" id="burnsimRawInput" name="burnsim_raw_input" placeholder="Paste BurnSim XML/HTML here, or choose a file below." rows="10" spellcheck="false" style="text-align:center; padding-top:3.25rem; scrollbar-gutter:stable; box-sizing:border-box; outline:none;"></textarea>
-                                  </div>
-                                  <!-- End Raw input -->
+                    <!-- Begin Banner Section -->
+                    <header class = "banner-section">
+                      <div class = "container">
+                        <h1>BurnSim Parsers</h1>
+                      </div>
+                    </header>
+                    <!-- End Banner Section -->
                     
-                                  <!-- Begin File upload controls -->
-                                  <div class="mb-3">
-                                    <label for="burnsimFileInput">Upload BurnSim file</label>
-                                    <input type="file" id="burnsimFileInput" name="burnsim_file_input" accept=".xml,.html,.htm,.txt" class="d-none" />
-                                    <div class="row g-2">
-                                      <div class="col-auto">
-                                        <button type="button" class="btn btn-primary d-block btn-user" id="burnsimChooseFileButton">Choose File</button>
-                                      </div>
-                                      <div class="col">
-                                        <input type="text" class="form-control form-control-user" id="burnsimChosenFileName" name="burnsim_chosen_file_name" placeholder="No file selected" readonly />
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <!-- End File upload controls -->
+                    <!-- Begin BurnSim Parsers Section -->
+<section class = "club-list-section">
+  <div class = "container">
+    <div class = "card shadow-lg o-hidden border-0 my-5">
+
+      <!-- Begin Folder tabs bar -->
+      <div class = "rg-folder-tabs">
+        <ul class = "nav nav-tabs" id = "burnsimTabNav" role = "tablist">
+          <li class = "nav-item" role = "presentation">
+            <button aria-controls = "bsFormulaPane" aria-selected = "true" class = "nav-link active" data-bs-target = "#bsFormulaPane" data-bs-toggle = "tab" id = "bsFormulaTab" role = "tab" type = "button">BS Formula Parser</button>
+          </li>
+          <li class = "nav-item" role = "presentation">
+            <button aria-controls = "bsMotorPane" aria-selected = "false" class = "nav-link" data-bs-target = "#bsMotorPane" data-bs-toggle = "tab" id = "bsMotorTab" role = "tab" type = "button">BS Motor Parser</button>
+          </li>
+          <li class = "nav-item" role = "presentation">
+            <button aria-controls = "bsEngPane" aria-selected = "false" class = "nav-link" data-bs-target = "#bsEngPane" data-bs-toggle = "tab" id = "bsEngTab" role = "tab" type = "button">BS ENG Parser</button>
+          </li>
+        </ul>
+      </div>
+      <!-- End Folder tabs bar -->
+
+      <div class = "card-body p-0" >
+        <div class = "row">
+          <div class = "col-12">
+            <div class = "p-5">
+
+              <!-- Begin Tab Content -->
+              <div class = "tab-content" id = "burnsimTabContent">
+
+                <!-- Begin BS Formula Parser Tab -->
+                <div aria-labelledby = "bsFormulaTab" class = "tab-pane fade show active" id = "bsFormulaPane" role = "tabpanel" tabindex = "0">
+
+                  <!-- Begin BurnSim parser form -->
+                  <form class = "user" id = "burnsimParseForm">
+
+                    <!-- Begin Raw input -->
+                    <div class = "mb-3">
+                      <label for = "burnsimRawInput">Raw BurnSim data</label>
+                      <textarea class = "form-control form-control-user" id = "burnsimRawInput" name = "burnsim_raw_input" placeholder = "Paste BurnSim XML/HTML here, or choose a file below." rows = "10" spellcheck = "false" style = "text-align:center; padding-top:3.25rem; scrollbar-gutter:stable; box-sizing:border-box; outline:none;"></textarea>
+                    </div>
+                    <!-- End Raw input -->
                     
-                                  <!-- Begin Parse/Clear button row -->
-                                  <div class="mb-3 text-center">
-                                    <button type="button" class="btn btn-primary btn-user px-5 me-2" id="burnsimParseButton">Parse</button>
-                                    <button type="button" class="btn btn-primary btn-user px-5" id="burnsimClearButton">Clear</button>
-                                  </div>
-                                  <!-- End Parse/Clear button row -->
-                                  
-                    
-                                  <!-- Begin Parse status banner -->
-                                  <div id="burnsimParseStatus" class="alert d-none" role="alert"></div>
-                                  <!-- End Parse status banner -->
-                    
-                                  <!-- Begin Parsed propellants table -->
-                                  <div class="table-responsive">
-                                    <table class="table table-striped table-hover align-middle d-none" id="burnsimPropellantTable">
-                                      <thead>
-                                        <tr>
-                                          <th scope="col">Name</th>
-                                          <th scope="col" class="text-end">ISPStar</th>
-                                          <th scope="col" class="text-end">A</th>
-                                          <th scope="col" class="text-end">N</th>
-                                          <th scope="col" class="text-end">Density</th>
-                                          <th scope="col" class="text-end">SpecificHeatRatio</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody id="burnsimPropellantTableBody"></tbody>
-                                    </table>
-                                  </div>
-                                  <!-- End Parsed propellants table -->
-                                </form>
-                                <!-- End BurnSim parser form -->
-                    
-                              </div>
-                            </div>
-                          </div>
+                    <!-- Begin File upload controls -->
+                    <div class = "mb-3">
+                      <label for = "burnsimFileInput">Upload BurnSim file</label>
+                      <input accept = ".xml,.html,.htm,.txt" class = "d-none" id = "burnsimFileInput" name = "burnsim_file_input" type = "file" />
+                      <div class = "row g-2">
+                        <div class = "col-auto">
+                          <button class = "btn btn-primary d-block btn-user" id = "burnsimChooseFileButton" type = "button">Choose File</button>
+                        </div>
+                        <div class = "col">
+                          <input class = "form-control form-control-user" id = "burnsimChosenFileName" name = "burnsim_chosen_file_name" placeholder = "No file selected" readonly type = "text" />
                         </div>
                       </div>
                     </div>
-                    <!-- End main body content -->
+                    <!-- End File upload controls -->
                     
+                    <!-- Begin Parse/Clear button row -->
+                    <div class = "mb-3 text-center">
+                      <button class = "btn btn-primary btn-user px-5 me-2" id = "burnsimParseButton" type = "button">Parse</button>
+                      <button class = "btn btn-primary btn-user px-5" id = "burnsimClearButton" type = "button">Clear</button>
+                    </div>
+                    <!-- End Parse/Clear button row -->
+                    
+                    <!-- Begin Parse status banner -->
+                    <div class = "alert d-none" id = "burnsimParseStatus" role = "alert"></div>
+                    <!-- End Parse status banner -->
+                    
+                    <!-- Begin Parsed propellants table -->
+                    <div class = "table-responsive">
+                      <table class = "table table-striped table-hover align-middle d-none" id = "burnsimPropellantTable">
+                        <thead>
+                          <tr>
+                            <th scope = "col">Name</th>
+                            <th class = "text-end" scope = "col">ISPStar</th>
+                            <th class = "text-end" scope = "col">A</th>
+                            <th class = "text-end" scope = "col">N</th>
+                            <th class = "text-end" scope = "col">Density</th>
+                            <th class = "text-end" scope = "col">SpecificHeatRatio</th>
+                          </tr>
+                        </thead>
+                        <tbody id = "burnsimPropellantTableBody"></tbody>
+                      </table>
+                    </div>
+                    <!-- End Parsed propellants table -->
+
+                  </form>
+                  <!-- End BurnSim parser form -->
+
+                </div>
+                <!-- End BS Formula Parser Tab -->
+                
+                <!-- Begin BS Motor Parser Tab -->
+                <div class="tab-pane fade" id="bsMotorPane" role="tabpanel" aria-labelledby="bsMotorTab" tabindex="0">
+                
+                  <div class="text-center">
+                    <h2 class="mb-4">BS Motor Parser</h2>
+                  </div>
+                
+                  <!-- Begin BurnSim Motor parser form -->
+                  <form class="user" id="burnsimMotorParseForm">
+                
+                    <!-- Begin Motor name (derived/override) -->
+                    <div class="mb-3">
+                      <label for="burnsimMotorNameInput">Motor Name (you can override this)</label>
+                      <input class="form-control form-control-user" id="burnsimMotorNameInput" name="burnsim_motor_name" placeholder="Motor name will be derived from the Motor tag or the uploaded filename" type="text" />
+                    </div>
+                    <!-- End Motor name (derived/override) -->
+                
+                    <!-- Begin Raw motor input -->
+                    <div class="mb-3">
+                      <label for="burnsimMotorRawInput">Raw BurnSim motor data</label>
+                      <textarea class="form-control form-control-user" id="burnsimMotorRawInput" name="burnsim_motor_raw_input" placeholder="Paste BurnSim Motor XML/HTML here, or choose a file below." rows="12" spellcheck="false" style="text-align:center; padding-top:3.25rem; scrollbar-gutter:stable; box-sizing:border-box; outline:none;"></textarea>
+                    </div>
+                    <!-- End Raw motor input -->
+                
+                    <!-- Begin File upload controls -->
+                    <div class="mb-3">
+                      <label for="burnsimMotorFileInput">Upload BurnSim motor file</label>
+                      <input type="file" id="burnsimMotorFileInput" name="burnsim_motor_file_input" accept=".xml,.html,.htm,.txt" class="d-none" />
+                
+                      <div class="row g-2">
+                        <div class="col-auto">
+                          <button type="button" class="btn btn-primary d-block btn-user" id="burnsimMotorChooseFileButton">Choose File</button>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-control-user" id="burnsimMotorChosenFileName" name="burnsim_motor_chosen_file_name" placeholder="No file selected" readonly />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End File upload controls -->
+                
+                    <!-- Begin Parse/Clear button row -->
+                    <div class="mb-3 text-center">
+                      <button type="button" class="btn btn-primary btn-user px-5 me-2" id="burnsimMotorParseButton">Parse</button>
+                      <button type="button" class="btn btn-primary btn-user px-5" id="burnsimMotorClearButton">Clear</button>
+                    </div>
+                    <!-- End Parse/Clear button row -->
+                
+                    <!-- Begin Parse status banner -->
+                    <div id="burnsimMotorParseStatus" class="alert d-none" role="alert"></div>
+                    <!-- End Parse status banner -->
+                
+                    <!-- Begin Motor summary table -->
+                    <div class="table-responsive mb-4">
+                      <table class="table table-striped table-hover align-middle d-none" id="burnsimMotorSummaryTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Motor Name</th>
+                            <th scope="col" class="text-end">DiameterMM</th>
+                            <th scope="col" class="text-end">Length</th>
+                            <th scope="col">MFGCode</th>
+                            <th scope="col" class="text-end">HardwareWeight</th>
+                            <th scope="col" class="text-end">Delays</th>
+                            <th scope="col" class="text-end">ThroatDia</th>
+                            <th scope="col" class="text-end">ExitDia</th>
+                            <th scope="col" class="text-end">NozzleEfficiency</th>
+                          </tr>
+                        </thead>
+                        <tbody id="burnsimMotorSummaryTableBody"></tbody>
+                      </table>
+                    </div>
+                    <!-- End Motor summary table -->
+                
+                    <!-- Begin Grains table -->
+                    <div class="table-responsive">
+                      <table class="table table-striped table-hover align-middle d-none" id="burnsimMotorGrainsTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Grain</th>
+                            <th scope="col" class="text-end">Type</th>
+                            <th scope="col" class="text-end">Length</th>
+                            <th scope="col" class="text-end">Diameter</th>
+                            <th scope="col" class="text-end">CoreDiameter</th>
+                            <th scope="col" class="text-end">EndsInhibited</th>
+                            <th scope="col">Propellant</th>
+                            <th scope="col" class="text-end">Density</th>
+                            <th scope="col" class="text-end">ISPStar</th>
+                            <th scope="col" class="text-end">BallisticA</th>
+                            <th scope="col" class="text-end">BallisticN</th>
+                            <th scope="col" class="text-end">SpecificHeatRatio</th>
+                          </tr>
+                        </thead>
+                        <tbody id="burnsimMotorGrainsTableBody"></tbody>
+                      </table>
+                    </div>
+                    <!-- End Grains table -->
+                
+                  </form>
+                  <!-- End BurnSim Motor parser form -->
+                
+                </div>
+                <!-- End BS Motor Parser Tab -->
+                
+                <!-- Begin BS ENG Parser Tab -->
+                <div class="tab-pane fade" id="bsEngPane" role="tabpanel" aria-labelledby="bsEngTab" tabindex="0">
+                
+                  <div class="text-center">
+                    <h2 class="mb-4">BS ENG Parser</h2>
+                    <p class="text-muted mb-0">Paste or upload a BurnSim .eng file to view the thrust curve and derived stats.</p>
+                  </div>
+                
+                  <!-- Begin BurnSim ENG - form -->
+                  <form class="user" id="burnsimEngParseForm">
+                
+                    <!-- Begin BurnSim ENG - engine name -->
+                    <div class="mb-3">
+                      <label for="burnsimEngNameInput">Engine Name</label>
+                      <input class="form-control form-control-user" id="burnsimEngNameInput" name="burnsim_eng_name" placeholder="Derived from ENG header or filename; you can override" type="text" />
+                    </div>
+                    <!-- End BurnSim ENG - engine name -->
+                
+                    <!-- Begin BurnSim ENG - raw input -->
+                    <div class="mb-3">
+                      <label for="burnsimEngRawInput">Raw ENG data</label>
+                      <textarea class="form-control form-control-user" id="burnsimEngRawInput" name="burnsim_eng_raw_input" placeholder="Paste ENG text here, or choose a file below." rows="14" spellcheck="false" style="text-align:center; padding-top:3.25rem; scrollbar-gutter:stable; box-sizing:border-box; outline:none;"></textarea>
+                      <div class="form-text">ENG format: comment lines begin with ';'. First non-comment line is the header. Remaining lines are time/thrust pairs.</div>
+                    </div>
+                    <!-- End BurnSim ENG - raw input -->
+                
+                    <!-- Begin BurnSim ENG - file upload -->
+                    <div class="mb-3">
+                      <label for="burnsimEngFileInput">Upload ENG file</label>
+                      <input type="file" id="burnsimEngFileInput" name="burnsim_eng_file_input" accept=".eng,.txt" class="d-none" />
+                      <div class="row g-2">
+                        <div class="col-auto">
+                          <button type="button" class="btn btn-primary d-block btn-user" id="burnsimEngChooseFileButton">Choose File</button>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control form-control-user" id="burnsimEngChosenFileName" name="burnsim_eng_chosen_file_name" placeholder="No file selected" readonly />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End BurnSim ENG - file upload -->
+                
+                    <!-- Begin BurnSim ENG - buttons -->
+                    <div class="mb-3 text-center">
+                      <button type="button" class="btn btn-primary btn-user px-5 me-2" id="burnsimEngParseButton">Parse</button>
+                      <button type="button" class="btn btn-primary btn-user px-5" id="burnsimEngClearButton">Clear</button>
+                    </div>
+                    <!-- End BurnSim ENG - buttons -->
+                
+                    <!-- Begin BurnSim ENG - status -->
+                    <div id="burnsimEngParseStatus" class="alert d-none" role="alert"></div>
+                    <!-- End BurnSim ENG - status -->
+                
+                    <!-- Begin BurnSim ENG - visuals row -->
+                    <div class="row g-3">
+                
+                      <!-- Begin BurnSim ENG - thrust graph panel -->
+                      <div class="col-lg-9">
+                        <div class="card shadow-sm border-0 d-none" id="burnsimEngGraphCard">
+                            <div class="card-body">
+                            
+                              <!-- Begin BurnSim ENG - chart title -->
+                              <div class="text-center mb-3">
+                                <h3 class="mb-1">Thrust Curve</h3>
+                                <div class="text-muted small" id="burnsimEngGraphSubtitle"></div>
+                              </div>
+                              <!-- End BurnSim ENG - chart title -->
+                            
+                              <!-- Begin BurnSim ENG - line chart wrapper -->
+                              <div class="burnsim-eng-chart-box mb-4">
+                                <canvas id="burnsimEngThrustChart"></canvas>
+                              </div>
+                              <!-- End BurnSim ENG - line chart wrapper -->
+                            
+                              <!-- Begin BurnSim ENG - delta bar wrapper -->
+                              <div class="burnsim-eng-delta-box">
+                                <canvas id="burnsimEngDeltaBarChart"></canvas>
+                              </div>
+                              <!-- End BurnSim ENG - delta bar wrapper -->
+                            
+                            </div>
+                                                  </div>
+                      </div>
+                      <!-- End BurnSim ENG - thrust graph panel -->
+                
+                      <!-- Begin BurnSim ENG - results panel -->
+                      <div class="col-lg-3">
+                        <div class="card shadow-sm border-0 d-none" id="burnsimEngResultsCard">
+                          <div class="card-body">
+                
+                            <div class="text-center mb-3">
+                              <h3 class="mb-1">Motor Class</h3>
+                              <div class="text-muted small" id="burnsimEngClassText">--</div>
+                            </div>
+                
+                            <div class="mb-3">
+                              <canvas id="burnsimEngClassRingChart" height="180"></canvas>
+                            </div>
+                
+                            <div class="table-responsive">
+                              <table class="table table-sm mb-0" id="burnsimEngStatsTable">
+                                <tbody>
+                                  <tr><td>Total Impulse</td><td class="text-end" id="burnsimEngTotalImpulseCell">--</td></tr>
+                                  <tr><td>Burn Time</td><td class="text-end" id="burnsimEngBurnTimeCell">--</td></tr>
+                                  <tr><td>Avg Thrust</td><td class="text-end" id="burnsimEngAvgThrustCell">--</td></tr>
+                                  <tr><td>Max Thrust</td><td class="text-end" id="burnsimEngMaxThrustCell">--</td></tr>
+                                    <tr><td>Avg Thrust (lbf)</td><td class="text-end" id="burnsimEngAvgThrustLbfCell">--</td></tr>
+                                    <tr><td>Max Thrust (lbf)</td><td class="text-end" id="burnsimEngMaxThrustLbfCell">--</td></tr>
+                                  <tr><td>Data Points</td><td class="text-end" id="burnsimEngPointCountCell">--</td></tr>
+                                </tbody>
+                              </table>
+                            </div>
+                
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End BurnSim ENG - results panel -->
+                
+                    </div>
+                    <!-- End BurnSim ENG - visuals row -->
+                
+                    <!-- Begin BurnSim ENG - curve table -->
+                    <div class="table-responsive mt-4">
+                      <table class="table table-striped table-hover align-middle d-none" id="burnsimEngCurveTable">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="text-end">Time</th>
+                            <th scope="col" class="text-end">Thrust</th>
+                          </tr>
+                        </thead>
+                        <tbody id="burnsimEngCurveTableBody"></tbody>
+                      </table>
+                    </div>
+                    <!-- End BurnSim ENG - curve table -->
+                
+                  </form>
+                  <!-- End BurnSim ENG - form -->
+                
+                </div>
+                <!-- End BS ENG Parser Tab -->
+                
+
+              </div>
+              <!-- End Tab Content -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+                    <!-- End BurnSim Parsers Section -->
+                    
+                    <!-- End main body content -->
+                
                     
                 </div>
                 
@@ -275,31 +623,37 @@
         
         <!-- Begin JavaScript -->
         <!-- Begin Bootstrap JS and Popper.js -->
-        <script src="/assets/js/popper.min.js"></script>
-        <script src="/assets/js/bootstrap.5.1.3.min.js"></script>
+        <script src = "/assets/js/popper.min.js"></script>
+        <script src = "/assets/js/bootstrap.5.1.3.min.js"></script>
         <!-- <script src="/assets/js/jquery-3.7.1.min.js"></script> -->
         <!-- End Bootstrap JS and Popper.js -->
         
         <!-- Begin Core JavaScript files -->
         <!-- (all pages need these files) -->
-        <script src="/assets/js/drop-down-menu-loader.js"></script>
-        <script src="/assets/js/theme.js"></script>
-        <script src="/assets/js/side-nav-script.js"></script>
-        <script src="/assets/js/css-reload.js"></script>
-        <script src="/assets/js/bs-init.js"></script>
-        <script src="/assets/js/top-nav-login-check.js"></script>
-        <script src="/assets/js/site-search.js"></script>
+        <script src = "/assets/js/drop-down-menu-loader.js"></script>
+        <script src = "/assets/js/theme.js"></script>
+        <script src = "/assets/js/side-nav-script.js"></script>
+        <script src = "/assets/js/css-reload.js"></script>
+        <script src = "/assets/js/bs-init.js"></script>
+        <script src = "/assets/js/top-nav-login-check.js"></script>
+        <script src = "/assets/js/site-search.js"></script>
         <!-- End Core JavaScript files -->
         
         <!-- Begin Remote JavaScript files -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <!-- End Remote JavaScript files -->
         
         <!-- Begin Page specific JavaScript files -->
         <!-- <script src="/assets/js/pad-box-loader.js"></script> -->
-        <script src="/assets/js/parse-burnsim.js"></script>
+        <!-- <script src="/assets/js/parse-burnsim.js"></script> -->
+        <script src = "/assets/js/parse-bs-eng.js"></script>
+        <script src = "/assets/js/parse-bs-formula.js"></script>
+        <script src = "/assets/js/parse-bs-motor.js"></script>
+        <script src = "/assets/js/burnsim-tabs.js"></script>
+        <script src = "https://cdn.jsdelivr.net/npm/chart.js@latest/dist/chart.umd.min.js"></script>
+        
         <!-- End Page specific JavaScript files -->
         <!-- End JavaScript -->
     
