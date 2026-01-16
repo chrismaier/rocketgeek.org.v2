@@ -65,6 +65,20 @@ function wireTabPersistence() {
 
     tabButtonElement.addEventListener('shown.bs.tab', function onTabShown() {
       saveActiveTabId(tabButtonId);
+
+      if (tabButtonId === 'bsEngTab') {
+        if (typeof window.burnsimEngForceChartResize === 'function') {
+          window.burnsimEngForceChartResize();
+        }
+      }
+
+      if (typeof window.dispatchEvent === 'function') {
+        try {
+          window.dispatchEvent(new Event('resize'));
+        } catch (resizeError) {
+          return;
+        }
+      }
     });
 
     tabButtonElement.addEventListener('click', function onTabClick() {

@@ -787,6 +787,7 @@ form.user textarea#burnsimRawInput:active
 
 .rg-folder-tabs .nav-tabs .nav-link
 {
+    box-sizing: border-box;
     background: #f3d36a !important;
     color: #111 !important;
     border: 2px solid #8b0000 !important;
@@ -796,11 +797,23 @@ form.user textarea#burnsimRawInput:active
     margin-right: 0.5rem;
     padding-left: 1.1rem;
     padding-right: 1.1rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .rg-folder-tabs .nav-tabs .nav-link:hover
 {
     background: #f6de8b !important;
+    color: #111 !important;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link:focus,
+.rg-folder-tabs .nav-tabs .nav-link:active
+{
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .rg-folder-tabs .nav-tabs .nav-link.active
@@ -808,7 +821,8 @@ form.user textarea#burnsimRawInput:active
     background: #fff3bf !important;
     color: #111 !important;
     position: relative;
-    top: 2px;
+    top: 0;
+    margin-bottom: -2px;
 }
 /* End BurnSim folder tabs */
 
@@ -846,14 +860,25 @@ form.user textarea#burnsimRawInput:active
 #burnsimEngCurveTable tbody tr.table-success,
 #burnsimEngCurveTable tbody tr.table-warning
 {
-    background-color: rgba(139, 0, 0, 0.12) !important;
+    --bs-table-bg: rgba(139, 0, 0, 0.12);
+    --bs-table-striped-bg: rgba(139, 0, 0, 0.12);
+    --bs-table-hover-bg: rgba(139, 0, 0, 0.18);
+    --bs-table-color: #111;
 }
 
-#burnsimEngCurveTable tbody tr.table-info td,
-#burnsimEngCurveTable tbody tr.table-success td,
-#burnsimEngCurveTable tbody tr.table-warning td
+#burnsimEngCurveTable tbody tr.table-info > td,
+#burnsimEngCurveTable tbody tr.table-success > td,
+#burnsimEngCurveTable tbody tr.table-warning > td
 {
-    color: #111;
+    background-color: rgba(139, 0, 0, 0.12) !important;
+    color: #111 !important;
+}
+
+#burnsimEngCurveTable tbody tr.table-info:hover > td,
+#burnsimEngCurveTable tbody tr.table-success:hover > td,
+#burnsimEngCurveTable tbody tr.table-warning:hover > td
+{
+    background-color: rgba(139, 0, 0, 0.18) !important;
 }
 /* End BurnSim ENG - table highlight colors */
 
