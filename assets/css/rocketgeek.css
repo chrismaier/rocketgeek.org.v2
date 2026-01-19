@@ -756,9 +756,17 @@ form.user textarea.form-control-user:focus
 
 /* Begin BurnSim textarea stability (no layout jump on focus) */
 form.user textarea#burnsimRawInput,
+form.user textarea#burnsimMotorRawInput,
+form.user textarea#burnsimEngRawInput,
 form.user textarea#burnsimRawInput:hover,
+form.user textarea#burnsimMotorRawInput:hover,
+form.user textarea#burnsimEngRawInput:hover,
 form.user textarea#burnsimRawInput:focus,
-form.user textarea#burnsimRawInput:active
+form.user textarea#burnsimMotorRawInput:focus,
+form.user textarea#burnsimEngRawInput:focus,
+form.user textarea#burnsimRawInput:active,
+form.user textarea#burnsimMotorRawInput:active,
+form.user textarea#burnsimEngRawInput:active
 {
     box-sizing: border-box !important;
     border: 2px solid #8b0000 !important;
@@ -768,6 +776,7 @@ form.user textarea#burnsimRawInput:active
     resize: none !important;
     overflow-y: scroll !important;
     scrollbar-gutter: stable;
+    height: 260px !important;
 }
 /* End BurnSim textarea stability (no layout jump on focus) */
 
@@ -782,34 +791,68 @@ form.user textarea#burnsimRawInput:active
 
 .rg-folder-tabs .nav-tabs
 {
-    border-bottom: 2px solid #8b0000;
+    border-bottom: 0 !important;
+    position: relative;
+    background: transparent !important;
+}
+
+.rg-folder-tabs .nav-tabs::after
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: #8b0000;
+}
+
+.rg-folder-tabs .nav-item
+{
+    background: transparent !important;
 }
 
 .rg-folder-tabs .nav-tabs .nav-link
 {
+    box-sizing: border-box;
     background: #ffffff !important;
     color: #111 !important;
     border: 2px solid #8b0000 !important;
-    border-bottom: none !important;
+    border-bottom: 2px solid transparent !important;
     border-top-left-radius: 0.75rem !important;
     border-top-right-radius: 0.75rem !important;
     margin-right: 0.5rem;
     padding-left: 1.1rem;
     padding-right: 1.1rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    box-shadow: none !important;
+    outline: none !important;
+    position: relative;
+    top: 0;
+    margin-bottom: -2px;
+    line-height: 1.2;
+    z-index: 1;
 }
 
 .rg-folder-tabs .nav-tabs .nav-link:hover
 {
-    background: #f2f2f2 !important;
+    background: #f5f5f5 !important;
+    color: #111 !important;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link:focus,
+.rg-folder-tabs .nav-tabs .nav-link:active
+{
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .rg-folder-tabs .nav-tabs .nav-link.active
 {
-    background: #e9ecef !important;
+    background: #eeeeee !important;
     color: #8b0000 !important;
-    position: relative;
-    top: 0;
-    margin-bottom: -2px;
+    border-bottom-color: #eeeeee !important;
     z-index: 2;
 }
 /* End BurnSim folder tabs */
@@ -844,18 +887,14 @@ form.user textarea#burnsimRawInput:active
 /* End BurnSim ENG - chart sizing */
 
 /* Begin BurnSim ENG - table highlight colors */
-#burnsimEngCurveTable tbody tr.table-info,
-#burnsimEngCurveTable tbody tr.table-success,
-#burnsimEngCurveTable tbody tr.table-warning
+#burnsimEngCurveTable tbody tr.table-info > *,
+#burnsimEngCurveTable tbody tr.table-success > *,
+#burnsimEngCurveTable tbody tr.table-warning > *
 {
+    --bs-table-bg: rgba(139, 0, 0, 0.12);
+    --bs-table-accent-bg: rgba(139, 0, 0, 0.12);
     background-color: rgba(139, 0, 0, 0.12) !important;
-}
-
-#burnsimEngCurveTable tbody tr.table-info td,
-#burnsimEngCurveTable tbody tr.table-success td,
-#burnsimEngCurveTable tbody tr.table-warning td
-{
-    color: #111;
+    color: #111 !important;
 }
 /* End BurnSim ENG - table highlight colors */
 
