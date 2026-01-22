@@ -1,0 +1,979 @@
+.text-primary
+{
+    /*color: #ffffff;*/
+    /*background-color: #ffffff;*/
+}
+
+.blog-text
+{
+    color: #8b0000;
+    font-style: italic;
+}
+
+.mb-4
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.mb-3
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.mb-1
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+.m-0
+{
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
+}
+
+--rocket-geek-red
+{
+    color: #8b0000;
+}
+
+.mb-4.topbar.static-top
+{
+    background: #8b0000;
+}
+
+#top-nav-bar
+{
+    background: #8b0000;
+}
+
+.navbar
+{
+    background: #8b0000;
+}
+
+.sidebar
+{
+    background: #8b0000;
+}
+
+.sidebar-brand
+{
+    background-color: #8b0000;
+}
+
+.sidebar.sidebar-dark.accordion
+{
+    background: #8b0000;
+}
+
+.d-flex
+{
+    background-color: #8b0000;
+}
+
+.navbar-brand
+{
+        background: #8b0000;
+}
+
+/* added trying to alter text color on a button in the logout html page
+
+The "span:hover" worked
+*/
+
+span:hover
+{
+    color: #000000;
+}
+
+.navbar-brand:hover
+{
+    color: #000000;
+}
+
+
+/* end add text hover color over-ride */
+
+.topbar
+{
+    background: #8b0000;
+}
+
+.navbar-light
+{
+    background: #8b0000;
+}
+
+.navbar-expand
+{
+    background: #8b0000;
+}
+
+.static-top
+{
+    background: #8b0000;
+}
+
+/* top nav menu items*/
+.dropdown-menu {
+    background-color: black;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: black; /* For individual items */
+    color: #FFFFFF; /* Change text color to white for better contrast */
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: darkgray; /* Optional: change the hover color if needed */
+}
+
+.dropdown .dropdown-list .dropdown-header {
+    background-color: #000000;
+    border: 1px solid #FFFFFF;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    color: #8b0000;
+}
+
+.btn-link {
+    font-weight: 400;
+    color: darkgray;
+    text-decoration: underline;
+}
+
+
+.nav-item
+{
+    background: #8b0000;
+}
+
+.sidebar.sidebar-dark.accordion
+{
+    background: #000000;
+}
+
+#page-top
+{
+    background: #000000;
+    color: #000000;
+}
+
+#wrapper
+{
+    background: #000000;
+    color: #000000;
+}
+
+.bg-gradient-primary
+{
+    background: #8b0000;
+}
+
+.btn-user
+{
+    background: #000000;
+}
+
+.btn
+{
+    background: #000000;
+    border-color: #000000;
+}
+
+.btn-user:hover
+{
+    background: #8b0000;
+}
+
+.btn:hover
+{
+    background: #8b0000;
+}
+
+.form-control:focus
+{
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 1px #8b0000;
+}
+
+.sidebar-brand-text
+{
+    color: #000000;
+}
+
+.page-item:active
+{
+    background-color: #000000;
+    color: #000000;
+}
+
+#forgot-password-text
+{
+    color: #8b0000;
+}
+
+.nav-link
+{
+    color: #000000;
+    /*background-color: #000000;*/
+}
+
+.navbar-fixed-top
+{
+    background-color: #000000;
+}
+
+.navbar-light
+{
+    /*background-color: #000000;*/
+}
+
+#navcol-1
+{
+    background: #000000;
+    color: #000000;
+}
+
+#alt-top-navbar
+{
+    background: #000000;
+}
+
+#header-geek:hover
+{
+    color: #000000;
+    text-decoration: #000000;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+a:link {
+    color: #8b0000;
+}
+a:visited {
+    color: #4A4A4A;
+}
+a:hover {
+    color: #FFA500;
+}
+a:active {
+    color: #FF0000;
+}
+
+/* Grey palette styles for the special link with ID 'special-link' */
+#special-link:link {
+    color: #3A3A3A; /* Grey color for unvisited special link */
+}
+#special-link:visited {
+    /* color: #5F5F5F; /* Darker grey for visited special link */
+    /* color: #1A1A1A; */
+    color: #2A2A2A;
+}
+#special-link:hover {
+    color: #A9A9A9; /* Light grey when hovering over special link */
+}
+#special-link:active {
+    color: #696969; /* Dim grey when the special link is being clicked */
+}
+
+#another-link:link {
+    color: #008080;
+}
+#another-link:visited {
+    color: #4682B4;
+}
+#another-link:hover {
+    color: #00CED1;
+}
+#another-link:active {
+    color: #FFA500;
+}
+
+/* Ensure proper vertical alignment and spacing */
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.border-start {
+    border-left: 1px solid #dee2e6;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.link-light {
+    color: #f8f9fa !important;
+}
+
+.link-light:hover {
+    color: #f8f9fa !important;
+    text-decoration: underline !important;
+}
+
+.bg-primary {
+    background-color: #000000 !important;
+}
+
+.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.border-start {
+    border-left: 1px solid #dee2e6;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.link-light {
+    color: #f8f9fa !important;
+}
+
+.link-light:hover {
+    color: #f8f9fa !important;
+    text-decoration: underline !important;
+}
+
+/*
+.calendar-text-light {
+    color: #aaa; /* Lighter color for days not in the current month
+}
+*/
+
+
+.calendar-text-light {
+    color: #6c757d; /* Rocket Geek light grey for other days */
+}
+
+.calendar-text-red {
+    color: #8b0000; /* Rocket Geek red for current month's date */
+}
+
+.event {
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 3px;
+}
+
+.bg-success {
+    background-color: #28a745; /* Green color for success events */
+}
+
+.bg-warning {
+    background-color: #ffc107; /* Yellow color for warning events */
+}
+
+/* CSS for calendar numbers */
+.calendar .days li {
+    color: #000; /* Black color for current month numbers */
+    font-weight: bold; /* Bold font for current month numbers */
+}
+
+.calendar .days li.outside {
+    color: #999; /* Grey color for previous month numbers */
+    font-style: italic; /* Italic font for previous month numbers */
+}
+
+.modal-xl {
+    max-width: 90%;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+#full-size-image {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 200px); /* Ensures the image does not exceed the viewport height minus some padding */
+}
+
+/* Modal styles */
+
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+    color: #ffffff;
+    background-color: #000000;
+    border-color: #8b0000;
+}
+
+.btn-primary:focus {
+    outline: 2px solid #8b0000; /* Custom focus outline */
+}
+
+.border {
+    border: 1px solid #8b0000 !important;
+}
+
+.form-select {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #858796;
+    background-color: #ffffff;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #d1d3e2;
+    border-radius: .35rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Style for the dropdown options */
+.form-select option {
+    color: #000000; /* Text color */
+    background-color: #ffffff; /* Background color */
+}
+
+/* Style for the highlighted dropdown option */
+.form-select option:hover,
+.form-select option:focus {
+    color: #ffffff; /* Text color */
+    background-color: #000000; /* Background color */
+}
+
+button, select {
+    text-transform: none;
+    color: #8b0000;
+}
+
+select {
+    /* Text color */
+    color: #8b0000;
+
+    /* Background color */
+    background-color: #ffffff;
+
+    /* Border */
+    border: 1px solid #8b0000;
+    border-radius: .35rem; /* Rounded corners */
+
+    /* Padding */
+    padding: .375rem 2.25rem .375rem .75rem;
+
+    /* Prevent default browser styles */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Apply custom background image for dropdown arrow */
+        background-position: right .75rem center;
+    background-size: 16px 12px;
+}
+
+/* Hover and Focus styles for select element */
+select:hover,
+select:focus {
+    /* Adjust background color */
+    background-color: #f0f0f0;
+
+    /* Adjust border color */
+    border-color: #8b0000;
+}
+
+select:active {
+    /* Adjust background color */
+    background-color: #8b0000;
+}
+
+.bg-password-image {
+    background-image: url('assets/img/avatars/geek-guy.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; /* or use cover if desired */
+    padding: 20px; /* Adjust this value as needed */
+    background-clip: padding-box;
+}
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.youtube-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.index-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #8b0000;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+}
+
+.index-link:active {
+    color: #8b0000;
+}
+
+.index-link:hover {
+    color: #8b0000;
+}
+
+/* Begin Button hover/border stability – Rocket Geek */
+/* Keep border constant in all states; change only the fill on hover */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+  border-width: 2px;                  /* fixed width to prevent layout jump */
+  border-style: solid;                /* ensure border always exists */
+  border-color: #000000;              /* black border in all states */
+}
+
+.btn {
+  background-color: #000000;          /* default black fill */
+  color: #ffffff;                     /* readable text */
+}
+
+/* Begin Button focus/hover split – keep focus from forcing hover color */
+.btn:hover {
+    background-color: #8b0000;          /* hover red fill */
+    color: #ffffff;
+}
+
+/* Keep focus ring (optional), but DO NOT change background on focus */
+.btn:focus {
+    outline: none;
+    /* If you prefer no glow at all, set box-shadow: none; */
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35);
+}
+/* End Button focus/hover split */
+
+
+/* Disabled buttons: consistent neutral grey pulled from vars */
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+  background-color: var(--bs-btn-disabled-bg, #6c757d);
+  border-color: var(--bs-btn-disabled-border-color, #6c757d);
+  color: var(--bs-btn-disabled-color, #ffffff);
+  opacity: .65;                       /* keep disabled affordance */
+}
+/* End Button hover/border stability – Rocket Geek */
+
+/* Begin Button focus ring fix – kill the blue and keep fills stable */
+.btn,
+.btn-primary,
+.btn-outline-primary {
+    /* Use Rocket Geek red for the focus ring instead of Bootstrap blue */
+    --bs-btn-focus-shadow-rgb: 139, 0, 0;
+}
+
+/* Apply the red focus ring everywhere a button can get focus */
+.btn:focus,
+.btn:focus-visible,
+.btn-primary:focus,
+.btn-outline-primary:focus,
+.btn-check:focus + .btn,
+.btn-check:checked + .btn:focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35) !important;
+    /* Do NOT change the background on focus: hover controls the red fill */
+    background-color: inherit !important;
+    border-color: #000000 !important; /* keep border black and constant */
+}
+/* End Button focus ring fix – kill the blue and keep fills stable */
+
+
+/* Begin Button focus fill lock – keep fill same as non-hover */
+.btn:focus,
+.btn:focus-visible {
+    background-color: #000000 !important; /* default buttons: black */
+    color: #ffffff !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35); /* red ring, no layout shift */
+}
+
+/* Primary buttons keep red fill on focus (not white/blue) */
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-check:focus + .btn-primary,
+.btn-check:focus-visible + .btn-primary {
+    background-color: #8b0000 !important; /* Rocket Geek red */
+    color: #ffffff !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.45);
+}
+
+/* Your custom black button variant */
+.btn-user:focus,
+.btn-user:focus-visible,
+.btn-check:focus + .btn-user,
+.btn-check:focus-visible + .btn-user {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(139, 0, 0, 0.35);
+}
+/* End Button focus fill lock – keep fill same as non-hover */
+
+/* Begin Button focused-hover restore – let hover win while focused */
+
+/* Default buttons (black base → red on hover), even when focused */
+.btn:hover,
+.btn:focus:hover,
+.btn:focus-visible:hover {
+    background-color: #8b0000 !important;  /* hover red */
+    color: #ffffff !important;
+}
+
+/* Primary buttons: darker red on hover, even while focused */
+.btn-primary:hover,
+.btn-primary:focus:hover,
+.btn-primary:focus-visible:hover,
+.btn-check:focus + .btn-primary:hover,
+.btn-check:focus-visible + .btn-primary:hover {
+    background-color: #6f0000 !important;  /* hover shade of red */
+    border-color: #660000 !important;
+    color: #ffffff !important;
+}
+
+/* Custom .btn-user (black base → red on hover), even while focused */
+.btn-user:hover,
+.btn-user:focus:hover,
+.btn-user:focus-visible:hover,
+.btn-check:focus + .btn-user:hover,
+.btn-check:focus-visible + .btn-user:hover {
+    background-color: #8b0000 !important;
+    border-color: #8b0000 !important;
+    color: #ffffff !important;
+}
+/* End Button focused-hover restore – let hover win while focused */
+
+/* Begin Register form control stability (no layout jump on focus) */
+form.user .form-control,
+form.user .form-control-user
+{
+    border-width: 2px;
+    border-style: solid;
+    border-color: #8b0000;
+    box-shadow: none;
+}
+
+form.user .form-control:hover,
+form.user .form-control-user:hover
+{
+    border-color: #8b0000;
+}
+
+form.user .form-control:focus,
+form.user .form-control-user:focus
+{
+    border-width: 2px;
+    border-style: solid;
+    border-color: #8b0000;
+    box-shadow: none;
+    outline: none;
+}
+
+form.user textarea.form-control-user:focus
+{
+    box-shadow: none !important;
+}
+/* End Register form control stability (no layout jump on focus) */
+
+
+/* Begin BurnSim textarea stability (no layout jump on focus) */
+form.user textarea#burnsimRawInput,
+form.user textarea#burnsimRawInput:hover,
+form.user textarea#burnsimRawInput:focus,
+form.user textarea#burnsimRawInput:active
+{
+    box-sizing: border-box !important;
+    border: 2px solid #8b0000 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: none !important;
+    resize: none !important;
+    overflow-y: scroll !important;
+    scrollbar-gutter: stable;
+}
+/* End BurnSim textarea stability (no layout jump on focus) */
+
+/* Begin BurnSim folder tabs */
+.rg-folder-tabs
+{
+    background: #ffffff;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 1.0rem;
+}
+
+.rg-folder-tabs .nav-tabs
+{
+    border-bottom: 2px solid #8b0000;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link
+{
+    background: #f3d36a !important;
+    color: #111 !important;
+    border: 2px solid #8b0000 !important;
+    border-bottom: none !important;
+    border-top-left-radius: 0.75rem !important;
+    border-top-right-radius: 0.75rem !important;
+    margin-right: 0.5rem;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link:hover
+{
+    background: #f6de8b !important;
+}
+
+.rg-folder-tabs .nav-tabs .nav-link.active
+{
+    background: #fff3bf !important;
+    color: #111 !important;
+    position: relative;
+    top: 2px;
+}
+/* End BurnSim folder tabs */
+
+
+/* Begin BurnSim ENG - chart sizing */
+.burnsim-eng-chart-box
+{
+    position: relative;
+    height: 400px;
+}
+
+.burnsim-eng-delta-box
+{
+    position: relative;
+    height: 130px;
+}
+
+.burnsim-eng-chart-box canvas
+{
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.burnsim-eng-delta-box canvas
+{
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+/* End BurnSim ENG - chart sizing */
+
+/* Begin BurnSim ENG - table highlight colors */
+#burnsimEngCurveTable tbody tr.table-info,
+#burnsimEngCurveTable tbody tr.table-success,
+#burnsimEngCurveTable tbody tr.table-warning
+{
+    background-color: rgba(139, 0, 0, 0.12) !important;
+}
+
+#burnsimEngCurveTable tbody tr.table-info td,
+#burnsimEngCurveTable tbody tr.table-success td,
+#burnsimEngCurveTable tbody tr.table-warning td
+{
+    color: #111;
+}
+/* End BurnSim ENG - table highlight colors */
+
+
+/* Begin BurnSim Print - formula propellant list */
+@media print
+{
+    #burnsimTabNav
+    {
+        display: none !important;
+    }
+
+    #bsFormulaPane #burnsimRawInput,
+    #bsFormulaPane label[for="burnsimRawInput"],
+    #bsFormulaPane #burnsimFileInput,
+    #bsFormulaPane label[for="burnsimFileInput"],
+    #bsFormulaPane #burnsimChooseFileButton,
+    #bsFormulaPane #burnsimChosenFileName,
+    #bsFormulaPane #burnsimParseButton,
+    #bsFormulaPane #burnsimClearButton,
+    #bsFormulaPane #burnsimParseStatus
+    {
+        display: none !important;
+    }
+
+    #burnsimFormulaPrintHeader
+    {
+        align-items: center;
+        background: rgba(25, 135, 84, 0.18);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        border-radius: 0.75rem;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        padding: 0.6rem 0.9rem;
+    }
+
+    #burnsimFormulaPrintHeader .rg-print-logo
+    {
+        height: auto;
+        width: 34px;
+    }
+
+    #burnsimFormulaPrintHeader .rg-print-title
+    {
+        color: #111;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    #burnsimFormulaPrintHeader .rg-print-subtitle
+    {
+        color: #333;
+        font-size: 0.92rem;
+        line-height: 1.15;
+    }
+
+    #bsFormulaPane #burnsimPropellantTable
+    {
+        display: table !important;
+    }
+}
+/* End BurnSim Print - formula propellant list */
+
+
+/* Begin Rocket Geek heading style utility */
+.rg-heading {
+    color: #8b0000;
+    font-style: italic;
+    font-weight: bolder;
+}
+/* End Rocket Geek heading style utility */
+
+/* Begin Rocket Geek emphasis utilities */
+.rg-red {
+    color: #8b0000;
+}
+.rg-bold {
+    font-weight: bolder;
+}
+.rg-italic {
+    font-style: italic;
+}
+    /* End Rocket Geek emphasis utilities */
+
+/* Begin Topbar search rounding */
+.navbar-search .input-group
+{
+    align-items: center;
+    gap: 6px;
+}
+
+.navbar-search .input-group > :not(:first-child)
+{
+    margin-left: 0 !important;
+}
+
+.navbar-search .input-group .form-control
+{
+    border-radius: 9999px !important;
+    border-top-right-radius: 9999px !important;
+    border-bottom-right-radius: 9999px !important;
+}
+
+.navbar-search .input-group .btn
+{
+    border-radius: 50% !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 38px;
+}
+
+.navbar-search .input-group .btn i
+{
+    margin: 0;
+}
+/* End Topbar search rounding */
